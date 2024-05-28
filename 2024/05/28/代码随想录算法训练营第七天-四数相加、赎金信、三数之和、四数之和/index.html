@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/nearlfamliy.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Leoo Yann">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="454.四数相加 视频讲解: 学透哈希表，map使用有技巧！LeetCode：454.四数相加II 文章讲解：454.四数相加  之前做过，知道用map，但是太久没用过map，一时间不知道怎么用map，干瞪眼十几分钟，最后看了题解，思路有，但是map的用法限制了我…… unordered_map怎么在算法题中使用unordered_map是std命名空间下的，所以自己写ACM模式的时候记得加 st">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录算法训练营第七天|四数相加、赎金信、三数之和、四数之和">
+<meta property="og:url" content="http://novelyear.github.io/2024/05/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AE%97%E6%B3%95%E8%AE%AD%E7%BB%83%E8%90%A5%E7%AC%AC%E4%B8%83%E5%A4%A9-%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0%E3%80%81%E8%B5%8E%E9%87%91%E4%BF%A1%E3%80%81%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C%E3%80%81%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/index.html">
+<meta property="og:site_name" content="novelyear&#39;s blog">
+<meta property="og:description" content="454.四数相加 视频讲解: 学透哈希表，map使用有技巧！LeetCode：454.四数相加II 文章讲解：454.四数相加  之前做过，知道用map，但是太久没用过map，一时间不知道怎么用map，干瞪眼十几分钟，最后看了题解，思路有，但是map的用法限制了我…… unordered_map怎么在算法题中使用unordered_map是std命名空间下的，所以自己写ACM模式的时候记得加 st">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-27T23:57:40.000Z">
+<meta property="article:modified_time" content="2024-05-28T03:42:58.819Z">
+<meta property="article:author" content="Leoo Yann">
+<meta property="article:tag" content="leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码随想录算法训练营第七天|四数相加、赎金信、三数之和、四数之和 - novelyear&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"novelyear.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Novelyear&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/skadi.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="代码随想录算法训练营第七天|四数相加、赎金信、三数之和、四数之和"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-28 07:57" pubdate>
+          2024年5月28日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">代码随想录算法训练营第七天|四数相加、赎金信、三数之和、四数之和</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="454-四数相加"><a href="#454-四数相加" class="headerlink" title="454.四数相加"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum-ii/description/">454.四数相加</a></h1><blockquote>
+<p>视频讲解: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Md4y1Q7Yh/">学透哈希表，map使用有技巧！LeetCode：454.四数相加II</a></p>
+<p>文章讲解：<a target="_blank" rel="noopener" href="https://programmercarl.com/0454.%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0II.html">454.四数相加</a></p>
+</blockquote>
+<p>之前做过，知道用map，但是太久没用过map，一时间不知道怎么用map，干瞪眼十几分钟，最后看了题解，思路有，但是map的用法限制了我……</p>
+<h2 id="unordered-map怎么在算法题中使用"><a href="#unordered-map怎么在算法题中使用" class="headerlink" title="unordered_map怎么在算法题中使用"></a>unordered_map怎么在算法题中使用</h2><p>unordered_map是std命名空间下的，所以自己写ACM模式的时候记得加 <code>std::</code></p>
+<table>
+<thead>
+<tr>
+<th>映射</th>
+<th>底层实现</th>
+<th>是否有序</th>
+<th>数值是否可重复</th>
+<th>能否更改数值</th>
+<th>查询效率</th>
+<th>增删效率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>map</code></td>
+<td>红黑树</td>
+<td>key有序</td>
+<td>key不重复</td>
+<td>key不可修改</td>
+<td>O(logn)</td>
+<td>O(logn)</td>
+</tr>
+<tr>
+<td><code>multimap</code></td>
+<td>红黑树</td>
+<td>key有序</td>
+<td>key可重复</td>
+<td>key不可修改</td>
+<td>O(logn)</td>
+<td>O(logn)</td>
+</tr>
+<tr>
+<td><code>unordered_map</code></td>
+<td>哈希表</td>
+<td>key无序</td>
+<td>key不重复</td>
+<td>key不可修改</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>由该表能看出，unordered_map查找的效率最高，但是内部元素无序</p>
+<p>适用于：当作记录型变量用于需要多次查找的场合</p>
+<p><strong>创建unordered_map</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//注意给出两个模板类型变量</span><br>unordered_map&lt;type1, type2&gt; map;<br><span class="hljs-comment">//设定初值方法</span><br>unordered_map&lt;t1, t2&gt; map = &#123;&#123;key1, value1&#125;, &#123;key2, value2&#125;, ……&#125;;<br>vector&lt;pair&lt;t1, t2&gt;&gt; v = &#123;&#123;key1, value1&#125;, &#123;key2, value2&#125;, ……&#125;;  <br><span class="hljs-comment">//使用既有pair数组初始化</span><br><span class="hljs-function">unordered_map&lt;<span class="hljs-type">int</span>, string&gt; <span class="hljs-title">map</span><span class="hljs-params">(v.begin(), v.end())</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>插入一个元素进map</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//如果要记录的是&lt;key, value&gt;</span><br>map[key] = value;<br><span class="hljs-comment">//或者复杂点</span><br>map.<span class="hljs-built_in">insert</span>(<span class="hljs-built_in">pair</span>&lt;type1, type2&gt;(key, value));<br><span class="hljs-comment">//如果记录key出现几次</span><br>map[key]++;<span class="hljs-comment">//[]被重载过，即使没有key也会创建一个并赋值1</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>map的迭代器</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//使用迭代器访问key和value</span><br>unordered_map&lt;<span class="hljs-type">int</span>, string&gt; map;<br><span class="hljs-keyword">auto</span> it = map.<span class="hljs-built_in">begin</span>();<br>it-&gt;first = key;<span class="hljs-comment">//it视作一个pair&lt;int, string&gt;元素，用-&gt;访问key和value</span><br>it-&gt;second = value;<span class="hljs-comment">//说白了就是用first和second</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>map的增删改查方法</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">iterator <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">const</span> type1&amp; key)</span>    <span class="hljs-comment">//返回key在map中的位置，没有就指end()</span></span><br><span class="hljs-function"><span class="hljs-type">size_t</span> <span class="hljs-title">count</span><span class="hljs-params">(<span class="hljs-type">const</span> type1&amp; key)</span>    <span class="hljs-comment">//返回哈希桶中关键码为key的键值对的个数</span></span><br><span class="hljs-function">insert    <span class="hljs-comment">//插入键值对</span></span><br><span class="hljs-function">erase     <span class="hljs-comment">//删除键值对</span></span><br></code></pre></td></tr></table></figure>
+
+<p>注意 <code>erase</code>方法是使用迭代器删除元素，传入的参数指向目标的迭代器，而返回下一个元素的迭代器，用 <code>for</code>遍历删除时不要 <code>iter++</code>，应该使用 <code>iter = map.erase(iter)</code></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fourSumCount</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums3, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums4)</span> </span>&#123;<br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; map1;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> a : nums1) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> b : nums2) &#123;<br>                <span class="hljs-type">int</span> sum = a + b;<br>                map1[sum]++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> a : nums3) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> b : nums4) &#123;<br>                <span class="hljs-keyword">if</span>(map1.<span class="hljs-built_in">count</span>(-a-b)) <br>                    ans += map1[-a-b];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="383-赎金信"><a href="#383-赎金信" class="headerlink" title="383.赎金信"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ransom-note/description/">383.赎金信</a></h1><blockquote>
+<p>Carl文章&amp;视频链接：<a target="_blank" rel="noopener" href="https://programmercarl.com/0383.%E8%B5%8E%E9%87%91%E4%BF%A1.html">代码随想录 | 383.赎金信</a></p>
+</blockquote>
+<p>看覆不覆盖就完了，用 <code>char alpha[26]</code>或者开一个 <code>map</code>都行，一次遍历 <code>++</code>，一次遍历 <code>--</code>，缺了就 <code>false</code>，不缺就 <code>true</code></p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">canConstruct</span><span class="hljs-params">(string ransomNote, string magazine)</span> </span>&#123;<br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; map;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">char</span> c : magazine) &#123;<br>            map[c]++;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">char</span> c : ransomNote) &#123;<br>            <span class="hljs-keyword">if</span>(map[c]) map[c]--;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="15-三数之和（双指针）"><a href="#15-三数之和（双指针）" class="headerlink" title="15.三数之和（双指针）"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/description/">15.三数之和（双指针）</a></h1><blockquote>
+<p>Carl文章&amp;视频链接：<a target="_blank" rel="noopener" href="https://programmercarl.com/0015.%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C.html">代码随想录 | 三数之和</a></p>
+</blockquote>
+<p>该题看起来是<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/description/">两数之和</a>的拓展，所以自然想到用双指针，但是有3个数，得3个指针，所以拆分子问题，一个指针在大循环里移动，小循环内使用两数之和的方法查找。</p>
+<p>还得去重操作，没有关注，WA了几发，哈希做法需要大量剪枝没看。</p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n - <span class="hljs-number">2</span>;i++) &#123;<br>            <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-type">int</span> target = -nums[i];<br>            <span class="hljs-type">int</span> left = i + <span class="hljs-number">1</span>, right = n - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(left &lt; right) &#123;<br>                <span class="hljs-type">int</span> sum = nums[left] + nums[right];<br>                <span class="hljs-keyword">if</span>(sum == target) &#123;<br>                    ans.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt;&#123;nums[i], nums[left], nums[right]&#125;);<br>                    <span class="hljs-keyword">while</span>(left &lt; right &amp;&amp; nums[left] == nums[left + <span class="hljs-number">1</span>]) left++;<br>                    <span class="hljs-keyword">while</span>(right &gt; left &amp;&amp; nums[right] == nums[right - <span class="hljs-number">1</span>]) right--;<br>                    left++;<br>                    right--;<br>                &#125;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(sum &lt; target) &#123;<br>                    left++;<br>                &#125;<br>                <span class="hljs-keyword">else</span> <br>                    right--;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="四数之和（双指针）"><a href="#四数之和（双指针）" class="headerlink" title="四数之和（双指针）"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/description/">四数之和（双指针）</a></h1><blockquote>
+<p>Carl文章&amp;视频链接：<a target="_blank" rel="noopener" href="https://programmercarl.com/0018.%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C.html">代码随想录 | 四数之和</a></p>
+</blockquote>
+<p>跟三数之和差不多，继续拆分子问题套循环，不过又多了剪枝操作</p>
+<p>还得注意范围，此题会爆 <code>int</code>，得用 <code>long long</code></p>
+<h2 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">fourSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target) &#123;<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>      <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n - <span class="hljs-number">3</span>;i++) &#123;<br>            <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>]) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span> ((<span class="hljs-type">long</span> <span class="hljs-type">long</span>) nums[i] + nums[i + <span class="hljs-number">1</span>] + nums[i + <span class="hljs-number">2</span>] + nums[i + <span class="hljs-number">3</span>] &gt; target) &#123;<span class="hljs-comment">//已经太大</span><br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> ((<span class="hljs-type">long</span> <span class="hljs-type">long</span>) nums[i] + nums[n - <span class="hljs-number">3</span>] + nums[n - <span class="hljs-number">2</span>] + nums[n - <span class="hljs-number">1</span>] &lt; target) &#123;<span class="hljs-comment">//已经太小</span><br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>;j &lt; n - <span class="hljs-number">2</span>;j++) &#123;<br>                <span class="hljs-keyword">if</span>(j &gt; i + <span class="hljs-number">1</span> &amp;&amp; nums[j] == nums[j - <span class="hljs-number">1</span>]) <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span> ((<span class="hljs-type">long</span> <span class="hljs-type">long</span>) nums[i] + nums[j] + nums[j + <span class="hljs-number">1</span>] + nums[j + <span class="hljs-number">2</span>] &gt; target) &#123;<span class="hljs-comment">//已经太大</span><br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span> ((<span class="hljs-type">long</span> <span class="hljs-type">long</span>) nums[i] + nums[j] + nums[n - <span class="hljs-number">2</span>] + nums[n - <span class="hljs-number">1</span>] &lt; target) &#123;<span class="hljs-comment">//已经太小</span><br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-type">int</span> left = j + <span class="hljs-number">1</span>, right = n - <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">while</span>(left &lt; right) &#123;<br>                    <span class="hljs-type">long</span> <span class="hljs-type">long</span> sum = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)nums[left] + nums[right] + nums[i] + nums[j];<br>                    <span class="hljs-keyword">if</span>(sum == target) &#123;<br>                        ans.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt; &#123;nums[i], nums[j], nums[left], nums[right]&#125;);<br>                        <span class="hljs-keyword">while</span>(left &lt; right &amp;&amp; nums[left] == nums[left + <span class="hljs-number">1</span>]) left++;<br>                        <span class="hljs-keyword">while</span>(left &lt; right &amp;&amp; nums[right] == nums[right - <span class="hljs-number">1</span>]) right--;<br>                        left++;<br>                        right--;<br>                    &#125;<br>                    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(sum &gt; target) &#123;<br>                        right--;<br>                    &#125;<br>                    <span class="hljs-keyword">else</span> <br>                        left++;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/leetcode/" class="print-no-link">#leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>代码随想录算法训练营第七天|四数相加、赎金信、三数之和、四数之和</div>
+      <div>http://novelyear.github.io/2024/05/28/代码随想录算法训练营第七天-四数相加、赎金信、三数之和、四数之和/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Leoo Yann</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/27/%E8%BF%B7%E8%BF%AD%E9%A6%99%E7%9A%84%E8%AE%B0%E4%BA%8B%E6%9C%AC%EF%BC%9A%E6%80%8E%E4%B9%88%E5%86%99%E5%8D%9A%E5%AE%A2/" title="迷迭香的记事本：怎么写博客">
+                        <span class="hidden-mobile">迷迭香的记事本：怎么写博客</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
