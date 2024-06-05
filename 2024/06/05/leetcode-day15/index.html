@@ -16,15 +16,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容：   239. 滑动窗口最大值 347.前 K 个高频元素  239.滑动窗口最大值考验对于priority_queue数据结构的了解和掌握程度，不过不能当API选手，得知道怎么手写堆，不求随手手撕出大小顶堆，但是得知道大概写法。 关于priority_queue的感性理解在lc上看见了评论区大佬，关于priority_queue的比喻描述很形象，特引用至此：  单调队列真是一种让人感到">
+    <meta name="description" content="今日内容：  - 102.层序遍历- 226.翻转二叉树- 101.对称二叉树 层序遍历思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; levelOrder(Tr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day13">
-<meta property="og:url" content="http://novelyear.github.io/2024/06/03/leetcode-day13/index.html">
+<meta property="og:title" content="leetcode_day15">
+<meta property="og:url" content="http://novelyear.github.io/2024/06/05/leetcode-day15/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容：   239. 滑动窗口最大值 347.前 K 个高频元素  239.滑动窗口最大值考验对于priority_queue数据结构的了解和掌握程度，不过不能当API选手，得知道怎么手写堆，不求随手手撕出大小顶堆，但是得知道大概写法。 关于priority_queue的感性理解在lc上看见了评论区大佬，关于priority_queue的比喻描述很形象，特引用至此：  单调队列真是一种让人感到">
+<meta property="og:description" content="今日内容：  - 102.层序遍历- 226.翻转二叉树- 101.对称二叉树 层序遍历思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; levelOrder(Tr">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-03T01:39:11.000Z">
-<meta property="article:modified_time" content="2024-06-03T06:57:56.033Z">
+<meta property="article:published_time" content="2024-06-05T08:38:50.000Z">
+<meta property="article:modified_time" content="2024-06-05T09:18:32.593Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>leetcode_day13 - novelyear&#39;s home</title>
+  <title>leetcode_day15 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day13"></span>
+            <span id="subtitle" data-typed-text="leetcode_day15"></span>
           
         </div>
 
@@ -215,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-03 09:39" pubdate>
-          2024年6月3日 上午
+        <time datetime="2024-06-05 16:38" pubdate>
+          2024年6月5日 下午
         </time>
       </span>
     
@@ -228,7 +228,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.1k 字
+          660 字
         
       </span>
     
@@ -275,12 +275,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day13</h1>
+            <h1 id="seo-header">leetcode_day15</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年6月3日 下午
+                    本文最后更新于 2024年6月5日 下午
                   
                 
               </p>
@@ -289,26 +289,19 @@
               <div class="markdown-body">
                 
                 <p>今日内容： </p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/description/">239. 滑动窗口最大值</a></li>
-<li><a href="">347.前 K 个高频元素</a></li>
-</ul>
-<h1 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239.滑动窗口最大值"></a>239.滑动窗口最大值</h1><p>考验对于<code>priority_queue</code>数据结构的了解和掌握程度，不过不能当API选手，得知道怎么手写堆，不求随手手撕出大小顶堆，但是得知道大概写法。</p>
-<h2 id="关于priority-queue的感性理解"><a href="#关于priority-queue的感性理解" class="headerlink" title="关于priority_queue的感性理解"></a>关于<code>priority_queue</code>的感性理解</h2><p>在lc上看见了评论区大佬，关于<code>priority_queue</code>的比喻描述很形象，特引用至此：</p>
-<blockquote>
-<p>单调队列真是一种让人感到五味杂陈的数据结构，它的维护过程更是如此…..就拿此题来说，队头最大，往队尾方向单调……有机会站在队头的老大永远心狠手辣，当它从队尾杀进去的时候，如果它发现这里面没一个够自己打的，它会毫无人性地屠城，把原先队里的人头全部丢出去，转身建立起自己的政权，野心勃勃地准备开创一个新的王朝…..这时候，它的人格竟发生了一百八十度大反转，它变成了一位胸怀宽广的慈父！它热情地请那些新来的“小个子”们入住自己的王国……然而，这些小个子似乎天性都是一样的——嫉妒心强，倘若见到比自己还小的居然更早入住王国，它们会心狠手辣地找一个夜晚把它们通通干掉，好让自己享受更大的“蛋糕”；当然，遇到比自己强大的，它们也没辙，乖乖夹起尾巴做人。像这样的暗杀事件每天都在上演，虽然王国里日益笼罩上白色恐怖，但是好在没有后来者强大到足以干翻国王，江山还算能稳住。直到有一天，闯进来了一位真正厉害的角色，就像当年打江山的国王一样，手段狠辣，野心膨胀，于是又是大屠城……历史总是轮回的。</p>
-</blockquote>
-<p>似乎没办法贴评论的链接，去description下找吧，应该挺靠前的。</p>
-<p>叛军屠城 &#x3D; 遇到新最值，<strong>全弹出</strong>; 慈悲为怀 &#x3D; 后续小值有序堆在队头之后; </p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">maxSlidingWindow</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        priority_queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; pq;<span class="hljs-comment">//存pair，得带上值得下标方便确定是不是该出队</span><br>        vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(pq.<span class="hljs-built_in">empty</span>()) pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>(nums[i], i));<span class="hljs-comment">//空的直接存</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums[i] &gt;= pq.<span class="hljs-built_in">top</span>().first) &#123;<span class="hljs-comment">//新最值，全出队</span><br>                <span class="hljs-keyword">while</span>(!pq.<span class="hljs-built_in">empty</span>()) pq.<span class="hljs-built_in">pop</span>();<br>                pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>(nums[i], i));<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(pq.<span class="hljs-built_in">size</span>() &gt;= k) &#123;<span class="hljs-comment">//已满</span><br>                pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>(nums[i], i));<br>                <span class="hljs-keyword">while</span>(pq.<span class="hljs-built_in">top</span>().second + k &lt;= i)<span class="hljs-comment">//出队已经晚了的,注意得是while</span><br>                    pq.<span class="hljs-built_in">pop</span>();<br>            &#125;<br>            <span class="hljs-keyword">else</span> pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>(nums[i], i));<br>            <span class="hljs-keyword">if</span>(i + <span class="hljs-number">1</span> &gt;= k) ans.<span class="hljs-built_in">push_back</span>(pq.<span class="hljs-built_in">top</span>().first);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">- 102.层序遍历</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/invert-binary-tree/">- 226.翻转二叉树</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/">- 101.对称二叉树</a></p>
+<h1 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h1><p>思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp">vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">levelOrder</span>(TreeNode* root) &#123;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>    vector&lt;<span class="hljs-type">int</span>&gt; temp;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> &#123;&#125;;<br>    TreeNode * cur = root;<br>    queue&lt;TreeNode*&gt; q;<br>    q.<span class="hljs-built_in">push</span>(cur);<br>    <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>()) &#123;<br>        <span class="hljs-type">int</span> size = q.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) &#123;<br>            cur = q.<span class="hljs-built_in">front</span>();<br>            q.<span class="hljs-built_in">pop</span>();<br>            temp.<span class="hljs-built_in">push_back</span>(cur-&gt;val);<br>            <span class="hljs-keyword">if</span> (cur-&gt;left) q.<span class="hljs-built_in">push</span>(cur-&gt;left);<br>            <span class="hljs-keyword">if</span> (cur-&gt;right) q.<span class="hljs-built_in">push</span>(cur-&gt;right);<br>        &#125;<br>        ans.<span class="hljs-built_in">push_back</span>(temp);<br>        temp.<span class="hljs-built_in">clear</span>();<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="347-前k个高频元素"><a href="#347-前k个高频元素" class="headerlink" title="347.前k个高频元素"></a>347.前k个高频元素</h1><p>感觉思路比较简单暴力，用map来记“值-频率”，然后根据“频率数组”建堆排序来降低时间复杂度到O(nlogn)以下。总之是先记再排序。</p>
-<p>不过carl的反其道而行很巧妙，采用小根堆，这样就可以简单地根据队列盈满来出队队头，官解也是小根堆，不过没有简单出队，而是判断当前的和队头的哪个更小，如果队头更小才出队。</p>
-<p>对于pq自定义排序标准的语法不了解，是看过之后才写的，对于这道题</p>
-<p><code>priority_queue</code>的模板类型参数有三，1.要存的类型；2.要存的类型的vector；3.自定义比较方法所在类，自定义比较需重载<code>()</code>运算符</p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">cmp</span>&#123;<br>    <span class="hljs-keyword">public</span>:<br>        <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; &amp;a, <span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; &amp;b)</span> </span>&#123;<br>            <span class="hljs-keyword">return</span> a.second &gt; b.second;<br>        &#125;<br>    &#125;;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">topKFrequent</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>&#123;<br>        <span class="hljs-comment">//用map记录值-频率，通过优先队列或者堆来对前k个频率排序，最后输出前k个元素</span><br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; map;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : nums) map[i]++;<br><br>        priority_queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;, vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;, cmp&gt; pq;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> it : map) &#123;<br>            pq.<span class="hljs-built_in">push</span>(it);<br>            <span class="hljs-keyword">if</span>(pq.<span class="hljs-built_in">size</span>() &gt; k) pq.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>        <span class="hljs-keyword">while</span> (k--)&#123;<br>            <span class="hljs-type">int</span> t = pq.<span class="hljs-built_in">top</span>().first;<br>            ans.<span class="hljs-built_in">push_back</span>(t);<br>            pq.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="翻转二叉树"><a href="#翻转二叉树" class="headerlink" title="翻转二叉树"></a>翻转二叉树</h1><p>递归版比较简单，太过简单，所以skip</p>
+<p>迭代版就看作在遍历，而且是前序遍历那种单循环，出栈后把左右节点交换，然后压栈左右节点继续就行，给出循环部分的核心代码<del>本来就是核心代码模式，又再核心……</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>()) &#123;<br>    TreeNode* node = st.<span class="hljs-built_in">top</span>();              <span class="hljs-comment">// 中</span><br>    st.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-built_in">swap</span>(node-&gt;left, node-&gt;right);<br>    <span class="hljs-keyword">if</span>(node-&gt;right) st.<span class="hljs-built_in">push</span>(node-&gt;right);   <span class="hljs-comment">// 右</span><br>    <span class="hljs-keyword">if</span>(node-&gt;left) st.<span class="hljs-built_in">push</span>(node-&gt;left);     <span class="hljs-comment">// 左</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-
+<h1 id="对称二叉树"><a href="#对称二叉树" class="headerlink" title="对称二叉树"></a>对称二叉树</h1><p>递归版很简单，写一个辅助函数判断左右节点是不是相等，是树就接着递归，然后从根开始对每一个分支节点的左右孩子判断就行<br>代码没写，偷了个懒😜</p>
+<p>迭代版要难一点，仅限于手写层面，思路不难</p>
+<p>迭代需要用队列或者栈等来存，但是不是按左右顺序挨个入队，而是左右<strong>对应交替</strong>入队，这样方便判断是否相等</p>
+<p>下附carl的漂亮含注释代码，<a target="_blank" rel="noopener" href="https://programmercarl.com/0101.%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91.html#%E6%80%9D%E8%B7%AF">carl原文链接</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isSymmetric</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        queue&lt;TreeNode*&gt; que;<br>        que.<span class="hljs-built_in">push</span>(root-&gt;left);   <span class="hljs-comment">// 将左子树头结点加入队列</span><br>        que.<span class="hljs-built_in">push</span>(root-&gt;right);  <span class="hljs-comment">// 将右子树头结点加入队列</span><br>        <br>        <span class="hljs-keyword">while</span> (!que.<span class="hljs-built_in">empty</span>()) &#123;  <span class="hljs-comment">// 接下来就要判断这两个树是否相互翻转</span><br>            TreeNode* leftNode = que.<span class="hljs-built_in">front</span>(); que.<span class="hljs-built_in">pop</span>();<br>            TreeNode* rightNode = que.<span class="hljs-built_in">front</span>(); que.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">if</span> (!leftNode &amp;&amp; !rightNode) &#123;  <span class="hljs-comment">// 左节点为空、右节点为空，此时说明是对称的</span><br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-comment">// 左右一个节点不为空，或者都不为空但数值不相同，返回false</span><br>            <span class="hljs-keyword">if</span> ((!leftNode || !rightNode || (leftNode-&gt;val != rightNode-&gt;val))) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>            que.<span class="hljs-built_in">push</span>(leftNode-&gt;left);   <span class="hljs-comment">// 加入左节点左孩子</span><br>            que.<span class="hljs-built_in">push</span>(rightNode-&gt;right); <span class="hljs-comment">// 加入右节点右孩子</span><br>            que.<span class="hljs-built_in">push</span>(leftNode-&gt;right);  <span class="hljs-comment">// 加入左节点右孩子</span><br>            que.<span class="hljs-built_in">push</span>(rightNode-&gt;left);  <span class="hljs-comment">// 加入右节点左孩子</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -332,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day13</div>
-      <div>http://novelyear.github.io/2024/06/03/leetcode-day13/</div>
+      <div>leetcode_day15</div>
+      <div>http://novelyear.github.io/2024/06/05/leetcode-day15/</div>
     </div>
     <div class="license-meta">
       
@@ -346,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年6月3日</div>
+          <div>2024年6月5日</div>
         </div>
       
       
@@ -377,18 +370,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/04/leetcode-day14/" title="leetcode_day14">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day14</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/01/leetcode-day11/" title="leetcode_day11">
-                        <span class="hidden-mobile">leetcode_day11</span>
+                      <a href="/2024/06/04/leetcode-day14/" title="leetcode_day14">
+                        <span class="hidden-mobile">leetcode_day14</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
