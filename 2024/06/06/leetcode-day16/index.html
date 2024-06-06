@@ -16,15 +16,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容：  - 102.层序遍历- 226.翻转二叉树- 101.对称二叉树 层序遍历思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; levelOrder(Tr">
+    <meta name="description" content="今日内容：  - 104.二叉树的最大深度- 559.n叉树的最大深度- 111.二叉树的最小深度- 222.完全二叉树的节点个数 树的最大深度最大深度指从根到所有节点的长度中最长的那一个，换言之就是要找离根最远的节点然后返回到它的长度。 用dfs和bfs都行，分别代表递归前后序遍历和层序遍历，对于n叉树而言，仅仅是多比较几次而已，改写难度不大 下附对于n叉树的bfs遍历 123456789101">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day15">
-<meta property="og:url" content="http://novelyear.github.io/2024/06/05/leetcode-day15/index.html">
+<meta property="og:title" content="leetcode_day16">
+<meta property="og:url" content="http://novelyear.github.io/2024/06/06/leetcode-day16/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容：  - 102.层序遍历- 226.翻转二叉树- 101.对称二叉树 层序遍历思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; levelOrder(Tr">
+<meta property="og:description" content="今日内容：  - 104.二叉树的最大深度- 559.n叉树的最大深度- 111.二叉树的最小深度- 222.完全二叉树的节点个数 树的最大深度最大深度指从根到所有节点的长度中最长的那一个，换言之就是要找离根最远的节点然后返回到它的长度。 用dfs和bfs都行，分别代表递归前后序遍历和层序遍历，对于n叉树而言，仅仅是多比较几次而已，改写难度不大 下附对于n叉树的bfs遍历 123456789101">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-05T08:38:50.000Z">
-<meta property="article:modified_time" content="2024-06-05T09:18:32.593Z">
+<meta property="article:published_time" content="2024-06-06T02:38:08.000Z">
+<meta property="article:modified_time" content="2024-06-06T03:15:02.083Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>leetcode_day15 - novelyear&#39;s home</title>
+  <title>leetcode_day16 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day15"></span>
+            <span id="subtitle" data-typed-text="leetcode_day16"></span>
           
         </div>
 
@@ -215,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-05 16:38" pubdate>
-          2024年6月5日 下午
+        <time datetime="2024-06-06 10:38" pubdate>
+          2024年6月6日 上午
         </time>
       </span>
     
@@ -228,7 +228,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          660 字
+          671 字
         
       </span>
     
@@ -275,12 +275,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day15</h1>
+            <h1 id="seo-header">leetcode_day16</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年6月5日 下午
+                    本文最后更新于 2024年6月6日 上午
                   
                 
               </p>
@@ -289,19 +289,25 @@
               <div class="markdown-body">
                 
                 <p>今日内容： </p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">- 102.层序遍历</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/invert-binary-tree/">- 226.翻转二叉树</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/">- 101.对称二叉树</a></p>
-<h1 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h1><p>思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp">vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">levelOrder</span>(TreeNode* root) &#123;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>    vector&lt;<span class="hljs-type">int</span>&gt; temp;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> &#123;&#125;;<br>    TreeNode * cur = root;<br>    queue&lt;TreeNode*&gt; q;<br>    q.<span class="hljs-built_in">push</span>(cur);<br>    <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>()) &#123;<br>        <span class="hljs-type">int</span> size = q.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) &#123;<br>            cur = q.<span class="hljs-built_in">front</span>();<br>            q.<span class="hljs-built_in">pop</span>();<br>            temp.<span class="hljs-built_in">push_back</span>(cur-&gt;val);<br>            <span class="hljs-keyword">if</span> (cur-&gt;left) q.<span class="hljs-built_in">push</span>(cur-&gt;left);<br>            <span class="hljs-keyword">if</span> (cur-&gt;right) q.<span class="hljs-built_in">push</span>(cur-&gt;right);<br>        &#125;<br>        ans.<span class="hljs-built_in">push_back</span>(temp);<br>        temp.<span class="hljs-built_in">clear</span>();<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">- 104.二叉树的最大深度</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/description/">- 559.n叉树的最大深度</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/">- 111.二叉树的最小深度</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-complete-tree-nodes/description/">- 222.完全二叉树的节点个数</a></p>
+<h1 id="树的最大深度"><a href="#树的最大深度" class="headerlink" title="树的最大深度"></a>树的最大深度</h1><p>最大深度指从根到所有节点的长度中最长的那一个，换言之就是要找离根最远的节点然后返回到它的长度。</p>
+<p>用dfs和bfs都行，分别代表递归前后序遍历和层序遍历，对于n叉树而言，仅仅是多比较几次而已，改写难度不大</p>
+<p>下附对于n叉树的bfs遍历</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(Node* root)</span> </span>&#123;<br>    queue&lt;Node *&gt; q;<br>    <span class="hljs-keyword">if</span>(root) q.<span class="hljs-built_in">push</span>(root);<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>()) &#123;<br>        <span class="hljs-type">int</span> size = q.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; size;i++) &#123;<br>            Node * cur = q.<span class="hljs-built_in">front</span>();<br>            q.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;j &lt; cur-&gt;children.<span class="hljs-built_in">size</span>();j++) &#123;<br>                q.<span class="hljs-built_in">push</span>(cur-&gt;children[j]);<br>            &#125;<br>        &#125;<br>        ans++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="翻转二叉树"><a href="#翻转二叉树" class="headerlink" title="翻转二叉树"></a>翻转二叉树</h1><p>递归版比较简单，太过简单，所以skip</p>
-<p>迭代版就看作在遍历，而且是前序遍历那种单循环，出栈后把左右节点交换，然后压栈左右节点继续就行，给出循环部分的核心代码<del>本来就是核心代码模式，又再核心……</del></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>()) &#123;<br>    TreeNode* node = st.<span class="hljs-built_in">top</span>();              <span class="hljs-comment">// 中</span><br>    st.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-built_in">swap</span>(node-&gt;left, node-&gt;right);<br>    <span class="hljs-keyword">if</span>(node-&gt;right) st.<span class="hljs-built_in">push</span>(node-&gt;right);   <span class="hljs-comment">// 右</span><br>    <span class="hljs-keyword">if</span>(node-&gt;left) st.<span class="hljs-built_in">push</span>(node-&gt;left);     <span class="hljs-comment">// 左</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="二叉树的最小深度"><a href="#二叉树的最小深度" class="headerlink" title="二叉树的最小深度"></a>二叉树的最小深度</h1><p>最小深度需要注意，是从根到最近的<strong>叶子节点</strong>的距离，<strong>叶子节点</strong>指没有左右孩子的节点</p>
+<p>所以在遍历时需要注意结束条件，对于层序遍历则判断当前节点是否是叶子，如果是就维护最小深度</p>
+<p>对于递归遍历则根据子节点个数来分类处理，如果左右双全或双无，则直接递归；如果只有一个，就单独递归</p>
+<p>下附递归遍历代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minDepth</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-type">int</span> left = <span class="hljs-built_in">minDepth</span>(root-&gt;left);<br>    <span class="hljs-type">int</span> right = <span class="hljs-built_in">minDepth</span>(root-&gt;right);<br><br>    <span class="hljs-keyword">if</span>(root-&gt;left == <span class="hljs-literal">nullptr</span> &amp;&amp; root-&gt;right) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + right;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(root-&gt;right == <span class="hljs-literal">nullptr</span> &amp;&amp; root-&gt;left) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + left;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + <span class="hljs-built_in">min</span>(left, right);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="对称二叉树"><a href="#对称二叉树" class="headerlink" title="对称二叉树"></a>对称二叉树</h1><p>递归版很简单，写一个辅助函数判断左右节点是不是相等，是树就接着递归，然后从根开始对每一个分支节点的左右孩子判断就行<br>代码没写，偷了个懒😜</p>
-<p>迭代版要难一点，仅限于手写层面，思路不难</p>
-<p>迭代需要用队列或者栈等来存，但是不是按左右顺序挨个入队，而是左右<strong>对应交替</strong>入队，这样方便判断是否相等</p>
-<p>下附carl的漂亮含注释代码，<a target="_blank" rel="noopener" href="https://programmercarl.com/0101.%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91.html#%E6%80%9D%E8%B7%AF">carl原文链接</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isSymmetric</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        queue&lt;TreeNode*&gt; que;<br>        que.<span class="hljs-built_in">push</span>(root-&gt;left);   <span class="hljs-comment">// 将左子树头结点加入队列</span><br>        que.<span class="hljs-built_in">push</span>(root-&gt;right);  <span class="hljs-comment">// 将右子树头结点加入队列</span><br>        <br>        <span class="hljs-keyword">while</span> (!que.<span class="hljs-built_in">empty</span>()) &#123;  <span class="hljs-comment">// 接下来就要判断这两个树是否相互翻转</span><br>            TreeNode* leftNode = que.<span class="hljs-built_in">front</span>(); que.<span class="hljs-built_in">pop</span>();<br>            TreeNode* rightNode = que.<span class="hljs-built_in">front</span>(); que.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">if</span> (!leftNode &amp;&amp; !rightNode) &#123;  <span class="hljs-comment">// 左节点为空、右节点为空，此时说明是对称的</span><br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-comment">// 左右一个节点不为空，或者都不为空但数值不相同，返回false</span><br>            <span class="hljs-keyword">if</span> ((!leftNode || !rightNode || (leftNode-&gt;val != rightNode-&gt;val))) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>            que.<span class="hljs-built_in">push</span>(leftNode-&gt;left);   <span class="hljs-comment">// 加入左节点左孩子</span><br>            que.<span class="hljs-built_in">push</span>(rightNode-&gt;right); <span class="hljs-comment">// 加入右节点右孩子</span><br>            que.<span class="hljs-built_in">push</span>(leftNode-&gt;right);  <span class="hljs-comment">// 加入左节点右孩子</span><br>            que.<span class="hljs-built_in">push</span>(rightNode-&gt;left);  <span class="hljs-comment">// 加入右节点左孩子</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><em>留坑，lc的最快执行代码中在最后<code>return</code>前把<code>root</code>的左右都指<code>null</code>，意义不明，但是就是快，没想出来为什么</em></p>
+<h1 id="完全二叉树的节点个数"><a href="#完全二叉树的节点个数" class="headerlink" title="完全二叉树的节点个数"></a>完全二叉树的节点个数</h1><p>用普通二叉树的遍历当然能做，只是不太好，还是用好完全二叉树的特性：<strong>非底层全满，底层从左往右堆</strong></p>
+<p>所以完全二叉树的左右子树深度肯定是一样的，如果不一样，那么再递归，直到递归到完全二叉树或者细粒度足够小时的空节点</p>
+<p>代码贴的carl的，原文链接：<a target="_blank" rel="noopener" href="https://programmercarl.com/0222.%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0.html#%E6%80%9D%E8%B7%AF">代码随想录 | 完全二叉树的节点个数</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countNodes</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    TreeNode* left = root-&gt;left;<br>    TreeNode* right = root-&gt;right;<br>    <span class="hljs-type">int</span> leftDepth = <span class="hljs-number">0</span>, rightDepth = <span class="hljs-number">0</span>; <span class="hljs-comment">// 这里初始为0是有目的的，为了下面求指数方便</span><br>    <span class="hljs-keyword">while</span> (left) &#123;  <span class="hljs-comment">// 求左子树深度</span><br>        left = left-&gt;left;<br>        leftDepth++;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (right) &#123; <span class="hljs-comment">// 求右子树深度</span><br>        right = right-&gt;right;<br>        rightDepth++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (leftDepth == rightDepth) &#123;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-number">2</span> &lt;&lt; leftDepth) - <span class="hljs-number">1</span>; <span class="hljs-comment">// 注意(2&lt;&lt;1) 相当于2^2，所以leftDepth初始为0</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">countNodes</span>(root-&gt;left) + <span class="hljs-built_in">countNodes</span>(root-&gt;right) + <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -325,8 +331,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day15</div>
-      <div>http://novelyear.github.io/2024/06/05/leetcode-day15/</div>
+      <div>leetcode_day16</div>
+      <div>http://novelyear.github.io/2024/06/06/leetcode-day16/</div>
     </div>
     <div class="license-meta">
       
@@ -339,7 +345,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年6月5日</div>
+          <div>2024年6月6日</div>
         </div>
       
       
@@ -370,18 +376,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/06/leetcode-day16/" title="leetcode_day16">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day16</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/04/leetcode-day14/" title="leetcode_day14">
-                        <span class="hidden-mobile">leetcode_day14</span>
+                      <a href="/2024/06/05/leetcode-day15/" title="leetcode_day15">
+                        <span class="hidden-mobile">leetcode_day15</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
