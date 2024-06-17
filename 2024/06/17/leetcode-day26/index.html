@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/06/17/788a44e4b04795dd.png">
 <meta property="article:published_time" content="2024-06-17T12:39:36.000Z">
-<meta property="article:modified_time" content="2024-06-17T13:49:45.515Z">
+<meta property="article:modified_time" content="2024-06-17T13:55:49.071Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -344,7 +344,7 @@
 <p>对于示例：<code>[10,1,1,7,6,1,5]</code>、<code>target = 8</code>，正确结果应该是<code>[[1,1,1,5],[1,1,6],[1,7]]</code>。 题目中<strong>candidate中的每个数字只能用一次</strong>是关键，勿错误理解为每种数字只能用一次，示例<code>[10,1,1,7,6,1,5]</code>中有3个<code>1</code>，当<strong>选中第一个<code>1</code>作为解成员之一</strong>递归下去的时候，由于之前无1，所以已有的解中肯定无1，后面的两个<code>1</code>仍然可用，由答案可见，选中第一个<code>1</code>递归下去已经可以得到全部解了。</p>
 <p>那么<strong>选中第二个<code>1</code>作为解成员之一</strong>递归下去后，后面还有一个<code>1</code>，此时<strong>含有两个<code>1</code>的解</strong>已经出现过了，此时需要去重。</p>
 <p>由上可看出不能简单使用used来阻止使用使用过的下标，因为第一个1把所有解得到后，回溯取消操作会开放used，后面的1又会变得可用，去重失败</p>
-<p>carl哥的代码思路按我理解可以叙述为：<span class="label label-danger">重复元素只能由**排前面的重复元素**使用</span>，对于上面的示例，就是含有多个1的解只能由第一个1的递归分支得到，后面的如果还是1就不能在解里出现1。</p>
+<p>carl哥的代码思路按我理解可以叙述为：<span class="label label-danger">重复元素只能由排前面的重复元素使用</span>，对于上面的示例，就是含有多个1的解只能由第一个1的递归分支得到，后面的如果还是1就不能在解里出现1。</p>
 <p><strong>排前面的重复</strong>即对应carl哥说法的<strong>前一个树枝</strong>，即前一个重复元素的解空间树分支。</p>
 <div class="note note-light">
             <p>又瞟了题解才做出来，WA了4发😭😭😭</p><p>脑子抽了没看见<code>1 &lt;= candidates.length &lt;= 100</code>，还乐呵呵地用位运算当used[]用来记录哪些下标被用了，左移右移老半天跟二傻子似的，结果不仅位运算爆long long，而且用used记录本身就是脱裤子放屁，因为我回溯传了起点begin……</p>
