@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/smile.jpg">
+  <link rel="icon" href="/img/smile.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Leoo Yann">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今日任务：  39. 组合总和     medium 40. 组合总和Ⅱ     medium 131. 分割回文串      medium  39. 组合总和题目： 给你一个无重复元素的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。 can">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode_day26">
+<meta property="og:url" content="http://novelyear.github.io/2024/06/17/leetcode-day26/index.html">
+<meta property="og:site_name" content="novelyear&#39;s home">
+<meta property="og:description" content="今日任务：  39. 组合总和     medium 40. 组合总和Ⅱ     medium 131. 分割回文串      medium  39. 组合总和题目： 给你一个无重复元素的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。 can">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/06/17/788a44e4b04795dd.png">
+<meta property="article:published_time" content="2024-06-17T12:39:36.000Z">
+<meta property="article:modified_time" content="2024-06-17T13:49:45.515Z">
+<meta property="article:author" content="Leoo Yann">
+<meta property="article:tag" content="leetcode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/06/17/788a44e4b04795dd.png">
+  
+  
+  
+  <title>leetcode_day26 - novelyear&#39;s home</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"novelyear.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Novelyear&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/seadream_HD.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode_day26"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Leoo Yann
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-17 20:39" pubdate>
+          2024年6月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          1.9k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode_day26</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年6月17日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>今日任务：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum/description/">39. 组合总和</a>     <span class="label label-warning">medium</span></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-ii/description/">40. 组合总和Ⅱ</a>     <span class="label label-warning">medium</span></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-partitioning/description/">131. 分割回文串</a>      <span class="label label-warning">medium</span></li>
+</ul>
+<h1 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a>39. 组合总和</h1><p><strong>题目：</strong></p>
+<p>给你一个<strong>无重复元素</strong>的整数数组 <code>candidates</code> 和一个目标整数 <code>target</code> ，找出 <code>candidates</code> 中可以使数字和为目标数 <code>target</code> 的 所有 <strong>不同组合</strong> ，并以列表形式返回。你可以按 <strong>任意顺序</strong> 返回这些组合。</p>
+<p><code>candidates</code> 中的 <strong>同一个</strong> 数字可以 <strong>无限制重复被选取</strong> 。如果至少一个数字的被选数量不同，则两种组合是不同的。 </p>
+<p>对于给定的输入，保证和为 <code>target</code> 的不同组合数少于 <code>150</code> 个。</p>
+<p><strong>思路：</strong></p>
+<p>递归挨个选取就行，选了一个之后递归下一个，起点不变，如果和到了target就加入答案，可以在下一步递归前判断当前值是否已经过大了，过大则跳过实现剪枝。比较简单</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>    vector&lt;<span class="hljs-type">int</span>&gt; temp;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;candidate, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> begin)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(target == <span class="hljs-number">0</span>) &#123;<br>            ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = begin;i &lt; candidate.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(candidate[i] &gt; target) <span class="hljs-keyword">continue</span>;<br>            temp.<span class="hljs-built_in">push_back</span>(candidate[i]);<br>            <span class="hljs-built_in">backtrack</span>(candidate, target - candidate[i], i);<br>            temp.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>    &#125;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combinationSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target) &#123;<br>        <span class="hljs-keyword">if</span>(candidates.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> &#123;&#125;;<br>        <span class="hljs-built_in">backtrack</span>(candidates, target, <span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="40-组合总和Ⅱ"><a href="#40-组合总和Ⅱ" class="headerlink" title="40. 组合总和Ⅱ"></a>40. 组合总和Ⅱ</h1><p><strong>题目：</strong></p>
+<p>给定一个候选人编号的集合 <code>candidates</code> 和一个目标数 <code>target</code> ，找出 <code>candidates</code> 中所有可以使数字和为 <code>target</code> 的组合。</p>
+<p><code>candidates</code> 中的每个数字在每个组合中只能使用 <strong>一次</strong> 。</p>
+<p><strong>注意</strong>：解集不能包含重复的组合。 </p>
+<p><strong>提示:</strong></p>
+<p><code>1 &lt;= candidates.length &lt;= 100</code></p>
+<p><code>1 &lt;= candidates[i] &lt;= 50</code></p>
+<p><code>1 &lt;= target &lt;= 30</code></p>
+<p><strong>思路：</strong></p>
+<p>难点主要在于去重，下面举个例子来快速直观体会这道题要去什么重</p>
+<p>对于示例：<code>[10,1,1,7,6,1,5]</code>、<code>target = 8</code>，正确结果应该是<code>[[1,1,1,5],[1,1,6],[1,7]]</code>。 题目中<strong>candidate中的每个数字只能用一次</strong>是关键，勿错误理解为每种数字只能用一次，示例<code>[10,1,1,7,6,1,5]</code>中有3个<code>1</code>，当<strong>选中第一个<code>1</code>作为解成员之一</strong>递归下去的时候，由于之前无1，所以已有的解中肯定无1，后面的两个<code>1</code>仍然可用，由答案可见，选中第一个<code>1</code>递归下去已经可以得到全部解了。</p>
+<p>那么<strong>选中第二个<code>1</code>作为解成员之一</strong>递归下去后，后面还有一个<code>1</code>，此时<strong>含有两个<code>1</code>的解</strong>已经出现过了，此时需要去重。</p>
+<p>由上可看出不能简单使用used来阻止使用使用过的下标，因为第一个1把所有解得到后，回溯取消操作会开放used，后面的1又会变得可用，去重失败</p>
+<p>carl哥的代码思路按我理解可以叙述为：<span class="label label-danger">重复元素只能由**排前面的重复元素**使用</span>，对于上面的示例，就是含有多个1的解只能由第一个1的递归分支得到，后面的如果还是1就不能在解里出现1。</p>
+<p><strong>排前面的重复</strong>即对应carl哥说法的<strong>前一个树枝</strong>，即前一个重复元素的解空间树分支。</p>
+<div class="note note-light">
+            <p>又瞟了题解才做出来，WA了4发😭😭😭</p><p>脑子抽了没看见<code>1 &lt;= candidates.length &lt;= 100</code>，还乐呵呵地用位运算当used[]用来记录哪些下标被用了，左移右移老半天跟二傻子似的，结果不仅位运算爆long long，而且用used记录本身就是脱裤子放屁，因为我回溯传了起点begin……</p>
+          </div>
+
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>    vector&lt;<span class="hljs-type">int</span>&gt; temp;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;candidate, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> begin)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(target == <span class="hljs-number">0</span>) &#123;<br>            ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = begin;i &lt; candidate.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(candidate[i] &gt; target) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span>(i &gt; begin &amp;&amp; candidate[i] == candidate[i - <span class="hljs-number">1</span>]) <span class="hljs-keyword">continue</span>;<span class="hljs-comment">//去重关键</span><br>            temp.<span class="hljs-built_in">push_back</span>(candidate[i]);<br>            <span class="hljs-built_in">backtrack</span>(candidate, target - candidate[i], i + <span class="hljs-number">1</span>);<br>            temp.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>    &#125;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combinationSum2</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target) &#123;<br>        <span class="hljs-keyword">if</span>(candidates.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> &#123;&#125;;<br>        <span class="hljs-built_in">sort</span>(candidates.<span class="hljs-built_in">begin</span>(), candidates.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-built_in">backtrack</span>(candidates, target, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="131-分割回文串"><a href="#131-分割回文串" class="headerlink" title="131. 分割回文串"></a>131. 分割回文串</h1><p><strong>题目：</strong></p>
+<p>给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串。返回 s 所有可能的分割方案。</p>
+<p><strong>思路：</strong></p>
+<div class="note note-light">
+            <p>没做出来，贴出失败思路：</p><p>分割子串，想到之前做的有关题目了，至少分割操作还是比较熟悉，用迭代器构造新串就好，从首开始分割，分割长度逐渐递增，也就是回溯中的那个for循环，每个分割长度在分割前判断是否是回文串，如果是回文串就分割，不是就接着增大分割长度。</p><p>然后就卡了……没记住或者说想另辟蹊径结果弄巧成拙，没有像模板那样接着回溯下一种可能并取消当前轮次操作继续for循环。</p>
+          </div>
+
+<p>接下来是正确思路：</p>
+<p>仍然按照回溯模板，理清递归思路：</p>
+<ol>
+<li>递归参数与返回值： 返回值void， 参数应该是分割起点，确保能够递归下去接着分割之后的子串</li>
+<li>递归终止条件，如果真的分割到结尾，那么该条递归调用路线就是正确的，此时temp中即为一个答案，标准就是起点超过了终点，begin大于了string的长度</li>
+<li>递归操作：逐个尝试分割长度，合法就接着分割，不合法就跳过</li>
+</ol>
+<p>carl哥这次画的解空间树很形象，如下图，失败思路想到了怎么分支，但是没想到怎么判断叶节点，具体的代码写法也写昏了头</p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/06/17/788a44e4b04795dd.png" srcset="/img/loading.gif" lazyload alt="解空间树"></p>
+<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><h3 id="一般代码"><a href="#一般代码" class="headerlink" title="一般代码"></a>一般代码</h3><p>之所以叫一般，是因为判断回文串的函数<code>isValid</code>每次调用都要俩指针相向而行，有很多重复操作，提高了时间复杂度</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;string&gt;&gt; ans;<br>    vector&lt;string&gt; temp;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isValid</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> begin, <span class="hljs-type">int</span> end)</span> </span>&#123;<br>        <span class="hljs-type">int</span> left = begin, right = end;<br>        <span class="hljs-keyword">if</span>(right &gt; s.<span class="hljs-built_in">size</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right) &#123;<br>            <span class="hljs-keyword">if</span>(s[left++] != s[right--]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(string &amp;s, <span class="hljs-type">int</span> begin)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(begin &gt;= s.<span class="hljs-built_in">size</span>()) &#123;<br>            ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span> ;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = begin;i &lt; s.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">isValid</span>(s, begin, i)) &#123;<br>                temp.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">string</span>(s.<span class="hljs-built_in">begin</span>() + begin, s.<span class="hljs-built_in">begin</span>() + i + <span class="hljs-number">1</span>));<br>                <span class="hljs-built_in">backtrack</span>(s, i + <span class="hljs-number">1</span>);<br>                temp.<span class="hljs-built_in">pop_back</span>();<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">continue</span>;<br>            <br>        &#125;<br>    &#125;<br>    vector&lt;vector&lt;string&gt;&gt; <span class="hljs-built_in">partition</span>(string s) &#123;<br>        <span class="hljs-built_in">backtrack</span>(s, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="动态规划代码"><a href="#动态规划代码" class="headerlink" title="动态规划代码"></a>动态规划代码</h3><p>使用动态规划（dynamic programming， DP）直接把所有子串是否是回文串都提前算好，这样后续判断时就只需要O(1)复杂度就可以了</p>
+<p>动态规划状态转移方程为：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">           ⌜<span class="hljs-number">1</span>, <span class="hljs-selector-tag">i</span> = j <br><br>dp<span class="hljs-selector-attr">[i]</span><span class="hljs-selector-attr">[j]</span> = +s<span class="hljs-selector-attr">[i]</span>==s<span class="hljs-selector-attr">[j]</span>, <span class="hljs-selector-tag">i</span> = j - <span class="hljs-number">1</span><br><br>           ㇗s<span class="hljs-selector-attr">[i]</span>==s<span class="hljs-selector-attr">[j]</span>ANDdp<span class="hljs-selector-attr">[i+1]</span><span class="hljs-selector-attr">[j-1]</span>,<span class="hljs-keyword">else</span><br></code></pre></td></tr></table></figure>
+<p><del>不会打latex，好拉的公式，快去配置渲染器！！</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;string&gt;&gt; ans;<br>    vector&lt;string&gt; temp;<br>    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt;&gt; dp;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(string &amp;s, <span class="hljs-type">int</span> begin)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(begin &gt;= s.<span class="hljs-built_in">size</span>()) &#123;<br>            ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span> ;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = begin;i &lt; s.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(dp[begin][i]) &#123;<br>                temp.<span class="hljs-built_in">push_back</span>(<span class="hljs-built_in">string</span>(s.<span class="hljs-built_in">begin</span>() + begin, s.<span class="hljs-built_in">begin</span>() + i + <span class="hljs-number">1</span>));<br>                <span class="hljs-built_in">backtrack</span>(s, i + <span class="hljs-number">1</span>);<br>                temp.<span class="hljs-built_in">pop_back</span>();<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">continue</span>;<br>            <br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">isValid</span><span class="hljs-params">(string &amp;s)</span> </span>&#123;<br>        dp.<span class="hljs-built_in">resize</span>(s.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(s.<span class="hljs-built_in">size</span>(), <span class="hljs-literal">false</span>));<span class="hljs-comment">//vector还得resize了才能用</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = s.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;i &gt;= <span class="hljs-number">0</span>;i--) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i;j &lt; s.<span class="hljs-built_in">size</span>();j++) &#123;<br>                <span class="hljs-keyword">if</span>(i + <span class="hljs-number">1</span> == j) dp[i][j] = s[i] == s[j];<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(i == j) dp[i][j] = <span class="hljs-literal">true</span>;<br>                <span class="hljs-keyword">else</span> dp[i][j] = (s[i] == s[j]) &amp;&amp; dp[i+<span class="hljs-number">1</span>][j<span class="hljs-number">-1</span>];<br>            &#125;<br>        &#125;<br>    &#125;<br>    vector&lt;vector&lt;string&gt;&gt; <span class="hljs-built_in">partition</span>(string s) &#123;<br>        <span class="hljs-built_in">isValid</span>(s);<br>        <span class="hljs-built_in">backtrack</span>(s, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/leetcode/" class="print-no-link">#leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode_day26</div>
+      <div>http://novelyear.github.io/2024/06/17/leetcode-day26/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Leoo Yann</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年6月17日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/06/15/leetcode-day24/" title="leetcode_day24">
+                        <span class="hidden-mobile">leetcode_day24</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
