@@ -16,22 +16,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容： - 104.二叉树的最大深度 - 559.n叉树的最大深度 - 111.二叉树的最小深度 - 222.完全二叉树的节点个数 树的最大深度 最大深度指从根到所有节点的长度中最长的那一个，换言之就是要找离根最远的节点然后返回到它的长度。 用dfs和bfs都行，分别代表递归前后序遍历和层序遍历，对于n叉树而言，仅仅是多比较几次而已，改写难度不大 下附对于n叉树的bfs遍历">
+    <meta name="description" content="今日内容：  509. 斐波那契数 easy 70. 爬楼梯 easy 746. 使用最小花费爬楼梯 easy  509. 斐波那契数 题目： 斐波那契数 （通常用 F(n) 表示）形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：  F(0) &#x3D; 0，F(1) &#x3D; 1 F(n) &#x3D; F(n - 1) + F">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day16">
-<meta property="og:url" content="http://novelyear.github.io/2024/06/06/leetcode-day16/index.html">
+<meta property="og:title" content="leetcode_day35">
+<meta property="og:url" content="http://novelyear.github.io/2024/07/03/leetcode-day35/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容： - 104.二叉树的最大深度 - 559.n叉树的最大深度 - 111.二叉树的最小深度 - 222.完全二叉树的节点个数 树的最大深度 最大深度指从根到所有节点的长度中最长的那一个，换言之就是要找离根最远的节点然后返回到它的长度。 用dfs和bfs都行，分别代表递归前后序遍历和层序遍历，对于n叉树而言，仅仅是多比较几次而已，改写难度不大 下附对于n叉树的bfs遍历">
+<meta property="og:description" content="今日内容：  509. 斐波那契数 easy 70. 爬楼梯 easy 746. 使用最小花费爬楼梯 easy  509. 斐波那契数 题目： 斐波那契数 （通常用 F(n) 表示）形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：  F(0) &#x3D; 0，F(1) &#x3D; 1 F(n) &#x3D; F(n - 1) + F">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-06T02:38:08.000Z">
-<meta property="article:modified_time" content="2024-06-06T03:15:02.083Z">
+<meta property="article:published_time" content="2024-07-03T10:30:04.000Z">
+<meta property="article:modified_time" content="2024-07-03T11:07:09.102Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>leetcode_day16 - novelyear&#39;s home</title>
+  <title>leetcode_day35 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day16"></span>
+            <span id="subtitle" data-typed-text="leetcode_day35"></span>
           
         </div>
 
@@ -242,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-06 10:38" pubdate>
-          2024年6月6日 上午
+        <time datetime="2024-07-03 18:30" pubdate>
+          2024年7月3日 晚上
         </time>
       </span>
     
@@ -255,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          671 字
+          606 字
         
       </span>
     
@@ -302,12 +302,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day16</h1>
+            <h1 id="seo-header">leetcode_day35</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年6月6日 上午
+                    本文最后更新于 2024年7月3日 晚上
                   
                 
               </p>
@@ -316,34 +316,71 @@
               <div class="markdown-body">
                 
                 <p>今日内容：</p>
-<p><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/">-
-104.二叉树的最大深度</a> <a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/description/">-
-559.n叉树的最大深度</a> <a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/">-
-111.二叉树的最小深度</a> <a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-complete-tree-nodes/description/">-
-222.完全二叉树的节点个数</a></p>
-<h1 id="树的最大深度">树的最大深度</h1>
-<p>最大深度指从根到所有节点的长度中最长的那一个，换言之就是要找离根最远的节点然后返回到它的长度。</p>
-<p>用dfs和bfs都行，分别代表递归前后序遍历和层序遍历，对于n叉树而言，仅仅是多比较几次而已，改写难度不大</p>
-<p>下附对于n叉树的bfs遍历</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxDepth</span><span class="hljs-params">(Node* root)</span> </span>&#123;<br>    queue&lt;Node *&gt; q;<br>    <span class="hljs-keyword">if</span>(root) q.<span class="hljs-built_in">push</span>(root);<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>()) &#123;<br>        <span class="hljs-type">int</span> size = q.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; size;i++) &#123;<br>            Node * cur = q.<span class="hljs-built_in">front</span>();<br>            q.<span class="hljs-built_in">pop</span>();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;j &lt; cur-&gt;children.<span class="hljs-built_in">size</span>();j++) &#123;<br>                q.<span class="hljs-built_in">push</span>(cur-&gt;children[j]);<br>            &#125;<br>        &#125;<br>        ans++;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1 id="二叉树的最小深度">二叉树的最小深度</h1>
-<p>最小深度需要注意，是从根到最近的<strong>叶子节点</strong>的距离，<strong>叶子节点</strong>指没有左右孩子的节点</p>
-<p>所以在遍历时需要注意结束条件，对于层序遍历则判断当前节点是否是叶子，如果是就维护最小深度</p>
-<p>对于递归遍历则根据子节点个数来分类处理，如果左右双全或双无，则直接递归；如果只有一个，就单独递归</p>
-<p>下附递归遍历代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minDepth</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-type">int</span> left = <span class="hljs-built_in">minDepth</span>(root-&gt;left);<br>    <span class="hljs-type">int</span> right = <span class="hljs-built_in">minDepth</span>(root-&gt;right);<br><br>    <span class="hljs-keyword">if</span>(root-&gt;left == <span class="hljs-literal">nullptr</span> &amp;&amp; root-&gt;right) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + right;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(root-&gt;right == <span class="hljs-literal">nullptr</span> &amp;&amp; root-&gt;left) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + left;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + <span class="hljs-built_in">min</span>(left, right);<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><em>留坑，lc的最快执行代码中在最后<code>return</code>前把<code>root</code>的左右都指<code>null</code>，意义不明，但是就是快，没想出来为什么</em></p>
-<h1 id="完全二叉树的节点个数">完全二叉树的节点个数</h1>
-<p>用普通二叉树的遍历当然能做，只是不太好，还是用好完全二叉树的特性：<strong>非底层全满，底层从左往右堆</strong></p>
-<p>所以完全二叉树的左右子树深度肯定是一样的，如果不一样，那么再递归，直到递归到完全二叉树或者细粒度足够小时的空节点</p>
-<p>代码贴的carl的，原文链接：<a
-target="_blank" rel="noopener" href="https://programmercarl.com/0222.%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0.html#%E6%80%9D%E8%B7%AF">代码随想录
-| 完全二叉树的节点个数</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countNodes</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    TreeNode* left = root-&gt;left;<br>    TreeNode* right = root-&gt;right;<br>    <span class="hljs-type">int</span> leftDepth = <span class="hljs-number">0</span>, rightDepth = <span class="hljs-number">0</span>; <span class="hljs-comment">// 这里初始为0是有目的的，为了下面求指数方便</span><br>    <span class="hljs-keyword">while</span> (left) &#123;  <span class="hljs-comment">// 求左子树深度</span><br>        left = left-&gt;left;<br>        leftDepth++;<br>    &#125;<br>    <span class="hljs-keyword">while</span> (right) &#123; <span class="hljs-comment">// 求右子树深度</span><br>        right = right-&gt;right;<br>        rightDepth++;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (leftDepth == rightDepth) &#123;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-number">2</span> &lt;&lt; leftDepth) - <span class="hljs-number">1</span>; <span class="hljs-comment">// 注意(2&lt;&lt;1) 相当于2^2，所以leftDepth初始为0</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">countNodes</span>(root-&gt;left) + <span class="hljs-built_in">countNodes</span>(root-&gt;right) + <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/fibonacci-number/">509.
+斐波那契数</a> <span class="label label-success">easy</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/climbing-stairs/description/">70.
+爬楼梯</a> <span class="label label-success">easy</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/min-cost-climbing-stairs/description/">746.
+使用最小花费爬楼梯</a> <span class="label label-success">easy</span></li>
+</ul>
+<h1 id="斐波那契数">509. 斐波那契数</h1>
+<p><strong>题目：</strong></p>
+<p><strong>斐波那契数</strong> （通常用 <code>F(n)</code>
+表示）形成的序列称为 <strong>斐波那契数列</strong> 。该数列由
+<code>0</code> 和 <code>1</code>
+开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
+<blockquote>
+<p>F(0) = 0，F(1) = 1</p>
+<p>F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1</p>
+</blockquote>
+<p>给定 <code>n</code> ，请计算 <code>F(n)</code> 。</p>
+<p><strong>思路：</strong></p>
+<p>由于是dp训练，所以不能直接递归或套公式。</p>
+<p>递推公式题目有，直接dp，没有优化空间复杂度。</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fib</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> n;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>;i &lt;= n;i++) &#123;<br>            dp[i] = dp[i - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">2</span>];<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[n];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="爬楼梯">70. 爬楼梯</h1>
+<p><strong>题目：</strong></p>
+<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+<p><strong>思路：</strong></p>
+<ol type="1">
+<li>只有45个数，打表🤓</li>
+<li>直接dp！</li>
+<li>套斐波那契公式🤓</li>
+</ol>
+<p>dp递归公式如下：</p>
+<p><span class="math display">\[
+dp[n]=\begin{cases}
+1, &amp; \text {$n=1$} \\
+2, &amp; \text {$n=2$} \\
+dp[n-1]+dp[n-2], &amp; \text {$n&gt;3$}
+\end{cases}
+\]</span></p>
+<h2 id="代码-1">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> n;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;<br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>        dp[<span class="hljs-number">2</span>] = <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">3</span>;i &lt;= n;i++) &#123;<br>            dp[i] = dp[i - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">2</span>];<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[n];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="使用最小花费爬楼梯">746. 使用最小花费爬楼梯</h1>
+<p><strong>题目：</strong></p>
+<p>给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i
+个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。</p>
+<p>你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯。</p>
+<p>请你计算并返回达到楼梯顶部的最低花费。</p>
+<p><strong>思路：</strong></p>
+<p>直接dp！递推公式如下：</p>
+<p><span class="math display">\[
+dp[n]=\begin{cases}
+0, &amp; \text {$n = 1 or 0$} \\
+min(dp[n-1]+cost[n-1], dp[n-2]+cost[n-2]), &amp; \text {$n&gt;1$}
+\end{cases}
+\]</span></p>
+<p>没有优化空间复杂度，感觉可有可无，优化也不复杂，具体优化方法见<a
+target="_blank" rel="noopener" href="https://programmercarl.com/0746.%E4%BD%BF%E7%94%A8%E6%9C%80%E5%B0%8F%E8%8A%B1%E8%B4%B9%E7%88%AC%E6%A5%BC%E6%A2%AF.html">代码随想录
+| 使用最小花费爬楼梯</a></p>
+<h2 id="代码-2">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minCostClimbingStairs</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; cost)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(cost.<span class="hljs-built_in">size</span>() &lt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(cost[<span class="hljs-number">0</span>], cost[<span class="hljs-number">1</span>]);<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(cost.size() + <span class="hljs-number">1</span>)</span></span>;<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>;i &lt;= cost.<span class="hljs-built_in">size</span>();i++) &#123;<br>            dp[i] = <span class="hljs-built_in">min</span>(dp[i - <span class="hljs-number">1</span>] + cost[i - <span class="hljs-number">1</span>], dp[i - <span class="hljs-number">2</span>] + cost[i - <span class="hljs-number">2</span>]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[cost.<span class="hljs-built_in">size</span>()];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -368,8 +405,8 @@ target="_blank" rel="noopener" href="https://programmercarl.com/0222.%E5%AE%8C%E
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day16</div>
-      <div>http://novelyear.github.io/2024/06/06/leetcode-day16/</div>
+      <div>leetcode_day35</div>
+      <div>http://novelyear.github.io/2024/07/03/leetcode-day35/</div>
     </div>
     <div class="license-meta">
       
@@ -382,7 +419,7 @@ target="_blank" rel="noopener" href="https://programmercarl.com/0222.%E5%AE%8C%E
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年6月6日</div>
+          <div>2024年7月3日</div>
         </div>
       
       
@@ -413,18 +450,12 @@ target="_blank" rel="noopener" href="https://programmercarl.com/0222.%E5%AE%8C%E
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/07/leetcode-day17/" title="leetcode_day17">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day17</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/05/leetcode-day15/" title="leetcode_day15">
-                        <span class="hidden-mobile">leetcode_day15</span>
+                      <a href="/2024/07/01/leetcode-day34/" title="leetcode_day34">
+                        <span class="hidden-mobile">leetcode_day34</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -481,6 +512,12 @@ target="_blank" rel="noopener" href="https://programmercarl.com/0222.%E5%AE%8C%E
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -699,6 +736,49 @@ target="_blank" rel="noopener" href="https://programmercarl.com/0222.%E5%AE%8C%E
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

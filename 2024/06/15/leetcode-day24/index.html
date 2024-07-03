@@ -16,12 +16,12 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日任务：  77. 组合 216. 组合总和Ⅲ 17. 电话号码的字母组合  前言进入回溯算法篇章，对递归掌握仍然不熟练，尤其是回溯算法，在左的课上写全排列等题目简直惨不忍睹，趁此机会，再次尝试学会回溯算法，每题务必隔天复习重写熟悉 卡哥的题解也要仔细看，综合多篇题解学习。  文章讲解：https:&#x2F;&#x2F;programmercarl.com&#x2F;%E5%9B%9E%E6%BA%AF%E7%AE%97%">
+    <meta name="description" content="今日任务：  77. 组合 216. 组合总和Ⅲ 17. 电话号码的字母组合  前言 进入回溯算法篇章，对递归掌握仍然不熟练，尤其是回溯算法，在左的课上写全排列等题目简直惨不忍睹，趁此机会，再次尝试学会回溯算法，每题务必隔天复习重写熟悉 卡哥的题解也要仔细看，综合多篇题解学习。  文章讲解：https:&#x2F;&#x2F;programmercarl.com&#x2F;%E5%9B%9E%E6%B">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day24">
 <meta property="og:url" content="http://novelyear.github.io/2024/06/15/leetcode-day24/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日任务：  77. 组合 216. 组合总和Ⅲ 17. 电话号码的字母组合  前言进入回溯算法篇章，对递归掌握仍然不熟练，尤其是回溯算法，在左的课上写全排列等题目简直惨不忍睹，趁此机会，再次尝试学会回溯算法，每题务必隔天复习重写熟悉 卡哥的题解也要仔细看，综合多篇题解学习。  文章讲解：https:&#x2F;&#x2F;programmercarl.com&#x2F;%E5%9B%9E%E6%BA%AF%E7%AE%97%">
+<meta property="og:description" content="今日任务：  77. 组合 216. 组合总和Ⅲ 17. 电话号码的字母组合  前言 进入回溯算法篇章，对递归掌握仍然不熟练，尤其是回溯算法，在左的课上写全排列等题目简直惨不忍睹，趁此机会，再次尝试学会回溯算法，每题务必隔天复习重写熟悉 卡哥的题解也要仔细看，综合多篇题解学习。  文章讲解：https:&#x2F;&#x2F;programmercarl.com&#x2F;%E5%9B%9E%E6%B">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-15T03:11:20.000Z">
 <meta property="article:modified_time" content="2024-06-15T03:37:46.443Z">
@@ -317,41 +317,59 @@
                 
                 <p>今日任务：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combinations/">77. 组合</a></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-iii/description/">216. 组合总和Ⅲ</a></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/solutions/">17. 电话号码的字母组合</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/combinations/">77.
+组合</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/combination-sum-iii/description/">216.
+组合总和Ⅲ</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/solutions/">17.
+电话号码的字母组合</a></li>
 </ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>进入回溯算法篇章，对递归掌握仍然不熟练，尤其是回溯算法，在左的课上写全排列等题目简直惨不忍睹，趁此机会，再次尝试学会回溯算法，每题务必隔天复习重写熟悉</p>
+<h1 id="前言">前言</h1>
+<p>进入回溯算法篇章，对递归掌握仍然不熟练，尤其是回溯算法，在左的课上写全排列等题目简直惨不忍睹，趁此机会，再次尝试学会回溯算法，每题务必隔天复习重写熟悉</p>
 <p>卡哥的题解也要仔细看，综合多篇题解学习。</p>
 <blockquote>
-<p><strong>文章讲解：</strong><a target="_blank" rel="noopener" href="https://programmercarl.com/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html">https://programmercarl.com/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html</a><br><strong>视频讲解：</strong> <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cy4y167mM">https://www.bilibili.com/video/BV1cy4y167mM</a><br><strong>代码随想录：</strong><a target="_blank" rel="noopener" href="https://programmercarl.com/">https://programmercarl.com/</a></p>
+<p><strong>文章讲解：</strong>https://programmercarl.com/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80.html
+<strong>视频讲解：</strong> https://www.bilibili.com/video/BV1cy4y167mM
+<strong>代码随想录：</strong>https://programmercarl.com/</p>
 </blockquote>
-<h1 id="77-组合"><a href="#77-组合" class="headerlink" title="77. 组合"></a>77. 组合</h1><p><strong>题目：</strong></p>
+<h1 id="组合">77. 组合</h1>
+<p><strong>题目：</strong></p>
 <p>给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。</p>
 <p>你可以按 <strong>任何顺序</strong> 返回答案。</p>
 <p><strong>思路：</strong></p>
 <p>多重for循环就行，但是由于层数不定，所以不能直接for，需要靠递归来实现任意层数循环</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;    <span class="hljs-comment">//回溯模板1：总答案</span><br>    vector&lt;<span class="hljs-type">int</span>&gt; temp;           <span class="hljs-comment">//回溯模板2：单个答案暂存</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> k, <span class="hljs-type">int</span> start)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == k) &#123;  <span class="hljs-comment">//回溯模板3：递归结束条件：遍历到叶子节点</span><br>            ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span> ;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = start;i &lt;= n - k + temp.<span class="hljs-built_in">size</span>() + <span class="hljs-number">1</span>;i++) &#123;<br>            temp.<span class="hljs-built_in">push_back</span>(i);  <span class="hljs-comment">//回溯模板4：选择当前，进入下一步</span><br>            <span class="hljs-built_in">backtracking</span>(n, k, i + <span class="hljs-number">1</span>);<br>            temp.<span class="hljs-built_in">pop_back</span>();    <span class="hljs-comment">//回溯模板5：取消之前操作，回溯</span><br>        &#125;<br>    &#125;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combine</span>(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> k) &#123;<br>        <span class="hljs-built_in">backtracking</span>(n, k, <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="216-组合总和Ⅲ"><a href="#216-组合总和Ⅲ" class="headerlink" title="216. 组合总和Ⅲ"></a>216. 组合总和Ⅲ</h1><p><strong>题目：</strong></p>
+<h1 id="组合总和ⅲ">216. 组合总和Ⅲ</h1>
+<p><strong>题目：</strong></p>
 <p>找出所有相加之和为 n 的 k 个数的组合，且满足下列条件：</p>
 <ul>
 <li>只使用数字1到9</li>
 <li>每个数字 <strong>最多使用一次</strong></li>
 </ul>
-<p>返回 <em>所有可能的有效组合的列表</em> 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。</p>
+<p>返回 <em>所有可能的有效组合的列表</em>
+。该列表不能包含相同的组合两次，组合可以以任何顺序返回。</p>
 <p><strong>思路：</strong></p>
 <p>和上一道题很像，卡哥选题还是很有深意的。熟悉模板写法，给出的代码没有剪枝，剪枝写法参见：</p>
-<p><a target="_blank" rel="noopener" href="https://programmercarl.com/0216.%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CIII.html">代码随想录 | 组合总和iii</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://programmercarl.com/0216.%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CIII.html">代码随想录
+| 组合总和iii</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>    vector&lt;<span class="hljs-type">int</span>&gt; temp;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(<span class="hljs-type">int</span> k, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> start)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == k) &#123;<br>            <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>) ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = start;i &lt;= <span class="hljs-number">9</span>;i++) &#123;<br>            temp.<span class="hljs-built_in">push_back</span>(i);<br>            <span class="hljs-built_in">backtracking</span>(k, n - i, i + <span class="hljs-number">1</span>);<br>            temp.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>    &#125;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combinationSum3</span>(<span class="hljs-type">int</span> k, <span class="hljs-type">int</span> n) &#123;<br>        <span class="hljs-built_in">backtracking</span>(k, n, <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="17-电话号码的字母组合"><a href="#17-电话号码的字母组合" class="headerlink" title="17. 电话号码的字母组合"></a>17. 电话号码的字母组合</h1><p><strong>题目：</strong></p>
-<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 <strong>任意顺序</strong> 返回。</p>
-<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<h1 id="电话号码的字母组合">17. 电话号码的字母组合</h1>
+<p><strong>题目：</strong></p>
+<p>给定一个仅包含数字 2-9
+的字符串，返回所有它能表示的字母组合。答案可以按
+<strong>任意顺序</strong> 返回。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1
+不对应任何字母。</p>
 <p><strong>思路：</strong></p>
-<p>仍然是不定次数for循环，使用递归来解，同样，剪枝写法参见<a target="_blank" rel="noopener" href="https://programmercarl.com/0017.%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88.html">代码随想录 | 电话号码的字母组合</a></p>
+<p>仍然是不定次数for循环，使用递归来解，同样，剪枝写法参见<a
+target="_blank" rel="noopener" href="https://programmercarl.com/0017.%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88.html">代码随想录
+| 电话号码的字母组合</a></p>
 <p>注意打表方式，值得学习，自己打表还用的unordered_map，结果打出来一堆bug，还是string数组聪明。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;string&gt; ans;<br>    string temp;<br>    <span class="hljs-type">const</span> string letterMap[<span class="hljs-number">10</span>] = &#123;<br>    <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-comment">// 0</span><br>    <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-comment">// 1</span><br>    <span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-comment">// 2</span><br>    <span class="hljs-string">&quot;def&quot;</span>, <span class="hljs-comment">// 3</span><br>    <span class="hljs-string">&quot;ghi&quot;</span>, <span class="hljs-comment">// 4</span><br>    <span class="hljs-string">&quot;jkl&quot;</span>, <span class="hljs-comment">// 5</span><br>    <span class="hljs-string">&quot;mno&quot;</span>, <span class="hljs-comment">// 6</span><br>    <span class="hljs-string">&quot;pqrs&quot;</span>, <span class="hljs-comment">// 7</span><br>    <span class="hljs-string">&quot;tuv&quot;</span>, <span class="hljs-comment">// 8</span><br>    <span class="hljs-string">&quot;wxyz&quot;</span>, <span class="hljs-comment">// 9</span><br>    &#125;;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracking</span><span class="hljs-params">(string digits, <span class="hljs-type">int</span> begin_for_string)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(temp.<span class="hljs-built_in">size</span>() == digits.<span class="hljs-built_in">size</span>()) &#123;<br>            ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> digit = digits[begin_for_string] - <span class="hljs-string">&#x27;0&#x27;</span>;<br>        string letter = letterMap[digit];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; letter.<span class="hljs-built_in">size</span>();i++) &#123;<br>            temp.<span class="hljs-built_in">push_back</span>(letter[i]);<br>            <span class="hljs-built_in">backtracking</span>(digits, begin_for_string + <span class="hljs-number">1</span>);<br>            temp.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">letterCombinations</span><span class="hljs-params">(string digits)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(digits.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> ans;<br>        <span class="hljs-built_in">backtracking</span>(digits, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
                 
               </div>
             

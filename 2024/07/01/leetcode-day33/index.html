@@ -16,18 +16,20 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容：  56. 合并区间      medium 738. 单调递增的数字      medium       hard  56. 合并区间题目： 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] &#x3D; [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。 思路： 与昨天的">
+    <meta name="description" content="今日内容：  452. 用最少数量的箭引爆气球 medium 435. 无重叠区间 medium 763. 划分字母区间 medium  452. 用最少数量的箭引爆气球 题目： 有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 points ，其中points[i] &#x3D; [x_start, x_end] 表示水平直径在 x_start 和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day33">
 <meta property="og:url" content="http://novelyear.github.io/2024/07/01/leetcode-day33/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容：  56. 合并区间      medium 738. 单调递增的数字      medium       hard  56. 合并区间题目： 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] &#x3D; [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。 思路： 与昨天的">
+<meta property="og:description" content="今日内容：  452. 用最少数量的箭引爆气球 medium 435. 无重叠区间 medium 763. 划分字母区间 medium  452. 用最少数量的箭引爆气球 题目： 有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 points ，其中points[i] &#x3D; [x_start, x_end] 表示水平直径在 x_start 和">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-01T14:58:50.000Z">
-<meta property="article:modified_time" content="2024-07-03T09:00:27.470Z">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/07/01/7513d5db99cbc545.png">
+<meta property="article:published_time" content="2024-07-01T07:43:44.000Z">
+<meta property="article:modified_time" content="2024-07-03T10:28:55.251Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/07/01/7513d5db99cbc545.png">
   
   
   
@@ -242,8 +244,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-01 22:58" pubdate>
-          2024年7月1日 晚上
+        <time datetime="2024-07-01 15:43" pubdate>
+          2024年7月1日 下午
         </time>
       </span>
     
@@ -255,7 +257,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.2k 字
+          1.7k 字
         
       </span>
     
@@ -307,7 +309,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月3日 下午
+                    本文最后更新于 2024年7月3日 晚上
                   
                 
               </p>
@@ -317,46 +319,79 @@
                 
                 <p>今日内容：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-intervals/description/">56. 合并区间</a>      <span class="label label-warning">medium</span></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/monotone-increasing-digits/">738. 单调递增的数字</a>      <span class="label label-warning">medium</span></li>
-<li><a href=""></a>      <span class="label label-danger">hard</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/">452.
+用最少数量的箭引爆气球</a> <span class="label label-warning">medium</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-overlapping-intervals/description/">435.
+无重叠区间</a> <span class="label label-warning">medium</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/partition-labels/description/">763.
+划分字母区间</a> <span class="label label-warning">medium</span></li>
 </ul>
-<h1 id="56-合并区间"><a href="#56-合并区间" class="headerlink" title="56. 合并区间"></a>56. 合并区间</h1><p><strong>题目：</strong></p>
-<p>以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] &#x3D; [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。</p>
+<h1 id="用最少数量的箭引爆气球">452. 用最少数量的箭引爆气球</h1>
+<p><strong>题目：</strong></p>
+<p>有一些球形气球贴在一堵用 XY
+平面表示的墙面上。墙面上的气球记录在整数数组 points ，其中points[i] =
+[x_start, x_end] 表示水平直径在 x_start 和
+x_end之间的气球。你不知道气球的确切 y 坐标。</p>
+<p>一支弓箭可以沿着 x 轴从不同点 完全垂直 地射出。在坐标 x
+处射出一支箭，若有一个气球的直径的开始和结束坐标为 x_start，x_end，
+且满足 x_start ≤ x ≤ x_end，则该气球会被 引爆 。可以射出的弓箭的数量
+没有限制 。 弓箭一旦被射出之后，可以无限地前进。</p>
+<p>给你一个数组 points ，返回引爆所有气球所必须射出的 最小 弓箭数 。</p>
 <p><strong>思路：</strong></p>
-<p>与昨天的重叠区间类型问题一样，按开始点排序，有重合就合并，没重合就新维护</p>
-<div class="note note-light">
-            <p>忽然诧异怎么这道题显示已解决，查看提交记录发现这道题在几个月前做过，当初WA4发才做出来结果击败5%，真是感慨</p><p>回首向来萧瑟处，也无风雨也无晴，虽然一直感觉在蹉跎人生，但实际上我还是有一点小小的进步，加油共勉！</p>
-          </div>
+<p>按照直观思维，肯定要找重叠部分，再按贪心分析，局部最优是射重叠部分，全局最优是尽可能多射重叠部分来减少箭数</p>
+<p>此时不妨画个图来分析，脑子好也可以直接想象，用线段表示气球直径范围，以下图为例，很容易看出答案是两根箭，但是我们是如何得出答案的呢，背后的依赖逻辑是什么</p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2024/07/01/7513d5db99cbc545.png" srcset="/img/loading.gif" lazyload
+alt="帮助分析线段图" />
+<figcaption aria-hidden="true">帮助分析线段图</figcaption>
+</figure>
+<p>此时发散思维，不难想到跟开始和结束点有关，此前做过类似题则更容易想到，以结束点为标准，从左往右开始射，必须照顾到最早结束的气球，否则就会漏掉，那么我们就能得到如下贪心策略：（大白话版）</p>
+<p>按起点排序，记录气球结束点按最近的来，若结束点超过了这个最近结束点，则一支箭就不够了。</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; b)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];<br>    &#125;<br>    <span class="hljs-comment">//按起点排序，记录气球结束点按最近的来，若结束点超过了这个最近结束点，则一支箭就不够了</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findMinArrowShots</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; points)</span> </span>&#123;<br>        <span class="hljs-built_in">sort</span>(points.<span class="hljs-built_in">begin</span>(), points.<span class="hljs-built_in">end</span>(), cmp);<br>        <span class="hljs-type">int</span> end = points[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>        <span class="hljs-type">int</span> nextBallon = <span class="hljs-number">0</span>;<span class="hljs-comment">//新的起点</span><br>        <span class="hljs-type">int</span> arrow = <span class="hljs-number">1</span>;<span class="hljs-comment">//箭数</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; points.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(end &lt; points[i][<span class="hljs-number">0</span>]) &#123;<br>                nextBallon = i;<br>                arrow++;<br>                end = points[i][<span class="hljs-number">1</span>];<br>            &#125;<br>            end = <span class="hljs-built_in">min</span>(end, points[i][<span class="hljs-number">1</span>]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> arrow;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="无重叠区间">435. 无重叠区间</h1>
+<p><strong>题目：</strong></p>
+<p>给定一个区间的集合 intervals ，其中 intervals[i] = [start_i, end_i]
+。返回需要移除区间的最小数量，使剩余区间互不重叠 。</p>
+<p><strong>思路：</strong></p>
+<p>由于之前做过一道安排活动的题目，大概意思就是有很多活动(区间)，请在不重叠的前提下安排尽可能多的活动。与此题很像</p>
+<p>安排活动题就是按结束时间从早到晚排序，先安排早的，这样就有局部最优：留出更多的时间给之后的活动，如果结束时间相同，则为了多，选择更短的活动，以留出更多时间给更早的活动</p>
+<p>那么这道题也可以迁移这个策略，移除最少就是保留最多嘛。</p>
+<p>这道题比较经典，carl给了很多思路，建议阅读：<a
+target="_blank" rel="noopener" href="https://programmercarl.com/0435.%E6%97%A0%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE">代码随想录
+| 无重叠区间</a></p>
+<h2 id="代码-1">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; b)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>] == b[<span class="hljs-number">1</span>] ? a[<span class="hljs-number">0</span>] &gt; b[<span class="hljs-number">0</span>] : a[<span class="hljs-number">1</span>] &lt; b[<span class="hljs-number">1</span>];<br>    &#125;<br>    <span class="hljs-comment">//移除最少那就保留最多，移除长的，保留短的</span><br>    <span class="hljs-comment">//保留最多就要流出足够多的时间给后面的区间，所以结束时间要早</span><br>    <span class="hljs-comment">//那么应该按结束时间排序，如果结束相同，那么选择开始时间最晚的</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">eraseOverlapIntervals</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; intervals)</span> </span>&#123;<br>        <span class="hljs-built_in">sort</span>(intervals.<span class="hljs-built_in">begin</span>(), intervals.<span class="hljs-built_in">end</span>(), cmp);<br>        <span class="hljs-type">int</span> end = intervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>        <span class="hljs-type">int</span> save = <span class="hljs-number">1</span>;<span class="hljs-comment">//保留的活动数</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; intervals.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(intervals[i][<span class="hljs-number">0</span>] &lt; end) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">else</span> &#123;<br>                save++;<br>                end = intervals[i][<span class="hljs-number">1</span>];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> intervals.<span class="hljs-built_in">size</span>() - save;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="划分字母区间">763. 划分字母区间</h1>
+<p><strong>题目：</strong></p>
+<p>给你一个字符串 s
+。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。</p>
+<p>注意，划分结果需要满足：将所有划分结果按顺序连接，得到的字符串仍然是
+s 。</p>
+<p>返回一个表示每个字符串片段的长度的列表。</p>
+<p><strong>思路：</strong></p>
+<p>一开始有点懵，然后迁移之前的思路想到可以将字母出现的范围视作区间，那就又成了区间不重叠问题。</p>
+<p>但这个思路编码有点复杂，速度也不快</p>
+<p>carl的直截了当思路简直优雅👍:</p>
+<ul>
+<li>统计每一个字符最后出现的位置</li>
+<li>从头遍历字符，并更新字符的最远出现下标，如果找到字符最远出现位置下标和当前下标相等了，则找到了分割点</li>
+</ul>
+<figure>
+<img
+src="https://code-thinking-1253855093.file.myqcloud.com/pics/20201222191924417.png" srcset="/img/loading.gif" lazyload
+alt="太巧妙辣！" />
+<figcaption aria-hidden="true">太巧妙辣！</figcaption>
+</figure>
+<h2 id="代码-2">代码</h2>
+<h3 id="个人14代码">个人14%代码😭</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; b)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];<br>    &#125;<br>    <span class="hljs-comment">//尽可能多的片段，且是分割，是连续的，只在前面出现的字母，统计各字母首次和默次出现构成区间</span><br>    <span class="hljs-comment">//按区间开始排序，目的是分出尽可能多的组，原理相同</span><br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">partitionLabels</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; points;<span class="hljs-comment">//存各字母的区间</span><br>        vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>        <span class="hljs-comment">//获取s中各字母的区间</span><br>        points = <span class="hljs-built_in">getSection</span>(s);<br>        <span class="hljs-comment">//写代码能力太弱，有点费时间啊……</span><br>        <span class="hljs-built_in">sort</span>(points.<span class="hljs-built_in">begin</span>(), points.<span class="hljs-built_in">end</span>(), cmp);<br>        <span class="hljs-type">int</span> right = points[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>], left = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; points.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(points[i][<span class="hljs-number">0</span>] &gt; right) &#123;<br>                ans.<span class="hljs-built_in">push_back</span>(right - left + <span class="hljs-number">1</span>);<br>                left = points[i][<span class="hljs-number">0</span>];<br>            &#125;<br>            right = <span class="hljs-built_in">max</span>(right, points[i][<span class="hljs-number">1</span>]);<br>        &#125;<br>        ans.<span class="hljs-built_in">push_back</span>(right - left + <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">getSection</span>(string s) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">alpha</span>(<span class="hljs-number">26</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>, <span class="hljs-number">-1</span>));<span class="hljs-comment">//全部字母都留出空</span><br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; res;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; s.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(alpha[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>][<span class="hljs-number">0</span>] == <span class="hljs-number">-1</span>) alpha[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>][<span class="hljs-number">0</span>] = i;<span class="hljs-comment">//起点只记一次</span><br>            alpha[s[i] - <span class="hljs-string">&#x27;a&#x27;</span>][<span class="hljs-number">1</span>] = i;<span class="hljs-comment">//终点不断更新</span><br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; alpha.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(alpha[i][<span class="hljs-number">0</span>] != <span class="hljs-number">-1</span>) res.<span class="hljs-built_in">push_back</span>(alpha[i]);<span class="hljs-comment">//结果只记录出现过的</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h3 id="carl优雅代码">carl优雅代码</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">partitionLabels</span><span class="hljs-params">(string S)</span> </span>&#123;<br>        <span class="hljs-type">int</span> hash[<span class="hljs-number">27</span>] = &#123;<span class="hljs-number">0</span>&#125;; <span class="hljs-comment">// i为字符，hash[i]为字符出现的最后位置</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; S.<span class="hljs-built_in">size</span>(); i++) &#123; <span class="hljs-comment">// 统计每一个字符最后出现的位置</span><br>            hash[S[i] - <span class="hljs-string">&#x27;a&#x27;</span>] = i;<br>        &#125;<br>        vector&lt;<span class="hljs-type">int</span>&gt; result;<br>        <span class="hljs-type">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> right = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; S.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            right = <span class="hljs-built_in">max</span>(right, hash[S[i] - <span class="hljs-string">&#x27;a&#x27;</span>]); <span class="hljs-comment">// 找到字符出现的最远边界</span><br>            <span class="hljs-keyword">if</span> (i == right) &#123;<br>                result.<span class="hljs-built_in">push_back</span>(right - left + <span class="hljs-number">1</span>);<br>                left = i + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; a, <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt; &amp; b )</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];<br>    &#125;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">merge</span>(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; intervals) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>        <span class="hljs-built_in">sort</span>(intervals.<span class="hljs-built_in">begin</span>(), intervals.<span class="hljs-built_in">end</span>(), cmp);<br>        <span class="hljs-type">int</span> left = intervals[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>], right = intervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; intervals.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(intervals[i][<span class="hljs-number">0</span>] &gt; right) &#123;<br>                ans.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt;&#123;left, right&#125;);<br>                left = intervals[i][<span class="hljs-number">0</span>];<br>                right = intervals[i][<span class="hljs-number">1</span>];<br>            &#125;<br>            right = <span class="hljs-built_in">max</span>(right, intervals[i][<span class="hljs-number">1</span>]);<br>        &#125;<br>        ans.<span class="hljs-built_in">push_back</span>(vector&lt;<span class="hljs-type">int</span>&gt;&#123;left, right&#125;);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="738-单调递增的数字"><a href="#738-单调递增的数字" class="headerlink" title="738. 单调递增的数字"></a>738. 单调递增的数字</h1><p><strong>题目：</strong></p>
-<p>当且仅当每个相邻位数上的数字 x 和 y 满足 x &lt;&#x3D; y 时，我们称这个整数是单调递增的。</p>
-<p>给定一个整数 n ，返回 小于或等于 n 的最大数字，且数字呈 单调递增 。</p>
-<p><strong>思路：</strong></p>
-<div class="note note-light">
-            <p>没做出来，做的时候脑子有点不舒服，所以歇逼了</p>
-          </div>
-
-<p>此题局部最优策略为，如果数字本身就满足“单调递增”要求，则直接返回该数字即可，若出现反例，即高位大于低位，则将高位减1低位置9</p>
-<p>将此局部最优策略应用至全局即可得到最优解，具体代码实现方式见注释。</p>
-<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">monotoneIncreasingDigits</span><span class="hljs-params">(<span class="hljs-type">int</span> N)</span> </span>&#123;<br>        string strNum = <span class="hljs-built_in">to_string</span>(N);<br>        <span class="hljs-type">int</span> flag = strNum.<span class="hljs-built_in">size</span>();<span class="hljs-comment">// flag用来标记赋值9从哪里开始</span><br>        <span class="hljs-comment">// 设置为超限默认值，为了防止第二个for循环在flag没有被赋值的情况下执行</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = strNum.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--) &#123;<span class="hljs-comment">//倒序遍历数位，若连续出现高位大于低位，则连续减一高位并记录计划变为9的位数</span><br>            <span class="hljs-keyword">if</span> (strNum[i - <span class="hljs-number">1</span>] &gt; strNum[i] ) &#123;<span class="hljs-comment">//如果出现高位大于低位，则将高位减1，同时记录低位位数为flag</span><br>                flag = i;<br>                strNum[i - <span class="hljs-number">1</span>]--;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = flag; i &lt; strNum.<span class="hljs-built_in">size</span>(); i++) &#123;<span class="hljs-comment">//由于从后往前，所以最后得到的计划变9位将是最高的，把后面所有数变9只会增大数字从而得到最优解</span><br>            strNum[i] = <span class="hljs-string">&#x27;9&#x27;</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">stoi</span>(strNum);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="968-监控二叉树"><a href="#968-监控二叉树" class="headerlink" title="968. 监控二叉树"></a>968. 监控二叉树</h1><p><strong>题目：</strong></p>
-<p>给定一个二叉树，我们在树的节点上安装摄像头。</p>
-<p>节点上的每个摄影头都可以监视<strong>其父对象、自身及其直接子对象</strong>。</p>
-<p>计算监控树的所有节点所需的最小摄像头数量。</p>
-<p><strong>思路：</strong></p>
-<p><del>不会做😭，抄了</del></p>
-<p>由于涉及二叉树，可以套路化地想到尝试递归遍历，题目所求最少摄像头数量，最少一般是贪心或者dp，那就得分析状态，考虑局部最优全局最优或者状态之间的转移。</p>
-<p>在这道题中，一个节点的状态有三种：放了摄像头+被覆盖+没覆盖，关于二叉树的状态容易联想到从两个子树的状态得到当前root树的状态，那么又可以想到：如果子树的根left或者right有摄像头+仅仅被覆盖+没被覆盖这三种状态，这三种状态转移到整个树的状态的方式就为：</p>
-<ol>
-<li>如果left或right有一个没被覆盖，则root需要放置摄像头；</li>
-<li>如果left或者right有一个有摄像头，则root不需要放置；</li>
-<li>如果left和right都只是被覆盖，那么root需要补一个摄像头。</li>
-</ol>
-<p>但这并没有取最优化，仅仅只是状态转移，所以不是dp。</p>
-<p>dp做法官方题解和灵神的不太一样，树形dp没看懂，dp做法以后再看吧。</p>
-<h2 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-type">int</span> result = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//0:无覆盖，1：有摄像头，2：有覆盖</span><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">traversal</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br><br>        <span class="hljs-type">int</span> left = <span class="hljs-built_in">traversal</span>(root-&gt;left);<br>        <span class="hljs-type">int</span> right = <span class="hljs-built_in">traversal</span>(root-&gt;right);<br><br>        <span class="hljs-keyword">if</span>(left == <span class="hljs-number">0</span> || right == <span class="hljs-number">0</span>) &#123;<br>            result++;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(left == <span class="hljs-number">1</span> || right == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minCameraCover</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">traversal</span>(root) == <span class="hljs-number">0</span>) result++;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -425,12 +460,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2024/07/01/leetcode-day34/" title="leetcode_day34">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode_day34</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/01/leetcode-day32/" title="leetcode_day32">
-                        <span class="hidden-mobile">leetcode_day32</span>
+                      <a href="/2024/06/30/leetcode-day31/" title="leetcode_day31">
+                        <span class="hidden-mobile">leetcode_day31</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

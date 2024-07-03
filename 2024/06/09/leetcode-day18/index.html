@@ -16,12 +16,12 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容  ● 513.找树左下角的值● 112. 路径总和  113.路径总和ii● 106.从中序与后序遍历序列构造二叉树 105.从前序与中序遍历序列构造二叉树 找树左下角的值递归写法递归代表深度优先搜索，所以对于这道题要求的bottom比较好把握，只要维护一个最深深度就行了，对于left，就要在递归逻辑上把握  当遇到叶子节点，根据深度判断是否维护，注意一定是深度比当前大才维护，不能相等">
+    <meta name="description" content="今日内容 ● 513.找树左下角的值 ● 112. 路径总和 113.路径总和ii ● 106.从中序与后序遍历序列构造二叉树 105.从前序与中序遍历序列构造二叉树 找树左下角的值 递归写法 递归代表深度优先搜索，所以对于这道题要求的bottom比较好把握，只要维护一个最深深度就行了，对于left，就要在递归逻辑上把握  当遇到叶子节点，根据深度判断是否维护，注意一定是深度比当">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day18">
 <meta property="og:url" content="http://novelyear.github.io/2024/06/09/leetcode-day18/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容  ● 513.找树左下角的值● 112. 路径总和  113.路径总和ii● 106.从中序与后序遍历序列构造二叉树 105.从前序与中序遍历序列构造二叉树 找树左下角的值递归写法递归代表深度优先搜索，所以对于这道题要求的bottom比较好把握，只要维护一个最深深度就行了，对于left，就要在递归逻辑上把握  当遇到叶子节点，根据深度判断是否维护，注意一定是深度比当前大才维护，不能相等">
+<meta property="og:description" content="今日内容 ● 513.找树左下角的值 ● 112. 路径总和 113.路径总和ii ● 106.从中序与后序遍历序列构造二叉树 105.从前序与中序遍历序列构造二叉树 找树左下角的值 递归写法 递归代表深度优先搜索，所以对于这道题要求的bottom比较好把握，只要维护一个最深深度就行了，对于left，就要在递归逻辑上把握  当遇到叶子节点，根据深度判断是否维护，注意一定是深度比当">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-09T05:06:18.000Z">
 <meta property="article:modified_time" content="2024-06-09T06:31:27.705Z">
@@ -315,9 +315,18 @@
             
               <div class="markdown-body">
                 
-                <p>今日内容 </p>
-<p>● <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-bottom-left-tree-value/">513.找树左下角的值</a><br>● <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum/description/">112. 路径总和</a>  <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum-ii/">113.路径总和ii</a><br>● <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106.从中序与后序遍历序列构造二叉树</a> <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105.从前序与中序遍历序列构造二叉树</a></p>
-<h1 id="找树左下角的值"><a href="#找树左下角的值" class="headerlink" title="找树左下角的值"></a>找树左下角的值</h1><h2 id="递归写法"><a href="#递归写法" class="headerlink" title="递归写法"></a>递归写法</h2><p>递归代表深度优先搜索，所以对于这道题要求的bottom比较好把握，只要维护一个最深深度就行了，对于left，就要在递归逻辑上把握</p>
+                <p>今日内容</p>
+<p>● <a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-bottom-left-tree-value/">513.找树左下角的值</a>
+● <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum/description/">112.
+路径总和</a> <a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum-ii/">113.路径总和ii</a> ● <a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106.从中序与后序遍历序列构造二叉树</a>
+<a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105.从前序与中序遍历序列构造二叉树</a></p>
+<h1 id="找树左下角的值">找树左下角的值</h1>
+<h2 id="递归写法">递归写法</h2>
+<p>递归代表深度优先搜索，所以对于这道题要求的bottom比较好把握，只要维护一个最深深度就行了，对于left，就要在递归逻辑上把握</p>
 <ul>
 <li>当遇到叶子节点，根据深度判断是否维护，注意一定是深度比当前大才维护，不能相等</li>
 <li>当遇到分支节点，先走左再走右</li>
@@ -325,75 +334,123 @@
 <p>为什么先走左就能保证最底最左？</p>
 <p>最底可以保证，最左就是第一个遇到，而维护时只维护更深的，就意味着当前答案就是当前深度中第一个遇到的、最左的节点，所以最左也可以保证</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; ans = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findBottomLeftValue</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-built_in">findBottomLeftValueHelp</span>(root, <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> ans.first;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">findBottomLeftValueHelp</span><span class="hljs-params">(TreeNode * root, <span class="hljs-type">int</span> depth)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!root-&gt;left &amp;&amp; !root-&gt;right) &#123;<br>            <span class="hljs-keyword">if</span>(depth &gt; ans.second) ans = pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&#123;root-&gt;val, depth&#125;;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(root-&gt;left) <span class="hljs-built_in">findBottomLeftValueHelp</span>(root-&gt;left, depth + <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span>(root-&gt;right) <span class="hljs-built_in">findBottomLeftValueHelp</span>(root-&gt;right, depth + <span class="hljs-number">1</span>);<br>        <br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h2 id="迭代写法"><a href="#迭代写法" class="headerlink" title="迭代写法"></a>迭代写法</h2><p>代表广度优先搜索，或者层序遍历，由于每层从左向右，所以left好把握，对于bottom就要多写点逻辑来把握</p>
-<p>遍历每行时，若遇到叶子节点，则跳过对该层后面节点的判断，仅仅只入队后面节点的子节点，这样就保证了最左。 如果队中还有元素，则说明还有更深，继续寻找，最后就会得到答案</p>
+<h2 id="迭代写法">迭代写法</h2>
+<p>代表广度优先搜索，或者层序遍历，由于每层从左向右，所以left好把握，对于bottom就要多写点逻辑来把握</p>
+<p>遍历每行时，若遇到叶子节点，则跳过对该层后面节点的判断，仅仅只入队后面节点的子节点，这样就保证了最左。
+如果队中还有元素，则说明还有更深，继续寻找，最后就会得到答案</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findBottomLeftValue</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        queue&lt;TreeNode *&gt; q;<br>        q.<span class="hljs-built_in">push</span>(root);<br>        <span class="hljs-type">int</span> ans = root-&gt;val;<br>        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>()) &#123;<br>            <span class="hljs-type">int</span> size = q.<span class="hljs-built_in">size</span>();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; size;i++) &#123;<br>                TreeNode * cur = q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();<br>                <span class="hljs-keyword">if</span>(cur-&gt;left) q.<span class="hljs-built_in">push</span>(cur-&gt;left);<br>                <span class="hljs-keyword">if</span>(cur-&gt;right) q.<span class="hljs-built_in">push</span>(cur-&gt;right);<br>                <span class="hljs-keyword">if</span>(!cur-&gt;left &amp;&amp; !cur-&gt;right) &#123;<br>                    ans = cur-&gt;val;<br>                    <span class="hljs-keyword">while</span>(++i &lt; size) &#123;<br>                        cur = q.<span class="hljs-built_in">front</span>(); q.<span class="hljs-built_in">pop</span>();<br>                        <span class="hljs-keyword">if</span>(cur-&gt;left) q.<span class="hljs-built_in">push</span>(cur-&gt;left);<br>                        <span class="hljs-keyword">if</span>(cur-&gt;right) q.<span class="hljs-built_in">push</span>(cur-&gt;right);<br>                    &#125;<br>                &#125;<br><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="路径总和"><a href="#路径总和" class="headerlink" title="路径总和"></a>路径总和</h1><p>这题太适合深度优先搜索了，一条路走到头才能判断，那就一条一条走，正符合dfs。</p>
+<h1 id="路径总和">路径总和</h1>
+<p>这题太适合深度优先搜索了，一条路走到头才能判断，那就一条一条走，正符合dfs。</p>
 <p>代码比较简单，注意参数怎么传的，传参步骤减去当前节点值，最后判断是否刚好相等。而非从0加到叶子再判断是否等于target，虽然空间复杂度没变，但是少一个变量更简洁一点</p>
 <p>具体代码不贴，与下一题类似，可同理理解</p>
-<h1 id="路径综合II"><a href="#路径综合II" class="headerlink" title="路径综合II"></a>路径综合II</h1><p>仍然是深度优先搜索，只是多了保存答案的步骤，也不难</p>
+<h1 id="路径综合ii">路径综合II</h1>
+<p>仍然是深度优先搜索，只是多了保存答案的步骤，也不难</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">pathSum</span>(TreeNode* root, <span class="hljs-type">int</span> targetSum) &#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>        <span class="hljs-built_in">path</span>(root, targetSum, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(), ans);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">path</span><span class="hljs-params">(TreeNode * root, <span class="hljs-type">int</span> targetSum, vector&lt;<span class="hljs-type">int</span>&gt; temp, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; &amp;ans)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span>;<br>        <span class="hljs-keyword">if</span>(!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; root-&gt;val == targetSum) &#123;<br>            temp.<span class="hljs-built_in">push_back</span>(root-&gt;val);<br>            ans.<span class="hljs-built_in">push_back</span>(temp);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        temp.<span class="hljs-built_in">push_back</span>(root-&gt;val);<br>        <span class="hljs-keyword">if</span>(root-&gt;left) <span class="hljs-built_in">path</span>(root-&gt;left, targetSum - root-&gt;val, temp, ans);<br>        <span class="hljs-keyword">if</span>(root-&gt;right) <span class="hljs-built_in">path</span>(root-&gt;right, targetSum - root-&gt;val, temp, ans);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="从中序和后序构造二叉树"><a href="#从中序和后序构造二叉树" class="headerlink" title="从中序和后序构造二叉树"></a>从中序和后序构造二叉树</h1><h2 id="递归写法-1"><a href="#递归写法-1" class="headerlink" title="递归写法"></a>递归写法</h2><p>经典考题，递归写法核心思想为分割序列为子树的中序和后序，不断分割直到只剩一个，即是叶子节点</p>
+<h1 id="从中序和后序构造二叉树">从中序和后序构造二叉树</h1>
+<h2 id="递归写法-1">递归写法</h2>
+<p>经典考题，递归写法核心思想为分割序列为子树的中序和后序，不断分割直到只剩一个，即是叶子节点</p>
 <p>根据后序可以直接确定当前树的根节点，然后在中序中定位左右子树的中序，最后将左右子树的中序和后需继续下传，返回当前根节点</p>
 <p>分割序列采用vector的构造函数，使用迭代器分割</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">buildTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; inorder, vector&lt;<span class="hljs-type">int</span>&gt;&amp; postorder)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(inorder.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-type">int</span> size = inorder.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> rootval = postorder[size - <span class="hljs-number">1</span>];<br>        TreeNode * root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(rootval);<br>        <span class="hljs-type">int</span> split;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; size;i++) &#123;<br>            <span class="hljs-keyword">if</span>(inorder[i] == rootval) &#123;<br>                split = i;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        vector&lt;<span class="hljs-type">int</span>&gt; inleft = <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(inorder.<span class="hljs-built_in">begin</span>(), inorder.<span class="hljs-built_in">begin</span>() + split);<br>        vector&lt;<span class="hljs-type">int</span>&gt; inright = <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(inorder.<span class="hljs-built_in">begin</span>() + split + <span class="hljs-number">1</span>, inorder.<span class="hljs-built_in">end</span>());<br>        vector&lt;<span class="hljs-type">int</span>&gt; postleft = <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(postorder.<span class="hljs-built_in">begin</span>(), postorder.<span class="hljs-built_in">begin</span>() + split);<br>        vector&lt;<span class="hljs-type">int</span>&gt; postright = <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(postorder.<span class="hljs-built_in">begin</span>() + split, postorder.<span class="hljs-built_in">end</span>() - <span class="hljs-number">1</span>);<br>        root-&gt;left = <span class="hljs-built_in">buildTree</span>(inleft, postleft);<br>        root-&gt;right = <span class="hljs-built_in">buildTree</span>(inright, postright);<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="从前序和中序构造二叉树"><a href="#从前序和中序构造二叉树" class="headerlink" title="从前序和中序构造二叉树"></a>从前序和中序构造二叉树</h1><h2 id="递归写法-2"><a href="#递归写法-2" class="headerlink" title="递归写法"></a>递归写法</h2><p>与上一题同理</p>
+<h1 id="从前序和中序构造二叉树">从前序和中序构造二叉树</h1>
+<h2 id="递归写法-2">递归写法</h2>
+<p>与上一题同理</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">buildTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; preorder, vector&lt;<span class="hljs-type">int</span>&gt;&amp; inorder)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(inorder.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-type">int</span> rootval = preorder[<span class="hljs-number">0</span>];<br>        <span class="hljs-type">int</span> split = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(split;split &lt; preorder.<span class="hljs-built_in">size</span>();split++) &#123;<br>            <span class="hljs-keyword">if</span>(inorder[split] == rootval) <span class="hljs-keyword">break</span>;<br>        &#125;<br>        TreeNode * root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(rootval);<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">leftpre</span><span class="hljs-params">(preorder.begin() + <span class="hljs-number">1</span>, preorder.begin() + <span class="hljs-number">1</span> + split)</span></span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">rightpre</span><span class="hljs-params">(preorder.begin() + <span class="hljs-number">1</span> + split, preorder.end())</span></span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">leftin</span><span class="hljs-params">(inorder.begin(), inorder.begin() + split)</span></span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">rightin</span><span class="hljs-params">(inorder.begin() + split + <span class="hljs-number">1</span>, inorder.end())</span></span>;<br>        root-&gt;left = <span class="hljs-built_in">buildTree</span>(leftpre, leftin);<br>        root-&gt;right = <span class="hljs-built_in">buildTree</span>(rightpre, rightin);<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h2 id="迭代写法-1"><a href="#迭代写法-1" class="headerlink" title="迭代写法"></a>迭代写法</h2><p>迭代写法思维很巧妙，官方题解写得很严谨，我直接摘抄并加入自己的注解 ： <span class="label label-success">注解格式</span></p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solutions/255811/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/">https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solutions/255811/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/</a></p>
-<p>对于前序遍历中的任意两个连续节点 <code>u</code> 和 <code>v</code>，根据前序遍历的流程，我们可以知道 <code>u</code> 和 <code>v</code> 只有两种可能的关系：</p>
-<p><code>v</code> 是 <code>u</code> 的左儿子。这是因为在遍历到 <code>u</code> 之后，下一个遍历的节点就是 <code>u</code> 的左儿子，即 <code>v</code>；</p>
-<p><code>u</code> 没有左儿子，并且 <code>v</code> 是 <code>u</code> 的某个祖先节点（或者 <code>u</code> 本身）的右儿子。</p>
-<span class="label label-success">可以自己画几个树来验证</span>
-<p>​</p>
+<h2 id="迭代写法-1">迭代写法</h2>
+<p>迭代写法思维很巧妙，官方题解写得很严谨，我直接摘抄并加入自己的注解 ：
+<span class="label label-success">注解格式</span></p>
+<p>原文链接：https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solutions/255811/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/</p>
+<p>对于前序遍历中的任意两个连续节点 <code>u</code> 和
+<code>v</code>，根据前序遍历的流程，我们可以知道 <code>u</code> 和
+<code>v</code> 只有两种可能的关系：</p>
+<p><code>v</code> 是 <code>u</code> 的左儿子。这是因为在遍历到
+<code>u</code> 之后，下一个遍历的节点就是 <code>u</code> 的左儿子，即
+<code>v</code>；</p>
+<p><code>u</code> 没有左儿子，并且 <code>v</code> 是 <code>u</code>
+的某个祖先节点（或者 <code>u</code> 本身）的右儿子。 <span class="label label-success">可以自己画几个树来验证</span> ​</p>
 <p>举一个例子来说明第二种关系的正确性，并在例子中给出我们的迭代算法。</p>
 <p>例子</p>
-<p>我们以树</p>
-<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tap">        3<br>       / \<br>     <span class="hljs-number"> 9 </span> 20<br>     /  /  \<br>   <span class="hljs-number"> 8 </span><span class="hljs-number"> 15 </span>  7<br>   / \<br> <span class="hljs-number"> 5 </span> 10<br> /<br>4<br></code></pre></td></tr></table></figure>
-<p>为例，它的前序遍历和中序遍历分别为</p>
-<p>preorder &#x3D; [3, 9, 8, 5, 4, 10, 20, 15, 7]</p>
-<p>inorder &#x3D; [4, 5, 8, 10, 9, 3, 15, 20, 7]</p>
-<p>我们用一个栈 <code>stack</code> 来维护「<strong>当前节点的所有还没有考虑过右儿子的祖先节点</strong>」<span class="label label-success">栈内的元素无论何时都是这一含义，视作未判断过是不是有右孩子的节点</span> ，栈顶就是当前节点。也就是说，只有在栈中的节点才可能连接一个新的右儿子。同时，我们用一个指针 <code>index</code> 指向中序遍历的某个位置，初始值为 <code>0</code>。<code>index</code> 对应的节点是「<strong>当前节点不断往左走达到的最终节点</strong>」，这也是符合中序遍历的，它的作用在下面的过程中会有所体现。</p>
-<p>首先我们将根节点 <code>3</code> 入栈，再初始化 <code>index</code> 所指向的节点为 <code>4</code>，随后对于前序遍历中的每个节点，我们依次判断它是栈顶节点的左儿子，还是栈中某个节点的右儿子。</p>
-<p>我们遍历 <code>9</code>。<code>9</code> 一定是栈顶节点 <code>3</code> 的左儿子。我们使用反证法，假设 <code>9</code> 是 <code>3</code> 的右儿子，那么 <code>3</code> 没有左儿子，<code>index</code> 应该恰好指向 <code>3</code>，但实际上为 <code>4</code>，因此产生了矛盾。所以我们将 <code>9</code> 作为 <code>3</code> 的左儿子，并将 <code>9</code> 入栈。</p>
+<p>我们以树 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tap">        3<br>       / \<br>     <span class="hljs-number"> 9 </span> 20<br>     /  /  \<br>   <span class="hljs-number"> 8 </span><span class="hljs-number"> 15 </span>  7<br>   / \<br> <span class="hljs-number"> 5 </span> 10<br> /<br>4<br></code></pre></td></tr></table></figure> 为例，它的前序遍历和中序遍历分别为</p>
+<p>preorder = [3, 9, 8, 5, 4, 10, 20, 15, 7]</p>
+<p>inorder = [4, 5, 8, 10, 9, 3, 15, 20, 7]</p>
+<p>我们用一个栈 <code>stack</code>
+来维护「<strong>当前节点的所有还没有考虑过右儿子的祖先节点</strong>」<span class="label label-success">栈内的元素无论何时都是这一含义，视作未判断过是不是有右孩子的节点</span>
+，栈顶就是当前节点。也就是说，只有在栈中的节点才可能连接一个新的右儿子。同时，我们用一个指针
+<code>index</code> 指向中序遍历的某个位置，初始值为
+<code>0</code>。<code>index</code>
+对应的节点是「<strong>当前节点不断往左走达到的最终节点</strong>」，这也是符合中序遍历的，它的作用在下面的过程中会有所体现。</p>
+<p>首先我们将根节点 <code>3</code> 入栈，再初始化 <code>index</code>
+所指向的节点为
+<code>4</code>，随后对于前序遍历中的每个节点，我们依次判断它是栈顶节点的左儿子，还是栈中某个节点的右儿子。</p>
+<p>我们遍历 <code>9</code>。<code>9</code> 一定是栈顶节点 <code>3</code>
+的左儿子。我们使用反证法，假设 <code>9</code> 是 <code>3</code>
+的右儿子，那么 <code>3</code> 没有左儿子，<code>index</code>
+应该恰好指向 <code>3</code>，但实际上为
+<code>4</code>，因此产生了矛盾。所以我们将 <code>9</code> 作为
+<code>3</code> 的左儿子，并将 <code>9</code> 入栈。</p>
 <p><code>stack = [3, 9]</code></p>
 <p><code>index -&gt; inorder[0] = 4</code></p>
-<p>我们遍历 <code>8</code>，<code>5</code> 和 <code>4</code>。同理可得它们都是上一个节点（栈顶节点）的左儿子，所以它们会依次入栈。</p>
+<p>我们遍历 <code>8</code>，<code>5</code> 和
+<code>4</code>。同理可得它们都是上一个节点（栈顶节点）的左儿子，所以它们会依次入栈。</p>
 <p><code>stack = [3, 9, 8, 5, 4]</code></p>
 <p><code>index -&gt; inorder[0] = 4</code></p>
-<p>我们遍历 <code>10</code>，这时情况就不一样了。我们发现 <code>index</code> 恰好指向当前的栈顶节点 <code>4</code>，也就是说 <code>4</code> 没有左儿子，那么 <code>10</code> 必须为栈中某个节点的右儿子。那么如何找到这个节点呢？栈中的节点的顺序和它们在前序遍历中出现的顺序是一致的，而且每一个节点的右儿子都还没有被遍历过，那么这些节点的顺序和它们在中序遍历中出现的顺序一定是相反的。<span class="label label-success">z左中右与中左右，其中“中”和“左”是相反的</span></p>
+<p>我们遍历 <code>10</code>，这时情况就不一样了。我们发现
+<code>index</code> 恰好指向当前的栈顶节点 <code>4</code>，也就是说
+<code>4</code> 没有左儿子，那么 <code>10</code>
+必须为栈中某个节点的右儿子。那么如何找到这个节点呢？栈中的节点的顺序和它们在前序遍历中出现的顺序是一致的，而且每一个节点的右儿子都还没有被遍历过，那么这些节点的顺序和它们在中序遍历中出现的顺序一定是相反的。<span class="label label-success">z左中右与中左右，其中“中”和“左”是相反的</span></p>
 <blockquote>
 <p>这是因为栈中的任意两个相邻的节点，前者都是后者的某个祖先。并且我们知道，栈中的任意一个节点的右儿子还没有被遍历过，说明后者一定是前者左儿子的子树中的节点，那么后者就先于前者出现在中序遍历中。</p>
 </blockquote>
-<p>因此我们可以把 <code>index</code> 不断向右移动，并与栈顶节点进行比较。如果 <code>index</code> 对应的元素恰好等于栈顶节点，那么说明我们在中序遍历中找到了栈顶节点，所以将 <code>index</code> 增加 <code>1</code> 并弹出栈顶节点，直到 <code>index</code> 对应的元素不等于栈顶节点。按照这样的过程，我们弹出的最后一个节点 <code>x</code> 就是 <code>10</code> 的双亲节点，这是因为 <code>10</code> 出现在了 <code>x</code> 与 <code>x</code> 在栈中的下一个节点的中序遍历之间，因此 <code>10</code> 就是 <code>x</code> 的右儿子。</p>
-<p>回到我们的例子，我们会依次从栈顶弹出 <code>4</code>，<code>5</code> 和 <code>8</code>，并且将 <code>index</code> 向右移动了三次。我们将 <code>10</code> 作为最后弹出的节点 <code>8</code> 的右儿子<span class="label label-success">栈中没有考虑右孩子</span>，并将 <code>10</code> 入栈。</p>
+<p>因此我们可以把 <code>index</code>
+不断向右移动，并与栈顶节点进行比较。如果 <code>index</code>
+对应的元素恰好等于栈顶节点，那么说明我们在中序遍历中找到了栈顶节点，所以将
+<code>index</code> 增加 <code>1</code> 并弹出栈顶节点，直到
+<code>index</code>
+对应的元素不等于栈顶节点。按照这样的过程，我们弹出的最后一个节点
+<code>x</code> 就是 <code>10</code> 的双亲节点，这是因为 <code>10</code>
+出现在了 <code>x</code> 与 <code>x</code>
+在栈中的下一个节点的中序遍历之间，因此 <code>10</code> 就是
+<code>x</code> 的右儿子。</p>
+<p>回到我们的例子，我们会依次从栈顶弹出 <code>4</code>，<code>5</code>
+和 <code>8</code>，并且将 <code>index</code> 向右移动了三次。我们将
+<code>10</code> 作为最后弹出的节点 <code>8</code>
+的右儿子<span class="label label-success">栈中没有考虑右孩子</span>，并将 <code>10</code> 入栈。</p>
 <p><code>stack = [3, 9, 10]</code></p>
 <p><code>index -&gt; inorder[3] = 10</code></p>
-<p>我们遍历 <code>20</code>。同理，<code>index</code> 恰好指向当前栈顶节点 <code>10</code>，那么我们会依次从栈顶弹出 <code>10</code>，<code>9</code> 和 <code>3</code>，并且将 <code>index</code> 向右移动了三次。我们将 <code>20</code> 作为最后弹出的节点 <code>3</code> 的右儿子，并将 <code>20</code> 入栈。</p>
+<p>我们遍历 <code>20</code>。同理，<code>index</code>
+恰好指向当前栈顶节点 <code>10</code>，那么我们会依次从栈顶弹出
+<code>10</code>，<code>9</code> 和 <code>3</code>，并且将
+<code>index</code> 向右移动了三次。我们将 <code>20</code>
+作为最后弹出的节点 <code>3</code> 的右儿子，并将 <code>20</code>
+入栈。</p>
 <p><code>stack = [20]</code></p>
 <p><code>index -&gt; inorder[6] = 15</code></p>
-<p>我们遍历 <code>15</code>，将 <code>15</code> 作为栈顶节点 <code>20</code> 的左儿子，并将 <code>15</code> 入栈。</p>
+<p>我们遍历 <code>15</code>，将 <code>15</code> 作为栈顶节点
+<code>20</code> 的左儿子，并将 <code>15</code> 入栈。</p>
 <p><code>stack = [20, 15]</code></p>
 <p><code>index -&gt; inorder[6] = 15</code></p>
-<p>我们遍历 <code>7</code>。<code>index</code> 恰好指向当前栈顶节点 <code>15</code>，那么我们会依次从栈顶弹出 <code>15</code> 和 <code>20</code>，并且将 <code>index</code> 向右移动了两次。我们将 <code>7</code> 作为最后弹出的节点 <code>20</code> 的右儿子，并将 <code>7</code> 入栈。</p>
+<p>我们遍历 <code>7</code>。<code>index</code> 恰好指向当前栈顶节点
+<code>15</code>，那么我们会依次从栈顶弹出 <code>15</code> 和
+<code>20</code>，并且将 <code>index</code> 向右移动了两次。我们将
+<code>7</code> 作为最后弹出的节点 <code>20</code> 的右儿子，并将
+<code>7</code> 入栈。</p>
 <p><code>stack = [7]</code></p>
 <p><code>index -&gt; inorder[8] = 7</code></p>
 <p>此时遍历结束，我们就构造出了正确的二叉树。</p>
 <p><strong>算法</strong></p>
 <p>我们归纳出上述例子中的算法流程：</p>
 <ul>
-<li><p>我们用一个栈和一个指针辅助进行二叉树的构造。初始时栈中存放了根节点（前序遍历的第一个节点），指针指向中序遍历的第一个节点；</p>
-</li>
-<li><p>我们依次枚举前序遍历中除了第一个节点以外的每个节点。如果 <code>index</code> 恰好指向栈顶节点，那么我们不断地弹出栈顶节点并向右移动 <code>index</code>，并将当前节点作为最后一个弹出的节点的右儿子；如果 <code>index</code> 和栈顶节点不同，我们将当前节点作为栈顶节点的左儿子；</p>
-</li>
+<li><p>我们用一个栈和一个指针辅助进行二叉树的构造。初始时栈中存放了根节点（前序遍历的第一个节点），指针指向中序遍历的第一个节点；</p></li>
+<li><p>我们依次枚举前序遍历中除了第一个节点以外的每个节点。如果
+<code>index</code>
+恰好指向栈顶节点，那么我们不断地弹出栈顶节点并向右移动
+<code>index</code>，并将当前节点作为最后一个弹出的节点的右儿子；如果
+<code>index</code>
+和栈顶节点不同，我们将当前节点作为栈顶节点的左儿子；</p></li>
 </ul>
 <p>无论是哪一种情况，我们最后都将当前的节点入栈。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">buildTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; preorder, vector&lt;<span class="hljs-type">int</span>&gt;&amp; inorder)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!preorder.<span class="hljs-built_in">size</span>()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        TreeNode* root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preorder[<span class="hljs-number">0</span>]);<br>        stack&lt;TreeNode*&gt; stk;<br>        stk.<span class="hljs-built_in">push</span>(root);<br>        <span class="hljs-type">int</span> inorderIndex = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; preorder.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>            <span class="hljs-type">int</span> preorderVal = preorder[i];<br>            TreeNode* node = stk.<span class="hljs-built_in">top</span>();<br>            <span class="hljs-keyword">if</span> (node-&gt;val != inorder[inorderIndex]) &#123;<br>                node-&gt;left = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preorderVal);<br>                stk.<span class="hljs-built_in">push</span>(node-&gt;left);<br>            &#125;<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">while</span> (!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; stk.<span class="hljs-built_in">top</span>()-&gt;val == inorder[inorderIndex]) &#123;<br>                    node = stk.<span class="hljs-built_in">top</span>();<br>                    stk.<span class="hljs-built_in">pop</span>();<br>                    ++inorderIndex;<br>                &#125;<br>                node-&gt;right = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preorderVal);<br>                stk.<span class="hljs-built_in">push</span>(node-&gt;right);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><strong>代码</strong> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">buildTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; preorder, vector&lt;<span class="hljs-type">int</span>&gt;&amp; inorder)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (!preorder.<span class="hljs-built_in">size</span>()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        TreeNode* root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preorder[<span class="hljs-number">0</span>]);<br>        stack&lt;TreeNode*&gt; stk;<br>        stk.<span class="hljs-built_in">push</span>(root);<br>        <span class="hljs-type">int</span> inorderIndex = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; preorder.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>            <span class="hljs-type">int</span> preorderVal = preorder[i];<br>            TreeNode* node = stk.<span class="hljs-built_in">top</span>();<br>            <span class="hljs-keyword">if</span> (node-&gt;val != inorder[inorderIndex]) &#123;<br>                node-&gt;left = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preorderVal);<br>                stk.<span class="hljs-built_in">push</span>(node-&gt;left);<br>            &#125;<br>            <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">while</span> (!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; stk.<span class="hljs-built_in">top</span>()-&gt;val == inorder[inorderIndex]) &#123;<br>                    node = stk.<span class="hljs-built_in">top</span>();<br>                    stk.<span class="hljs-built_in">pop</span>();<br>                    ++inorderIndex;<br>                &#125;<br>                node-&gt;right = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preorderVal);<br>                stk.<span class="hljs-built_in">push</span>(node-&gt;right);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></p>
+
                 
               </div>
             

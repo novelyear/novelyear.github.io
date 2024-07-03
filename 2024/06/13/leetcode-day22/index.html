@@ -16,12 +16,12 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日任务：  235. 二叉搜索树的最近公共祖先medium 701. 二叉搜索树的插入操作medium 450. 删除二叉搜索树中的节点medium  235. 二叉搜索树的最近公共祖先与day21的第三题相比，这题多了二叉搜索树这一条件，变得更简单 题目： 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公">
+    <meta name="description" content="今日任务：  235. 二叉搜索树的最近公共祖先medium 701. 二叉搜索树的插入操作medium 450. 删除二叉搜索树中的节点medium  235. 二叉搜索树的最近公共祖先 与day21的第三题相比，这题多了二叉搜索树这一条件，变得更简单 题目： 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day22">
 <meta property="og:url" content="http://novelyear.github.io/2024/06/13/leetcode-day22/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日任务：  235. 二叉搜索树的最近公共祖先medium 701. 二叉搜索树的插入操作medium 450. 删除二叉搜索树中的节点medium  235. 二叉搜索树的最近公共祖先与day21的第三题相比，这题多了二叉搜索树这一条件，变得更简单 题目： 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公">
+<meta property="og:description" content="今日任务：  235. 二叉搜索树的最近公共祖先medium 701. 二叉搜索树的插入操作medium 450. 删除二叉搜索树中的节点medium  235. 二叉搜索树的最近公共祖先 与day21的第三题相比，这题多了二叉搜索树这一条件，变得更简单 题目： 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-13T00:12:53.000Z">
 <meta property="article:modified_time" content="2024-06-13T03:09:36.600Z">
@@ -317,29 +317,43 @@
                 
                 <p>今日任务：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description/">235. 二叉搜索树的最近公共祖先</a><span class="label label-warning">medium</span></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/description/">701. 二叉搜索树的插入操作</a><span class="label label-warning">medium</span></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-node-in-a-bst/description/">450. 删除二叉搜索树中的节点</a><span class="label label-warning">medium</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description/">235.
+二叉搜索树的最近公共祖先</a><span class="label label-warning">medium</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/insert-into-a-binary-search-tree/description/">701.
+二叉搜索树的插入操作</a><span class="label label-warning">medium</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/delete-node-in-a-bst/description/">450.
+删除二叉搜索树中的节点</a><span class="label label-warning">medium</span></li>
 </ul>
-<h1 id="235-二叉搜索树的最近公共祖先"><a href="#235-二叉搜索树的最近公共祖先" class="headerlink" title="235. 二叉搜索树的最近公共祖先"></a>235. 二叉搜索树的最近公共祖先</h1><p>与day21的第三题相比，这题多了二叉搜索树这一条件，变得更简单</p>
+<h1 id="二叉搜索树的最近公共祖先">235. 二叉搜索树的最近公共祖先</h1>
+<p>与day21的第三题相比，这题多了二叉搜索树这一条件，变得更简单</p>
 <p><strong>题目：</strong></p>
 <p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点
+p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x
+的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
 <p><strong>思路</strong></p>
 <p>主体思路就是<strong>当root的值在p和q之间时，root就是最近公共祖先了</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">lowestCommonAncestor</span><span class="hljs-params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root == p || root == q || !root) <span class="hljs-keyword">return</span> root;<span class="hljs-comment">//沿用236题的返回条件</span><br>        <span class="hljs-keyword">if</span>(p-&gt;val &gt; q-&gt;val) &#123;<span class="hljs-comment">//先设定p &lt; q</span><br>            TreeNode * temp = p;<br>            p = q;<br>            q = temp;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(p-&gt;val &lt; root-&gt;val &amp;&amp; root-&gt;val &lt; q-&gt;val) <span class="hljs-keyword">return</span> root;<span class="hljs-comment">//如果root在之间，返回</span><br>        <span class="hljs-keyword">if</span>(p-&gt;val &lt; root-&gt;val &amp;&amp; q-&gt;val &lt; root-&gt;val) <span class="hljs-keyword">return</span> <span class="hljs-built_in">lowestCommonAncestor</span>(root-&gt;left, p, q);<span class="hljs-comment">//不然就在左子树</span><br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-built_in">lowestCommonAncestor</span>(root-&gt;right, p, q);<span class="hljs-comment">//不然就在右子树</span><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="701-二叉搜索树的插入操作"><a href="#701-二叉搜索树的插入操作" class="headerlink" title="701. 二叉搜索树的插入操作"></a>701. 二叉搜索树的插入操作</h1><p><strong>题目：</strong></p>
-<p>给定二叉搜索树（BST）的根节点 root 和要插入树中的值 value ，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证 ，新值和原始二叉搜索树中的任意节点值都不同。</p>
-<p>注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 任意有效的结果 。</p>
+<h1 id="二叉搜索树的插入操作">701. 二叉搜索树的插入操作</h1>
+<p><strong>题目：</strong></p>
+<p>给定二叉搜索树（BST）的根节点 root 和要插入树中的值 value
+，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 保证
+，新值和原始二叉搜索树中的任意节点值都不同。</p>
+<p>注意，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。
+你可以返回 任意有效的结果 。</p>
 <p><strong>思路</strong></p>
 <p>不要拘泥于AVL的标准，这只是普通的二叉搜索树，哪怕退化成链都没关系，所以<strong>直接在最底部插入就行</strong></p>
-<p>然后问题转化为: <strong>在二叉搜索树BST中查找val</strong>。当然肯定找不到，但最后会在某个叶子节点处下行碰到null，那么只需要判断走没走到叶子，以及val该插在叶子的左边还是右边</p>
+<p>然后问题转化为:
+<strong>在二叉搜索树BST中查找val</strong>。当然肯定找不到，但最后会在某个叶子节点处下行碰到null，那么只需要判断走没走到叶子，以及val该插在叶子的左边还是右边</p>
 <p><del>别想着在中途插入了，本菜比卡了一个小时没写出来，看评论区全是“伪装成medium的easy”😭</del></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">insertIntoBST</span><span class="hljs-params">(TreeNode* root, <span class="hljs-type">int</span> val)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!root) &#123;<br>            TreeNode * node = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(val);<br>            <span class="hljs-keyword">return</span> node;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(root-&gt;val &gt; val) root-&gt;left = <span class="hljs-built_in">insertIntoBST</span>(root-&gt;left, val);<br>        <span class="hljs-keyword">if</span>(root-&gt;val &lt; val) root-&gt;right = <span class="hljs-built_in">insertIntoBST</span>(root-&gt;right, val);<br><br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="450-删除二叉搜索树中的节点"><a href="#450-删除二叉搜索树中的节点" class="headerlink" title="450. 删除二叉搜索树中的节点"></a>450. 删除二叉搜索树中的节点</h1><p><strong>题目：</strong></p>
-<p>给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的 key 对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用。</p>
+<h1 id="删除二叉搜索树中的节点">450. 删除二叉搜索树中的节点</h1>
+<p><strong>题目：</strong></p>
+<p>给定一个二叉搜索树的根节点 root 和一个值 key，删除二叉搜索树中的 key
+对应的节点，并保证二叉搜索树的性质不变。返回二叉搜索树（有可能被更新）的根节点的引用。</p>
 <p>一般来说，删除节点可分为两个步骤：</p>
 <ul>
 <li>首先找到需要删除的节点；</li>
@@ -347,13 +361,14 @@
 </ul>
 <p><strong>思路：</strong></p>
 <p>依然别想着AVL的左右旋什么的，别自己给自己上难度，简单暴力地分类讨论就行：</p>
-<ol>
+<ol type="1">
 <li>没找到<code>val</code>(<code>root</code>是空的)，返回<code>nullptr</code></li>
 <li>要删的是个叶子，直接删了返回<code>nullptr</code></li>
 <li>要删的节点只有一个孩子，删完孩子上来补位，返回这个独生子</li>
 <li>要删的节点有两个孩子，把左子树接到右子树最左边的节点下面当左孩子（这样可以最简单地使树依然合法）</li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">deleteNode</span><span class="hljs-params">(TreeNode* root, <span class="hljs-type">int</span> key)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> root;<br><br>        <span class="hljs-keyword">if</span>(root-&gt;val &lt; key) root-&gt;right = <span class="hljs-built_in">deleteNode</span>(root-&gt;right, key);<br>        <span class="hljs-keyword">if</span>(root-&gt;val &gt; key) root-&gt;left = <span class="hljs-built_in">deleteNode</span>(root-&gt;left, key);<br>        <span class="hljs-keyword">if</span>(root-&gt;val == key) &#123;<br>            <span class="hljs-keyword">if</span>(!root-&gt;left &amp;&amp; !root-&gt;right) &#123;<br>                <span class="hljs-keyword">delete</span> root;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(root-&gt;left &amp;&amp; !root-&gt;right) &#123;<br>                TreeNode * temp = root-&gt;left;<br>                <span class="hljs-keyword">delete</span> root;<br>                <span class="hljs-keyword">return</span> temp;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(root-&gt;right &amp;&amp; !root-&gt;left) &#123;<br>                TreeNode * temp = root-&gt;right;<br>                <span class="hljs-keyword">delete</span> root;<br>                <span class="hljs-keyword">return</span> temp;<br>            &#125;<br>            <span class="hljs-keyword">else</span>&#123;<br>                TreeNode * keeper = root-&gt;right;<br>                <span class="hljs-keyword">while</span>(keeper-&gt;left != <span class="hljs-literal">nullptr</span>) keeper = keeper-&gt;left;<br>                keeper-&gt;left = root-&gt;left;<br>                TreeNode * temp = root-&gt;right;<br>                <span class="hljs-keyword">delete</span> root;<br>                <span class="hljs-keyword">return</span> temp;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
                 
               </div>
             

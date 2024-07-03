@@ -16,12 +16,12 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容  ● 654.最大二叉树 ● 617.合并二叉树● 700.二叉搜索树中的搜索● 98.验证二叉搜索树 最大二叉树一般写法题目实际上已经给出了递归逻辑，翻译成代码即可 给定一个不重复的整数数组nums。最大二叉树可以用下面的算法从nums递归地构建:  创建一个根节点，其值为nums中的最大值。 递归地在最大值左边的子数组前缀上构建左子树。 递归地在最大值右边的子数组后缀上构建右子树。">
+    <meta name="description" content="今日内容 ● 654.最大二叉树 ● 617.合并二叉树 ● 700.二叉搜索树中的搜索 ● 98.验证二叉搜索树 最大二叉树 一般写法 题目实际上已经给出了递归逻辑，翻译成代码即可 给定一个不重复的整数数组nums。最大二叉树可以用下面的算法从nums递归地构建:  创建一个根节点，其值为nums中的最大值。 递归地在最大值左边的子数组前缀上构建左子树。 递归地在最大值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day20">
 <meta property="og:url" content="http://novelyear.github.io/2024/06/11/leetcode-day20/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容  ● 654.最大二叉树 ● 617.合并二叉树● 700.二叉搜索树中的搜索● 98.验证二叉搜索树 最大二叉树一般写法题目实际上已经给出了递归逻辑，翻译成代码即可 给定一个不重复的整数数组nums。最大二叉树可以用下面的算法从nums递归地构建:  创建一个根节点，其值为nums中的最大值。 递归地在最大值左边的子数组前缀上构建左子树。 递归地在最大值右边的子数组后缀上构建右子树。">
+<meta property="og:description" content="今日内容 ● 654.最大二叉树 ● 617.合并二叉树 ● 700.二叉搜索树中的搜索 ● 98.验证二叉搜索树 最大二叉树 一般写法 题目实际上已经给出了递归逻辑，翻译成代码即可 给定一个不重复的整数数组nums。最大二叉树可以用下面的算法从nums递归地构建:  创建一个根节点，其值为nums中的最大值。 递归地在最大值左边的子数组前缀上构建左子树。 递归地在最大值">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/06/11/b6ce26fcf0d47d93.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/06/11/8bf9279d365104cd.png">
@@ -258,7 +258,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.3k 字
+          1.4k 字
         
       </span>
     
@@ -318,42 +318,62 @@
             
               <div class="markdown-body">
                 
-                <p>今日内容 </p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-binary-tree/description/">● 654.最大二叉树 </a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-binary-trees/description/">● 617.合并二叉树</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-a-binary-search-tree/">● 700.二叉搜索树中的搜索</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/description/">● 98.验证二叉搜索树</a></p>
-<h1 id="最大二叉树"><a href="#最大二叉树" class="headerlink" title="最大二叉树"></a>最大二叉树</h1><h2 id="一般写法"><a href="#一般写法" class="headerlink" title="一般写法"></a>一般写法</h2><p>题目实际上已经给出了递归逻辑，翻译成代码即可</p>
+                <p>今日内容</p>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-binary-tree/description/">●
+654.最大二叉树</a> <a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-binary-trees/description/">●
+617.合并二叉树</a> <a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-a-binary-search-tree/">●
+700.二叉搜索树中的搜索</a> <a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/description/">●
+98.验证二叉搜索树</a></p>
+<h1 id="最大二叉树">最大二叉树</h1>
+<h2 id="一般写法">一般写法</h2>
+<p>题目实际上已经给出了递归逻辑，翻译成代码即可</p>
 <p>给定一个不重复的整数数组<code>nums</code>。<code>最大二叉树</code>可以用下面的算法从<code>nums</code>递归地构建:</p>
-<ol>
+<ol type="1">
 <li>创建一个根节点，其值为<code>nums</code>中的最大值。</li>
 <li>递归地在最大值<code>左边</code>的<code>子数组前缀上</code>构建左子树。</li>
 <li>递归地在最大值<code>右边</code>的<code>子数组后缀上</code>构建右子树。</li>
 </ol>
 <p>返回<code>nums</code>构建的<code>最大二叉树</code>。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">constructMaximumBinaryTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(nums.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-type">int</span> max = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.<span class="hljs-built_in">size</span>();i++) <br>            <span class="hljs-keyword">if</span>(nums[max] &lt; nums[i]) max = i;<br>        TreeNode * root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(nums[max]);<span class="hljs-comment">// 1创建一个根节点，其值为`nums`中的最大值。</span><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">left</span><span class="hljs-params">(nums.begin(), nums.begin() + max)</span></span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">right</span><span class="hljs-params">(nums.begin() + max + <span class="hljs-number">1</span>, nums.end())</span></span>;<br>        root-&gt;left = <span class="hljs-built_in">constructMaximumBinaryTree</span>(left);<span class="hljs-comment">// 2递归地在最大值`左边`的`子数组前缀上`构建左子树。</span><br>        root-&gt;right = <span class="hljs-built_in">constructMaximumBinaryTree</span>(right);<span class="hljs-comment">// 3递归地在最大值`右边`的`子数组后缀上`构建右子树。</span><br>        <span class="hljs-keyword">return</span> root;<span class="hljs-comment">// 返回最大二叉树</span><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h2 id="单调栈写法"><a href="#单调栈写法" class="headerlink" title="单调栈写法"></a>单调栈写法</h2><p>笔者仅根据题目写出递归写法，未想到单调栈写法，此为<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-binary-tree/solutions/1759348/zui-da-er-cha-shu-by-leetcode-solution-lbeo/">力扣官方题解</a>启发</p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/06/11/b6ce26fcf0d47d93.png" srcset="/img/loading.gif" lazyload alt="总体思想图示"></p>
+<h2 id="单调栈写法">单调栈写法</h2>
+<p>笔者仅根据题目写出递归写法，未想到单调栈写法，此为<a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-binary-tree/solutions/1759348/zui-da-er-cha-shu-by-leetcode-solution-lbeo/">力扣官方题解</a>启发</p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2024/06/11/b6ce26fcf0d47d93.png" srcset="/img/loading.gif" lazyload
+alt="总体思想图示" />
+<figcaption aria-hidden="true">总体思想图示</figcaption>
+</figure>
 <div class="note note-light">
-            <p>因此，我们的任务变为：找出每一个元素左侧和右侧第一个比它大的元素所在的位置。这就是一个经典的单调栈问题了，可以参考 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/next-greater-element-ii/description/">503. 下一个更大元素 II</a>。如果左侧的元素较小，那么该元素就是左侧元素的右子节点；如果右侧的元素较小，那么该元素就是右侧元素的左子节点。</p>
+            <p>因此，我们的任务变为：找出每一个元素左侧和右侧第一个比它大的元素所在的位置。这就是一个经典的单调栈问题了，可以参考<atarget="_blank" rel="noopener" href="https://leetcode.cn/problems/next-greater-element-ii/description/">503.下一个更大元素II</a>。如果左侧的元素较小，那么该元素就是左侧元素的右子节点；如果右侧的元素较小，那么该元素就是右侧元素的左子节点。</p>
           </div>
-
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;  <span class="hljs-comment">//单调栈</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">constructMaximumBinaryTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">int</span> len = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">if</span>(len == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        &#125;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">left</span><span class="hljs-params">(len, <span class="hljs-number">-1</span>)</span></span>;  <span class="hljs-comment">//每个节点左侧第一个更大的节点</span><br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">right</span><span class="hljs-params">(len, <span class="hljs-number">-1</span>)</span></span>;  <span class="hljs-comment">//每个节点右侧第一个更大的节点</span><br>        stack&lt;<span class="hljs-type">int</span>&gt; stk;<br>        <span class="hljs-function">vector&lt;TreeNode*&gt; <span class="hljs-title">tree</span><span class="hljs-params">(len)</span></span>;  <span class="hljs-comment">//存储树节点</span><br>        <span class="hljs-comment">//使用单减栈 获取left和right  (题目限制元素是不同的)</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)&#123;<br>            tree[i] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(nums[i]); <span class="hljs-comment">//构造当前节点</span><br>            <span class="hljs-keyword">while</span>(!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; nums[i] &gt; nums[stk.<span class="hljs-built_in">top</span>()])&#123;  <span class="hljs-comment">//当前节点比栈中元素大 弹栈并给栈中的小元素赋right</span><br>                right[stk.<span class="hljs-built_in">top</span>()] = i;<br>                stk.<span class="hljs-built_in">pop</span>();<br>            &#125;<br>            <span class="hljs-keyword">if</span>(!stk.<span class="hljs-built_in">empty</span>())&#123;  <span class="hljs-comment">//当前节点的左侧更大节点就是单减栈的顶部元素</span><br>                left[i] = stk.<span class="hljs-built_in">top</span>();<br>            &#125;<br>            stk.<span class="hljs-built_in">push</span>(i);<br>        &#125;<br>        TreeNode* root = <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-comment">//将每个节点接到自己的父节点上以构造树形结构</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)&#123;<br>            <span class="hljs-keyword">if</span>(left[i] == <span class="hljs-number">-1</span> &amp;&amp; right[i] == <span class="hljs-number">-1</span>)&#123;  <span class="hljs-comment">//当前节点为最大值，其为根</span><br>                root = tree[i];<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(left[i] == <span class="hljs-number">-1</span> || (right[i] != <span class="hljs-number">-1</span> &amp;&amp; nums[left[i]] &gt; nums[right[i]]))&#123; <br>                tree[right[i]]-&gt;left = tree[i];   <span class="hljs-comment">//左侧没有更大的节点或左侧更大值大于右侧更大值，说明当前节点是右侧更大值的左子树的根节点</span><br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                tree[left[i]]-&gt;right = tree[i];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <div class="note note-info">
-            <p>该代码中的注释来源于题解评论区<a target="_blank" rel="noopener" href="https://leetcode.cn/u/6ifted-ishi2aka1rd/">@健</a>，本菜比瞪眼看了十分钟没看懂，抄了，挖坑后面来看</p>
+            <p>该代码中的注释来源于题解评论区<atarget="_blank" rel="noopener" href="https://leetcode.cn/u/6ifted-ishi2aka1rd/"><span class="citation"data-cites="健">@健</span></a>，本菜比瞪眼看了十分钟没看懂，抄了，挖坑后面来看</p>
           </div>
-
-
-<h1 id="合并二叉树"><a href="#合并二叉树" class="headerlink" title="合并二叉树"></a>合并二叉树</h1><p>简单递归即可</p>
-<ol>
+<h1 id="合并二叉树">合并二叉树</h1>
+<p>简单递归即可</p>
+<ol type="1">
 <li>确定返回值和参数：就按力扣给的核心函数递归就行，无需另写函数，返回值就是合并后的节点指针，参数就是要合并的两个节点</li>
 <li>确定递归结束条件：如果一方为空则返回另一方，都不空则相加后返回和节点</li>
 <li>确定递归中途操作：合并当前节点对应的左右孩子</li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">mergeTrees</span><span class="hljs-params">(TreeNode* root1, TreeNode* root2)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!root1) <span class="hljs-keyword">return</span> root2;<br>        <span class="hljs-keyword">if</span>(!root2) <span class="hljs-keyword">return</span> root1;<br>        root1-&gt;val += root2-&gt;val;<br>        root1-&gt;left = <span class="hljs-built_in">mergeTrees</span>(root1-&gt;left, root2-&gt;left);<br>        root1-&gt;right = <span class="hljs-built_in">mergeTrees</span>(root1-&gt;right, root2-&gt;right);<br>        <span class="hljs-keyword">return</span> root1;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="二叉搜索树中的搜索"><a href="#二叉搜索树中的搜索" class="headerlink" title="二叉搜索树中的搜索"></a>二叉搜索树中的搜索</h1><p>过于简单，知道什么是二叉搜索树就能做，略</p>
-<h1 id="验证二叉搜索树"><a href="#验证二叉搜索树" class="headerlink" title="验证二叉搜索树"></a>验证二叉搜索树</h1><p>示例2就已经给出一个容易犯的陷阱：错误地以为只需要左右节点各比根节点小和大就可以了，实际上二叉搜索树需要整个左右子树都比根节点小和大，所以需要注意在想当然递归的时候不要只比较左右节点，还需注意更上层的节点。</p>
+<h1 id="二叉搜索树中的搜索">二叉搜索树中的搜索</h1>
+<p>过于简单，知道什么是二叉搜索树就能做，略</p>
+<h1 id="验证二叉搜索树">验证二叉搜索树</h1>
+<p>示例2就已经给出一个容易犯的陷阱：错误地以为只需要左右节点各比根节点小和大就可以了，实际上二叉搜索树需要整个左右子树都比根节点小和大，所以需要注意在想当然递归的时候不要只比较左右节点，还需注意更上层的节点。</p>
 <p>由于是二叉搜索树，条件比较硬，所以可以充分利用二叉搜索树的特性————利用中序遍历获取序列，然后判断该序列是否单调递增就好，若不单调递增，证明不是二叉搜索树</p>
 <p>二叉排序树左子树-根-右子树严格单调递增，标准地画出一棵二叉排序树，并从上到下作其投影可得到严格序列，该序列即是中序遍历序列，并且该序列单调递增</p>
 <p>附图直观一览</p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/06/11/8bf9279d365104cd.png" srcset="/img/loading.gif" lazyload alt="二叉排序树的投影与中序遍历"></p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2024/06/11/8bf9279d365104cd.png" srcset="/img/loading.gif" lazyload
+alt="二叉排序树的投影与中序遍历" />
+<figcaption aria-hidden="true">二叉排序树的投影与中序遍历</figcaption>
+</figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt; ans;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">traversal</span><span class="hljs-params">(TreeNode * root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root) &#123;<br>            <span class="hljs-built_in">traversal</span>(root-&gt;left);<br>            ans.<span class="hljs-built_in">push_back</span>(root-&gt;val);<br>            <span class="hljs-built_in">traversal</span>(root-&gt;right);<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isValidBST</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-built_in">traversal</span>(root);<br>        vector&lt;<span class="hljs-type">long</span> <span class="hljs-type">long</span>&gt; ans2 = ans;<br>        <span class="hljs-built_in">sort</span>(ans2.<span class="hljs-built_in">begin</span>(), ans2.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; ans.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">if</span>(ans[i] != ans2[i]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; ans2[i] &lt;= ans2[i - <span class="hljs-number">1</span>]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
                 

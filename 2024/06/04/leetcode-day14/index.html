@@ -16,12 +16,12 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容：   递归遍历   迭代遍历 统一迭代  三道例题： 前序遍历二叉树中序遍历二叉树后续遍历二叉树 递归遍历太过简单，skip 迭代遍历（非统一版）使用栈模拟递归过程： 前序就是先访问当前节点值，然后压栈右左孩子 123456789101112131415vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123;    if(roo">
+    <meta name="description" content="今日内容： - 递归遍历 - 迭代遍历 - 统一迭代 三道例题： 前序遍历二叉树 中序遍历二叉树 后续遍历二叉树 递归遍历 太过简单，skip # 迭代遍历（非统一版） 使用栈模拟递归过程： 前序就是先访问当前节点值，然后压栈右左孩子 123456789101112131415vector&lt;int&gt; preorderTraversal(TreeNode* root)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day14">
 <meta property="og:url" content="http://novelyear.github.io/2024/06/04/leetcode-day14/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容：   递归遍历   迭代遍历 统一迭代  三道例题： 前序遍历二叉树中序遍历二叉树后续遍历二叉树 递归遍历太过简单，skip 迭代遍历（非统一版）使用栈模拟递归过程： 前序就是先访问当前节点值，然后压栈右左孩子 123456789101112131415vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123;    if(roo">
+<meta property="og:description" content="今日内容： - 递归遍历 - 迭代遍历 - 统一迭代 三道例题： 前序遍历二叉树 中序遍历二叉树 后续遍历二叉树 递归遍历 太过简单，skip # 迭代遍历（非统一版） 使用栈模拟递归过程： 前序就是先访问当前节点值，然后压栈右左孩子 123456789101112131415vector&lt;int&gt; preorderTraversal(TreeNode* root)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-04T08:38:39.000Z">
 <meta property="article:modified_time" content="2024-06-05T09:20:05.301Z">
@@ -315,24 +315,24 @@
             
               <div class="markdown-body">
                 
-                <p>今日内容： </p>
-<ul>
-<li>递归遍历  </li>
-<li>迭代遍历</li>
-<li>统一迭代</li>
-</ul>
+                <p>今日内容： - 递归遍历<br />
+- 迭代遍历 - 统一迭代</p>
 <p>三道例题：</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/description/">前序遍历二叉树</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/description/">中序遍历二叉树</a><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/description/">后续遍历二叉树</a></p>
-<h1 id="递归遍历"><a href="#递归遍历" class="headerlink" title="递归遍历"></a>递归遍历</h1><p>太过简单，skip</p>
-<h1 id="迭代遍历（非统一版）"><a href="#迭代遍历（非统一版）" class="headerlink" title="迭代遍历（非统一版）"></a>迭代遍历（非统一版）</h1><p>使用栈模拟递归过程：</p>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/description/">前序遍历二叉树</a>
+<a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/description/">中序遍历二叉树</a>
+<a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/description/">后续遍历二叉树</a></p>
+<h1 id="递归遍历">递归遍历</h1>
+<p>太过简单，skip # 迭代遍历（非统一版） 使用栈模拟递归过程：</p>
 <p>前序就是先访问当前节点值，然后压栈右左孩子</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">preorderTraversal</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> &#123;&#125;;<br>    stack&lt;TreeNode*&gt; st;<br>    TreeNode * cur = root;<br>    st.<span class="hljs-built_in">push</span>(cur);<br>    vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>    <span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>()) &#123;<br>        cur = st.<span class="hljs-built_in">top</span>();<br>        st.<span class="hljs-built_in">pop</span>();<br>        ans.<span class="hljs-built_in">push_back</span>(cur-&gt;val);<br>        <span class="hljs-keyword">if</span>(cur-&gt;right) st.<span class="hljs-built_in">push</span>(cur-&gt;right);<br>        <span class="hljs-keyword">if</span>(cur-&gt;left) st.<span class="hljs-built_in">push</span>(cur-&gt;left);<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>中序就是先存所有左节点，直到遇<code>null</code>再出栈栈顶，访问值后压栈右节点（压栈的所有节点均不为空）</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">inorderTraversal</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> &#123;&#125;;<br>    stack&lt;TreeNode*&gt; st;<br>    vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>    TreeNode * cur = root;<br>    <span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>() || cur != <span class="hljs-literal">nullptr</span>) &#123;<br>        <span class="hljs-keyword">if</span>(cur != <span class="hljs-literal">nullptr</span>) &#123;<br>            st.<span class="hljs-built_in">push</span>(cur);<br>            cur = cur-&gt;left;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            cur = st.<span class="hljs-built_in">top</span>();<br>            st.<span class="hljs-built_in">pop</span>();<br>            ans.<span class="hljs-built_in">push_back</span>(cur-&gt;val);<br>            cur = cur-&gt;right;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>后序比较讨巧，左右中倒序就是中右左，把前序的压栈顺序调换，最后翻转结果就行，就不贴代码了</p>
-<h1 id="统一迭代遍历"><a href="#统一迭代遍历" class="headerlink" title="统一迭代遍历"></a>统一迭代遍历</h1><p>形式统一的迭代遍历，主要思想是压栈<code>null</code>来<strong>标记</strong>下一个节点需要访问，这样写出来的代码在压栈部分就可以只调换顺序实现三种遍历</p>
+<h1 id="统一迭代遍历">统一迭代遍历</h1>
+<p>形式统一的迭代遍历，主要思想是压栈<code>null</code>来<strong>标记</strong>下一个节点需要访问，这样写出来的代码在压栈部分就可以只调换顺序实现三种遍历</p>
 <p>个人感觉比较好理解，最好记住写法，下面以后序为例给出代码</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">postorderTraversal</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>    stack&lt;TreeNode *&gt; st;<br>    TreeNode * cur = root;<br>    <span class="hljs-keyword">if</span>(cur != <span class="hljs-literal">nullptr</span>)st.<span class="hljs-built_in">push</span>(cur);<br>    <span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>()) &#123;<br>        cur = st.<span class="hljs-built_in">top</span>();<br>        <span class="hljs-keyword">if</span>(cur != <span class="hljs-literal">nullptr</span>) &#123;<br>            st.<span class="hljs-built_in">pop</span>();<br><br>            st.<span class="hljs-built_in">push</span>(cur);<br>            st.<span class="hljs-built_in">push</span>(<span class="hljs-literal">nullptr</span>);<span class="hljs-comment">//中</span><br><br>            <span class="hljs-keyword">if</span>(cur-&gt;right) st.<span class="hljs-built_in">push</span>(cur-&gt;right);<span class="hljs-comment">//右</span><br><br>            <span class="hljs-keyword">if</span>(cur-&gt;left) st.<span class="hljs-built_in">push</span>(cur-&gt;left);<span class="hljs-comment">//左</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            st.<span class="hljs-built_in">pop</span>();<br>            cur = st.<span class="hljs-built_in">top</span>();<br>            ans.<span class="hljs-built_in">push_back</span>(cur-&gt;val);<br>            st.<span class="hljs-built_in">pop</span>();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
 

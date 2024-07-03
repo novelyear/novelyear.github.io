@@ -16,12 +16,12 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日任务：  530. 二叉搜索树的最小绝对差easy 501. 二叉搜索树中的众数easy 236. 二叉搜索树的最近公共祖先medium  530. 二叉搜索树的最小绝对差题目：（仅题干，示例请移步力扣） 给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。 差值是一个正数，其数值等于两值之差的绝对值。 思路： 由于是二叉搜索树，时刻牢记中序遍历二叉搜索树相当于">
+    <meta name="description" content="今日任务：  530. 二叉搜索树的最小绝对差easy 501. 二叉搜索树中的众数easy 236. 二叉搜索树的最近公共祖先medium  530. 二叉搜索树的最小绝对差 题目：（仅题干，示例请移步力扣） 给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。 差值是一个正数，其数值等于两值之差的绝对值。 思路： 由于是二叉搜索树，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day21">
 <meta property="og:url" content="http://novelyear.github.io/2024/06/13/leetcode-day21/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日任务：  530. 二叉搜索树的最小绝对差easy 501. 二叉搜索树中的众数easy 236. 二叉搜索树的最近公共祖先medium  530. 二叉搜索树的最小绝对差题目：（仅题干，示例请移步力扣） 给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。 差值是一个正数，其数值等于两值之差的绝对值。 思路： 由于是二叉搜索树，时刻牢记中序遍历二叉搜索树相当于">
+<meta property="og:description" content="今日任务：  530. 二叉搜索树的最小绝对差easy 501. 二叉搜索树中的众数easy 236. 二叉搜索树的最近公共祖先medium  530. 二叉搜索树的最小绝对差 题目：（仅题干，示例请移步力扣） 给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。 差值是一个正数，其数值等于两值之差的绝对值。 思路： 由于是二叉搜索树，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-13T00:12:41.000Z">
 <meta property="article:modified_time" content="2024-06-13T02:47:41.925Z">
@@ -317,20 +317,30 @@
                 
                 <p>今日任务：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description/">530. 二叉搜索树的最小绝对差</a><span class="label label-success">easy</span></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-mode-in-binary-search-tree/description/">501. 二叉搜索树中的众数</a><span class="label label-success">easy</span></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/">236. 二叉搜索树的最近公共祖先</a><span class="label label-warning">medium</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description/">530.
+二叉搜索树的最小绝对差</a><span class="label label-success">easy</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-mode-in-binary-search-tree/description/">501.
+二叉搜索树中的众数</a><span class="label label-success">easy</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/">236.
+二叉搜索树的最近公共祖先</a><span class="label label-warning">medium</span></li>
 </ul>
-<h1 id="530-二叉搜索树的最小绝对差"><a href="#530-二叉搜索树的最小绝对差" class="headerlink" title="530. 二叉搜索树的最小绝对差"></a>530. 二叉搜索树的最小绝对差</h1><p><strong>题目：</strong>（仅题干，示例请移步力扣）</p>
-<p>给你一个二叉搜索树的根节点 <code>root</code> ，返回 <code>树中任意两不同节点值之间的最小差值</code> 。</p>
+<h1 id="二叉搜索树的最小绝对差">530. 二叉搜索树的最小绝对差</h1>
+<p><strong>题目：</strong>（仅题干，示例请移步力扣）</p>
+<p>给你一个二叉搜索树的根节点 <code>root</code> ，返回
+<code>树中任意两不同节点值之间的最小差值</code> 。</p>
 <p>差值是一个正数，其数值等于两值之差的绝对值。</p>
 <p><strong>思路：</strong></p>
 <p>由于是二叉搜索树，时刻牢记<span class="label label-info">中序遍历二叉搜索树相当于遍历有序数组</span>，所以大思路就是中序遍历树，并维护一个最小绝对差</p>
 <p>中序遍历这里采用递归法，递归途中需要记录上一个节点的值以求出两数之差</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">traversal</span><span class="hljs-params">(TreeNode * root, <span class="hljs-type">int</span> &amp;ans, <span class="hljs-type">int</span> &amp; pre)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root) &#123;<br>            <span class="hljs-built_in">traversal</span>(root-&gt;left, ans, pre);<br>            <span class="hljs-keyword">if</span>(pre == <span class="hljs-number">-1</span>) pre = root-&gt;val;<br>            <span class="hljs-keyword">else</span> &#123;<br>                ans = <span class="hljs-built_in">min</span>(ans, root-&gt;val - pre);<br>                pre = root-&gt;val;<br>            &#125;<br>            <span class="hljs-built_in">traversal</span>(root-&gt;right, ans, pre);<br>        &#125;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getMinimumDifference</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-type">int</span> ans = INT_MAX, pre = <span class="hljs-number">-1</span>;<br>        <span class="hljs-built_in">traversal</span>(root, ans, pre);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="501-二叉搜索树中的众数"><a href="#501-二叉搜索树中的众数" class="headerlink" title="501. 二叉搜索树中的众数"></a>501. 二叉搜索树中的众数</h1><p><strong>题目：</strong></p>
-<p>给你一个含重复值的二叉搜索树（BST）的根节点 <code>root</code> ，找出并返回 BST 中的所有 <code>众数</code>（即，出现频率最高的元素）。</p>
+<h1 id="二叉搜索树中的众数">501. 二叉搜索树中的众数</h1>
+<p><strong>题目：</strong></p>
+<p>给你一个含重复值的二叉搜索树（BST）的根节点 <code>root</code>
+，找出并返回 BST 中的所有
+<code>众数</code>（即，出现频率最高的元素）。</p>
 <p>如果树中有不止一个众数，可以按 任意顺序 返回。</p>
 <p>假定 BST 满足如下定义：</p>
 <ul>
@@ -343,24 +353,26 @@
 <p>若该数最后的频率小于最大频率，则不做操作；等于最大频率，则加入答案中；大于最大频率，则更新最大频率，清空当前答案，并将当前数加入答案</p>
 <p>依然是递归中序遍历</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;<span class="hljs-type">int</span>&gt; ans;<span class="hljs-comment">//答案answer</span><br>    <span class="hljs-type">int</span> max_freq = <span class="hljs-number">0</span>;<span class="hljs-comment">//最大频率</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode * root, <span class="hljs-type">int</span> &amp;cur, <span class="hljs-type">int</span> &amp;freq)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span>;<br>        <span class="hljs-built_in">dfs</span>(root-&gt;left, cur, freq);<span class="hljs-comment">//中序左</span><br>        <span class="hljs-keyword">if</span>(root-&gt;val == cur) &#123;<span class="hljs-comment">//当前数cur还未遍历完，继续加频率freq</span><br>            freq++;<br>            <span class="hljs-keyword">if</span>(max_freq == freq) &#123;<span class="hljs-comment">//如果已经赶上最大频率，加入答案</span><br>                ans.<span class="hljs-built_in">push_back</span>(cur);<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(max_freq &lt; freq) &#123;<span class="hljs-comment">//如果已经超过，更新max，清空答案，重新加入cur作为答案</span><br>                max_freq = freq;<br>                ans.<span class="hljs-built_in">clear</span>();<br>                ans.<span class="hljs-built_in">push_back</span>(cur);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            cur = root-&gt;val;<span class="hljs-comment">//当前数cur遍历结束，将cur更新为新的数，频率重置</span><br>            freq = <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-built_in">dfs</span>(root-&gt;right, cur, freq);<br>    &#125;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">findMode</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-type">int</span> cur = root-&gt;val, freq = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">dfs</span>(root, cur, freq);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<h1 id="236-二叉搜索树的最近公共祖先"><a href="#236-二叉搜索树的最近公共祖先" class="headerlink" title="236. 二叉搜索树的最近公共祖先"></a>236. 二叉搜索树的最近公共祖先</h1><p><strong>题目：</strong></p>
+<h1 id="二叉搜索树的最近公共祖先">236. 二叉搜索树的最近公共祖先</h1>
+<p><strong>题目：</strong></p>
 <p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点
+p、q，最近公共祖先表示为一个节点 x，满足 x 是 p、q 的祖先且 x
+的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
 <p><strong>思路</strong></p>
 <p>初次尝试越想越复杂，以失败告终，原因是单次递归逻辑和终止条件没想明白，</p>
 <p>按照carl的递归三部曲：</p>
-<ol>
+<ol type="1">
 <li>确定递归返回值和参数。这一步没问题，就按照力扣给的核心方法的定义就可以，返回公共祖先的指针，参数就是两个节点p、q和根节点</li>
 <li>确定递归终止条件。第一个终止条件想到了：“root等于p或者q时，或者root为空”就返回root。之后就开始混乱了，尝试讨论p、q是root的孩子还是孙子还是更远的孩子，遂失败</li>
 <li>确定单次递归逻辑。失败</li>
 </ol>
-<p>我没有分析出：当递归到 <code>最近公共祖先的祖先</code>时，返回值也应该是<code>最近公共祖先</code>，也就是说<code>最近公共祖先</code>是会不断向上传递的，这样就就能保证<code>最近</code>而不会得到深度更浅的公共祖先。</p>
+<p>我没有分析出：当递归到
+<code>最近公共祖先的祖先</code>时，返回值也应该是<code>最近公共祖先</code>，也就是说<code>最近公共祖先</code>是会不断向上传递的，这样就就能保证<code>最近</code>而不会得到深度更浅的公共祖先。</p>
 <p>对于<strong>遍历一条路</strong>还是<strong>遍历整棵树</strong>，carl老师的解释令我耳目一新：</p>
 <div class="note note-light">
-            <p><strong>在递归函数有返回值的情况下：如果要搜索一条边，递归函数返回值不为空的时候，立刻返回，如果搜索整个树，直接用一个变量left、right接住返回值，这个left、right后序还有逻辑处理的需要，也就是后序遍历中处理中间节点的逻辑（也是回溯）。</strong></p><p>搜索一条边的写法：</p><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coq"><span class="hljs-keyword">if</span> (递归函数(root-&gt;<span class="hljs-built_in">left</span>)) <span class="hljs-keyword">return</span> ;<br><span class="hljs-keyword">if</span> (递归函数(root-&gt;<span class="hljs-built_in">right</span>)) <span class="hljs-keyword">return</span> ;<br></code></pre></td></tr></table></figure><p>搜索整个树写法：</p><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coq"><span class="hljs-built_in">left</span> = 递归函数(root-&gt;<span class="hljs-built_in">left</span>);  // 左<br><span class="hljs-built_in">right</span> = 递归函数(root-&gt;<span class="hljs-built_in">right</span>); // 右<br><span class="hljs-built_in">left</span>与<span class="hljs-built_in">right</span>的逻辑处理;         // 中 <br></code></pre></td></tr></table></figure>
+            <p><strong>在递归函数有返回值的情况下：如果要搜索一条边，递归函数返回值不为空的时候，立刻返回，如果搜索整个树，直接用一个变量left、right接住返回值，这个left、right后序还有逻辑处理的需要，也就是后序遍历中处理中间节点的逻辑（也是回溯）。</strong></p><p>搜索一条边的写法： <figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coq"><span class="hljs-keyword">if</span> (递归函数(root-&gt;<span class="hljs-built_in">left</span>)) <span class="hljs-keyword">return</span> ;<br><span class="hljs-keyword">if</span> (递归函数(root-&gt;<span class="hljs-built_in">right</span>)) <span class="hljs-keyword">return</span> ;<br></code></pre></td></tr></table></figure> 搜索整个树写法： <figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coq"><span class="hljs-built_in">left</span> = 递归函数(root-&gt;<span class="hljs-built_in">left</span>);  // 左<br><span class="hljs-built_in">right</span> = 递归函数(root-&gt;<span class="hljs-built_in">right</span>); // 右<br><span class="hljs-built_in">left</span>与<span class="hljs-built_in">right</span>的逻辑处理;         // 中 <br></code></pre></td></tr></table></figure></p>
           </div>
-
 <p>由于返回值确定，所以递归时肯定会有东西接住返回值，又由于，递归的参数是root，返回值也是root，所以当递归root左右孩子时，返回值也应该是左右孩子，即必然会有</p>
 <p><code>left = lowestCommonAncestor(root-&gt;left, p, q);</code></p>
 <p>由于这道题不需要对树进行操作，只需要查找遍历，所以<code>left</code>并不是<code>root-&gt;left</code>，即不需要更新。根据carl的区分，我们可以根据这条语句推断我们之后应该进行left和right的逻辑处理，那么就可以合理推测应该判断left和right是否为空，因为如果没有找到必定返回空，而找到p、q才会返回p或者q，那么如果left和right都返回了，就遇到答案（root）了，向上不断返回即可。</p>
