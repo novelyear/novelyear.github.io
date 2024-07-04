@@ -24,7 +24,7 @@
 <meta property="og:description" content="今日内容：  62. 不同路径 medium 63. 不同路径Ⅱ medium 343. 整数拆分 medium 96. 不同的二叉搜索树 medium  62. 不同路径 题目： 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-03T13:39:18.000Z">
-<meta property="article:modified_time" content="2024-07-03T14:42:45.594Z">
+<meta property="article:modified_time" content="2024-07-04T03:22:54.328Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月3日 晚上
+                    本文最后更新于 2024年7月4日 上午
                   
                 
               </p>
@@ -337,12 +337,13 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-binary-
 <p>问总共有多少条不同的路径？</p>
 <p><strong>思路：</strong></p>
 <p>由于方向定死只能朝着目标走，不允许走回头路，所以走到一个格子只可能从其左边或上面来到，那么这就不难直接想出递推公式：</p>
-$$ dp[i][j] =
-<span class="math display">\[\begin{cases}
+<p><span class="math display">\[
+dp[i][j] =
+\begin{cases}
 1, &amp; \text {$i = 1 or j = 1$} \\
 dp[i - 1][j] + dp[i][j - 1], &amp; \text {else}
-\end{cases}\]</span>
-<p>$$</p>
+\end{cases}
+\]</span> dp[i][j]表示从起点走到第[i, j]格的所有路径数</p>
 <h2 id="代码">代码</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">uniquePaths</span><span class="hljs-params">(<span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(m, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(n));<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; m;i++) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;j &lt; n;j++) &#123;<br>                <span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span>) dp[i][j] = <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j == <span class="hljs-number">0</span>) dp[i][j] = <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">else</span> dp[i][j] = dp[i - <span class="hljs-number">1</span>][j] + dp[i][j - <span class="hljs-number">1</span>];<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[m<span class="hljs-number">-1</span>][n<span class="hljs-number">-1</span>];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h1 id="不同路径ⅱ">63. 不同路径Ⅱ</h1>
@@ -374,11 +375,12 @@ dp[i - 1][j] + dp[i][j - 1], &amp; \text {else}
 <p>本来该用dp的，但是数学直觉给我指了另一条路，高中学过基本不等式，有口诀为“和定积最大，积定和最小”，而此处就是“和定”，由基本不等式最值条件可知，每个数应该尽量相等（尽量是因为得是整数，不然必须相等），而拆分的数量简单一推就知道先增后减：</p>
 <p>比如12：</p>
 <ul>
-<li>分为2个数6*6=36</li>
-<li>分为3个数4 * 4 * 4 = 64</li>
-<li>分为4个数<span class="math inline">\(3^4=81\)</span></li>
-<li>分为5个数2 * 2 * 2 * 3 * 3 = 72</li>
-<li>分为6个数<span class="math inline">\(2^6=64\)</span></li>
+<li>分为2个数：<span class="math inline">\(6*6=36\)</span></li>
+<li>分为3个数：<span class="math inline">\(4 * 4 * 4 = 64\)</span></li>
+<li>分为4个数：<span class="math inline">\(3^4=81\)</span></li>
+<li>分为5个数：<span class="math inline">\(2 * 2 * 2 * 3 * 3 =
+72\)</span></li>
+<li>分为6个数：<span class="math inline">\(2^6=64\)</span></li>
 </ul>
 <p>先增后减，所以从2开始一直增加拆分数，一旦积开始减少，就说明到达最值点了。</p>
 <p><del>官解的数学证明好复杂，看起来很抽象啊，导数大题只得了6分的我看不懂，还是不等式选修秒杀更舒服</del></p>
@@ -400,12 +402,14 @@ dp[i - 1][j] + dp[i][j - 1], &amp; \text {else}
 </ul>
 <p>所以4节点BST总数为5+2+2+5。</p>
 <p>由此发散，联想多项式定理，可得状态转移方程：</p>
-$$ dp[i] =
-<span class="math display">\[\begin{cases}
+<p><span class="math display">\[
+dp[i] =
+\begin{cases}
 1, &amp; \text {$i = 0 or i = 1$} \\
-\sum_{root=1}^i dp[root-1]*dp[i-root], &amp; \text {$i &gt; 1$}
-\end{cases}\]</span>
-<p>$$</p>
+\sum_{root=1}^i (dp[root-1]*dp[i-root]), &amp; \text {$i &gt; 1$}
+\end{cases}
+\]</span></p>
+<p>dp[i] 代表有i个节点的BST种数;</p>
 <h2 id="代码-3">代码</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numTrees</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>        dp[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>;i &lt;= n;i++) &#123;<span class="hljs-comment">//节点数</span><br>            <span class="hljs-type">int</span> temp = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> root = <span class="hljs-number">1</span>;root &lt;= i;root++) &#123;<span class="hljs-comment">//谁做根</span><br>                temp += dp[root - <span class="hljs-number">1</span>] * dp[i - root];<br>            &#125;<br>            dp[i] = temp;<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[n];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
@@ -446,7 +450,7 @@ $$ dp[i] =
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月3日</div>
+          <div>2024年7月4日</div>
         </div>
       
       
