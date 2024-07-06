@@ -16,23 +16,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="24.两两交换链表中的节点 ​ 链表貌似就是虚头+双指针+遍历，回到老家的感觉，注意对空节点的检查就好，题不难 12345678910111213141516171819202122232425262728&#x2F;** * Definition for singly-linked list. * struct ListNode &#123; *     int val; *     ListNod">
+    <meta name="description" content="有效的字母异位词 哈希表新手题，不过可以直接排序再判断，剑走偏锋不用哈希 123456789class Solution &#123;public:    bool isAnagram(string s, string t) &#123;        if(s.size() !&#x3D; t.size()) return false;        sort(s.begin(), s.end());">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day4">
-<meta property="og:url" content="http://novelyear.github.io/2024/05/30/leetcode-day4/index.html">
+<meta property="og:title" content="leetcode_day6">
+<meta property="og:url" content="http://novelyear.github.io/2024/05/30/leetcode-day6/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="24.两两交换链表中的节点 ​ 链表貌似就是虚头+双指针+遍历，回到老家的感觉，注意对空节点的检查就好，题不难 12345678910111213141516171819202122232425262728&#x2F;** * Definition for singly-linked list. * struct ListNode &#123; *     int val; *     ListNod">
+<meta property="og:description" content="有效的字母异位词 哈希表新手题，不过可以直接排序再判断，剑走偏锋不用哈希 123456789class Solution &#123;public:    bool isAnagram(string s, string t) &#123;        if(s.size() !&#x3D; t.size()) return false;        sort(s.begin(), s.end());">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/05/31/868052041ecc7ee9.jpg">
-<meta property="article:published_time" content="2024-05-30T06:07:11.000Z">
-<meta property="article:modified_time" content="2024-05-31T08:16:58.484Z">
+<meta property="article:published_time" content="2024-05-30T09:22:59.000Z">
+<meta property="article:modified_time" content="2024-07-05T04:47:30.346Z">
 <meta property="article:author" content="Leoo Yann">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/05/31/868052041ecc7ee9.jpg">
   
   
   
-  <title>leetcode_day4 - novelyear&#39;s home</title>
+  <title>leetcode_day6 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day4"></span>
+            <span id="subtitle" data-typed-text="leetcode_day6"></span>
           
         </div>
 
@@ -243,7 +242,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-30 14:07" pubdate>
+        <time datetime="2024-05-30 17:22" pubdate>
           2024年5月30日 下午
         </time>
       </span>
@@ -256,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          757 字
+          630 字
         
       </span>
     
@@ -303,12 +302,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day4</h1>
+            <h1 id="seo-header">leetcode_day6</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年5月31日 下午
+                    本文最后更新于 2024年7月5日 下午
                   
                 
               </p>
@@ -316,41 +315,44 @@
             
               <div class="markdown-body">
                 
-                <h1 id="两两交换链表中的节点"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/swap-nodes-in-pairs/description/">24.两两交换链表中的节点</a></h1>
-<p>​
-链表貌似就是虚头+双指针+遍历，回到老家的感觉，注意对空节点的检查就好，题不难</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">swapPairs</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        ListNode * virhead = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> head;<br>        virhead-&gt;next = head;<br>        ListNode * left = virhead;<br>        ListNode * right = head;<br>        <span class="hljs-keyword">while</span>(right &amp;&amp; right-&gt;next) &#123;<br>            left-&gt;next = right-&gt;next;<br>            right-&gt;next = right-&gt;next-&gt;next;<br>            left-&gt;next-&gt;next = right;<br>            left = right;<br>            right = right-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> virhead-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="删除链表的倒数第n个节点"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/">19.删除链表的倒数第n个节点</a></h1>
-<p>算脑筋急转弯吧，不过之前做过，已经没有难度了，思路就是让fast先走n步，再和slow一起走，这样fast走到最后slow就是倒数第n个了。</p>
-<blockquote>
-<p>​评论区在diss官解的“一次遍历”说法，去搜了一下，看见了宫水三叶前辈的帖，下为结论：</p>
-<p>我们应该用「对数组的访问次数」来定义遍历多少次，而不是「利用 for
-循环的个数」来定义。 上述无论那种方法，对数组访问次数都是一样的。</p>
-<p>出处：<a
-target="_blank" rel="noopener" href="https://developer.aliyun.com/article/905822">为什么「一次遍历」要比「两次遍历」慢
-（含小实验代码） | Java 刷题打卡-阿里云开发者社区 (aliyun.com)</a></p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode* head, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        ListNode * vir = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        vir-&gt;next = head;<br>        ListNode * fast = vir;<br>        ListNode * slow = vir;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++) &#123;<br>            fast = fast-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(fast &amp;&amp; fast-&gt;next) &#123;<br>            slow = slow-&gt;next;<br>            fast = fast-&gt;next;<br>        &#125;<br>        ListNode * t = slow-&gt;next;<br>        slow-&gt;next = slow-&gt;next-&gt;next;<br>        <span class="hljs-keyword">delete</span> t;<br>        <span class="hljs-keyword">return</span> vir-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="链表相交"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/description/">链表相交</a></h1>
-<p>思路比较原始，都走一遍，把屁股对齐，长的先走几步把优势消耗，然后一起走找交点。</p>
-<p>官解的追及思路更优雅，不过复杂度相同。<a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/solutions/1395092/lian-biao-xiang-jiao-by-leetcode-solutio-2kne/">官解</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode* head, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        ListNode * vir = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        vir-&gt;next = head;<br>        ListNode * fast = vir;<br>        ListNode * slow = vir;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++) &#123;<br>            fast = fast-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(fast &amp;&amp; fast-&gt;next) &#123;<br>            slow = slow-&gt;next;<br>            fast = fast-&gt;next;<br>        &#125;<br>        ListNode * t = slow-&gt;next;<br>        slow-&gt;next = slow-&gt;next-&gt;next;<br>        <span class="hljs-keyword">delete</span> t;<br>        <span class="hljs-keyword">return</span> vir-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="环形链表ii"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">环形链表II</a></h1>
-<p>数学题，刚开始没推出来，注意把环分成走过的b段和没走过的c段，这样就很直观了，贴个图帮助理解</p>
-<figure>
-<img src="https://s3.bmp.ovh/imgs/2024/05/31/868052041ecc7ee9.jpg" srcset="/img/loading.gif" lazyload
-alt="环形链表示意图" />
-<figcaption aria-hidden="true">环形链表示意图</figcaption>
-</figure>
-<p><em>公式中a对应图中x，y对应b，z对应c</em></p>
-<p>求的是a，slow被碰到时离入口还差c，所以此时再来个指针从头开始一起走，碰到的时候刚好就是等式两边，即入口。
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">detectCycle</span><span class="hljs-params">(ListNode *head)</span> </span>&#123;<br>        ListNode * fast = head;<br>        ListNode * slow = head;<br>        <span class="hljs-keyword">while</span>(fast) &#123;<br>            slow = slow-&gt;next;<br>            <span class="hljs-keyword">if</span>(!fast-&gt;next) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>            fast = fast-&gt;next-&gt;next;<br>            <span class="hljs-keyword">if</span>(fast == slow) &#123;<br>                ListNode * ans = head;<br>                <span class="hljs-keyword">while</span>(ans != slow) &#123;<br>                    ans = ans-&gt;next;<br>                    slow = slow-&gt;next;<br>                &#125;<br>                <span class="hljs-keyword">return</span> ans;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></p>
-<p>不太难，链表问题不大，注意空指针检查就行。</p>
+                <h1 id="有效的字母异位词"><a
+target="_blank" rel="noopener" href="https://programmercarl.com/0242.%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.html">有效的字母异位词</a></h1>
+<p>哈希表新手题，不过可以直接排序再判断，剑走偏锋不用哈希</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isAnagram</span><span class="hljs-params">(string s, string t)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(s.<span class="hljs-built_in">size</span>() != t.<span class="hljs-built_in">size</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-built_in">sort</span>(s.<span class="hljs-built_in">begin</span>(), s.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-built_in">sort</span>(t.<span class="hljs-built_in">begin</span>(), t.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">return</span> s == t;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="两个数组的交集"><a
+target="_blank" rel="noopener" href="https://programmercarl.com/0349.%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.html">两个数组的交集</a></h1>
+<p>这个也可以排序然后双指针，不用哈希，时间复杂度<code>O(mlogm+nlogn)</code>，主要是排序的复杂度，空间复杂度<code>O(mlogm+nlogn)</code>也是排序造成的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">intersection</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums1, vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums2)</span> </span>&#123;<br>        <span class="hljs-built_in">sort</span>(nums1.<span class="hljs-built_in">begin</span>(), nums1.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-built_in">sort</span>(nums2.<span class="hljs-built_in">begin</span>(), nums2.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> len1 = nums1.<span class="hljs-built_in">size</span>(), len2 = nums2.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> index1 = <span class="hljs-number">0</span>, index2 = <span class="hljs-number">0</span>;<br>        vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>        <span class="hljs-keyword">while</span>(index1 &lt; len1 &amp;&amp; index2 &lt; len2) &#123;<br>            <span class="hljs-keyword">if</span>(nums1[index1] == nums2[index2]) &#123;<br>                <span class="hljs-keyword">if</span>(ans.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span> || nums1[index1] != ans.<span class="hljs-built_in">back</span>()) ans.<span class="hljs-built_in">push_back</span>(nums1[index1]);<br>                index1++;<br>                index2++;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(nums1[index1] &lt; nums2[index2]) index1++;<br>            <span class="hljs-keyword">else</span> index2++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="快乐数"><a
+target="_blank" rel="noopener" href="https://programmercarl.com/0202.%E5%BF%AB%E4%B9%90%E6%95%B0.html">快乐数</a></h1>
+<p>这题和<a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">环形链表II</a>有点异曲同工之妙，笔者的做法是用一个set来记录每次计算的结果，重复就false，等于1就true。</p>
+<p>但看过评论区后发现，这样只是走了int限制的捷径，有可能会爆栈，所以不能记录，而应该采取环形链表中检查环的方法——追及问题。</p>
+<p>用快慢指针，不过指的是计算结果，如果fast最终等于slow，则有环，false，这样空间复杂度就成了O(1)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">bitSquareSum</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(n &gt; <span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-type">int</span> bit = n % <span class="hljs-number">10</span>;<br>            sum += bit * bit;<br>            n = n / <span class="hljs-number">10</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isHappy</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>        <span class="hljs-type">int</span> slow = n, fast = n;<br>        <span class="hljs-keyword">do</span>&#123;<br>            slow = <span class="hljs-built_in">bitSquareSum</span>(slow);<br>            fast = <span class="hljs-built_in">bitSquareSum</span>(fast);<br>            fast = <span class="hljs-built_in">bitSquareSum</span>(fast);<br>        &#125;<span class="hljs-keyword">while</span>(slow != fast);<br>        <br>        <span class="hljs-keyword">return</span> slow == <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/happy-number/solutions/21454/shi-yong-kuai-man-zhi-zhen-si-xiang-zhao-chu-xun-h/">该题解来源</a></p>
+<h1 id="两数之和"><a
+target="_blank" rel="noopener" href="https://programmercarl.com/0001.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.html">两数之和</a></h1>
+<p>思路还记得，用哈希来记录target -
+x，利用set查找的O(1)复杂度来优化查找过程。 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">twoSum</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; map;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.<span class="hljs-built_in">size</span>();i++) &#123;<br>            <span class="hljs-keyword">auto</span> it = map.<span class="hljs-built_in">find</span>(target - nums[i]);<br>            <span class="hljs-keyword">if</span>(it != map.<span class="hljs-built_in">end</span>()) <span class="hljs-keyword">return</span> &#123;it-&gt;second, i&#125;;<br>            map[nums[i]] = i;<br>        &#125;<br>        <span class="hljs-keyword">return</span> &#123;&#125;;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></p>
+<h1 id="unordered_set">unordered_set</h1>
+<ul>
+<li>无序存储</li>
+<li>元素独一无二，即键值key唯一 ## 常用方法</li>
+<li><code>unorder_set&lt;string&gt; first</code>容器定义</li>
+<li><code>first.empty()</code>判断容器是否是空，是空返回<code>true</code>，反之为<code>false</code></li>
+<li><code>first.size()</code>返回容器大小</li>
+<li><code>first.maxsize()</code>返回容器最大尺寸</li>
+<li><code>first.begin()</code>返回迭代器开始</li>
+<li><code>first.end()</code>返回迭代器结束</li>
+<li><code>first.find(value)</code>返回<code>value</code>在迭代器的位置，没找到会返回<code>end()</code></li>
+<li><code>first.count(key)</code>返回key在容器的个数</li>
+<li><code>first.insert(value)</code>将value插入到容器中</li>
+<li><code>first.erase(key)</code>通过key删除</li>
+<li><code>first.clear()</code>清空容器 <a
+target="_blank" rel="noopener" href="https://cplusplus.com/reference/unordered_map/unordered_map/">详细文档</a></li>
+</ul>
 
                 
               </div>
@@ -360,6 +362,13 @@ alt="环形链表示意图" />
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/leetcode/" class="print-no-link">#leetcode</a>
+      
+    </div>
+  
 </div>
 
 
@@ -368,8 +377,8 @@ alt="环形链表示意图" />
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day4</div>
-      <div>http://novelyear.github.io/2024/05/30/leetcode-day4/</div>
+      <div>leetcode_day6</div>
+      <div>http://novelyear.github.io/2024/05/30/leetcode-day6/</div>
     </div>
     <div class="license-meta">
       
@@ -382,7 +391,7 @@ alt="环形链表示意图" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年5月31日</div>
+          <div>2024年7月5日</div>
         </div>
       
       
@@ -413,9 +422,9 @@ alt="环形链表示意图" />
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/30/leetcode-day6/" title="leetcode_day6">
+                      <a href="/2024/05/31/leetcode-day10/" title="leetcode_day10">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day6</span>
+                        <span class="hidden-mobile">leetcode_day10</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -423,8 +432,8 @@ alt="环形链表示意图" />
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/30/leetcode-day3/" title="leetcode_day3">
-                        <span class="hidden-mobile">leetcode_day3</span>
+                      <a href="/2024/05/30/leetcode-day4/" title="leetcode_day4">
+                        <span class="hidden-mobile">leetcode_day4</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

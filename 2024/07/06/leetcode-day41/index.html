@@ -16,23 +16,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="24.两两交换链表中的节点 ​ 链表貌似就是虚头+双指针+遍历，回到老家的感觉，注意对空节点的检查就好，题不难 12345678910111213141516171819202122232425262728&#x2F;** * Definition for singly-linked list. * struct ListNode &#123; *     int val; *     ListNod">
+    <meta name="description" content="今日内容：  322. 零钱兑换 medium 279. 完全平方数 medium 139. 单词拆分 medium  322. 零钱兑换 题目： 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。 你可以认为每种硬币的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day4">
-<meta property="og:url" content="http://novelyear.github.io/2024/05/30/leetcode-day4/index.html">
+<meta property="og:title" content="leetcode_day41">
+<meta property="og:url" content="http://novelyear.github.io/2024/07/06/leetcode-day41/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="24.两两交换链表中的节点 ​ 链表貌似就是虚头+双指针+遍历，回到老家的感觉，注意对空节点的检查就好，题不难 12345678910111213141516171819202122232425262728&#x2F;** * Definition for singly-linked list. * struct ListNode &#123; *     int val; *     ListNod">
+<meta property="og:description" content="今日内容：  322. 零钱兑换 medium 279. 完全平方数 medium 139. 单词拆分 medium  322. 零钱兑换 题目： 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。 你可以认为每种硬币的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/05/31/868052041ecc7ee9.jpg">
-<meta property="article:published_time" content="2024-05-30T06:07:11.000Z">
-<meta property="article:modified_time" content="2024-05-31T08:16:58.484Z">
+<meta property="article:published_time" content="2024-07-06T14:17:16.000Z">
+<meta property="article:modified_time" content="2024-07-06T14:40:03.775Z">
 <meta property="article:author" content="Leoo Yann">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/05/31/868052041ecc7ee9.jpg">
   
   
   
-  <title>leetcode_day4 - novelyear&#39;s home</title>
+  <title>leetcode_day41 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day4"></span>
+            <span id="subtitle" data-typed-text="leetcode_day41"></span>
           
         </div>
 
@@ -243,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-30 14:07" pubdate>
-          2024年5月30日 下午
+        <time datetime="2024-07-06 22:17" pubdate>
+          2024年7月6日 晚上
         </time>
       </span>
     
@@ -256,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          757 字
+          871 字
         
       </span>
     
@@ -303,12 +302,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day4</h1>
+            <h1 id="seo-header">leetcode_day41</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年5月31日 下午
+                    本文最后更新于 2024年7月6日 晚上
                   
                 
               </p>
@@ -316,41 +315,78 @@
             
               <div class="markdown-body">
                 
-                <h1 id="两两交换链表中的节点"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/swap-nodes-in-pairs/description/">24.两两交换链表中的节点</a></h1>
-<p>​
-链表貌似就是虚头+双指针+遍历，回到老家的感觉，注意对空节点的检查就好，题不难</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">swapPairs</span><span class="hljs-params">(ListNode* head)</span> </span>&#123;<br>        ListNode * virhead = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        <span class="hljs-keyword">if</span>(head == <span class="hljs-literal">nullptr</span> || head-&gt;next == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> head;<br>        virhead-&gt;next = head;<br>        ListNode * left = virhead;<br>        ListNode * right = head;<br>        <span class="hljs-keyword">while</span>(right &amp;&amp; right-&gt;next) &#123;<br>            left-&gt;next = right-&gt;next;<br>            right-&gt;next = right-&gt;next-&gt;next;<br>            left-&gt;next-&gt;next = right;<br>            left = right;<br>            right = right-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> virhead-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="删除链表的倒数第n个节点"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/">19.删除链表的倒数第n个节点</a></h1>
-<p>算脑筋急转弯吧，不过之前做过，已经没有难度了，思路就是让fast先走n步，再和slow一起走，这样fast走到最后slow就是倒数第n个了。</p>
-<blockquote>
-<p>​评论区在diss官解的“一次遍历”说法，去搜了一下，看见了宫水三叶前辈的帖，下为结论：</p>
-<p>我们应该用「对数组的访问次数」来定义遍历多少次，而不是「利用 for
-循环的个数」来定义。 上述无论那种方法，对数组访问次数都是一样的。</p>
-<p>出处：<a
-target="_blank" rel="noopener" href="https://developer.aliyun.com/article/905822">为什么「一次遍历」要比「两次遍历」慢
-（含小实验代码） | Java 刷题打卡-阿里云开发者社区 (aliyun.com)</a></p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode* head, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        ListNode * vir = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        vir-&gt;next = head;<br>        ListNode * fast = vir;<br>        ListNode * slow = vir;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++) &#123;<br>            fast = fast-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(fast &amp;&amp; fast-&gt;next) &#123;<br>            slow = slow-&gt;next;<br>            fast = fast-&gt;next;<br>        &#125;<br>        ListNode * t = slow-&gt;next;<br>        slow-&gt;next = slow-&gt;next-&gt;next;<br>        <span class="hljs-keyword">delete</span> t;<br>        <span class="hljs-keyword">return</span> vir-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="链表相交"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/description/">链表相交</a></h1>
-<p>思路比较原始，都走一遍，把屁股对齐，长的先走几步把优势消耗，然后一起走找交点。</p>
-<p>官解的追及思路更优雅，不过复杂度相同。<a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/solutions/1395092/lian-biao-xiang-jiao-by-leetcode-solutio-2kne/">官解</a></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode* <span class="hljs-title">removeNthFromEnd</span><span class="hljs-params">(ListNode* head, <span class="hljs-type">int</span> n)</span> </span>&#123;<br>        ListNode * vir = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ListNode</span>();<br>        vir-&gt;next = head;<br>        ListNode * fast = vir;<br>        ListNode * slow = vir;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++) &#123;<br>            fast = fast-&gt;next;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(fast &amp;&amp; fast-&gt;next) &#123;<br>            slow = slow-&gt;next;<br>            fast = fast-&gt;next;<br>        &#125;<br>        ListNode * t = slow-&gt;next;<br>        slow-&gt;next = slow-&gt;next-&gt;next;<br>        <span class="hljs-keyword">delete</span> t;<br>        <span class="hljs-keyword">return</span> vir-&gt;next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="环形链表ii"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">环形链表II</a></h1>
-<p>数学题，刚开始没推出来，注意把环分成走过的b段和没走过的c段，这样就很直观了，贴个图帮助理解</p>
-<figure>
-<img src="https://s3.bmp.ovh/imgs/2024/05/31/868052041ecc7ee9.jpg" srcset="/img/loading.gif" lazyload
-alt="环形链表示意图" />
-<figcaption aria-hidden="true">环形链表示意图</figcaption>
-</figure>
-<p><em>公式中a对应图中x，y对应b，z对应c</em></p>
-<p>求的是a，slow被碰到时离入口还差c，所以此时再来个指针从头开始一起走，碰到的时候刚好就是等式两边，即入口。
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">ListNode *<span class="hljs-title">detectCycle</span><span class="hljs-params">(ListNode *head)</span> </span>&#123;<br>        ListNode * fast = head;<br>        ListNode * slow = head;<br>        <span class="hljs-keyword">while</span>(fast) &#123;<br>            slow = slow-&gt;next;<br>            <span class="hljs-keyword">if</span>(!fast-&gt;next) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>            fast = fast-&gt;next-&gt;next;<br>            <span class="hljs-keyword">if</span>(fast == slow) &#123;<br>                ListNode * ans = head;<br>                <span class="hljs-keyword">while</span>(ans != slow) &#123;<br>                    ans = ans-&gt;next;<br>                    slow = slow-&gt;next;<br>                &#125;<br>                <span class="hljs-keyword">return</span> ans;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></p>
-<p>不太难，链表问题不大，注意空指针检查就行。</p>
+                <p>今日内容：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/coin-change/">322.
+零钱兑换</a> <span class="label label-warning">medium</span></li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/perfect-squares/description/">279.
+完全平方数</a> <span class="label label-warning">medium</span></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/word-break/description/">139.
+单词拆分</a> <span class="label label-warning">medium</span></li>
+</ul>
+<h1 id="零钱兑换">322. 零钱兑换</h1>
+<p><strong>题目：</strong></p>
+<p>给你一个整数数组 <code>coins</code>
+，表示不同面额的硬币；以及一个整数 <code>amount</code>
+，表示总金额。</p>
+<p>计算并返回可以凑成总金额所需的 <strong>最少的硬币个数</strong>
+。如果没有任何一种硬币组合能组成总金额，返回 <code>-1</code> 。</p>
+<p>你可以认为每种硬币的数量是无限的。</p>
+<p><strong>思路：</strong></p>
+<p>完全背包，dp[j]含义为凑成j需要的最少硬币个数，状态转移方程为：</p>
+<p><span class="math display">\[
+dp[j]\ =
+\begin{cases}
+0, &amp; \text{$j\ =\ 0$} \\
+min(dp[j\ -\ coin[i]] + 1, dp[j]), &amp; \text{else}
+\end{cases}
+\]</span></p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">coinChange</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; coins, <span class="hljs-type">int</span> amount)</span> </span>&#123;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(amount + <span class="hljs-number">1</span>, INT_MAX)</span></span>;<br>    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; coins.<span class="hljs-built_in">size</span>();i++) &#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = coins[i];j &lt;= amount;j++) &#123;<br>        <span class="hljs-keyword">if</span>(dp[j - coins[i]] != INT_MAX) dp[j] = <span class="hljs-built_in">min</span>(dp[j - coins[i]] + <span class="hljs-number">1</span>, dp[j]);<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[amount] == INT_MAX ? <span class="hljs-number">-1</span> : dp[amount];<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="完全平方数">279. 完全平方数</h1>
+<p><strong>题目：</strong></p>
+<p>给你一个整数 n ，返回 和为 n 的完全平方数的最少数量 。</p>
+<p>完全平方数
+是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9
+和 16 都是完全平方数，而 3 和 11 不是。</p>
+<p><strong>思路：</strong></p>
+<p>其实一开始考虑了数学，但只是记得有相关的数论结论，忘了具体内容，于是果断采用程序员做法————直接dp，很明显的完全背包，只是要求最少数量，把dp含义改一下就好，同时也要根据新的状态转移方程决定新的初始化方式。</p>
+<p>dp[j]表示整数j需要的完全平方数的最少数量</p>
+<p>状态转移方程为：</p>
+<p><span class="math display">\[
+dp[j]\ =
+\begin{cases}
+0, &amp; \text{$j\ =\ 0$} \\
+min(dp[j], dp[j - i*i] + 1), &amp; \text{$j\ ≥\ i^2, i\ =\ 1,2,3,……$} \\
+\end{cases}
+\]</span></p>
+<h2 id="代码-1">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">numSquares</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, INT_MAX)</span></span>;<br>    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-built_in">sqrt</span>(n);i &gt; <span class="hljs-number">0</span>;i--) &#123;<span class="hljs-comment">//稍微剪了剪枝，无伤大雅</span><br>      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = i*i; j &lt;= n;j++) &#123;<br>        <span class="hljs-keyword">if</span>(dp[j - i*i] != INT_MAX) dp[j] = <span class="hljs-built_in">min</span>(dp[j], dp[j - i*i] + <span class="hljs-number">1</span>);<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[n];<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="单词拆分">139. 单词拆分</h1>
+<p><strong>题目：</strong></p>
+<p>给你一个字符串 <code>s</code> 和一个字符串列表 <code>wordDict</code>
+作为字典。如果可以利用字典中出现的一个或多个单词拼接出 <code>s</code>
+则返回 <code>true</code>。</p>
+<p><strong>注意：</strong>不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。</p>
+<p><strong>思路：</strong></p>
+<p>把s看成要填满的背包，从dict里一个一个试着装，这时候就不能太死板，要灵活迁移dp的含义：</p>
+<p>dp[j]表示区间[0, j)的s能不能被表示</p>
+<p>那么状态转移方程为：</p>
+<p><span class="math display">\[
+dp[j] =
+\begin{cases}
+true, &amp; \text{$j = 0$} \\
+dp[j]\ OR\ (dp[j - wordDict[i].size()]\ AND\ s(j\ -\
+wordDict[i].size())\ ==\ wordDict[i]), &amp; \text{else}
+\end{cases}
+\]</span></p>
+<ul>
+<li>还要想到：这里必须先遍历背包容量再遍历字典，不然无法实现拼接，而是一直在判断s的开头。</li>
+<li>还可以对字典去去重</li>
+</ul>
+<h2 id="代码-2">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">wordBreak</span><span class="hljs-params">(string s, vector&lt;string&gt;&amp; wordDict)</span> </span>&#123;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(s.size() + <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>)</span></span>;<br>    dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;j &lt;= s.<span class="hljs-built_in">size</span>();j++) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; wordDict.<span class="hljs-built_in">size</span>();i++) &#123;<br>          <span class="hljs-keyword">if</span>(j &gt;= wordDict[i].<span class="hljs-built_in">size</span>()) dp[j] = dp[j] || (dp[j - wordDict[i].<span class="hljs-built_in">size</span>()] &amp;&amp; <span class="hljs-built_in">strcmp</span>(s, j - wordDict[i].<span class="hljs-built_in">size</span>(), j, wordDict[i]));<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[s.<span class="hljs-built_in">size</span>()];<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">strcmp</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> begin, <span class="hljs-type">int</span> end, string word)</span> </span>&#123;<br>    <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = begin;i &lt; end;i++) &#123;<br>      <span class="hljs-keyword">if</span>(s[i] != word[j++]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -360,6 +396,13 @@ alt="环形链表示意图" />
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/leetcode/" class="print-no-link">#leetcode</a>
+      
+    </div>
+  
 </div>
 
 
@@ -368,8 +411,8 @@ alt="环形链表示意图" />
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day4</div>
-      <div>http://novelyear.github.io/2024/05/30/leetcode-day4/</div>
+      <div>leetcode_day41</div>
+      <div>http://novelyear.github.io/2024/07/06/leetcode-day41/</div>
     </div>
     <div class="license-meta">
       
@@ -382,7 +425,7 @@ alt="环形链表示意图" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年5月31日</div>
+          <div>2024年7月6日</div>
         </div>
       
       
@@ -413,18 +456,12 @@ alt="环形链表示意图" />
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/30/leetcode-day6/" title="leetcode_day6">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day6</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/30/leetcode-day3/" title="leetcode_day3">
-                        <span class="hidden-mobile">leetcode_day3</span>
+                      <a href="/2024/07/05/leetcode-day40/" title="leetcode_day40">
+                        <span class="hidden-mobile">leetcode_day40</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -481,6 +518,12 @@ alt="环形链表示意图" />
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -699,6 +742,49 @@ alt="环形链表示意图" />
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script defer src="/js/leancloud.js" ></script>
 

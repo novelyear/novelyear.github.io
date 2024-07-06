@@ -24,7 +24,7 @@
 <meta property="og:description" content="今日内容：  1049. 最后一块石头的重量Ⅱ medium 494. 目标和 medium 474. 一和零 medium  1049. 最后一块石头的重量 题目： 有一堆石头，用整数数组 stones 表示。其中 stones[i] 表示第 i 块石头的重量。 每一回合，从中选出任意两块石头，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x &lt;&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-05T01:20:55.000Z">
-<meta property="article:modified_time" content="2024-07-05T04:46:29.323Z">
+<meta property="article:modified_time" content="2024-07-06T12:15:21.193Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月5日 下午
+                    本文最后更新于 2024年7月6日 晚上
                   
                 
               </p>
@@ -354,8 +354,10 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/ones-and-zeroe
 <ul>
 <li>包容量就是总和sum的一半(两堆尽量相近)</li>
 <li>物品数量就是石头数量，物品价值和体积都是石头重量</li>
-<li>把包装满就是最大重量为sum/2限制下能得到的最重子堆<code>dp[sum/2]</code></li>
-<li>另一堆就是<code>sum - dp[sum/2]</code>，两堆相减即可，可以相减的原因就是上面所说，也可以详见<a
+<li>把包装满就是最大重量为sum/2限制下能得到的最重子堆
+<code>dp[sum/2]</code></li>
+<li>另一堆就是
+<code>sum - dp[sum/2]</code>，两堆相减即可，可以相减的原因就是上面所说，也可以详见<a
 target="_blank" rel="noopener" href="https://leetcode.cn/problems/last-stone-weight-ii/solutions/817930/zui-hou-yi-kuai-shi-tou-de-zhong-liang-i-95p9/">力扣官解的前言证明</a></li>
 </ul>
 <h2 id="代码">代码</h2>
@@ -399,8 +401,8 @@ dp[j], &amp; \text{$j &lt; nums[i]$} \\
 dp[j] + dp[j - nums[i]], &amp; \text{$else$}
 \end{cases}
 \]</span></p>
-<p>dp[0] = 0的原因：
-由于会涉及到<code>dp[j - nums[i]]</code>，如果j正好等于nums[i]，那么只能直接装入，只有一种方法。</p>
+<p>dp[0] = 1的原因： 由于会涉及到
+<code>dp[j - nums[i]]</code>，如果j正好等于nums[i]，那么只能直接装入，只有一种方法。</p>
 <h2 id="代码-1">代码</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findTargetSumWays</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> </span>&#123;<br>        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : nums) sum += i;<br>        <span class="hljs-type">int</span> V = sum + target;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(target) &gt; sum) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(V % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        V /= <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">if</span>(V &gt; sum) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> N = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(sum + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)</span></span>;<br>        dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<span class="hljs-comment">// </span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; N;i++) &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = dp.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;j &gt;= nums[i];j--) &#123;<br>                dp[j] += dp[j - nums[i]];<br>            &#125;   <br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[V];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h1 id="一和零">474. 一和零</h1>
@@ -454,7 +456,7 @@ dp[j] + dp[j - nums[i]], &amp; \text{$else$}
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月5日</div>
+          <div>2024年7月6日</div>
         </div>
       
       
@@ -484,6 +486,12 @@ dp[j] + dp[j - nums[i]], &amp; \text{$else$}
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/07/05/leetcode-day40/" title="leetcode_day40">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode_day40</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
