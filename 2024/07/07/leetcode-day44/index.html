@@ -16,22 +16,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容：股票专题日🤑  121. 买卖股票的最佳时机 easy 122. 买卖股票的最佳时机Ⅱ medium 123. 买卖股票的最佳时机Ⅲ hard  121. 买卖股票的最佳时机 题目： 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。 你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子">
+    <meta name="description" content="今日内容：  188. 买卖股票的最佳时机Ⅳ hard 309. 最佳买卖股票时机含冷冻期 medium 714. 买卖股票的最佳时机含手续费 medium  188. 买卖股票的最佳时机Ⅳ 题目： 给你一个整数数组 prices 和一个整数 k ，其中 prices[i] 是某支给定的股票在第 i 天的价格。 设计一个算法来计算你所能获取的最大利润。你最多可以完成 k">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day43">
-<meta property="og:url" content="http://novelyear.github.io/2024/07/07/leetcode-day43/index.html">
+<meta property="og:title" content="leetcode_day44">
+<meta property="og:url" content="http://novelyear.github.io/2024/07/07/leetcode-day44/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容：股票专题日🤑  121. 买卖股票的最佳时机 easy 122. 买卖股票的最佳时机Ⅱ medium 123. 买卖股票的最佳时机Ⅲ hard  121. 买卖股票的最佳时机 题目： 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。 你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子">
+<meta property="og:description" content="今日内容：  188. 买卖股票的最佳时机Ⅳ hard 309. 最佳买卖股票时机含冷冻期 medium 714. 买卖股票的最佳时机含手续费 medium  188. 买卖股票的最佳时机Ⅳ 题目： 给你一个整数数组 prices 和一个整数 k ，其中 prices[i] 是某支给定的股票在第 i 天的价格。 设计一个算法来计算你所能获取的最大利润。你最多可以完成 k">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-07T07:01:22.000Z">
-<meta property="article:modified_time" content="2024-07-07T07:25:38.121Z">
+<meta property="article:published_time" content="2024-07-07T09:34:16.000Z">
+<meta property="article:modified_time" content="2024-07-07T09:55:01.336Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>leetcode_day43 - novelyear&#39;s home</title>
+  <title>leetcode_day44 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day43"></span>
+            <span id="subtitle" data-typed-text="leetcode_day44"></span>
           
         </div>
 
@@ -242,7 +242,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-07 15:01" pubdate>
+        <time datetime="2024-07-07 17:34" pubdate>
           2024年7月7日 下午
         </time>
       </span>
@@ -255,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.2k 字
+          1.1k 字
         
       </span>
     
@@ -302,7 +302,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day43</h1>
+            <h1 id="seo-header">leetcode_day44</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -315,64 +315,81 @@
             
               <div class="markdown-body">
                 
-                <p>今日内容：股票专题日🤑</p>
+                <p>今日内容：</p>
 <ul>
 <li><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/">121.
-买卖股票的最佳时机</a> <span class="label label-success">easy</span></li>
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/">188.
+买卖股票的最佳时机Ⅳ</a> <span class="label label-danger">hard</span></li>
+<li><a href="">309. 最佳买卖股票时机含冷冻期</a> <span class="label label-warning">medium</span></li>
 <li><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/">122.
-买卖股票的最佳时机Ⅱ</a> <span class="label label-warning">medium</span></li>
-<li><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/">123.
-买卖股票的最佳时机Ⅲ</a> <span class="label label-danger">hard</span></li>
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">714.
+买卖股票的最佳时机含手续费</a> <span class="label label-warning">medium</span></li>
 </ul>
-<h1 id="买卖股票的最佳时机">121. 买卖股票的最佳时机</h1>
+<h1 id="买卖股票的最佳时机ⅳ">188. 买卖股票的最佳时机Ⅳ</h1>
 <p><strong>题目：</strong></p>
-<p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素
-<code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
-<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在
-<strong>未来的某一个不同的日子</strong>
-卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
-<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回
-<code>0</code> 。</p>
+<p>给你一个整数数组 <code>prices</code> 和一个整数 <code>k</code> ，其中
+<code>prices[i]</code> 是某支给定的股票在第 <code>i</code>
+天的价格。</p>
+<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成 <code>k</code>
+笔交易。也就是说，你最多可以买 <code>k</code> 次，卖 <code>k</code>
+次。</p>
+<p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
 <p><strong>思路：</strong></p>
-<p>很明显的状态转移，昨天买了和昨天没有买两种情况，昨天买了今天就卖或者持有，昨天没买今天就买或者继续观望，最后返回今天卖了或不卖中的最大值。</p>
+<p>股票题3只能买两次，设置了5个状态，无、1有、1无、2有、2无，迁移到这里就是
+无 + k组有无，一共<span class="math inline">\(2*k+1\)</span>个状态。</p>
+<p>使用三维dp时空复杂度太过感人，就不写思路了，直接写carl的二维简化版思路：</p>
+<p><span class="math inline">\(dp[i][j]\)</span>表示第<span
+class="math inline">\(i\)</span>天的情况，<span
+class="math inline">\(j\)</span>为状态：</p>
+<ul>
+<li><span class="math inline">\(0\)</span>表示无操作</li>
+<li><span class="math inline">\(1\)</span>表示第一次卖掉</li>
+<li><span class="math inline">\(2\)</span>表示第一次买入</li>
+<li><span class="math inline">\(3\)</span>表示第二次卖掉</li>
+<li><span class="math inline">\(4\)</span>表示第二次买入</li>
+<li>……</li>
+<li><span class="math inline">\(2k-1\)</span>表示第<span
+class="math inline">\(k\)</span>次卖掉</li>
+<li><span class="math inline">\(2k\)</span>表示第<span
+class="math inline">\(k\)</span>次买入</li>
+</ul>
+<p>可见偶数表示买入，奇数表示卖出，详细解释见代码注释：</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-type">int</span> len = prices.<span class="hljs-built_in">size</span>();<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(<span class="hljs-number">2</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>));<br>    dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] -= prices[<span class="hljs-number">0</span>];<br>    dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++) &#123;<br>      dp[i % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>], -prices[i]);<span class="hljs-comment">//昨天买了；昨天没买今天买</span><br>      dp[i % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>], prices[i] + dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>]);<span class="hljs-comment">//昨天没买；昨天买了今天卖</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[(len - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>];<span class="hljs-comment">//卖了肯定比拿手里强，返回卖了的</span><br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="买卖股票的最佳时机ⅱ">122. 买卖股票的最佳时机Ⅱ</h1>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(<span class="hljs-type">int</span> k, vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(prices.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt; (<span class="hljs-number">2</span> * k + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>));<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;j &lt; <span class="hljs-number">2</span> * k;j += <span class="hljs-number">2</span>)<br>      dp[<span class="hljs-number">0</span>][j] = -prices[<span class="hljs-number">0</span>];<span class="hljs-comment">//首日买入都是直接减</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; prices.<span class="hljs-built_in">size</span>();i++) &#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;j &lt; <span class="hljs-number">2</span> * k - <span class="hljs-number">1</span>;j += <span class="hljs-number">2</span>) &#123;<br>        dp[i][j + <span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][j + <span class="hljs-number">1</span>], dp[i - <span class="hljs-number">1</span>][j] - prices[i]);<span class="hljs-comment">//i天前交易j+1次不买 = 昨天前交易j+1次没买/昨天前交易j次买了，今天卖掉</span><br>        dp[i][j + <span class="hljs-number">2</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][j + <span class="hljs-number">2</span>], dp[i - <span class="hljs-number">1</span>][j + <span class="hljs-number">1</span>] + prices[i]);<span class="hljs-comment">//i天前交易j+2次买 = 昨天前交易j+1次就买了，今天卖掉/昨天就交易j+2次，已经卖了</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[prices.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>*k];<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="最佳买卖股票时机含冷冻期">309. 最佳买卖股票时机含冷冻期</h1>
 <p><strong>题目：</strong></p>
-<p>给你一个整数数组 <code>prices</code> ，其中 <code>prices[i]</code>
-表示某支股票第 <code>i</code> 天的价格。</p>
-<p>在每一天，你可以决定是否购买和/或出售股票。你在任何时候
-<strong>最多</strong> 只能持有 <strong>一股</strong>
-股票。你也可以先购买，然后在 <strong>同一天</strong> 出售。</p>
-<p>返回 你能获得的 <strong>最大</strong> 利润 。</p>
-<p><strong>思路：</strong></p>
-<p>与上一题的区别在于，这题可以多次买卖，如果按贪心来做的话，直接累积上升就可以。</p>
-<p>按dp来做，仍然保留买与没买的状态区别，对于买的状态要修改，上一道题只能买一次，所以买必定是第一次，从0开始算盈亏。这里就需要记录之前的盈亏，因为买不一定是第一次。</p>
-<h2 id="代码-1">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-comment">//dp非滚动写法</span><br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(<span class="hljs-number">2</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>));<br>    dp[<span class="hljs-number">0</span>] = &#123;-prices[<span class="hljs-number">0</span>], <span class="hljs-number">0</span>&#125;;<span class="hljs-comment">//0买，1不买</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; prices.<span class="hljs-built_in">size</span>();i++) &#123;<br>      <span class="hljs-comment">//与上一题的区别：-prices[i]变成了dp[i-1 % 2][1] - prices[i]，在昨天没买的基础上计算</span><br>      dp[i % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>], dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>] - prices[i]); <span class="hljs-comment">//i天买，昨天买了不能再买/昨天没买今天买</span><br>      dp[i % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>], dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>] + prices[i]); <span class="hljs-comment">//i天不买，昨天没买/昨天买了今天卖掉</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[(prices.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>];<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="买卖股票的最佳时机ⅲ">123. 买卖股票的最佳时机Ⅲ</h1>
-<p><strong>题目：</strong></p>
-<p>给定一个数组，它的第 <code>i</code> 个元素是一支给定的股票在第
-<code>i</code> 天的价格。</p>
-<p>设计一个算法来计算你所能获取的最大利润。你最多可以完成
-<strong>两笔</strong> 交易。</p>
+<p>给定一个整数数组prices，其中第 prices[i] 表示第 i 天的股票价格 。​</p>
+<p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
+<ul>
+<li>卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</li>
+</ul>
 <p><strong>注意：</strong>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
 <p><strong>思路：</strong></p>
-<p>只能买两次，所以变复杂了很多，<del>不愧是hard，一下给我干趴下了</del>，思路是抄的，没想出来😭</p>
-<p>根据之前的经验，可以分为买和不买两种状态，由于这里只能买卖两次，所以分为四种状态（或者说
-阶段 ）：</p>
+<p>没想出来，状态设置出了问题</p>
+<p>卖出后会有冷冻期，由于只有一支股票，所以冷冻期只能无操作，则一天会有4个状态：</p>
 <ul>
-<li>第一次还没买</li>
-<li>第一次买了在手里</li>
-<li>第二次还没买（第一次已经卖掉了）</li>
-<li>第二次卖掉了</li>
+<li>0：无操作</li>
+<li>1：卖出</li>
+<li>2：买入</li>
+<li>3：冷冻期</li>
 </ul>
-<p>每个状态都可以如之前一样分别由昨天和今天来得到，取最大值，于是得到如下代码</p>
+<p><img
+src="https://code-thinking-1253855093.file.myqcloud.com/pics/518d5baaf33f4b2698064f8efb42edbf.png" srcset="/img/loading.gif" lazyload /></p>
+<p>知道这个就好写代码了</p>
+<h2 id="代码-1">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    <span class="hljs-comment">//可多次，但不能连续</span><br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(prices.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">4</span>, <span class="hljs-number">0</span>));<span class="hljs-comment">//0无操作，1卖，2买，3冷冻</span><br>    dp[<span class="hljs-number">0</span>] = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -prices[<span class="hljs-number">0</span>], <span class="hljs-number">0</span>&#125;;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; prices.<span class="hljs-built_in">size</span>();i++) &#123;<br>      dp[i][<span class="hljs-number">0</span>] = dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>];<br>      dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>] + prices[i]);<br>      dp[i][<span class="hljs-number">2</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>], dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">3</span>] - prices[i]);<span class="hljs-comment">//昨天买好/昨天冷冻今天买</span><br>      dp[i][<span class="hljs-number">3</span>] = dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>];<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[prices.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>];<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="买卖股票的最佳时机含手续费">714. 买卖股票的最佳时机含手续费</h1>
+<p><strong>题目：</strong></p>
+<p>给定一个整数数组 <code>prices</code>，其中
+<code>prices[i]</code>表示第 <code>i</code> 天的股票价格 ；整数
+<code>fee</code> 代表了交易股票的手续费用。</p>
+<p>你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。</p>
+<p>返回获得利润的最大值。</p>
+<p><strong>注意：</strong>这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。</p>
+<p><strong>思路：</strong></p>
+<p>题目的注意指出每组买卖只需要交一次手续费，那设置在卖出时缴纳手续费，其余代码同股票2题一样</p>
 <h2 id="代码-2">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices)</span> </span>&#123;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(prices.<span class="hljs-built_in">size</span>(), <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">5</span>, <span class="hljs-number">0</span>));<br>    dp[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = -prices[<span class="hljs-number">0</span>];<br>    dp[<span class="hljs-number">0</span>][<span class="hljs-number">3</span>] = -prices[<span class="hljs-number">0</span>];<span class="hljs-comment">// 相当于第一天买了卖再买，可不能设成0</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; prices.<span class="hljs-built_in">size</span>(); i++) &#123;<br>      dp[i][<span class="hljs-number">0</span>] = dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>];<br>      dp[i][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>], dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] - prices[i]);<span class="hljs-comment">//第一次有，昨天就买了；昨天没有，今天才买第一个</span><br>      dp[i][<span class="hljs-number">2</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>], dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>] + prices[i]);<span class="hljs-comment">//第一次没有，昨天就没有；昨天有，今天才卖掉第一个</span><br>      dp[i][<span class="hljs-number">3</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">3</span>], dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">2</span>] - prices[i]);<span class="hljs-comment">//第二次有，昨天就有；昨天没有，今天才买第二个</span><br>      dp[i][<span class="hljs-number">4</span>] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">4</span>], dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">3</span>] + prices[i]);<span class="hljs-comment">//第二次没有，昨天就没有；昨天有，今天才卖掉第二个</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[prices.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>][<span class="hljs-number">4</span>];<span class="hljs-comment">//</span><br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maxProfit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; prices, <span class="hljs-type">int</span> fee)</span> </span>&#123;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(<span class="hljs-number">2</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>, <span class="hljs-number">0</span>));<span class="hljs-comment">//0buy, 1sell</span><br>    dp[<span class="hljs-number">0</span>] = &#123;-prices[<span class="hljs-number">0</span>], <span class="hljs-number">0</span>&#125;;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; prices.<span class="hljs-built_in">size</span>();i++) &#123;<br>      dp[i % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>] = <span class="hljs-built_in">max</span>(dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>], dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>] - prices[i]);<br>      dp[i % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>] = <span class="hljs-built_in">max</span>(dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>], dp[(i - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">0</span>] + prices[i] - fee);<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[(prices.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>) % <span class="hljs-number">2</span>][<span class="hljs-number">1</span>];<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -397,8 +414,8 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-b
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day43</div>
-      <div>http://novelyear.github.io/2024/07/07/leetcode-day43/</div>
+      <div>leetcode_day44</div>
+      <div>http://novelyear.github.io/2024/07/07/leetcode-day44/</div>
     </div>
     <div class="license-meta">
       
@@ -442,18 +459,12 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/best-time-to-b
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/07/leetcode-day44/" title="leetcode_day44">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day44</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/07/leetcode-day42/" title="leetcode_day42">
-                        <span class="hidden-mobile">leetcode_day42</span>
+                      <a href="/2024/07/07/leetcode-day43/" title="leetcode_day43">
+                        <span class="hidden-mobile">leetcode_day43</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
