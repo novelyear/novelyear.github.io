@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/smile.jpg">
+  <link rel="icon" href="/img/smile.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Leoo Yann">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今日内容：  孤岛的总面积 沉没孤岛 水流问题 建造最大岛屿  孤岛的总面积 题目： 给定一个由 1（陆地）和 0（水）组成的矩阵，岛屿指的是由水平或垂直方向上相邻的陆地单元格组成的区域，且完全被水域单元格包围。孤岛是那些位于矩阵内部、所有单元格都不接触边缘的岛屿。 现在你需要计算所有孤岛的总面积，岛屿面积的计算方式为组成岛屿的陆地的总数。 输入描述 第一行包含两个整数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode_day55">
+<meta property="og:url" content="http://novelyear.github.io/2024/07/16/leetcode-day55/index.html">
+<meta property="og:site_name" content="novelyear&#39;s home">
+<meta property="og:description" content="今日内容：  孤岛的总面积 沉没孤岛 水流问题 建造最大岛屿  孤岛的总面积 题目： 给定一个由 1（陆地）和 0（水）组成的矩阵，岛屿指的是由水平或垂直方向上相邻的陆地单元格组成的区域，且完全被水域单元格包围。孤岛是那些位于矩阵内部、所有单元格都不接触边缘的岛屿。 现在你需要计算所有孤岛的总面积，岛屿面积的计算方式为组成岛屿的陆地的总数。 输入描述 第一行包含两个整数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-16T03:36:44.000Z">
+<meta property="article:modified_time" content="2024-07-16T03:54:11.231Z">
+<meta property="article:author" content="Leoo Yann">
+<meta property="article:tag" content="leetcode">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>leetcode_day55 - novelyear&#39;s home</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"novelyear.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Novelyear&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/seadream_HD.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode_day55"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Leoo Yann
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-16 11:36" pubdate>
+          2024年7月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.5k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode_day55</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2024年7月16日 中午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>今日内容：</p>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://www.programmercarl.com/kamacoder/0101.%E5%AD%A4%E5%B2%9B%E7%9A%84%E6%80%BB%E9%9D%A2%E7%A7%AF.html">孤岛的总面积</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.programmercarl.com/kamacoder/0102.%E6%B2%89%E6%B2%A1%E5%AD%A4%E5%B2%9B.html">沉没孤岛</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.programmercarl.com/kamacoder/0103.%E6%B0%B4%E6%B5%81%E9%97%AE%E9%A2%98.html">水流问题</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.programmercarl.com/kamacoder/0104.%E5%BB%BA%E9%80%A0%E6%9C%80%E5%A4%A7%E5%B2%9B%E5%B1%BF.html">建造最大岛屿</a></li>
+</ul>
+<h1 id="孤岛的总面积">孤岛的总面积</h1>
+<p><strong>题目：</strong></p>
+<p>给定一个由 1（陆地）和
+0（水）组成的矩阵，岛屿指的是由水平或垂直方向上相邻的陆地单元格组成的区域，且完全被水域单元格包围。孤岛是那些位于矩阵内部、所有单元格都不接触边缘的岛屿。</p>
+<p>现在你需要计算所有孤岛的总面积，岛屿面积的计算方式为组成岛屿的陆地的总数。</p>
+<h6 id="输入描述">输入描述</h6>
+<p>第一行包含两个整数 N, M，表示矩阵的行数和列数。之后 N 行，每行包含 M
+个数字，数字为 1 或者 0。</p>
+<h6 id="输出描述">输出描述</h6>
+<p>输出一个整数，表示所有孤岛的总面积，如果不存在孤岛，则输出 0。</p>
+<p><strong>思路：</strong></p>
+<p>先绕地图边缘遍历，遇到陆地就搜索，把整块地都变成水，然后再遍历地图，得到的就全是孤岛，计算总面积。</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br> <br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br> <br><span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">55</span>;<span class="hljs-comment">//题目限制最大50，开个55</span><br> <br><span class="hljs-type">int</span> n, m;<span class="hljs-comment">//长宽</span><br><span class="hljs-type">int</span> cnt;<span class="hljs-comment">//计数器</span><br><span class="hljs-type">int</span> g[N][N];<span class="hljs-comment">//地图</span><br><span class="hljs-type">int</span> dx[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;, dy[<span class="hljs-number">4</span>] = &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>&#125;;<span class="hljs-comment">//方向</span><br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> sx, <span class="hljs-type">int</span> sy)</span></span><br><span class="hljs-function"></span>&#123;<br>    g[sx][sy] = <span class="hljs-number">0</span>;<span class="hljs-comment">//直接变水</span><br> <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++)<span class="hljs-comment">//四个方向</span><br>    &#123;<br>        <span class="hljs-type">int</span> a = sx + dx[i], b = sy + dy[i];<br>        <span class="hljs-keyword">if</span> (a &lt; <span class="hljs-number">0</span> || a &gt;= n || b &lt; <span class="hljs-number">0</span> || b &gt;= m) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">if</span> (g[a][b] == <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>        g[a][b] = <span class="hljs-number">0</span>;<span class="hljs-comment">//变水</span><br>        cnt++;<span class="hljs-comment">//计数孤岛</span><br>        <span class="hljs-built_in">dfs</span>(a, b);<br>    &#125;<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cin &gt;&gt; n &gt;&gt; m;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++)<br>            cin &gt;&gt; g[i][j];<br> <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (g[i][<span class="hljs-number">0</span>] == <span class="hljs-number">1</span>) <span class="hljs-built_in">dfs</span>(i, <span class="hljs-number">0</span>);  <span class="hljs-comment">//左边</span><br>        <span class="hljs-keyword">if</span> (g[i][m - <span class="hljs-number">1</span>] == <span class="hljs-number">1</span>) <span class="hljs-built_in">dfs</span>(i, m - <span class="hljs-number">1</span>);  <span class="hljs-comment">// 右边</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (g[<span class="hljs-number">0</span>][i] == <span class="hljs-number">1</span>) <span class="hljs-built_in">dfs</span>(<span class="hljs-number">0</span>, i); <span class="hljs-comment">// 上边</span><br>        <span class="hljs-keyword">if</span> (g[n - <span class="hljs-number">1</span>][i] == <span class="hljs-number">1</span>) <span class="hljs-built_in">dfs</span>(n - <span class="hljs-number">1</span>, i); <span class="hljs-comment">// 下边</span><br>    &#125;<br>    <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (g[i][j] == <span class="hljs-number">1</span>)<br>            &#123;<br>                cnt = <span class="hljs-number">1</span>;<span class="hljs-comment">//记录当前</span><br>                <span class="hljs-built_in">dfs</span>(i, j);<br>                res += cnt;<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; res &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="沉默孤岛">沉默孤岛</h1>
+<p><strong>题目：</strong></p>
+<p>给定一个由 1（陆地）和
+0（水）组成的矩阵，岛屿指的是由水平或垂直方向上相邻的陆地单元格组成的区域，且完全被水域单元格包围。孤岛是那些位于矩阵内部、所有单元格都不接触边缘的岛屿。</p>
+<p>现在你需要将所有孤岛“沉没”，即将孤岛中的所有陆地单元格（1）转变为水域单元格（0）。</p>
+<h6 id="输入描述-1">输入描述</h6>
+<p>第一行包含两个整数 N, M，表示矩阵的行数和列数。</p>
+<p>之后 N 行，每行包含 M 个数字，数字为 1 或者 0，表示岛屿的单元格。</p>
+<h6 id="输出描述-1">输出描述</h6>
+<p>输出将孤岛“沉没”之后的岛屿矩阵。 注意：每个元素后面都有一个空格</p>
+<p><strong>思路：</strong></p>
+<p>溜边遍历，把靠边的陆地全变成2，再遍历一次，把不是2的都变水，就能够沉掉孤岛。</p>
+<h2 id="代码-1">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rep(i, a, b) for(int i = a;i &lt; b;i++)</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> ,<span class="hljs-number">-1</span>&#125;;<span class="hljs-comment">//方向</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    grid[x][y] *= <span class="hljs-number">2</span>;<span class="hljs-comment">//0就0，1就2</span><br>    <span class="hljs-keyword">if</span>(!grid[x][y]) <span class="hljs-keyword">return</span> ;<span class="hljs-comment">//已经遇到水了，不用继续走了</span><br>    <span class="hljs-built_in">rep</span>(k, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>) &#123;<br>        <span class="hljs-type">int</span> i = x + dir[k][<span class="hljs-number">0</span>];<br>        <span class="hljs-type">int</span> j = y + dir[k][<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">0</span> || i &gt;= grid.<span class="hljs-built_in">size</span>() || j &lt; <span class="hljs-number">0</span> || j &gt;= grid[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>()) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span>) &#123;<br>            grid[i][j] = <span class="hljs-number">2</span>;<br>            <span class="hljs-built_in">dfs</span>(grid, i, j);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> N, M;<br>    cin &gt;&gt; N &gt;&gt; M;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">grid</span>(N, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(M, <span class="hljs-number">0</span>));<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; N;i++) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;j &lt; M;j++) &#123;<br>            cin &gt;&gt; grid[i][j];<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">0</span>, N) &#123;<span class="hljs-comment">//溜左右</span><br>        <span class="hljs-built_in">dfs</span>(grid, i, <span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">dfs</span>(grid, i, M<span class="hljs-number">-1</span>);<br>    &#125;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">0</span>, M) &#123;<span class="hljs-comment">//溜上下</span><br>        <span class="hljs-built_in">dfs</span>(grid, <span class="hljs-number">0</span>, i);<br>        <span class="hljs-built_in">dfs</span>(grid, N<span class="hljs-number">-1</span>, i);<br>    &#125;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">0</span>, N) &#123;<span class="hljs-comment">//溜全图</span><br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">0</span>, M) &#123;<br>            cout &lt;&lt; (<span class="hljs-type">int</span>)(grid[i][j] &gt; <span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<span class="hljs-comment">//是2才输出</span><br>        &#125;<br>        cout &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="水流问题">水流问题</h1>
+<p><strong>题目：</strong></p>
+<p>现有一个 N × M
+的矩阵，每个单元格包含一个数值，这个数值代表该位置的相对高度。矩阵的左边界和上边界被认为是第一组边界，而矩阵的右边界和下边界被视为第二组边界。</p>
+<p>矩阵模拟了一个地形，当雨水落在上面时，水会根据地形的倾斜向低处流动，但只能从较高或等高的地点流向较低或等高并且相邻（上下左右方向）的地点。我们的目标是确定那些单元格，从这些单元格出发的水可以达到第一组边界和第二组边界。</p>
+<h6 id="输入描述-2">输入描述</h6>
+<p>第一行包含两个整数 N 和 M，分别表示矩阵的行数和列数。</p>
+<p>后续 N 行，每行包含 M 个整数，表示矩阵中的每个单元格的高度。</p>
+<h6 id="输出描述-2">输出描述</h6>
+<p>输出共有多行，每行输出两个整数，用一个空格隔开，表示可达第一组边界和第二组边界的单元格的坐标，输出顺序任意。</p>
+<p><strong>思路：</strong></p>
+<p>不能暴力，要优化，仍然溜边，分别记录一组边界和二组边界上每个边点能够去到的地方，即一组边界和二组边界都有着一张图，上面true的地方能作上游，false的地方不能。</p>
+<p>最后再遍历全图，如果一组边界和二组边界都能将其作为上游，那么就是目标点，输出。</p>
+<h2 id="代码-2">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> n, m;<br><span class="hljs-type">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;;<span class="hljs-comment">//方向</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; grid, vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt;&gt;&amp; visited, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (visited[x][y]) <span class="hljs-keyword">return</span>;<span class="hljs-comment">//走过，不用再走</span><br><br>    visited[x][y] = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;<br>        <span class="hljs-type">int</span> nextx = x + dir[i][<span class="hljs-number">0</span>];<br>        <span class="hljs-type">int</span> nexty = y + dir[i][<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">if</span> (nextx &lt; <span class="hljs-number">0</span> || nextx &gt;= n || nexty &lt; <span class="hljs-number">0</span> || nexty &gt;= m) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">if</span> (grid[x][y] &gt; grid[nextx][nexty]) <span class="hljs-keyword">continue</span>; <span class="hljs-comment">// 注意：这里是从低向高遍历，逆流而上</span><br><br>        <span class="hljs-built_in">dfs</span> (grid, visited, nextx, nexty);<br>    &#125;<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br><br><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    cin &gt;&gt; n &gt;&gt; m;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">grid</span>(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(m, <span class="hljs-number">0</span>));<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123;<br>            cin &gt;&gt; grid[i][j];<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 标记从第一组边界上的节点出发，可以遍历的节点</span><br>    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt;&gt; <span class="hljs-built_in">firstBorder</span>(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(m, <span class="hljs-literal">false</span>));<br><br>    <span class="hljs-comment">// 标记从第一组边界上的节点出发，可以遍历的节点</span><br>    vector&lt;vector&lt;<span class="hljs-type">bool</span>&gt;&gt; <span class="hljs-built_in">secondBorder</span>(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">bool</span>&gt;(m, <span class="hljs-literal">false</span>));<br><br>    <span class="hljs-comment">// 从最上和最下行的节点出发，向高处遍历</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-built_in">dfs</span> (grid, firstBorder, i, <span class="hljs-number">0</span>); <span class="hljs-comment">// 遍历最左列，接触第一组边界</span><br>        <span class="hljs-built_in">dfs</span> (grid, secondBorder, i, m - <span class="hljs-number">1</span>); <span class="hljs-comment">// 遍历最右列，接触第二组边界</span><br>    &#125;<br><br>    <span class="hljs-comment">// 从最左和最右列的节点出发，向高处遍历</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123;<br>        <span class="hljs-built_in">dfs</span> (grid, firstBorder, <span class="hljs-number">0</span>, j); <span class="hljs-comment">// 遍历最上行，接触第一组边界</span><br>        <span class="hljs-built_in">dfs</span> (grid, secondBorder, n - <span class="hljs-number">1</span>, j); <span class="hljs-comment">// 遍历最下行，接触第二组边界</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123;<br>            <span class="hljs-comment">// 如果这个节点，从第一组边界和第二组边界出发都遍历过，就是结果</span><br>            <span class="hljs-keyword">if</span> (firstBorder[i][j] &amp;&amp; secondBorder[i][j]) cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; j &lt;&lt; endl;;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="建造最大岛屿">建造最大岛屿</h1>
+<p><strong>题目：</strong></p>
+<p>给定一个由 1（陆地）和
+0（水）组成的矩阵，你最多可以将矩阵中的一格水变为一块陆地，在执行了此操作之后，矩阵中最大的岛屿面积是多少。</p>
+<p>岛屿面积的计算方式为组成岛屿的陆地的总数。岛屿是被水包围，并且通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设矩阵外均被水包围。</p>
+<h6 id="输入描述-3">输入描述</h6>
+<p>第一行包含两个整数 N, M，表示矩阵的行数和列数。之后 N 行，每行包含 M
+个数字，数字为 1 或者 0，表示岛屿的单元格。</p>
+<h6 id="输出描述-3">输出描述</h6>
+<p>输出一个整数，表示最大的岛屿面积。如果矩阵中不存在岛屿，则输出
+0。</p>
+<p><strong>思路：</strong></p>
+<p>不能暴力，先遍历全图，用不同的mark标记不同的岛屿，开个map记录标号mark-面积count的序对[mark,
+count]，最后再遍历全图，对每个水地块计算其周围四格邻接的不同岛屿的面积总和，取最大值。</p>
+<h2 id="代码-3">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> rep(i, a, b) for(int i = a;i &lt; b;i++)</span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-type">int</span> N,M;<br><span class="hljs-type">int</span> cnt;<span class="hljs-comment">//单个岛屿计数器</span><br><br><span class="hljs-type">int</span> dir[<span class="hljs-number">4</span>][<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;;<span class="hljs-comment">//方向</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; &amp; grid, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> mark)</span> </span>&#123;<br>    grid[x][y] = mark;<span class="hljs-comment">//用mark覆盖，相当于着色</span><br>    cnt++;<br>    <span class="hljs-built_in">rep</span>(m, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>) &#123;<br>        <span class="hljs-type">int</span> i = x + dir[m][<span class="hljs-number">0</span>];<br>        <span class="hljs-type">int</span> j = y + dir[m][<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">0</span> || i &gt;= N || j &lt; <span class="hljs-number">0</span> || j &gt;= M || grid[i][j] != <span class="hljs-number">1</span>) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-built_in">dfs</span>(grid, i, j, mark);<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    cin &gt;&gt; N &gt;&gt; M;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">grid</span>(N, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(M, <span class="hljs-number">0</span>));<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">0</span>, N) &#123;<br>        <span class="hljs-built_in">rep</span>(j ,<span class="hljs-number">0</span>, M) &#123;<br>            cin &gt;&gt; grid[i][j];<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//先遍历地图记录岛屿-面积</span><br>    unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; map;<br>    <span class="hljs-type">int</span> mark = <span class="hljs-number">2</span>;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">0</span>, N) &#123;<br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">0</span>, M) &#123;<br>            <span class="hljs-keyword">if</span>(grid[i][j] == <span class="hljs-number">1</span>) &#123;<br>                cnt = <span class="hljs-number">0</span>;<br>                <span class="hljs-built_in">dfs</span>(grid, i, j, mark);<br>                map[mark] = cnt;<br>                mark++;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//遍历海洋，计算相邻岛屿面积之和，取最大值</span><br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>, temp = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">rep</span>(i, <span class="hljs-number">0</span>, N) &#123;<br>        <span class="hljs-built_in">rep</span>(j, <span class="hljs-number">0</span>, M) &#123;<br>            <span class="hljs-keyword">if</span>(grid[i][j] &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-comment">//将相邻的不同岛屿面积相加,unordered_set去重岛屿</span><br>            unordered_set&lt;<span class="hljs-type">int</span>&gt; set;<br>            temp = <span class="hljs-number">1</span>;<br>            <span class="hljs-built_in">rep</span>(m, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>) &#123;<br>                <span class="hljs-type">int</span> x = i + dir[m][<span class="hljs-number">0</span>];<br>                <span class="hljs-type">int</span> y = j + dir[m][<span class="hljs-number">1</span>];<br>                <span class="hljs-keyword">if</span>(x &lt; <span class="hljs-number">0</span> || x &gt;= N || y &lt; <span class="hljs-number">0</span> || y &gt;= M || grid[x][y] == <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">if</span>(set.<span class="hljs-built_in">find</span>(grid[x][y]) != set.<span class="hljs-built_in">end</span>()) <span class="hljs-keyword">continue</span>;<br>                <span class="hljs-keyword">else</span> &#123;<br>                    temp += map[grid[x][y]];<br>                    set.<span class="hljs-built_in">insert</span>(grid[x][y]);<br>                &#125;<br>            &#125;<br>            ans = ans &gt; temp ? ans : temp;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(ans == <span class="hljs-number">0</span>) cout&lt;&lt; N * M;<span class="hljs-comment">//没水全是地，直接返回地图大小</span><br>    <span class="hljs-keyword">else</span> cout &lt;&lt; ans;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/leetcode/" class="print-no-link">#leetcode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode_day55</div>
+      <div>http://novelyear.github.io/2024/07/16/leetcode-day55/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Leoo Yann</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2024年7月16日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/15/leetcode-day54/" title="leetcode_day54">
+                        <span class="hidden-mobile">leetcode_day54</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
