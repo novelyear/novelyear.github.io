@@ -23,11 +23,14 @@
 <meta property="og:site_name" content="novelyear&#39;s home">
 <meta property="og:description" content="今日内容：  冗余连接 冗余连接II  冗余连接 题目： 树可以看成是一个图（拥有 n 个节点和 n - 1 条边的连通无环无向图）。 现给定一个拥有 n 个节点（节点标号是从 1 到 n）和 n 条边的连通无向图，请找出一条可以删除的边，删除后图可以变成一棵树。 输入描述 第一行包含一个整数 N，表示图的节点个数和边的个数。 后续 N 行，每行包含两个整数 s 和 t，">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/07/19/721fb7b01d80c426.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/07/19/73a20d7842640d56.png">
 <meta property="article:published_time" content="2024-07-19T02:45:01.000Z">
-<meta property="article:modified_time" content="2024-07-19T03:26:48.989Z">
+<meta property="article:modified_time" content="2024-07-19T03:43:06.878Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/07/19/721fb7b01d80c426.png">
   
   
   
@@ -307,7 +310,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月19日 上午
+                    本文最后更新于 2024年7月19日 中午
                   
                 
               </p>
@@ -372,14 +375,26 @@ n 个节点和 n - 1 条边。</p>
 1，因为1已经被用过了，3 1和2 1肯定有一个会被删掉，删除靠后的3 1。</p>
 <p>但整体来看，满足了入度条件却忽略了后面的圈条件，所以并不能按顺序模拟建树。</p>
 <p>于是，我将入度非法的输出：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span>(uf.<span class="hljs-built_in">isSame</span>(a,b)) &#123;<span class="hljs-comment">//如果a -&gt; b的b已经被占用</span><br>    cout &lt;&lt; a &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; b;<span class="hljs-comment">//按照题意，直接删去这条</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span>(uf.<span class="hljs-built_in">isSame</span>(a,b)) &#123;<span class="hljs-comment">//如果a -&gt; b的b已经被占用</span><br> cout &lt;&lt; a &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; b;<span class="hljs-comment">//按照题意，直接删去这条</span><br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>改为输出已被占用的子和对应的父：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span>(uf.<span class="hljs-built_in">isVisited</span>(b)) &#123;<span class="hljs-comment">//如果a -&gt; b的b已经被占用</span><br>    cout &lt;&lt; uf.<span class="hljs-built_in">find</span>(b) &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; b;<span class="hljs-comment">//输出之前输入的 占用b的边</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span>(uf.<span class="hljs-built_in">isVisited</span>(b)) &#123;<span class="hljs-comment">//如果a -&gt; b的b已经被占用</span><br> cout &lt;&lt; uf.<span class="hljs-built_in">find</span>(b) &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span> &lt;&lt; b;<span class="hljs-comment">//输出之前输入的 占用b的边</span><br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>即当遇到3 1时，输出2
 1，这显然违背了题意(输出靠后的边)，<strong>但是能AC</strong>，说明用例中只有这一个能够反按顺序建树的思路。</p>
-<p>同类型用例可概括为"一个圈加圈外的一条指向圈的边"，输入时只需将圈外边先于整个圈输入即可越过检查，如：</p>
-<p>5 | 1 2 | 2 3| 5 3 | 4 1| 3 4| 正解应该删去2 3，但我的代码输出3 1</p>
-<p>具体应该是错在入度判断那里，不能简单地直接输出，同理，判圈也不能直接输出当前边。应该像Carl那样判断应该删那一条边。</p>
+<p>同类型用例可概括为"一个圈加圈外的一条指向圈的边"：</p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2024/07/19/721fb7b01d80c426.png" srcset="/img/loading.gif" lazyload
+alt="带尾巴的圈" />
+<figcaption aria-hidden="true">带尾巴的圈</figcaption>
+</figure>
+<p>输入时只需将圈外边先于整个圈输入即可越过检查，如：</p>
+<p>5 | 1 2 | 2 3 | 5 3 | 4 1 | 3 4 |</p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2024/07/19/73a20d7842640d56.png" srcset="/img/loading.gif" lazyload
+alt="图例" />
+<figcaption aria-hidden="true">图例</figcaption>
+</figure>
+<p>正解应该删去2 3，但我的代码输出3 1</p>
+<p>具体错误应该在于判断非法后默认输出当前边。自以为满足了靠后输出的要求，实际上却忽视了整体。应该像Carl那样判断应该删那一条边。</p>
 </blockquote>
 <h5 id="正确思路">正确思路</h5>
 <p><a
