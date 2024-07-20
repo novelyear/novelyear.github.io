@@ -24,7 +24,7 @@
 <meta property="og:description" content="今日内容：  134. 加油站 medium 135. 分发糖果 hard 860. 柠檬水找零 easy 406. 根据身高重建队列 medium  134. 加油站 题目： 在一条环路上有 n 个加油站，其中第 i 个加油站有汽油 gas[i] 升。 你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-30T08:06:23.000Z">
-<meta property="article:modified_time" content="2024-06-30T08:42:36.677Z">
+<meta property="article:modified_time" content="2024-07-19T13:50:08.237Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年6月30日 下午
+                    本文最后更新于 2024年7月19日 晚上
                   
                 
               </p>
@@ -338,10 +338,12 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/queue-reconstr
 ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1
 。如果存在解，则 保证 它是 唯一 的。</p>
 <p><strong>思路：</strong></p>
-<p>贪心算法是从局部最优一直推到整体最优，那么对于解从起点开始的每一小段，肯定油都是有剩的，即∑gas[i]
-- ∑cost[i] &gt; 0，如果有一段内的油少于需要，则肯定不是解从开头的段</p>
-<p>开一个数组loss表示loss[i] = gas[i] -
-cost[i]，肯定从正数开始，如果加到中间变负了，证明从开始到这里都不行，换下一站做起点，不断搜索即可。</p>
+<p>贪心算法是从局部最优一直推到整体最优，那么对于解从起点开始的每一小段，肯定油都是有剩的，即<span
+class="math inline">\(∑gas[i] - ∑cost[i] &gt;
+0\)</span>，如果有一段内的油少于需要，则肯定不是解从开头的段</p>
+<p>开一个数组<span class="math inline">\(loss[]\)</span>表示<span
+class="math inline">\(loss[i] = gas[i] -
+cost[i]\)</span>，肯定从正数开始，如果加到中间变负了，证明从开始到这里都不行，换下一站做起点，不断搜索即可。</p>
 <h2 id="代码">代码</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">canCompleteCircuit</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; gas, vector&lt;<span class="hljs-type">int</span>&gt;&amp; cost)</span> </span>&#123;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">loss</span><span class="hljs-params">((<span class="hljs-type">int</span>)gas.size())</span></span>;<br>        <span class="hljs-type">int</span> sumg = <span class="hljs-number">0</span>, sumc = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; gas.<span class="hljs-built_in">size</span>();i++) &#123;<br>            loss[i] = gas[i] - cost[i];<br>            sumg += gas[i];<br>            sumc += cost[i];<br>        &#125;<br>        <span class="hljs-keyword">if</span>(sumg &lt; sumc) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<span class="hljs-comment">//油不够，直接-1</span><br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>, sum = <span class="hljs-number">0</span>, i = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(i &lt; loss.<span class="hljs-built_in">size</span>()) &#123;<br>            sum += loss[i++];<br>            <span class="hljs-keyword">if</span>(sum &lt; <span class="hljs-number">0</span>) &#123;<br>                sum = <span class="hljs-number">0</span>;<br>                ans = i;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(i == ans) <span class="hljs-keyword">break</span>;<span class="hljs-comment">//回到起点</span><br>            <span class="hljs-keyword">if</span>(ans &gt; <span class="hljs-number">0</span> &amp;&amp; i == loss.<span class="hljs-built_in">size</span>()) i = <span class="hljs-number">0</span>;<span class="hljs-comment">//循环，注意起点</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h1 id="分发糖果">135. 分发糖果</h1>
@@ -435,7 +437,7 @@ kj] 是队列中第 j 个人的属性（queue[0] 是排在队列前面的人）�
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年6月30日</div>
+          <div>2024年7月19日</div>
         </div>
       
       
