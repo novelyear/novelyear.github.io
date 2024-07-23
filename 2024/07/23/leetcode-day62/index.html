@@ -16,22 +16,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容：  软件构建 | 拓扑排序 参加科学大会 | dij  软件构建 | 拓扑排序 题目 某个大型软件项目的构建系统拥有 N 个文件，文件编号从 0 到 N - 1，在这些文件中，某些文件依赖于其他文件的内容，这意味着如果文件 A 依赖于文件 B，则必须在处理文件 A 之前处理文件 B （0 &lt;&#x3D; A, B &lt;&#x3D; N - 1）。请编写一个算法，用于确定文件">
+    <meta name="description" content="今日内容：  Dijkstra堆优化版 Bellman_ford  Dijkstra堆优化版 题目 小明是一位科学家，他需要参加一场重要的国际科学大会，以展示自己的最新研究成果。 小明的起点是第一个车站，终点是最后一个车站。然而，途中的各个车站之间的道路状况、交通拥堵程度以及可能的自然因素（如天气变化）等不同，这些因素都会影响每条路径的通行时间。 小明希望能选择一条花费时间最少的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day61">
-<meta property="og:url" content="http://novelyear.github.io/2024/07/22/leetcode-day61/index.html">
+<meta property="og:title" content="leetcode_day62">
+<meta property="og:url" content="http://novelyear.github.io/2024/07/23/leetcode-day62/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容：  软件构建 | 拓扑排序 参加科学大会 | dij  软件构建 | 拓扑排序 题目 某个大型软件项目的构建系统拥有 N 个文件，文件编号从 0 到 N - 1，在这些文件中，某些文件依赖于其他文件的内容，这意味着如果文件 A 依赖于文件 B，则必须在处理文件 A 之前处理文件 B （0 &lt;&#x3D; A, B &lt;&#x3D; N - 1）。请编写一个算法，用于确定文件">
+<meta property="og:description" content="今日内容：  Dijkstra堆优化版 Bellman_ford  Dijkstra堆优化版 题目 小明是一位科学家，他需要参加一场重要的国际科学大会，以展示自己的最新研究成果。 小明的起点是第一个车站，终点是最后一个车站。然而，途中的各个车站之间的道路状况、交通拥堵程度以及可能的自然因素（如天气变化）等不同，这些因素都会影响每条路径的通行时间。 小明希望能选择一条花费时间最少的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-22T00:49:52.000Z">
-<meta property="article:modified_time" content="2024-07-22T01:30:46.493Z">
+<meta property="article:published_time" content="2024-07-23T02:00:40.000Z">
+<meta property="article:modified_time" content="2024-07-23T02:16:59.922Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>leetcode_day61 - novelyear&#39;s home</title>
+  <title>leetcode_day62 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day61"></span>
+            <span id="subtitle" data-typed-text="leetcode_day62"></span>
           
         </div>
 
@@ -242,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-22 08:49" pubdate>
-          2024年7月22日 早上
+        <time datetime="2024-07-23 10:00" pubdate>
+          2024年7月23日 上午
         </time>
       </span>
     
@@ -255,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -302,12 +302,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day61</h1>
+            <h1 id="seo-header">leetcode_day62</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年7月22日 上午
+                    本文最后更新于 2024年7月23日 上午
                   
                 
               </p>
@@ -317,53 +317,61 @@
                 
                 <p>今日内容：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://kamacoder.com/problempage.php?pid=1191">软件构建 |
-拓扑排序</a></li>
 <li><a
-target="_blank" rel="noopener" href="https://www.programmercarl.com/kamacoder/0117.软件构建.html">参加科学大会
-| dij</a></li>
+target="_blank" rel="noopener" href="https://www.programmercarl.com/kamacoder/0047.%E5%8F%82%E4%BC%9Adijkstra%E5%A0%86.html">Dijkstra堆优化版</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.programmercarl.com/kamacoder/0094.%E5%9F%8E%E5%B8%82%E9%97%B4%E8%B4%A7%E7%89%A9%E8%BF%90%E8%BE%93I.html">Bellman_ford</a></li>
 </ul>
-<h1 id="软件构建-拓扑排序">软件构建 | 拓扑排序</h1>
+<h1 id="dijkstra堆优化版">Dijkstra堆优化版</h1>
 <h3 id="题目"><strong>题目</strong></h3>
-<p>某个大型软件项目的构建系统拥有 N 个文件，文件编号从 0 到 N -
-1，在这些文件中，某些文件依赖于其他文件的内容，这意味着如果文件 A
-依赖于文件 B，则必须在处理文件 A 之前处理文件 B （0 &lt;= A, B &lt;= N -
-1）。请编写一个算法，用于确定文件处理的顺序。</p>
-<h6 id="输入描述">输入描述</h6>
-<p>第一行输入两个正整数 N, M。表示 N 个文件之间拥有 M 条依赖关系。</p>
-<p>后续 M 行，每行两个正整数 S 和 T，表示 T 文件依赖于 S 文件。</p>
-<h6 id="输出描述">输出描述</h6>
-<p>输出共一行，如果能处理成功，则输出文件顺序，用空格隔开。</p>
-<p>如果不能成功处理（相互依赖），则输出 -1。</p>
-<h3 id="思路"><strong>思路</strong></h3>
-<p>拓扑排序不是关键路径，别学混了。拓扑排序很简单，每次找入度为0的点就行。实现的时候注意代码细节。<del>竟然WA了4发，丢人啊</del></p>
-<h2 id="代码">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> N, M;<br>    cin &gt;&gt; N &gt;&gt; M;<br>    <span class="hljs-keyword">if</span>(N == <span class="hljs-number">0</span>) &#123;<br>        cout &lt;&lt; <span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(N == <span class="hljs-number">1</span>) &#123;<br>        cout &lt;&lt; <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">rely</span>(N);<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">inDegree</span><span class="hljs-params">(N, <span class="hljs-number">0</span>)</span></span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; M;i++) &#123;<br>        <span class="hljs-type">int</span> a, b;<br>        cin &gt;&gt; a &gt;&gt; b;<br>        inDegree[b]++;<br>        rely[a].<span class="hljs-built_in">emplace_back</span>(b);<br>    &#125;<br>    vector&lt;<span class="hljs-type">int</span>&gt; ans;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">used</span><span class="hljs-params">(N, <span class="hljs-literal">false</span>)</span></span>;<br>    <span class="hljs-keyword">for</span>(;ans.<span class="hljs-built_in">size</span>() &lt; N;) &#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;j &lt; N;j++) &#123;<br>            <span class="hljs-keyword">if</span>(inDegree[j] == <span class="hljs-number">0</span> &amp;&amp; !used[j]) &#123;<br>                ans.<span class="hljs-built_in">emplace_back</span>(j);<br>                used[j] = <span class="hljs-literal">true</span>;<br>                <span class="hljs-keyword">while</span>(!rely[j].<span class="hljs-built_in">empty</span>()) &#123;<br>                    inDegree[rely[j].<span class="hljs-built_in">back</span>()]--;<br>                    rely[j].<span class="hljs-built_in">pop_back</span>();<br>                &#125;<br>                <span class="hljs-keyword">break</span>;<span class="hljs-comment">//这里就是细节，如果想一次完全遍历找到所有入度0</span><br>                <span class="hljs-comment">//有点不好实现，没想出来，一直试，都是在这个地方错，最后摆烂了</span><br>                <span class="hljs-comment">//放弃一轮找多个，见好就收。</span><br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j == N - <span class="hljs-number">1</span>) &#123;<br>                cout &lt;&lt; <span class="hljs-number">-1</span>;<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; ans.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;i++) &#123;<br>        cout &lt;&lt; ans[i] &lt;&lt; <span class="hljs-string">&#x27; &#x27;</span>;<br>    &#125;<br>    cout &lt;&lt; ans.<span class="hljs-built_in">back</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1 id="参加科学大会-dij">参加科学大会 | dij</h1>
-<h3 id="题目-1"><strong>题目</strong></h3>
 <p>小明是一位科学家，他需要参加一场重要的国际科学大会，以展示自己的最新研究成果。</p>
 <p>小明的起点是第一个车站，终点是最后一个车站。然而，途中的各个车站之间的道路状况、交通拥堵程度以及可能的自然因素（如天气变化）等不同，这些因素都会影响每条路径的通行时间。</p>
 <p>小明希望能选择一条花费时间最少的路线，以确保他能够尽快到达目的地。</p>
-<h6 id="输入描述-1">输入描述</h6>
+<h6 id="输入描述">输入描述</h6>
 <p>第一行包含两个正整数，第一个正整数 N 表示一共有 N
 个公共汽车站，第二个正整数 M 表示有 M 条公路。</p>
 <p>接下来为 M 行，每行包括三个整数，S、E 和 V，代表了从 S
 车站可以单向直达 E 车站，并且需要花费 V 单位的时间。</p>
-<h6 id="输出描述-1">输出描述</h6>
+<h6 id="输出描述">输出描述</h6>
 <p>输出一个整数，代表小明从起点到终点所花费的最小时间。</p>
+<h3 id="思路"><strong>思路</strong></h3>
+<p>朴素版dijkstra两次遍历寻找当前点的最近点，以点为中心。堆优化以边的角度出发，直接排序边，然后从边的小顶堆中取出最短边，即是距离源点最近的点所需的边，点和边权都拿到了。</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">cmp</span>&#123;<br><span class="hljs-keyword">public</span>: <br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; &amp; a, <span class="hljs-type">const</span> pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; &amp; b)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> a.second &lt; b.second;<br>    &#125;<br>&#125;;<br><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> N, M;<br>    cin &gt;&gt; N &gt;&gt; M;<br>    vector&lt;list&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;&gt; <span class="hljs-built_in">g</span>(N + <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; M;i++) &#123;<br>        <span class="hljs-type">int</span> x, y, wt;<br>        cin &gt;&gt; x &gt;&gt; y &gt;&gt; wt;<br>        g[x].<span class="hljs-built_in">emplace_back</span>(<span class="hljs-built_in">pair</span>&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;(y, wt));<br>    &#125;<br>    <br>    priority_queue&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;, vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;, cmp&gt; pq;<br>    pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>));<br>    <br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">minDist</span><span class="hljs-params">(N + <span class="hljs-number">1</span>, INT_MAX / <span class="hljs-number">2</span>)</span></span>;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">used</span><span class="hljs-params">(N + <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>)</span></span>;<br>    <br>    minDist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-keyword">while</span>(!pq.<span class="hljs-built_in">empty</span>()) &#123;<br>        pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; cur = pq.<span class="hljs-built_in">top</span>();<br>        pq.<span class="hljs-built_in">pop</span>();<br>        <br>        <span class="hljs-keyword">if</span>(used[cur.first]) <span class="hljs-keyword">continue</span>;<br>        <br>        <span class="hljs-keyword">for</span>(pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; e : g[cur.first]) &#123;<br>            <span class="hljs-keyword">if</span>(minDist[e.first] &gt; cur.second + e.second) &#123;<br>                minDist[e.first] = cur.second + e.second;<br>                pq.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">pair</span>&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;(e.first, minDist[e.first]));<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(minDist.<span class="hljs-built_in">back</span>() != INT_MAX / <span class="hljs-number">2</span>)cout &lt;&lt; minDist.<span class="hljs-built_in">back</span>();<br>    <span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="bellman_ford">Bellman_ford</h1>
+<h3 id="题目-1"><strong>题目</strong></h3>
+<p>某国为促进城市间经济交流，决定对货物运输提供补贴。共有 n 个编号为 1
+到 n
+的城市，通过道路网络连接，网络中的道路仅允许从某个城市单向通行到另一个城市，不能反向通行。</p>
+<p>网络中的道路都有各自的运输成本和政府补贴，<strong>道路的权值计算方式为：运输成本
+-
+政府补贴</strong>。权值为正表示扣除了政府补贴后运输货物仍需支付的费用；权值为负则表示政府的补贴超过了支出的运输成本，实际表现为运输过程中还能赚取一定的收益。</p>
+<p>请找出从城市 1 到城市 n
+的所有可能路径中，综合政府补贴后的最低运输成本。如果最低运输成本是一个负数，它表示在遵循最优路径的情况下，运输过程中反而能够实现盈利。</p>
+<p><strong>城市 1 到城市 n
+之间可能会出现没有路径的情况，同时保证道路网络中不存在任何负权回路。</strong></p>
+<h6 id="输入描述-1">输入描述</h6>
+<p>第一行包含两个正整数，第一个正整数 n 表示该国一共有 n
+个城市，第二个整数 m 表示这些城市中共有 m 条道路。</p>
+<p>接下来为 m 行，每行包括三个整数，s、t 和 v，表示 s 号城市运输货物到达
+t 号城市，道路权值为 v （单向图）。</p>
+<h6 id="输出描述-1">输出描述</h6>
+<p>如果能够从城市 1 到连通到城市 n，
+请输出一个整数，表示运输成本。如果该整数是负数，则表示实现了盈利。如果从城市
+1 没有路径可达城市 n，请输出 "unconnected"。</p>
 <h3 id="思路-1"><strong>思路</strong></h3>
-<p>dijkstra算法的思想就是，维护一个最近距离表，dijkstra算法应用于单源最短路场景，所以只需要一行，记录源点到其他点的最短距离，最后一个点就是终点。一个一个点标记访问，一开始无法到达的点距离设为<span
-class="math inline">\(\infty\)</span>
-，能够到达的点就更新距离。每次选取最近的点标记访问，同时依据这个点更新源点到其他点的最近距离。</p>
-<p>参照carl的三部曲：</p>
+<p>初次接触单源负权图最短路，跟敲学习。</p>
+<p>由于有负权道路，所以不能dijkstra，需要采取“松弛”操作。</p>
+<p>“松弛”理解为：如果通过 A 到 B
+这条边可以获得更短的到达B节点的路径，就更新
+<code>minDist[B] = minDist[A] + value</code>的过程。要点在于：</p>
 <ul>
-<li>第一步，选源点到哪个节点近且该节点未被访问过</li>
-<li>第二步，该最近节点被标记访问过</li>
-<li>第三步，更新非访问节点到源点的距离（即更新minDist数组）</li>
+<li>松弛是对边的操作，对边进行“松弛”</li>
+<li>对所有边松弛一次，相当于计算起点出发走一条边的节点的最短距离</li>
+<li>由于n个点的图，起点终点最多n-1条边，所以松弛n-1次绝对可求出最短距离，所有点到起点的最短距离都能求。</li>
 </ul>
 <h2 id="代码-1">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> N, M;<br>    cin &gt;&gt; N &gt;&gt; M;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">g</span>(N + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(N + <span class="hljs-number">1</span>, INT_MAX / <span class="hljs-number">2</span>));<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; M;i++) &#123;<br>        <span class="hljs-type">int</span> x, y, wt;<br>        cin &gt;&gt; x &gt;&gt; y &gt;&gt; wt;<br>        g[x][y] = wt;<br>    &#125;<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;    <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">used</span><span class="hljs-params">(N, <span class="hljs-literal">false</span>)</span></span>;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">minDist</span><span class="hljs-params">(N + <span class="hljs-number">1</span>, INT_MAX / <span class="hljs-number">2</span>)</span></span>;<br>    minDist[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; N;i++) &#123;<br>        <span class="hljs-type">int</span> cur = <span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> minVal = INT_MAX / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;j &lt;= N;j++) &#123;<br>            <span class="hljs-keyword">if</span>(minDist[j] &lt; minVal &amp;&amp; !used[j]) &#123;<br>                minVal = minDist[j];<br>                cur = j;<br>            &#125;<br>        &#125;<br>        used[cur] = <span class="hljs-literal">true</span>;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>;j &lt;= N;j++) &#123;<br>            <span class="hljs-keyword">if</span>(!used[j] &amp;&amp; g[cur][j] != INT_MAX / <span class="hljs-number">2</span> &amp;&amp;minVal + g[cur][j] &lt; minDist[j]) &#123;<br>                minDist[j] = minVal + g[cur][j];<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(minDist.<span class="hljs-built_in">back</span>() != INT_MAX / <span class="hljs-number">2</span>)cout &lt;&lt; minDist.<span class="hljs-built_in">back</span>();<br>    <span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>前几天有一道题也是dij，可以回去看看。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, m;<br>    cin &gt;&gt; n &gt;&gt; m;<br>    <br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; grid;<br>    <br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; m;i++) &#123;<br>        <span class="hljs-type">int</span> x, y, wt;<br>        cin &gt;&gt; x &gt;&gt; y &gt;&gt; wt;<br>        grid.<span class="hljs-built_in">emplace_back</span>(std::initializer_list&lt;<span class="hljs-type">int</span>&gt;&#123;x, y, wt&#125;);<br>    &#125;<span class="hljs-comment">//用push_back就可以直接大括号，但是emplace_back就必须传初始化器</span><br>    <span class="hljs-type">int</span> start = <span class="hljs-number">1</span>;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">minDist</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, INT_MAX / <span class="hljs-number">2</span>)</span></span>;<br>    minDist[start] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; n;i++) &#123;<br>        <span class="hljs-keyword">for</span>(vector&lt;<span class="hljs-type">int</span>&gt; &amp; e : grid) &#123;<br>            <span class="hljs-type">int</span> from = e[<span class="hljs-number">0</span>];<br>            <span class="hljs-type">int</span> to = e[<span class="hljs-number">1</span>];<br>            <span class="hljs-type">int</span> wt = e[<span class="hljs-number">2</span>];<br>            <br>            <span class="hljs-keyword">if</span>(minDist[from] != INT_MAX / <span class="hljs-number">2</span> &amp;&amp; minDist[to] &gt; minDist[from] + wt)<br>                minDist[to] = minDist[from] + wt;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(minDist.<span class="hljs-built_in">back</span>() == INT_MAX / <span class="hljs-number">2</span>) cout &lt;&lt; <span class="hljs-string">&quot;unconnected&quot;</span>;<br>    <span class="hljs-keyword">else</span> cout &lt;&lt; minDist.<span class="hljs-built_in">back</span>();<br>    <br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -388,8 +396,8 @@ class="math inline">\(\infty\)</span>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day61</div>
-      <div>http://novelyear.github.io/2024/07/22/leetcode-day61/</div>
+      <div>leetcode_day62</div>
+      <div>http://novelyear.github.io/2024/07/23/leetcode-day62/</div>
     </div>
     <div class="license-meta">
       
@@ -402,7 +410,7 @@ class="math inline">\(\infty\)</span>
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年7月22日</div>
+          <div>2024年7月23日</div>
         </div>
       
       
@@ -433,18 +441,12 @@ class="math inline">\(\infty\)</span>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/23/leetcode-day62/" title="leetcode_day62">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day62</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/20/leetcode-day59/" title="leetcode_day59">
-                        <span class="hidden-mobile">leetcode_day59</span>
+                      <a href="/2024/07/22/leetcode-day61/" title="leetcode_day61">
+                        <span class="hidden-mobile">leetcode_day61</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
