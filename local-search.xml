@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>深悼首次数模</title>
+    <link href="/2024/08/07/%E6%B7%B1%E6%82%BC%E9%A6%96%E6%AC%A1%E6%95%B0%E6%A8%A1/"/>
+    <url>/2024/08/07/%E6%B7%B1%E6%82%BC%E9%A6%96%E6%AC%A1%E6%95%B0%E6%A8%A1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="问题总结">问题总结</h1><p>首先总结此次数模的问题：</p><ol type="1"><li>Matlab语法文盲，包括但不限于：<ul><li>不关注数据类型，无意中把行向量当列向量计算</li><li>盲从GPT不自己看代码和参数，让GPT调整不合理参数，越调越不合理</li><li>粒子群的参数拿去跑遗传算法</li><li>不知道matlab文件后缀名含义</li><li>不知道figure可以直接选中调整，去一点一点调语句里的参数😅</li></ul></li><li>数学建模基础薄弱，包括但不限于：<ul><li>听不懂啥是多目标分析，以及其他各种名词</li><li>不知道啥是数学模型，只知道套算法模板和调库</li></ul></li><li>题目没看明白就走了很远，做完了发现初始参数都错了</li><li>跟队友交接混乱，一股脑把文件往群里丢，没有打包和说明文件结构</li><li>算法掌握模糊，忘记普通的Floyd是返回路径长度，需要的却是路径本身，浪费时间修改代码</li><li>思考不足，逻辑不顺，过于依赖网上的思路</li><li>数据不及时保存，文件结构混乱</li></ol><h1 id="踩过的坑">踩过的坑</h1><ol type="1"><li>行向量转列向量是：<code>vector = vector(:);</code>或者<code>v = v';</code>，</li></ol><p>注意：单引号可以将列向量再转为行向量的；冒号不管是行向量还是列向量，最终转换的结果都将是列向量</p><ol start="2" type="1"><li>matlab定义矩阵的方法：<code>matrix = zeros(row, col);</code>，初始化一个<spanclass="math inline">\(row\)</span>行<spanclass="math inline">\(col\)</span>列的零矩阵</li><li>存放不等长向量的方法：用单元数组来求，<code>a = cell(i, j);</code>初始化一个<spanclass="math inline">\(i\)</span>行，每行<spanclass="math inline">\(j\)</span>个元素的单元数组，单元里可以是任何变量</li><li>行向量为某个值赋值方法：<code>a(i) = y;</code>将<spanclass="math inline">\(y\)</span> 赋给行向量<spanclass="math inline">\(a\)</span> 的第<spanclass="math inline">\(i\)</span> 列</li></ol><ul><li><p>使用<code>a(1,:)=[1 1 1]</code>方式对矩阵一行进行赋值</p></li><li><p>各种赋值方法见：<ahref="http://t.csdnimg.cn/FoVl3">csdn博客</a></p></li></ul><ol start="5" type="1"><li>matlab各种括号访问规则：<ahref="http://t.csdnimg.cn/DF1Gx">csdn博客</a></li><li>matlab的rand()返回的是0到1之间的一个数</li><li>多去mathworks搜方法重载和参数含义😭</li></ol><h1 id="下次要做">下次要做</h1><ol type="1"><li>预备在python上重演被语法暴捶</li><li>准备好方便的手册，方便脱离GPT翻阅</li><li>保存所有的图表和数据，丰富附件</li><li>做好文件结构管理，和队友交接的时候打包整个环境</li><li>也许可以冲一个chatGPT Plus。。</li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>数学建模</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)</title>
     <link href="/2024/08/02/org-apache-ibatis-binding-BindingException-Invalid-bound-statement-not-found/"/>
     <url>/2024/08/02/org-apache-ibatis-binding-BindingException-Invalid-bound-statement-not-found/</url>

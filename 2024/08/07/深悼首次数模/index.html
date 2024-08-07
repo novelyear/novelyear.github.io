@@ -16,26 +16,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found) 10种可能的原因  namespace与实际接口的全限定名不一致 XML文件头出错，一般是复制错或者打错字 SQL语句id出错，id与实际的接口方法名不一致 没写对resultType中实体类的全限定名 resources文">
+    <meta name="description" content="问题总结 首先总结此次数模的问题：  Matlab语法文盲，包括但不限于：  不关注数据类型，无意中把行向量当列向量计算 盲从GPT不自己看代码和参数，让GPT调整不合理参数，越调越不合理 粒子群的参数拿去跑遗传算法 不知道matlab文件后缀名含义 不知道figure可以直接选中调整，去一点一点调语句里的参数😅  数学建模基础薄弱，包括但不限于：  听不懂啥是多目标分">
 <meta property="og:type" content="article">
-<meta property="og:title" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)">
-<meta property="og:url" content="http://novelyear.github.io/2024/08/02/org-apache-ibatis-binding-BindingException-Invalid-bound-statement-not-found/index.html">
+<meta property="og:title" content="深悼首次数模">
+<meta property="og:url" content="http://novelyear.github.io/2024/08/07/%E6%B7%B1%E6%82%BC%E9%A6%96%E6%AC%A1%E6%95%B0%E6%A8%A1/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found) 10种可能的原因  namespace与实际接口的全限定名不一致 XML文件头出错，一般是复制错或者打错字 SQL语句id出错，id与实际的接口方法名不一致 没写对resultType中实体类的全限定名 resources文">
+<meta property="og:description" content="问题总结 首先总结此次数模的问题：  Matlab语法文盲，包括但不限于：  不关注数据类型，无意中把行向量当列向量计算 盲从GPT不自己看代码和参数，让GPT调整不合理参数，越调越不合理 粒子群的参数拿去跑遗传算法 不知道matlab文件后缀名含义 不知道figure可以直接选中调整，去一点一点调语句里的参数😅  数学建模基础薄弱，包括但不限于：  听不懂啥是多目标分">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/08/01/0ca92b962e2eb7f7.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/08/01/6593aa3aa346b24f.png">
-<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/08/01/cf97150d678f2c27.png">
-<meta property="article:published_time" content="2024-08-02T01:29:05.000Z">
-<meta property="article:modified_time" content="2024-08-02T01:30:33.550Z">
+<meta property="article:published_time" content="2024-08-07T06:37:24.000Z">
+<meta property="article:modified_time" content="2024-08-07T07:23:25.473Z">
 <meta property="article:author" content="Leoo Yann">
-<meta property="article:tag" content="mybatis">
+<meta property="article:tag" content="数学建模">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/08/01/0ca92b962e2eb7f7.png">
   
   
   
-  <title>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found) - novelyear&#39;s home</title>
+  <title>深悼首次数模 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -124,7 +120,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 70vh;">
+<div class="header-inner" style="height: 100vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -224,13 +220,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/seadream_HD.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://s3.bmp.ovh/imgs/2024/08/07/c40329aeffd34d97.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)"></span>
+            <span id="subtitle" data-typed-text="深悼首次数模"></span>
           
         </div>
 
@@ -246,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-02 09:29" pubdate>
-          2024年8月2日 上午
+        <time datetime="2024-08-07 14:37" pubdate>
+          2024年8月7日 下午
         </time>
       </span>
     
@@ -259,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          726 字
+          588 字
         
       </span>
     
@@ -282,6 +278,10 @@
         
       </div>
 
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
       
     </div>
   </div>
@@ -306,12 +306,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)</h1>
+            <h1 id="seo-header">深悼首次数模</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月2日 上午
+                    本文最后更新于 2024年8月7日 下午
                   
                 
               </p>
@@ -319,77 +319,64 @@
             
               <div class="markdown-body">
                 
-                <h1
-id="org.apache.ibatis.binding.bindingexception-invalid-bound-statement-not-found">org.apache.ibatis.binding.BindingException:
-Invalid bound statement (not found)</h1>
-<h2 id="种可能的原因">10种可能的原因</h2>
+                <h1 id="问题总结">问题总结</h1>
+<p>首先总结此次数模的问题：</p>
 <ol type="1">
-<li>namespace与实际接口的全限定名不一致</li>
-<li>XML文件头出错，一般是复制错或者打错字</li>
-<li>SQL语句id出错，id与实际的接口方法名不一致</li>
-<li>没写对resultType中实体类的全限定名</li>
-<li>resources文件夹下的包实际上没有分层次，只是加了点</li>
-<li>target里面没有XML，没有构造进去</li>
-<li>用成了mybatis-plus，配置的却是mybatis</li>
-<li>XML文件和接口的所在的包名路径以及名称不一致，而mybatis-location又没有配置好。比如XML和接口都放在了java文件夹下，而又没有配置@MapperScan或者mybatis-location</li>
-<li>启动类没有加@MapperScan或接口没有加<span class="citation"
-data-cites="Mapper注解">@Mapper注解</span></li>
-<li><del>mybatis.type-aliases-type没有配置或配置错误</del>(实证没配置也行)</li>
-<li>你以为的XML文件实际没有后缀名</li>
-</ol>
-<h2 id="问题展示">问题展示</h2>
-<p><strong>XML文件</strong></p>
-<figure>
-<img src="https://s3.bmp.ovh/imgs/2024/08/01/0ca92b962e2eb7f7.png" srcset="/img/loading.gif" lazyload
-alt="xml文件" />
-<figcaption aria-hidden="true">xml文件</figcaption>
-</figure>
-<p><strong>项目结构</strong></p>
-<figure>
-<img src="https://s3.bmp.ovh/imgs/2024/08/01/6593aa3aa346b24f.png" srcset="/img/loading.gif" lazyload
-alt="目录树" />
-<figcaption aria-hidden="true">目录树</figcaption>
-</figure>
-<p><strong>target目录</strong></p>
-<figure>
-<img src="https://s3.bmp.ovh/imgs/2024/08/01/cf97150d678f2c27.png" srcset="/img/loading.gif" lazyload
-alt="target目录树" />
-<figcaption aria-hidden="true">target目录树</figcaption>
-</figure>
-<p><strong>application.properties文件</strong></p>
-<p><img src = 'https://s3.bmp.ovh/imgs/2024/08/02/2f72df281337396e.png' ></p>
-<p><strong>Mapper接口</strong></p>
-<p><img src = 'https://s3.bmp.ovh/imgs/2024/08/01/29ab84bc2404350f.png' ></p>
-<p><strong>启动类</strong></p>
-<p><img src = 'https://s3.bmp.ovh/imgs/2024/08/01/18df1d05ea3ca0f1.png' ></p>
-<p><strong>报错信息</strong></p>
-<p><img src = 'https://s3.bmp.ovh/imgs/2024/08/01/dd32ece0648c3d1f.png' ></p>
-<h2 id="问题描述">问题描述</h2>
-<p>问题在于XML没有跟Mapper接口关联上，通过注解开发是有效的，但换成XML映射就报错。</p>
-<p>已经检查过id、namespace、resultType、XML文件头等是否出现打错。</p>
-<p>配置了mybatis的实体类位置、xml位置、添加了@Mapper注解、为启动类添加了@MapperScan注解、检查了target中有没有XML、检查了是否用成了mybatis-plus。</p>
-<p>MybatisX插件已经匹配上了，出现红蓝鸟标识。</p>
-<p>最终仍然没用，增删改查接口没一个能用。</p>
-<h2 id="解决过程">解决过程</h2>
-<p>尝试了能搜到的所有方法仍无效后。</p>
-<p>我在项目中新建了一个模块：</p>
+<li>Matlab语法文盲，包括但不限于：
 <ul>
-<li>创建了mapper包和一个pojo包</li>
-<li>复制了一个实体类和一个select * 的查询接口过来</li>
-<li>复制了application.properties的连接数据库的配置</li>
-<li>在resources下新建包，又创建了一个XML，填好内容后编写了一个简单测试方法来调用这个select
-*接口。</li>
+<li>不关注数据类型，无意中把行向量当列向量计算</li>
+<li>盲从GPT不自己看代码和参数，让GPT调整不合理参数，越调越不合理</li>
+<li>粒子群的参数拿去跑遗传算法</li>
+<li>不知道matlab文件后缀名含义</li>
+<li>不知道figure可以直接选中调整，去一点一点调语句里的参数😅</li>
+</ul></li>
+<li>数学建模基础薄弱，包括但不限于：
+<ul>
+<li>听不懂啥是多目标分析，以及其他各种名词</li>
+<li>不知道啥是数学模型，只知道套算法模板和调库</li>
+</ul></li>
+<li>题目没看明白就走了很远，做完了发现初始参数都错了</li>
+<li>跟队友交接混乱，一股脑把文件往群里丢，没有打包和说明文件结构</li>
+<li>算法掌握模糊，忘记普通的Floyd是返回路径长度，需要的却是路径本身，浪费时间修改代码</li>
+<li>思考不足，逻辑不顺，过于依赖网上的思路</li>
+<li>数据不及时保存，文件结构混乱</li>
+</ol>
+<h1 id="踩过的坑">踩过的坑</h1>
+<ol type="1">
+<li>行向量转列向量是：<code>vector = vector(:);</code>或者<code>v = v';</code>，</li>
+</ol>
+<p>注意：单引号可以将列向量再转为行向量的；冒号不管是行向量还是列向量，最终转换的结果都将是列向量</p>
+<ol start="2" type="1">
+<li>matlab定义矩阵的方法：<code>matrix = zeros(row, col);</code>，初始化一个<span
+class="math inline">\(row\)</span>行<span
+class="math inline">\(col\)</span>列的零矩阵</li>
+<li>存放不等长向量的方法：用单元数组来求，<code>a = cell(i, j);</code>初始化一个<span
+class="math inline">\(i\)</span>行，每行<span
+class="math inline">\(j\)</span>个元素的单元数组，单元里可以是任何变量</li>
+<li>行向量为某个值赋值方法：<code>a(i) = y;</code>将<span
+class="math inline">\(y\)</span> 赋给行向量<span
+class="math inline">\(a\)</span> 的第<span
+class="math inline">\(i\)</span> 列</li>
+</ol>
+<ul>
+<li><p>使用<code>a(1,:)=[1 1 1]</code>方式对矩阵一行进行赋值</p></li>
+<li><p>各种赋值方法见：<a
+target="_blank" rel="noopener" href="http://t.csdnimg.cn/FoVl3">csdn博客</a></p></li>
 </ul>
-<p>成功了，xml成功与接口关联并且select *
-了。证明是可以实现XML与接口关联的。</p>
-<p>加上controller层、service层，仍然可以映射，访问成功。</p>
-<p>于是开两个窗口与新建的模块仔细对比，发现除了模块名完全没区别，那么区别就只能在IDE上看不到的位置。</p>
-<p>最后发现了，就是原因5，实际文件夹没有按点dot分层设置，实际文件结构是这样的:com--newyear--goovermanege<strong>.</strong>mapper</p>
-<p>前两级目录分开了，但是最后一层目录名却是<code>goovermanage.mapper</code>，于是手动拆分，再次测试，成功。</p>
-<p>原来是这么小一个BUG。。真是菜啊，查了两天下午才查出来😅</p>
-<h2 id="预防措施">预防措施</h2>
-<p>在resourses下创建分级目录时，不要打点，打"/"。比如com.ABC.mapper就打成com/ABC/mapper。</p>
-<p>这样实际的文件就会分层，而不是简单地在文件名里加点。</p>
+<ol start="5" type="1">
+<li>matlab各种括号访问规则：<a
+target="_blank" rel="noopener" href="http://t.csdnimg.cn/DF1Gx">csdn博客</a></li>
+<li>matlab的rand()返回的是0到1之间的一个数</li>
+<li>多去mathworks搜方法重载和参数含义😭</li>
+</ol>
+<h1 id="下次要做">下次要做</h1>
+<ol type="1">
+<li>预备在python上重演被语法暴捶</li>
+<li>准备好方便的手册，方便脱离GPT翻阅</li>
+<li>保存所有的图表和数据，丰富附件</li>
+<li>做好文件结构管理，和队友交接的时候打包整个环境</li>
+<li>也许可以冲一个chatGPT Plus。。</li>
+</ol>
 
                 
               </div>
@@ -402,7 +389,7 @@ alt="target目录树" />
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/mybatis/" class="print-no-link">#mybatis</a>
+        <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="print-no-link">#数学建模</a>
       
     </div>
   
@@ -414,8 +401,8 @@ alt="target目录树" />
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)</div>
-      <div>http://novelyear.github.io/2024/08/02/org-apache-ibatis-binding-BindingException-Invalid-bound-statement-not-found/</div>
+      <div>深悼首次数模</div>
+      <div>http://novelyear.github.io/2024/08/07/深悼首次数模/</div>
     </div>
     <div class="license-meta">
       
@@ -428,7 +415,7 @@ alt="target目录树" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月2日</div>
+          <div>2024年8月7日</div>
         </div>
       
       
@@ -459,18 +446,12 @@ alt="target目录树" />
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/07/%E6%B7%B1%E6%82%BC%E9%A6%96%E6%AC%A1%E6%95%B0%E6%A8%A1/" title="深悼首次数模">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">深悼首次数模</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/30/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/" title="一些算法小记录">
-                        <span class="hidden-mobile">一些算法小记录</span>
+                      <a href="/2024/08/02/org-apache-ibatis-binding-BindingException-Invalid-bound-statement-not-found/" title="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)">
+                        <span class="hidden-mobile">org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
