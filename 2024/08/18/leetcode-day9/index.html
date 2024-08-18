@@ -16,22 +16,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容：  110. 平衡二叉树 257. 二叉树的所有路径 404. 左叶子之和  平衡二叉树 只是判断平衡二叉树，比较简单，按规范化思路来吧，避免一会有感觉秒了，一会没感觉卡了 递归结束条件：如果左子树不是平衡二叉树 或者 右子树不是平衡二叉树 或者 左右子树深度差距大于1 递归操作：判断左子树是不是平衡二叉树，判断右子树是不是平衡二叉树，获取左右子树深度 参数及">
+    <meta name="description" content="找出字符串中第一个匹配项的下标  文章视频讲解：代码随想录 | 实现strStr()  在母串中寻找子串，最优的算法就是KMP算法，十分经典，也很复杂，笔者从大一程序设计课上初接触到KMP到今天，已经写过4次KMP了，而这一次尝试纯手撕，仍然花了两个小时，最后还是倒在next数组求法上。功不唐捐，希望下一次再见KMP，能直接手撕出来。 以下是个人偏感性理解，仅作参考 KMP更快的原因">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode_day17">
-<meta property="og:url" content="http://novelyear.github.io/2024/06/07/leetcode-day17/index.html">
+<meta property="og:title" content="leetcode_day9(补)">
+<meta property="og:url" content="http://novelyear.github.io/2024/08/18/leetcode-day9/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容：  110. 平衡二叉树 257. 二叉树的所有路径 404. 左叶子之和  平衡二叉树 只是判断平衡二叉树，比较简单，按规范化思路来吧，避免一会有感觉秒了，一会没感觉卡了 递归结束条件：如果左子树不是平衡二叉树 或者 右子树不是平衡二叉树 或者 左右子树深度差距大于1 递归操作：判断左子树是不是平衡二叉树，判断右子树是不是平衡二叉树，获取左右子树深度 参数及">
+<meta property="og:description" content="找出字符串中第一个匹配项的下标  文章视频讲解：代码随想录 | 实现strStr()  在母串中寻找子串，最优的算法就是KMP算法，十分经典，也很复杂，笔者从大一程序设计课上初接触到KMP到今天，已经写过4次KMP了，而这一次尝试纯手撕，仍然花了两个小时，最后还是倒在next数组求法上。功不唐捐，希望下一次再见KMP，能直接手撕出来。 以下是个人偏感性理解，仅作参考 KMP更快的原因">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-07T07:54:09.000Z">
-<meta property="article:modified_time" content="2024-08-18T09:08:37.956Z">
+<meta property="article:published_time" content="2024-08-18T01:20:39.000Z">
+<meta property="article:modified_time" content="2024-08-18T01:33:11.191Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>leetcode_day17 - novelyear&#39;s home</title>
+  <title>leetcode_day9(补) - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -226,7 +226,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="leetcode_day17"></span>
+            <span id="subtitle" data-typed-text="leetcode_day9(补)"></span>
           
         </div>
 
@@ -242,8 +242,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 15:54" pubdate>
-          2024年6月7日 下午
+        <time datetime="2024-08-18 09:20" pubdate>
+          2024年8月18日 上午
         </time>
       </span>
     
@@ -255,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          756 字
+          1.1k 字
         
       </span>
     
@@ -302,12 +302,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">leetcode_day17</h1>
+            <h1 id="seo-header">leetcode_day9(补)</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月18日 下午
+                    本文最后更新于 2024年8月18日 上午
                   
                 
               </p>
@@ -315,50 +315,53 @@
             
               <div class="markdown-body">
                 
-                <p>今日内容：</p>
-<ul>
-<li><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/balanced-binary-tree/description/">110.
-平衡二叉树</a></li>
-<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-paths/">257.
-二叉树的所有路径</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-of-left-leaves/description/">404.
-左叶子之和</a></li>
-</ul>
-<h1 id="平衡二叉树">平衡二叉树</h1>
-<p>只是判断平衡二叉树，比较简单，按规范化思路来吧，避免一会有感觉秒了，一会没感觉卡了</p>
-<p>递归结束条件：如果左子树不是平衡二叉树 或者 右子树不是平衡二叉树 或者
-左右子树深度差距大于1</p>
-<p>递归操作：判断左子树是不是平衡二叉树，判断右子树是不是平衡二叉树，获取左右子树深度</p>
-<p>参数及返回值：根节点 + 是否合法的bool值</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<span class="hljs-comment">//空视作平衡</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">isBalanced</span>(root-&gt;left) &amp;&amp; <span class="hljs-built_in">isBalanced</span>(root-&gt;right)) &#123;<span class="hljs-comment">//左右都是</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(<span class="hljs-built_in">getDepth</span>(root-&gt;left) - <span class="hljs-built_in">getDepth</span>(root-&gt;right)) &lt;= <span class="hljs-number">1</span>;<span class="hljs-comment">//左右深度是否匹配</span><br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getDepth</span><span class="hljs-params">(TreeNode * root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//空树深度0</span><br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">max</span>(<span class="hljs-built_in">getDepth</span>(root-&gt;left), <span class="hljs-built_in">getDepth</span>(root-&gt;right)) + <span class="hljs-number">1</span>;<span class="hljs-comment">//左右子树最大深度加自己</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>这个时间复杂度较大，<span
-class="math inline">\(O(n^2)\)</span>，对每一个节点都要单独求深度然后判断，自顶向下</p>
-<p>自底向上做法： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isBalanced</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">getDepth</span>(root) != <span class="hljs-number">-1</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getDepth</span><span class="hljs-params">(TreeNode * root)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> left = <span class="hljs-built_in">getDepth</span>(root-&gt;left);<br>    <span class="hljs-keyword">if</span>(left == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<span class="hljs-comment">//只要一个子树不平衡，整个树就不平衡</span><br>    <span class="hljs-type">int</span> right = <span class="hljs-built_in">getDepth</span>(root-&gt;right);<br>    <span class="hljs-keyword">if</span>(right == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(left - right) &lt;= <span class="hljs-number">1</span> ? <span class="hljs-built_in">max</span>(left, right) + <span class="hljs-number">1</span> : <span class="hljs-number">-1</span>;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<h1 id="二叉树的所有路径">二叉树的所有路径</h1>
-<p>递归三步：</p>
-<ol type="1">
-<li>参数&amp;返回值</li>
-</ol>
-<p>无需返回值，参数有根节点和存路径和答案的数组</p>
-<ol start="2" type="1">
-<li>递归终止条件</li>
-</ol>
-<p>遇到叶节点</p>
-<ol start="3" type="1">
-<li>递归逻辑</li>
-</ol>
-<p>没遇到就接着往里插</p>
-<p>比较简单，贴代码： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;string&gt; ans;<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">binaryTreePaths</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> &#123;&#125;;<br>        string line;<br>        <span class="hljs-built_in">traversal</span>(root, line);<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">traversal</span><span class="hljs-params">(TreeNode * root, string s)</span> </span>&#123;<br>        s += <span class="hljs-built_in">to_string</span>(root-&gt;val);<br>        <span class="hljs-keyword">if</span>(!root-&gt;left &amp;&amp; !root-&gt;right) ans.<span class="hljs-built_in">push_back</span>(s);<br>        <span class="hljs-keyword">else</span> &#123;<br>            s += <span class="hljs-string">&quot;-&gt;&quot;</span>;<br>            <span class="hljs-keyword">if</span>(root-&gt;left) <span class="hljs-built_in">traversal</span>(root-&gt;left, s);<br>            <span class="hljs-keyword">if</span>(root-&gt;right) <span class="hljs-built_in">traversal</span>(root-&gt;right, s);<br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></p>
-<h2 id="迭代写法">迭代写法</h2>
-<p>用一个栈存节点，一个栈存目前已经走过的路径
-注意push根节点和其他节点的差异</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">binaryTreePaths</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        vector&lt;string&gt; ans;<br>        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> ans;<br>        stack&lt;string&gt; path;<br>        stack&lt;TreeNode *&gt; st;<br>        st.<span class="hljs-built_in">push</span>(root);<br>        path.<span class="hljs-built_in">push</span>(<span class="hljs-built_in">to_string</span>(root-&gt;val));<span class="hljs-comment">//only value</span><br>        <span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>()) &#123;<br>            TreeNode * cur = st.<span class="hljs-built_in">top</span>(); st.<span class="hljs-built_in">pop</span>();<br>            string tem = path.<span class="hljs-built_in">top</span>(); path.<span class="hljs-built_in">pop</span>();<br><br>            <span class="hljs-keyword">if</span>(cur-&gt;left) &#123;<br>                st.<span class="hljs-built_in">push</span>(cur-&gt;left);<br>                path.<span class="hljs-built_in">push</span>(tem + <span class="hljs-string">&quot;-&gt;&quot;</span> + <span class="hljs-built_in">to_string</span>(cur-&gt;left-&gt;val));<span class="hljs-comment">//insert the next value</span><br>            &#125;<br>            <span class="hljs-keyword">if</span>(cur-&gt;right) &#123;<br>                st.<span class="hljs-built_in">push</span>(cur-&gt;right);<br>                path.<span class="hljs-built_in">push</span>(tem + <span class="hljs-string">&quot;-&gt;&quot;</span> + <span class="hljs-built_in">to_string</span>(cur-&gt;right-&gt;val));<br>            &#125;<br>            <span class="hljs-keyword">if</span>(!cur-&gt;left &amp;&amp; !cur-&gt;right) &#123;<span class="hljs-comment">//no next value</span><br>                ans.<span class="hljs-built_in">push_back</span>(tem);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h1 id="左叶子之和">左叶子之和</h1>
-<p>需要注意，单独一个根节点不能称作左叶子，只是叶子，但不左</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sumOfLeftLeaves</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(!root) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(root-&gt;left &amp;&amp; !root-&gt;left-&gt;left &amp;&amp; !root-&gt;left-&gt;right) &#123;<br>            ans = root-&gt;left-&gt;val;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans + <span class="hljs-built_in">sumOfLeftLeaves</span>(root-&gt;left) + <span class="hljs-built_in">sumOfLeftLeaves</span>(root-&gt;right);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<p>这个递归看得有点懵，后面再来仔细理解一下吧</p>
+                <h1 id="找出字符串中第一个匹配项的下标"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/">找出字符串中第一个匹配项的下标</a></h1>
+<blockquote>
+<p>文章视频讲解：<a
+target="_blank" rel="noopener" href="https://programmercarl.com/0028.%E5%AE%9E%E7%8E%B0strStr.html">代码随想录
+| 实现strStr()</a></p>
+</blockquote>
+<p>在母串中寻找子串，最优的算法就是KMP算法，十分经典，也很复杂，笔者从大一程序设计课上初接触到KMP到今天，已经写过4次KMP了，而这一次尝试纯手撕，仍然花了两个小时，最后还是倒在next数组求法上。功不唐捐，希望下一次再见KMP，能直接手撕出来。
+<strong>以下是个人偏感性理解，仅作参考</strong></p>
+<h2 id="kmp更快的原因">KMP更快的原因</h2>
+<p>暴力匹配就是把子串的头从0号一个一个往前加到m -
+n号，不匹配就加一。</p>
+<p>而KMP不是无脑加一，会像动态规划那样记录，从而实现最优的最远的后移，最大程度减少匹配次数。</p>
+<p>KMP像会记住之前已经匹配到了什么作为基业，在遇到挫折之后就不必从头开始，而是吃老本从基业再开始，直到把基业亏光再从头开始或者成功匹配。
+## KMP怎样记住哪些已经匹配过呢
+KMP用到了最长公共前后缀来记录哪些已经匹配过了。代码随想录里的说法是前缀表next[]
+### 什么是最长公共前后缀
+一个string的前缀就是除开最后一个元素的所有子串</p>
+<p>后缀就是除开第一个元素的所有子串</p>
+<p>比如对于<code>aacaab</code>来说：</p>
+<p>前缀从长到短有：<code>aacaa</code>,<code>aaca</code>,<code>aac</code>,<code>aa</code>,<code>a</code></p>
+<p>后缀从长到短有：<code>acaab</code>,<code>caab</code>,<code>aab</code>,<code>ab</code>,<code>b</code></p>
+<p>最长公共前后缀就是前后缀里面相同的里面最长那一个</p>
+<h3 id="什么是前缀表">什么是前缀表</h3>
+<p>个人理解：</p>
+<p>对于string来说，它的前缀表肯定和它的长度相同，前缀表的每一个值代表<strong>以当前位置结束的子串的最长公共前后缀长度</strong>。</p>
+<p>比如对于串<code>aabaac</code>来说，其前缀表第一位就代表子串<code>a</code>的最长公共前后缀长度，即为0，因为只有一个，去掉第一个或者最后一个之后就没了；</p>
+<p>其前缀表第二位就是1，代表子串<code>aa</code>的最长公共前后缀长度，因为去掉头尾之后都是<code>a</code>，而长度为1</p>
+<p>所以<code>aabaac</code>的前缀表就为0 1 0 1 2 0</p>
+<p><strong>一个特点</strong></p>
+<p>如果子串的头尾都不相同，那么其最长公共前后缀长度肯定是0，因为其所有的前缀都有"头"，所有的后缀都有"尾"，肯定不会相同。</p>
+<h3 id="前缀表怎么用呢">前缀表怎么用呢</h3>
+<p>之前说到KMP记住之前匹配过哪些，失败之后不用从头开始，而是从"基业"开始，这里的"基业"就是公共前后缀。</p>
+<p>如果匹配失败，失败这一位之前都是成功的，将视野缩小到已经匹配上的子串上面，这个子串的后缀是可以匹配上的，那么如果存在相同的前缀，则可以把相同的前缀往前移到后缀的位置，必定仍然匹配，这样就一下子提前了很多位，实现了"保底"</p>
+<p>以上是抽象感性说法，下面上严谨代码：</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">strStr</span><span class="hljs-params">(string haystack, string needle)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(haystack.<span class="hljs-built_in">size</span>() &lt; needle.<span class="hljs-built_in">size</span>()) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>        vector&lt;<span class="hljs-type">int</span>&gt; prefix = <span class="hljs-built_in">next</span>(needle);<br>        <span class="hljs-type">int</span> m = haystack.<span class="hljs-built_in">size</span>(), n = needle.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">int</span> ans = <span class="hljs-number">-1</span>, j = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= m;) &#123;<br>            <span class="hljs-keyword">if</span>(j == n) &#123;<br>                ans = i - n;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(haystack[i] == needle[j]) &#123;<br>                j++;<br>                i++;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(j &gt; <span class="hljs-number">0</span>)&#123;<br>                j = prefix[j - <span class="hljs-number">1</span>];<span class="hljs-comment">//回退吃老本</span><br>            &#125;<br>            <span class="hljs-keyword">else</span> &#123;<br>                i++;<br>                j = <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">next</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">next</span><span class="hljs-params">(s.size(), <span class="hljs-number">0</span>)</span></span>;<br>        <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; s.<span class="hljs-built_in">size</span>();i++) &#123;<br><span class="hljs-comment">/*这一行可太妙了*/</span><span class="hljs-keyword">while</span>(j &gt; <span class="hljs-number">0</span> &amp;&amp; s[i] != s[j]) j = next[j - <span class="hljs-number">1</span>];<br>            <span class="hljs-keyword">if</span>(s[i] == s[j]) j++;<br>            next[i] = j;<br>        &#125;<br>        <span class="hljs-keyword">return</span> next;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h1 id="重复的子字符串"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/repeated-substring-pattern/description/">重复的子字符串</a></h1>
+<blockquote>
+<p>文章视频讲解：<a
+target="_blank" rel="noopener" href="https://programmercarl.com/0459.%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2.html#%E6%80%9D%E8%B7%AF">代码随想录
+| 重复的子字符串</a></p>
+</blockquote>
+<p>对于前缀表的深入理解和应用，建议打印出测试用例的前缀表，一看便知：重复子串第一次出现地方全是0，后面单调递增1、2、3、4……</p>
+<h2 id="代码-1">代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">repeatedSubstringPattern</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        vector&lt;<span class="hljs-type">int</span>&gt; pre = <span class="hljs-built_in">next</span>(s);<br>        <span class="hljs-type">int</span> len = s.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">if</span>(pre[len - <span class="hljs-number">1</span>] != <span class="hljs-number">0</span> &amp;&amp; len % (len - pre[len - <span class="hljs-number">1</span>]) == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">next</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(s.size(), <span class="hljs-number">0</span>)</span></span>;<br>        <span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt; s.<span class="hljs-built_in">size</span>();i++ )&#123;<br>            <span class="hljs-keyword">while</span>(j &gt; <span class="hljs-number">0</span> &amp;&amp; s[i] != s[j]) j = ans[j - <span class="hljs-number">1</span>];<br>            <span class="hljs-keyword">if</span>(s[i] == s[j]) j++;<br>            ans[i] = j;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -383,8 +386,8 @@ class="math inline">\(O(n^2)\)</span>，对每一个节点都要单独求深度�
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>leetcode_day17</div>
-      <div>http://novelyear.github.io/2024/06/07/leetcode-day17/</div>
+      <div>leetcode_day9(补)</div>
+      <div>http://novelyear.github.io/2024/08/18/leetcode-day9/</div>
     </div>
     <div class="license-meta">
       
@@ -428,18 +431,12 @@ class="math inline">\(O(n^2)\)</span>，对每一个节点都要单独求深度�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/09/leetcode-day18/" title="leetcode_day18">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode_day18</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/06/leetcode-day16/" title="leetcode_day16">
-                        <span class="hidden-mobile">leetcode_day16</span>
+                      <a href="/2024/08/07/%E6%B7%B1%E6%82%BC%E9%A6%96%E6%AC%A1%E6%95%B0%E6%A8%A1/" title="深悼首次数模">
+                        <span class="hidden-mobile">深悼首次数模</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

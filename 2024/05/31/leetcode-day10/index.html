@@ -16,15 +16,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="此帖仅作打卡用，过于简单，建议跳过 # 232.用栈实现队列 根据题意，用俩栈来回倒就行 code 1234567891011121314151617181920212223242526272829303132333435class MyQueue &#123;public:    stack&lt;int&gt; q1;    stack&lt;int&gt; q2;    MyQueue">
+    <meta name="description" content="此帖仅作打卡用，过于简单，建议跳过 232.用栈实现队列 根据题意，用俩栈来回倒就行 代码 1234567891011121314151617181920212223242526272829303132333435class MyQueue &#123;public:    stack&lt;int&gt; q1;    stack&lt;int&gt; q2;    MyQueue()">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day10">
 <meta property="og:url" content="http://novelyear.github.io/2024/05/31/leetcode-day10/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="此帖仅作打卡用，过于简单，建议跳过 # 232.用栈实现队列 根据题意，用俩栈来回倒就行 code 1234567891011121314151617181920212223242526272829303132333435class MyQueue &#123;public:    stack&lt;int&gt; q1;    stack&lt;int&gt; q2;    MyQueue">
+<meta property="og:description" content="此帖仅作打卡用，过于简单，建议跳过 232.用栈实现队列 根据题意，用俩栈来回倒就行 代码 1234567891011121314151617181920212223242526272829303132333435class MyQueue &#123;public:    stack&lt;int&gt; q1;    stack&lt;int&gt; q2;    MyQueue()">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-31T02:59:03.000Z">
-<meta property="article:modified_time" content="2024-05-31T03:08:35.733Z">
+<meta property="article:modified_time" content="2024-08-18T09:06:02.913Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          173 字
+          177 字
         
       </span>
     
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年5月31日 上午
+                    本文最后更新于 2024年8月18日 下午
                   
                 
               </p>
@@ -315,15 +315,16 @@
             
               <div class="markdown-body">
                 
-                <p>此帖仅作打卡用，过于简单，建议跳过 # <a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-queue-using-stacks/description/">232.用栈实现队列</a></p>
+                <p>此帖仅作打卡用，过于简单，建议跳过</p>
+<h1 id="用栈实现队列"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-queue-using-stacks/description/">232.用栈实现队列</a></h1>
 <p>根据题意，用俩栈来回倒就行</p>
-<h2 id="code">code</h2>
+<h2 id="代码">代码</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyQueue</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    stack&lt;<span class="hljs-type">int</span>&gt; q1;<br>    stack&lt;<span class="hljs-type">int</span>&gt; q2;<br>    <span class="hljs-built_in">MyQueue</span>() &#123;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">while</span>(!q2.<span class="hljs-built_in">empty</span>())&#123;<br>            <span class="hljs-type">int</span> pipe = q2.<span class="hljs-built_in">top</span>();<br>            q2.<span class="hljs-built_in">pop</span>();<br>            q1.<span class="hljs-built_in">push</span>(pipe);<br>        &#125;<br>        q1.<span class="hljs-built_in">push</span>(x);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">while</span>(!q1.<span class="hljs-built_in">empty</span>())&#123;<br>            <span class="hljs-type">int</span> pipe = q1.<span class="hljs-built_in">top</span>();<br>            q1.<span class="hljs-built_in">pop</span>();<br>            q2.<span class="hljs-built_in">push</span>(pipe);<br>        &#125;<br>        <span class="hljs-type">int</span> ans = q2.<span class="hljs-built_in">top</span>();<br>        q2.<span class="hljs-built_in">pop</span>();<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">peek</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">while</span>(!q1.<span class="hljs-built_in">empty</span>()) &#123;<br>            <span class="hljs-type">int</span> pipe = q1.<span class="hljs-built_in">top</span>();<br>            q1.<span class="hljs-built_in">pop</span>();<br>            q2.<span class="hljs-built_in">push</span>(pipe);<br>        &#125;<br>        <span class="hljs-keyword">return</span> q2.<span class="hljs-built_in">top</span>();<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> q1.<span class="hljs-built_in">empty</span>() &amp;&amp; q2.<span class="hljs-built_in">empty</span>();<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <h1 id="用队列实现栈"><a
 target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-stack-using-queues/">225.用队列实现栈</a></h1>
 <p>一个双端队列完事</p>
-<h2 id="code-1">code</h2>
+<h2 id="代码-1">代码</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyStack</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    deque&lt;<span class="hljs-type">int</span>&gt; d1;<br>    <span class="hljs-built_in">MyStack</span>() &#123;&#125;<br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>        d1.<span class="hljs-built_in">push_front</span>(x);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-type">int</span> p = d1.<span class="hljs-built_in">front</span>();<br>        d1.<span class="hljs-built_in">pop_front</span>();<br>        <span class="hljs-keyword">return</span> p;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">top</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">front</span>();<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> d1.<span class="hljs-built_in">empty</span>();<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
                 
@@ -363,7 +364,7 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-stac
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年5月31日</div>
+          <div>2024年8月18日</div>
         </div>
       
       

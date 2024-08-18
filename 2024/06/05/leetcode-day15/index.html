@@ -16,15 +16,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日内容： - 102.层序遍历 - 226.翻转二叉树 - 101.对称二叉树 层序遍历 思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; leve">
+    <meta name="description" content="今日内容：  102.层序遍历  226.翻转二叉树  101.对称二叉树  层序遍历 思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; lev">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day15">
 <meta property="og:url" content="http://novelyear.github.io/2024/06/05/leetcode-day15/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日内容： - 102.层序遍历 - 226.翻转二叉树 - 101.对称二叉树 层序遍历 思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; leve">
+<meta property="og:description" content="今日内容：  102.层序遍历  226.翻转二叉树  101.对称二叉树  层序遍历 思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队 123456789101112131415161718192021vector&lt;vector&lt;int&gt;&gt; lev">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-05T08:38:50.000Z">
-<meta property="article:modified_time" content="2024-06-05T09:18:32.593Z">
+<meta property="article:modified_time" content="2024-08-18T01:36:14.092Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年6月5日 下午
+                    本文最后更新于 2024年8月18日 上午
                   
                 
               </p>
@@ -316,13 +316,16 @@
               <div class="markdown-body">
                 
                 <p>今日内容：</p>
-<p><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">-
-102.层序遍历</a> <a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/invert-binary-tree/">-
-226.翻转二叉树</a> <a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/">-
-101.对称二叉树</a></p>
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal/">102.层序遍历</a><br />
+</li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/invert-binary-tree/">226.翻转二叉树</a><br />
+</li>
+<li><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/">101.对称二叉树</a></li>
+</ul>
 <h1 id="层序遍历">层序遍历</h1>
 <p>思路就是用队列记录逐层，这样顺序不会变。进入一层时最好记录队列初长度，然后根据长度遍历该层，避免根据队列是否空而判断该层是否遍历结束，便于即时将子节点入队</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp">vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">levelOrder</span>(TreeNode* root) &#123;<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; ans;<br>    vector&lt;<span class="hljs-type">int</span>&gt; temp;<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> &#123;&#125;;<br>    TreeNode * cur = root;<br>    queue&lt;TreeNode*&gt; q;<br>    q.<span class="hljs-built_in">push</span>(cur);<br>    <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>()) &#123;<br>        <span class="hljs-type">int</span> size = q.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) &#123;<br>            cur = q.<span class="hljs-built_in">front</span>();<br>            q.<span class="hljs-built_in">pop</span>();<br>            temp.<span class="hljs-built_in">push_back</span>(cur-&gt;val);<br>            <span class="hljs-keyword">if</span> (cur-&gt;left) q.<span class="hljs-built_in">push</span>(cur-&gt;left);<br>            <span class="hljs-keyword">if</span> (cur-&gt;right) q.<span class="hljs-built_in">push</span>(cur-&gt;right);<br>        &#125;<br>        ans.<span class="hljs-built_in">push_back</span>(temp);<br>        temp.<span class="hljs-built_in">clear</span>();<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -331,7 +334,7 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree
 <p>迭代版就看作在遍历，而且是前序遍历那种单循环，出栈后把左右节点交换，然后压栈左右节点继续就行，给出循环部分的核心代码<del>本来就是核心代码模式，又再核心……</del></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">while</span>(!st.<span class="hljs-built_in">empty</span>()) &#123;<br>    TreeNode* node = st.<span class="hljs-built_in">top</span>();              <span class="hljs-comment">// 中</span><br>    st.<span class="hljs-built_in">pop</span>();<br>    <span class="hljs-built_in">swap</span>(node-&gt;left, node-&gt;right);<br>    <span class="hljs-keyword">if</span>(node-&gt;right) st.<span class="hljs-built_in">push</span>(node-&gt;right);   <span class="hljs-comment">// 右</span><br>    <span class="hljs-keyword">if</span>(node-&gt;left) st.<span class="hljs-built_in">push</span>(node-&gt;left);     <span class="hljs-comment">// 左</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <h1 id="对称二叉树">对称二叉树</h1>
-<p>递归版很简单，写一个辅助函数判断左右节点是不是相等，是树就接着递归，然后从根开始对每一个分支节点的左右孩子判断就行
+<p>递归版很简单，写一个辅助函数判断左右节点是不是相等，是树就接着递归，然后从根开始对每一个分支节点的左右孩子判断就行<br />
 代码没写，偷了个懒😜</p>
 <p>迭代版要难一点，仅限于手写层面，思路不难</p>
 <p>迭代需要用队列或者栈等来存，但是不是按左右顺序挨个入队，而是左右<strong>对应交替</strong>入队，这样方便判断是否相等</p>
@@ -376,7 +379,7 @@ target="_blank" rel="noopener" href="https://programmercarl.com/0101.%E5%AF%B9%E
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年6月5日</div>
+          <div>2024年8月18日</div>
         </div>
       
       
