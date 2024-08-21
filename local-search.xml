@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>八股集录</title>
+    <link href="/2024/08/21/%E5%85%AB%E8%82%A1%E9%9B%86%E5%BD%95/"/>
+    <url>/2024/08/21/%E5%85%AB%E8%82%A1%E9%9B%86%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="day1">day1</h1><h2 id="osi模型">OSI模型</h2><p>Open SystemInterconnect，OSI将计算机网络通信协议分为7层，分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p><h2 id="tcpip模型">TCP/IP模型</h2><p>应用层——应用、表示、会话：HTTP、SSH、FTP</p><p>传输层——传输：TCP、UDP</p><p>网络层——网络：IP</p><p>网络接口层——数据链路层、物理层：以太网、WIFI、MAC地址</p><blockquote><p>理解：TCP/IP更早，更实际、实用；OSI更偏向于理论研究，更细化，更通用</p></blockquote><h2 id="从输入url到页面展示的过程">从输入URL到页面展示的过程</h2><ol type="1"><li>输入URL，解析URL，准备发送HTTP请求</li><li>检查浏览器缓存，如果有则直接返回，如果没有则准备发送网络请求</li><li>发送网络请求前要进行DNS解析，获取域名的IP地址。如果请求协议是HTTPS，还要建立TLS连接。DNS解析从本地缓存、本地Host文件、路由器缓存、DNS服务器，一直查询域名直到根DNS服务器，直到找到为止。</li><li>TCP三次握手建立浏览器和服务器之间的TCP连接</li><li>连接建立后，客户端构建请求信息，发送HTTP请求，如果是HTTPS，还要加解密</li><li>服务器收到请求之后根据请求响应数据</li><li>TCP四次挥手断开连接</li><li>浏览器解析响应数据，展示出相应的页面</li></ol><blockquote><p>理解：刚开始检查用不用发请求，如果需要发请求，就先解析，然后三次握手，后端响应，四次挥手断开，最后前端展示</p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>八股</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>leetcode_day9(补)</title>
     <link href="/2024/08/18/leetcode-day9/"/>
     <url>/2024/08/18/leetcode-day9/</url>
