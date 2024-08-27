@@ -24,7 +24,7 @@
 <meta property="og:description" content="day1 OSI模型 Open System Interconnect，OSI将计算机网络通信协议分为7层，分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层 TCP&#x2F;IP模型 应用层——应用、表示、会话：HTTP、SSH、FTP 传输层——传输：TCP、UDP 网络层——网络：IP 网络接口层——数据链路层、物理层：以太网、WIFI、MAC地址  理解：TCP&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-21T14:10:18.000Z">
-<meta property="article:modified_time" content="2024-08-22T15:25:13.270Z">
+<meta property="article:modified_time" content="2024-08-27T13:48:23.391Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="八股">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,7 +255,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          967 字
+          2.3k 字
         
       </span>
     
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月22日 晚上
+                    本文最后更新于 2024年8月27日 晚上
                   
                 
               </p>
@@ -402,6 +402,116 @@ id="http请求响应报文是怎样的有哪些常见的字段">HTTP请求、响
 <blockquote>
 <p>理解：仍然望文生义，注意最后一点</p>
 </blockquote>
+<h1 id="day3">day3</h1>
+<h2 id="http中常见的状态码有哪些">HTTP中常见的状态码有哪些</h2>
+<ul>
+<li>200：客户端请求成功</li>
+<li>201：创建了新资源</li>
+<li>204：无内容，服务器成功处理了请求，但未返回内容</li>
+</ul>
+<hr />
+<ul>
+<li>301：永久重定向</li>
+<li>302：临时重定向</li>
+<li>304：请求的内容未修改，浏览器使用缓存返回</li>
+</ul>
+<hr />
+<ul>
+<li>401：需要身份验证</li>
+<li>403：禁止访问</li>
+<li>404：资源未找到</li>
+</ul>
+<hr />
+<ul>
+<li>500：服务器内部错误</li>
+<li>503：服务器刚启动，未准备好</li>
+</ul>
+<blockquote>
+<p>理解：大体分四类，2开头为成功，3开头表示资源变化，4开头请求错误，5开头服务错误</p>
+<p>整百读整百，其他单个读：500-伍佰、404-四零四</p>
+</blockquote>
+<h2 id="什么是强缓存和协商缓存">什么是强缓存和协商缓存</h2>
+<p>强缓存：浏览器对之前请求过的资源进行缓存，下一次请求时不发送请求，而直接返回本地缓存的资源。</p>
+<ul>
+<li><p>在Http
+1.0版本中，通过<code>Expire</code>响应头来实现强制缓存，是一个时间点，表示资源过期时间。</p></li>
+<li><p>在1.1版本中，引入了<code>Cache-Control</code>响应头，可以通过<code>max-age</code>设置最大生存时间</p></li>
+<li><p>如果响应头中没有任何和缓存相关的字段，浏览器会采用启发式算法决定是否缓存资源。通常基于<code>Date</code>和<code>Last-modified</code>值计算</p></li>
+</ul>
+<blockquote>
+<p>强缓存可能导致资源更新时的不一致，需要合理设置更新频率。</p>
+</blockquote>
+<hr />
+<p>协商缓存：浏览器和服务器通信以确认缓存资源是否有效。</p>
+<p>主要涉及两组响应头字段</p>
+<ul>
+<li><code>ETag</code>/<code>If-None-Match</code>：浏览器第一次请求时，服务器会返回ETag，是该资源的唯一标识符，后续再请求，请求头中的<code>If-None_Match</code>就会携带<code>ETag</code>，服务器来判断该资源是否更新，如果未更新，则返回<code>304 Not Modified</code>，如果更新了则返回新的资源和ETag。</li>
+<li><code>Last-Modified</code>/<code>If-Modified-Since</code>：服务器会返回资源和其最后修改时间<code>Last-Modified</code>，后续请求的请求头会携带<code>If-Modified-Since</code>，服务端检查是否过期。返回同上。</li>
+</ul>
+<blockquote>
+<p>协商缓存确保获取最新资源，避免不必要的资源传输。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>理解：强缓存应用于不常变动的静态资源，如图片，css，js等</p>
+<p>协商缓存适用于变动频繁的资源</p>
+</blockquote>
+<h1 id="day4">day4</h1>
+<h2 id="http-1.0和http-1.1的区别">HTTP 1.0和HTTP 1.1的区别</h2>
+<ul>
+<li><strong>持久连接</strong>：HTTP
+1.1默认持久连接，也就是一个TCP连接可以发送多个HTTP请求响应，减少了连接和关闭的开销。而HTTP
+1.0默认短连接，每次请求都需要建立一个TCP连接，通过Connection：keep-alive头来实现持久连接</li>
+<li><strong>管道化</strong>：HTTP
+1.1支持管道化，允许客户端再第一个请求的响应到达前发送多个请求，减少等待时间。HTTP
+1.0不支持管道化</li>
+<li><strong>缓存控制</strong>：HTTP
+1.0主要使用<code>If-Modified-Since</code>和<code>Expires</code>来缓存控制。HTTP
+1.1引入了<code>ETag/If-None-Match</code>等更多的缓存头来控制缓存</li>
+<li>错误码：HTTP 1.1有更多错误响应码，如
+<code>426 Upgrade Required</code></li>
+<li>Host字段：HTTP
+1.1加入了Host头，让客户端指定请求的主机名，可以在同一台服务器上托管多个域名。HTTP
+1.0没有这个字段</li>
+<li>请求方法：HTTP
+1.1有更多请求方法，如OPTIONS、PUT、DELETE、HEAD、PATCH</li>
+<li>带宽优化：HTTP
+1.1中可以部分请求资源，使用range头设定范围，返回码是206 Partial
+Content</li>
+</ul>
+<blockquote>
+<p>理解：降低了原子性：持久、管道；加入了更多的功能</p>
+</blockquote>
+<h2 id="http-1.1和http-2.0的区别">HTTP 1.1和HTTP 2.0的区别</h2>
+<ul>
+<li><strong>二进制协议vs文本协议</strong>：HTTP 2.0
+采用二进制格式传输数据，解析高效还不容易出错。而HTTP
+1.1使用可读的文本格式，解析和处理都较慢</li>
+<li><strong>多路复用</strong>：HTTP
+2.0支持多路复用，允许单个TCP连接上并行交错发送多个请求和响应，<u>解决</u>了HTTP
+1.1中的队头阻塞问题</li>
+<li><strong>头部压缩</strong>：HTTP
+2.0引入了HPACK压缩算法，对请求响应头压缩，减少了冗余头部信息的传输</li>
+<li><strong>服务器推送</strong>：HTTP
+2.0允许服务器主动推送资源给客户端</li>
+<li><strong>优先级和依赖</strong>：HTTP
+2.0允许客户端为请求设置优先级，并表达请求之间的依赖关系，让资源加载更有序。</li>
+</ul>
+<blockquote>
+
+</blockquote>
+<h2 id="http-3.0">HTTP 3.0</h2>
+<p>HTTP 3是HTTP的最新版本，基于QUIC协议，特点有：</p>
+<ul>
+<li>无队头阻塞：QUIC使用UDP来传输数据，一个连接上多个stream之间没有依赖，如果一个stream丢了一个UDP包，不会影响后面的stream，不存在队头阻塞的问题。</li>
+<li><strong>零RTT连接建立</strong>：QUIC允许首次连接时进行零往返时间连接建立？</li>
+<li><strong>连接迁移</strong>：QUIC允许在网络切换(如从WIFI切到移动网络)，将连接迁移到新的IP地址，从而减少连接的中断时间。</li>
+<li>向前纠错机制：每个数据包除了它本身的内容之外，还有其他包的数据，所以少量丢包可以用其他包的数据而不需要重新传。虽然降低了每个包的有效信息，但是减少了丢包数据重传。</li>
+<li>安全性：HTTP 3.0默认TLS加密，确保了数据传输的安全</li>
+</ul>
+<blockquote>
+<p>理解：从TCP变成了UDP，基于QUIC，所以少了很多TCP的问题</p>
+</blockquote>
 
                 
               </div>
@@ -440,7 +550,7 @@ id="http请求响应报文是怎样的有哪些常见的字段">HTTP请求、响
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月22日</div>
+          <div>2024年8月27日</div>
         </div>
       
       
