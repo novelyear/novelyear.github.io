@@ -616,7 +616,7 @@ kj] 是队列中第 j 个人的属性（queue[0] 是排在队列前面的人）�
 </div>
 
 <footer class="mt-4">
-<font size="2" face="Georgia">
+<font size="2" face="Times New Roman">
 <div class="text-center py-3">
 
 <div>
@@ -625,7 +625,7 @@ kj] 是队列中第 j 个人的属性（queue[0] 是排在队列前面的人）�
   <script>
   var now = new Date();
   function createtime(){
-      var grt= new Date("07/02/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+      var grt= new Date("05/22/2024 00:00:00");//此处修改你的建站时间或者网站上线时间
       now.setTime(now.getTime()+250);
       days = (now - grt ) / 1000 / 60 / 60 / 24;
       dnum = Math.floor(days);
@@ -644,8 +644,8 @@ kj] 是队列中第 j 个人的属性（queue[0] 是排在队列前面的人）�
       if(String(snum).length ==1 ){
                 snum = "0" + snum;
       }
-      document.getElementById("timeDate").innerHTML = "🚀 for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
-      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" + snum + "&nbspsec";
+      document.getElementById("timeDate").innerHTML = "小站已经运行&nbsp"+dnum+"&nbsp<i>days<i>";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsp<i>hours<i>&nbsp" + mnum + "&nbsp<i>min<i>&nbsp" + snum + "&nbsp<i>sec<i>";
   }  //此次自定义显示内容
   setInterval("createtime()",250);
   </script>
