@@ -24,7 +24,7 @@
 <meta property="og:description" content="day1 OSI模型 Open System Interconnect，OSI将计算机网络通信协议分为7层，分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层 TCP&#x2F;IP模型 应用层——应用、表示、会话：HTTP、SSH、FTP 传输层——传输：TCP、UDP 网络层——网络：IP 网络接口层——数据链路层、物理层：以太网、WIFI、MAC地址  理解：TCP&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-21T14:10:18.000Z">
-<meta property="article:modified_time" content="2024-09-01T03:42:28.731Z">
+<meta property="article:modified_time" content="2024-09-02T12:00:12.037Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="八股">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年9月1日 中午
+                    本文最后更新于 2024年9月2日 晚上
                   
                 
               </p>
@@ -363,7 +363,8 @@ id="http请求响应报文是怎样的有哪些常见的字段">HTTP请求、响
 <li>Connection：管理连接的选项，如keep-alive</li>
 </ul>
 <p>空行是分隔请求头和请求体的空行</p>
-<p>响应报文：服务器向客户端返回的数据格式，通常包含状态行、响应头、空行、响应体</p>
+<p>响应报文：服务器向客户端返回的数据格式，通常包含状态行、响应
+头、空行、响应体</p>
 <p>状态行包含HTTP版本、状态码、状态信息，比如http/2.0 404 notFound</p>
 <p>响应头的常见字段有：</p>
 <ul>
@@ -385,8 +386,8 @@ id="http请求响应报文是怎样的有哪些常见的字段">HTTP请求、响
 <p>Post：向指定资源<strong>提交</strong>数据进行处理</p>
 <p>Put：<strong>更新</strong>资源</p>
 <p>DELETE：<strong>删除</strong>资源</p>
-<p>HEAD：获取报文首部，不返回报文主题</p>
-<p>OPTIONS：查询服务器支持的请求方法</p>
+<p>HEAD：获取报文首部，不返回报文主题(判断资源是否存在)</p>
+<p>OPTIONS：查询服务器支持的请求方法(通过Allow头来判断)</p>
 <p>PATCH：对资源进行部分更新</p>
 <blockquote>
 <p>理解：望文生意即可</p>
@@ -461,7 +462,7 @@ id="http请求响应报文是怎样的有哪些常见的字段">HTTP请求、响
 <ul>
 <li><strong>持久连接</strong>：HTTP
 1.1默认持久连接，也就是一个TCP连接可以发送多个HTTP请求响应，减少了连接和关闭的开销。而HTTP
-1.0默认短连接，每次请求都需要建立一个TCP连接，通过Connection：keep-alive头来实现持久连接</li>
+1.0默认短连接，每次请求都需要建立一个TCP连接，通过Connection：keep-alive头来实现持久连接(可被拒绝)</li>
 <li><strong>管道化</strong>：HTTP
 1.1支持管道化，允许客户端再第一个请求的响应到达前发送多个请求，减少等待时间。HTTP
 1.0不支持管道化。<u>管道化的前提是使用长连接</u></li>
@@ -659,7 +660,7 @@ id="tcp四次挥手的过程为什么是四次">TCP四次挥手的过程，为�
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月1日</div>
+          <div>2024年9月2日</div>
         </div>
       
       
@@ -712,6 +713,39 @@ id="tcp四次挥手的过程为什么是四次">TCP四次挥手的过程，为�
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://leoonay-review.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
@@ -872,6 +906,7 @@ id="tcp四次挥手的过程为什么是四次">TCP四次挥手的过程，为�
   setInterval("createtime()",250);
   </script>
 </div>
+
   </footer>
 
   <!-- Scripts -->
