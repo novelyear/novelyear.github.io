@@ -24,7 +24,7 @@
 <meta property="og:description" content="提示：博客仍在优化中，欢迎交流指导~            关于我 目前就读于四川大学计算机专业，期望从事JAVA开发，想要参与开源但仍未实践🥲，偶尔美化博客，因为好难搞啊啊，博客主要目的是创造一个自己的小空间，满足一下&quot;秘密基地&quot;的梦想~ 版权说明 除特殊说明以及引用图片，博文均采用CC BY-NC-SA 4.0协议。 更新日志  2024.9.4">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-27T05:20:13.000Z">
-<meta property="article:modified_time" content="2024-09-04T08:38:42.943Z">
+<meta property="article:modified_time" content="2024-09-04T13:07:57.624Z">
 <meta property="article:author" content="Leoo Yann">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -326,6 +326,40 @@ BY-NC-SA 4.0</a>协议。</p>
 
   </div>
 
+  
+    <!-- Comments -->
+    <article id="comments" lazyload>
+      
+      
+        
+      
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://leoonay-review.hf.space","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
   
 </article>
 
