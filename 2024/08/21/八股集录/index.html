@@ -27,7 +27,7 @@
 <meta property="og:description" content="day1 OSI模型 Open System Interconnect，OSI将计算机网络通信协议分为7层，分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层 TCP&#x2F;IP模型 应用层——应用、表示、会话：HTTP、SSH、FTP 传输层——传输：TCP、UDP 网络层——网络：IP 网络接口层——数据链路层、物理层：以太网、WIFI、MAC地址  理解：TCP&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-21T14:10:18.000Z">
-<meta property="article:modified_time" content="2024-09-02T12:00:12.037Z">
+<meta property="article:modified_time" content="2024-09-24T02:32:36.702Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="八股">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,7 +258,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4.1k 字
+          6.1k 字
         
       </span>
     
@@ -310,7 +310,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年9月2日 晚上
+                    本文最后更新于 2024年9月24日 上午
                   
                 
               </p>
@@ -624,6 +624,109 @@ id="tcp三次握手的过程为什么是三次可以少或者多吗">TCP三次�
 <h2
 id="tcp四次挥手的过程为什么是四次">TCP四次挥手的过程，为什么是四次</h2>
 <p>四次挥手的过程：</p>
+<ul>
+<li>第一次挥手：客户端发送<code>FIN</code>报文给服务端，表示要断开数据传送，报文中会指定一个序列号<code>(seq=x)</code>。然后，客户端进入<code>FIN-WAIT-1</code>状态。</li>
+<li>第二次挥手：服务端收到<code>FIN</code>报文后，回复<code>ACK</code>报文给客户端，且把客户端的序列号+1，作为ACK报文的序列号<code>(seq=x+1)</code>。然后，服务端进入<code>CLOSE-WAIT(seq=x+1)</code>状态，客户端进入<code>FIN-WAIT-2</code>状态。</li>
+<li>第三次挥手：服务端也要断开连接时，发送<code>FIN</code>给客户端，且指定序列号<code>(seq=y+1)</code>，随后服务端进入<code>LAST-ACK</code>状态。</li>
+<li>第四次挥手：客户端收到<code>FIN</code>报文后，发出<code>ACK</code>应答，把服务端的序列号+1作为ACK序列号<code>(seq=y+2)</code>。此时，客户端进入<code>TIME-WAIT</code>状态。服务端收到客户端的<code>ACK</code>后进入<code>CLOSE</code>状态，如果客户端等待<code>2MSL</code>没有收到服务端的回复，则关闭连接。</li>
+</ul>
+<p>为什么四次：</p>
+<p>TCP是全双工通信，双向传输数据，双方都可以提出释放连接的通知，让对方进入半关闭状态，待对方传输完毕后，发回连接释放通知，己方确认后才会完全关闭TCP连接。前两次让发起方发出通知和对方发出确认；后两次让对方做完最后的传输，发出同意，让己方收到确认，最终关闭。</p>
+<blockquote>
+<p>发起方提前预警，接收方开始准备断开，接收方准备完成，发起方收到确认放心断开</p>
+</blockquote>
+<h2
+id="http的keep-alive是什么tcp的keepalive是和http的keep-alive是一个东西吗">HTTP的Keep-Alive是什么？TCP的Keepalive是和HTTP的Keep-Alive是一个东西吗</h2>
+<ul>
+<li>HTTP的Keep-Alive，是由应用层实现的，称为HTTP长连接。HTTP短连接为：建立TCP连接
+-&gt; HTTP请求资源 -&gt; 响应资源 -&gt;
+释放连接。但是每次连接只能请求一次资源，所以HTTP的Keep-Alive实现了使用同一个TCP连接来发送接受多个HTTP的请求应答，减少多次连接建立和释放的开销。</li>
+<li>TCP的Keepalive，由TCP层(内核态)实现的，称为TCP保活机制，是一种用在TCP连接上检测空闲状态的机制。当TCP连接建立后，如果一段时间没有数据传输，TCP的Keepalive会发送探测包来检查连接是否还有效。</li>
+</ul>
+<blockquote>
+<p>HTTP的是长连接，TCP的是检测连接是否还有效。一个高层一个底层</p>
+</blockquote>
+<h1 id="day8">day8</h1>
+<h2 id="dns查询过程">DNS查询过程</h2>
+<p>DNS称为域名服务器(Domain Name
+System)，用于将主机名和域名转换为IP地址，一般查询过程为：</p>
+<ul>
+<li><strong>本地DNS缓存检查</strong>：首先查询本地的DNS缓存，如果缓存里有对应的IP，则直接返回结果</li>
+<li><strong>本地的DNS服务器</strong>：通常是当地的ISP提供，向其发送DNS查询请求</li>
+<li><strong>根DNS服务器</strong>：如果本地DNS服务器没有，则其会向根DNS服务器查询。根DNS服务器不负责具体的域名解析，但能够告诉本地NDS服务器应该向哪个顶级域的DNS服务器继续查询</li>
+<li><strong>顶级域名DNS服务器</strong>：本地DNS服务器接着向顶级域名DNS服务器发出查询请求。顶级域名DNS服务器也不负责具体的域名解析，但会告诉本地DNS服务器应该前往哪个权威DNS服务器查询下一步信息。</li>
+<li><strong>权威DNS服务器</strong>：本地DNS服务器最后向权威DNS服务器发送查询，权威DNS服务器会返回对应的IP地址</li>
+<li>本地DNS解析器收到IP后返回给浏览器，并且缓存该解析结果。</li>
+<li>浏览器获得IP后，与目标服务器建立连接。</li>
+</ul>
+<blockquote>
+<p>本地-&gt;本地ISP的DNS-&gt;根-&gt;顶级域名-&gt;权威</p>
+</blockquote>
+<h2 id="cdn是啥有什么用">CDN是啥，有什么用</h2>
+<p>CDN是内容分发网络(Content Delivery
+Network)，通过将内容存储在分布式服务器上，使用户可以从距离较近的服务器获得所需的内容，加速互联网的内容传输。</p>
+<ul>
+<li>就近访问：CDN在服务范围内会部署多个服务器节点，用户的请求会送到最近的CDN节点，加速访问。</li>
+<li>内容缓存：CDN会缓存静态资源(图片、CSS、Script)。当用户访问时，CDN会使用缓存，没有才去源服务器获取资源并缓存。这减少了源服务器的负载</li>
+<li>可用性：一个节点出了问题，还可以被重定向到其他的节点</li>
+</ul>
+<blockquote>
+<p>对于博客，这可太熟悉了，当分布式说吧</p>
+</blockquote>
+<h2 id="cookie和session是什么">Cookie和Session是什么</h2>
+<p>Cookie和Session都用于管理用户的状态和身份，Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。</p>
+<ul>
+<li>cookie由服务器发给浏览器，浏览器保存cookie并在将来的请求中包含cookie，服务器收到后续请求后可以分析cookie从而确定身份。</li>
+<li>Session时服务器把客户端信息处理后记录在本地，主要用于维护登陆状态、存储临时数据等。服务器为每个用户分配Sesson
+ID，通常存在cookie中发给客户端</li>
+</ul>
+<p>Cookie和Session的区别：</p>
+<ul>
+<li>存储位置：Cookie存在浏览器，Session存在服务器</li>
+<li>数据容量：Cookie较小，Session较大</li>
+<li>安全性：Cookie存在浏览器内，可以被篡改，而Session不会</li>
+<li>生命周期：Cookie可设置过期时间，Session依赖于会话的持续时间或用户活动</li>
+<li>传输方式：Cookie在每次HTTP请求中都会被自动发送给服务器，而Session
+ID由Cookie或URL传递参数给客户端</li>
+</ul>
+<blockquote>
+<p>cookie浏览器拿着，有信息；session防止被改，自己拿着，但容易拿不下</p>
+</blockquote>
+<h1 id="day9">day9</h1>
+<h2 id="进程和线程的区别">进程和线程的区别</h2>
+<p><strong>进程是资源分配和调度的最小单位</strong></p>
+<p><strong>线程是程序执行的最小单位</strong></p>
+<ul>
+<li><p>线程是进程内的子任务，一个进程中的多个线程共享内存空间，进程之间内存空间独立。进程切换、创建、销毁的开销都大于线程。</p></li>
+<li><p>进程之间通信需要一些机制：管道、消息队列、共享内存等。但线程可以直接访问共享数据。</p></li>
+<li><p>进程相互隔离，而线程的错误可能会影响其他线程，影响整个进程的稳定性。</p></li>
+</ul>
+<blockquote>
+<p>今天都是操作系统的基础，老考点了</p>
+</blockquote>
+<h2 id="并行和并发的区别">并行和并发的区别</h2>
+<p>并行是真正意义上的同时进行，同一时刻有多个在执行。而并发是在短时间内相继执行大量任务，在宏观上看起来像同时发生，实际上仍然是交替执行的。</p>
+<blockquote>
+<p>老考点了，可以结合实例讲</p>
+</blockquote>
+<h2
+id="解释用户态和内核态什么情况下会发生切换">解释用户态和内核态，什么情况下会发生切换</h2>
+<p>用户态和内核态是操作系统为了保护系统资源和权限控制而设计的两种不同的CPU运行级别，可以<strong>控制进程或程序对计算机硬件资源的访问权限和操作范围</strong>。</p>
+<ul>
+<li>用户态：进程和程序只能访问受限的资源和执行受限的指令集，不能直接访问OS的核心部分，也不能直接访问硬件资源。</li>
+<li>核心态：OS的特权级别，允许进程或程序执行特权指令和访问操作系统的核心部分。在核心态下，进程可以直接访问硬件资源，执行系统调用，管理内存、文件系统等操作。</li>
+</ul>
+<p>发生切换的场景：</p>
+<ul>
+<li>系统调用</li>
+<li>异常</li>
+<li>中断</li>
+</ul>
+<blockquote>
+<p>也是经典知识点，看看就行了，已经知道了</p>
+</blockquote>
+<h1 id="day10">day10</h1>
+<h2 id="什么是死锁如何避免">什么是死锁，如何避免</h2>
 <p>尚未学习……</p>
 
                 
@@ -663,7 +766,7 @@ id="tcp四次挥手的过程为什么是四次">TCP四次挥手的过程，为�
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年9月2日</div>
+          <div>2024年9月24日</div>
         </div>
       
       
