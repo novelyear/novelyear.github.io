@@ -27,7 +27,7 @@
 <meta property="og:description" content="day1 OSI模型 Open System Interconnect，OSI将计算机网络通信协议分为7层，分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层 TCP&#x2F;IP模型 应用层——应用、表示、会话：HTTP、SSH、FTP 传输层——传输：TCP、UDP 网络层——网络：IP 网络接口层——数据链路层、物理层：以太网、WIFI、MAC地址  理解：TCP&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-21T14:10:18.000Z">
-<meta property="article:modified_time" content="2024-09-24T02:32:36.702Z">
+<meta property="article:modified_time" content="2024-09-24T07:05:29.220Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="八股">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,7 +258,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          6.1k 字
+          7.1k 字
         
       </span>
     
@@ -310,7 +310,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年9月24日 上午
+                    本文最后更新于 2024年9月24日 下午
                   
                 
               </p>
@@ -727,6 +727,79 @@ id="解释用户态和内核态什么情况下会发生切换">解释用户态�
 </blockquote>
 <h1 id="day10">day10</h1>
 <h2 id="什么是死锁如何避免">什么是死锁，如何避免</h2>
+<p>死锁就是系统中两个或多个进程在执行过程中，因争夺资源而造成的一种僵局。当每个进程都持有一定的资源并等待其他进程释放他们的所需的资源时，这些资源都被其他进程占据却不释放，就导致了死锁。</p>
+<p>死锁的条件有四个：</p>
+<ul>
+<li>互斥</li>
+<li>请求保持</li>
+<li>不可剥夺</li>
+<li>循环等待</li>
+</ul>
+<p>所以可以通过破坏除互斥之外的三个条件之一来预防死锁。也可以通过银行家算法等检测死锁，可以通过挂起或终止某些进程来解除死锁。</p>
+<blockquote>
+<p>老知识点，思路就是：预防(破坏条件)-检测(银行家)-解除(挂起，暴力终止)</p>
+</blockquote>
+<h2 id="介绍一下几种典型的锁">介绍一下几种典型的锁</h2>
+<ul>
+<li><strong>互斥锁</strong>：最常见的锁类型。任何时刻只允许一个线程持有，其他线程必须等待。</li>
+<li>自旋锁：基于忙等待的锁，线程在尝试获取锁时会不断轮询，直到锁被释放。</li>
+</ul>
+<p>其他的锁都是基于这两个锁的：</p>
+<ul>
+<li>读写锁：允许多个线程同时读写和共享资源，只允许一个线程进行写操作。分为读(共享)和写(排他)两种状态。</li>
+<li>悲观锁：认为多线程同时修改资源的可能性比较高，所以访问共享资源时要上锁。</li>
+<li>乐观锁：多线程能够同时访问和修改，但是如果修改前后原资源发生变化，证明出现同时修改，则放弃本次操作。</li>
+</ul>
+<h2 id="讲一讲你理解的虚拟内存">讲一讲你理解的虚拟内存</h2>
+<p>虚拟内存不是真实存在，而通过映射与实际物理地址空间对应。使每个进程看起来有连续的地址空间。</p>
+<p>需要虚拟内存的原因：</p>
+<ul>
+<li>内存扩展：虚拟内存使得程序能够使用比实际内存更大的存储空间</li>
+<li>内存隔离：虚拟地址空间让进程之间的地址空间相隔离</li>
+<li>物理内存管理：虚拟内存允许操作系统动态地将数据和程序离散地加载到物理内存中，并且可以将不常用的数据或程序移到硬盘上，从而释放内存供其他进程使用。</li>
+<li>页面交换：物理内存不足时，可以通过页面交换将外存作为虚拟内存使用，虚拟地扩大了内存空间。</li>
+</ul>
+<h1 id="day11">day11</h1>
+<h2 id="线程同步的方式有哪些">线程同步的方式有哪些</h2>
+<p>线程同步是多线程编程中，保证线程间互不干扰的一种机制，常见的线程同步机制有以下几种：</p>
+<ul>
+<li>互斥锁</li>
+<li>条件变量：用于线程间通信，允许一个线程等待某个条件满足，其他线程可以发出信号通知等待线程，通常与互斥锁一起使用。</li>
+<li>读写锁：允许多个读，只允许一个写</li>
+<li>信号量</li>
+</ul>
+<h2 id="有哪些页面置换算法">有哪些页面置换算法</h2>
+<ul>
+<li>OPT最佳置换算法</li>
+<li>FIFO先进先出</li>
+<li>LRU最近最久未使用</li>
+<li>LFU最不经常使用</li>
+<li>CLOCK轮转</li>
+</ul>
+<blockquote>
+<p>比较基础，很八股</p>
+</blockquote>
+<h1 id="day12">day12</h1>
+<h2 id="熟悉哪些linux命令">熟悉哪些linux命令</h2>
+<p><code>ls</code>、<code>cd</code>、<code>pwd</code>、<code>rm</code>、<code>touch</code>、<code>cat</code>、<code>vi/vim</code>、<code>chmod</code>、<code>chown</code>、<code>ping</code>、<code>ssh</code>、<code>ps</code>、<code>kill</code>、<code>apt-get</code>、<code>netstart</code>、<code>grep、awk、sed</code></p>
+<blockquote>
+<p>作用就不写了，太基础了，除了最后的三剑客，其他不会就搜搜吧</p>
+</blockquote>
+<h2
+id="linux如何查看进程杀进程看端口">Linux如何查看进程、杀进程、看端口</h2>
+<ul>
+<li>看进程：ps aux：列出所有进程和信息</li>
+<li>杀进程：kill -9 pid：强制杀死这个pid</li>
+<li>看端口：<code>lsof -i:端口号</code>查看特定端口占用。或者用
+<code>netstat -tulnp | grep 端口号</code>显示监听在该端口的服务及其进程ID。</li>
+</ul>
+<h2 id="说一下selectpollepoll">说一下select、poll、epoll</h2>
+<p>I/O多路复用通常通过select、poll、epoll等系统调用实现</p>
+<ul>
+<li>select：最古老的I/O多路复用机制，可以监视多个文件描述符的可读、可写和错误状态。然而select的效率可能随着监视的文件描述符数量的增加而降低。</li>
+<li>poll：poll是select的一种改进，使用轮询检查多个文件描述符</li>
+<li>epoll：Linux特有的IO多路复用机制，相较于select和poll，在处理大量文件描述符时更高效。使用事件通知的方式，只有在文件描述符就绪时才会通知应用程序，而不使用轮询。</li>
+</ul>
 <p>尚未学习……</p>
 
                 
