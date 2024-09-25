@@ -8,7 +8,7 @@
     <link href="/2024/09/25/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%93%A5%E4%BB%AC/"/>
     <url>/2024/09/25/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%93%A5%E4%BB%AC/</url>
     
-    <content type="html"><![CDATA[<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span><span class="hljs-symbol">$</span><br>&#123;&#125;_\lambda\!\subset_\<span class="hljs-built_in">Pi</span>^&#123;&#123;&#125;_:l&#125; ?\\<br>不是，哥们?<br><span class="hljs-symbol">$</span><span class="hljs-symbol">$</span><br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p><span class="math display">\[{}_\lambda\!\subset_\Pi^{:l} ?\\不是，哥们?\]</span></p>]]></content>
     
     
     
