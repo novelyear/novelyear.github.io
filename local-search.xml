@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>github pages自定义域名失效解决</title>
+    <link href="/2024/10/07/github-pages%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3/"/>
+    <url>/2024/10/07/github-pages%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88%E8%A7%A3%E5%86%B3/</url>
+    
+    <content type="html"><![CDATA[<p>s为GithubPages自定义域名后，总是隔三岔五地失效，其实是每次<code>hexo d</code>之后就会失效。</p><p>原因在于，当在<code>YOUR_NAME.github.io</code>这个仓库的设置里手动添加域名的时候，其实是在远程仓库(也就是github)新增了一个CNAME文件，里面装着自定义域名，可以失效后手动添加完去看看commit记录。</p><p>但是本地的博客源文件是没有这个CNAME文件的，所以每次<code>hexo d</code>都会覆盖掉github上的CNAME，导致域名失效。</p><p>所以，只需要在<code>source</code>文件夹下新建一个<code>CNAME</code>文件，往里面写入域名，然后再<code>hexo g -d</code>就好了</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>不是，哥们</title>
     <link href="/2024/09/25/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%93%A5%E4%BB%AC/"/>
     <url>/2024/09/25/%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%93%A5%E4%BB%AC/</url>
