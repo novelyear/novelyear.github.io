@@ -19,23 +19,22 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="缓存更新   等redis内存满了自己淘汰 超时 主动更新  主动更新  更新数据库时更新缓存 缓存与数据库整合 调用者只操作缓存，由其他线程异步将缓存持久化到数据库中，保证最终一致  先删缓存还是先操作数据库？ 先操作数据库，再更新缓存。  缓存操作比数据库操作快；数据库读比写快：所以先删缓存，在数据库update完成前，可能会导致期间的查询不一致。  缓存穿">
+    <meta name="description" content="Twikoo官网 本博客记录的步骤在Twikoo官网上都有记录，原文链接为云函数部署 | Twikoo 文档 步骤总体分为三步：  在MongoDB Atlas上创建数据库，获取数据库连接字符串 使用Netlify部署twikoojs&#x2F;twikoo-netlify: Deploy twikoo to Netlify 修改_config.fluid.yml文件  获取数据库连接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="点评的缓存问题">
-<meta property="og:url" content="https://novelyear.github.io/2024/10/10/%E7%82%B9%E8%AF%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="在hexo fluid主题下以Netlify方式添加twikoo评论插件">
+<meta property="og:url" content="https://novelyear.github.io/2024/11/05/%E5%9C%A8hexo-fluid%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B7%BB%E5%8A%A0twikoo%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="缓存更新   等redis内存满了自己淘汰 超时 主动更新  主动更新  更新数据库时更新缓存 缓存与数据库整合 调用者只操作缓存，由其他线程异步将缓存持久化到数据库中，保证最终一致  先删缓存还是先操作数据库？ 先操作数据库，再更新缓存。  缓存操作比数据库操作快；数据库读比写快：所以先删缓存，在数据库update完成前，可能会导致期间的查询不一致。  缓存穿">
+<meta property="og:description" content="Twikoo官网 本博客记录的步骤在Twikoo官网上都有记录，原文链接为云函数部署 | Twikoo 文档 步骤总体分为三步：  在MongoDB Atlas上创建数据库，获取数据库连接字符串 使用Netlify部署twikoojs&#x2F;twikoo-netlify: Deploy twikoo to Netlify 修改_config.fluid.yml文件  获取数据库连接">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-10T13:10:09.000Z">
-<meta property="article:modified_time" content="2024-11-03T13:17:00.312Z">
+<meta property="article:published_time" content="2024-11-05T09:43:19.000Z">
+<meta property="article:modified_time" content="2024-11-05T10:07:40.790Z">
 <meta property="article:author" content="Leoo Yann">
-<meta property="article:tag" content="redis">
-<meta property="article:tag" content="点评">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>点评的缓存问题 - novelyear&#39;s home</title>
+  <title>在hexo fluid主题下以Netlify方式添加twikoo评论插件 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="点评的缓存问题"></span>
+            <span id="subtitle" data-typed-text="在hexo fluid主题下以Netlify方式添加twikoo评论插件"></span>
           
         </div>
 
@@ -246,8 +245,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-10 21:10" pubdate>
-          2024年10月10日 晚上
+        <time datetime="2024-11-05 17:43" pubdate>
+          2024年11月5日 下午
         </time>
       </span>
     
@@ -259,7 +258,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          991 字
+          697 字
         
       </span>
     
@@ -306,12 +305,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">点评的缓存问题</h1>
+            <h1 id="seo-header">在hexo fluid主题下以Netlify方式添加twikoo评论插件</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月3日 晚上
+                    本文最后更新于 2024年11月5日 晚上
                   
                 
               </p>
@@ -319,104 +318,72 @@
             
               <div class="markdown-body">
                 
-                <h1 id="缓存更新">缓存更新</h1>
-<p><img
-src="https://s3.bmp.ovh/imgs/2024/11/03/53c8371b2d78d0a9.png" srcset="/img/loading.gif" lazyload /></p>
+                <p><a target="_blank" rel="noopener" href="https://twikoo.js.org/">Twikoo官网</a></p>
+<p>本博客记录的步骤在Twikoo官网上都有记录，原文链接为<a
+target="_blank" rel="noopener" href="https://twikoo.js.org/backend.html#netlify-部署">云函数部署 |
+Twikoo 文档</a></p>
+<p>步骤总体分为三步：</p>
 <ul>
-<li>等redis内存满了自己淘汰</li>
-<li>超时</li>
-<li>主动更新</li>
+<li>在MongoDB
+Atlas上创建数据库，获取<strong>数据库连接字符串</strong></li>
+<li>使用Netlify部署<a
+target="_blank" rel="noopener" href="https://github.com/twikoojs/twikoo-netlify">twikoojs/twikoo-netlify:
+Deploy twikoo to Netlify</a></li>
+<li>修改_config.fluid.yml文件</li>
 </ul>
-<h6 id="主动更新">主动更新</h6>
-<ul>
-<li>更新数据库时更新缓存</li>
-<li>缓存与数据库整合</li>
-<li>调用者只操作缓存，由其他线程异步将缓存持久化到数据库中，保证最终一致</li>
-</ul>
-<h5 id="先删缓存还是先操作数据库">先删缓存还是先操作数据库？</h5>
-<p>先操作数据库，再更新缓存。</p>
+<h1 id="获取数据库连接字符串">获取数据库连接字符串</h1>
 <blockquote>
-<p>缓存操作比数据库操作快；数据库读比写快：所以先删缓存，在数据库update完成前，可能会导致期间的查询不一致。</p>
+<p>推荐阅读原文：<a
+target="_blank" rel="noopener" href="https://twikoo.js.org/mongodb-atlas.html">MongoDB Atlas | Twikoo
+文档</a>，图文并茂</p>
+<p>第5步的密码就是MongoDB Atlas账号的密码，可通过邮箱重设</p>
 </blockquote>
-<h1 id="缓存穿透">缓存穿透</h1>
+<ol type="1">
+<li>申请 <a target="_blank" rel="noopener" href="https://www.mongodb.com/cloud/atlas/register">MongoDB
+AtLas</a> 账号</li>
+<li>创建免费 MongoDB 数据库，区域推荐选择离 Twikoo 后端（Vercel /
+Netlify / AWS Lambda /
+VPS）地理位置较近的数据中心以获得更低的数据库连接延迟。如果不清楚自己的后端在哪个区域，也可选择
+<code>AWS / Oregon (us-west-2)</code>，该数据中心基建成熟，故障率低，且使用
+Oregon 州的清洁能源，较为环保</li>
+<li>在 Database Access 页面点击 Add New Database User
+创建数据库用户，Authentication Method 选 Password，在 Password
+Authentication 下设置数据库用户名和密码，建议点击 Auto Generate
+自动生成一个不含特殊符号的强壮密码并妥善保存。点击 Database User
+Privileges 下方的 Add Built In Role，Select Role 选择 Atlas
+Admin，最后点击 Add User。</li>
+<li>在 Network Access 页面点击 Add IP Address 添加网络白名单。因为
+Vercel / Netlify / Lambda 的出口地址不固定，因此 Access List Entry 输入
+<code>0.0.0.0/0</code>（允许所有 IP 地址的连接）即可。如果 Twikoo
+部署在自己的服务器上，这里可以填入固定 IP 地址。点击 Confirm 保存</li>
+<li>在 Database 页面点击 Connect，连接方式选择
+Drivers，并记录数据库连接字符串，请将连接字符串中的
+<code>&lt;username&gt;:&lt;password&gt;</code> 修改为刚刚创建的数据库
+<code>用户名:密码</code>。</li>
+<li>默认的连接字符串没有指定数据库名称，Twikoo 会连接到默认的名为
+<code>test</code> 的数据库。如果需要在同一个 MongoDB
+里运行其他业务或供多个 Twikoo 实例使用，建立加入数据库名称并配置对应的
+ACL。</li>
+</ol>
+<h1
+id="使用netlify部署twikoojstwikoo-netlify-deploy-twikoo-to-netlify">使用Netlify部署<a
+target="_blank" rel="noopener" href="https://github.com/twikoojs/twikoo-netlify">twikoojs/twikoo-netlify:
+Deploy twikoo to Netlify</a></h1>
 <blockquote>
-<p>客户端的请求在缓存和数据库中<strong>都不存在</strong>，<strong>缓存永远不会生效</strong>，请求都会打到数据库上，次次查询数据库然后返回不存在。</p>
+<p>原文链接：<a
+target="_blank" rel="noopener" href="https://twikoo.js.org/backend.html#netlify-部署">云函数部署 |
+Twikoo 文档</a>。推荐阅读原文</p>
 </blockquote>
-<h3 id="解决方法">解决方法</h3>
-<ul>
-<li>布隆过滤器
-<ul>
-<li>不存在就一定不存在，存在可能会误判</li>
-<li>快速</li>
-</ul></li>
-<li>缓存空对象
-<ul>
-<li>实现简单，但是内存消耗且可能不一致</li>
-<li>需要给空对象设置TTL(Time To Live)</li>
-</ul></li>
-</ul>
-<h1 id="缓存雪崩">缓存雪崩</h1>
-<blockquote>
-<p><strong>同一时段，大量缓存的有效期到期失效</strong>，或者redis宕机，导致大量请求短期内集中打到数据库。</p>
-</blockquote>
-<h3 id="解决方法-1">解决方法</h3>
-<ul>
-<li>TTL随机：N+n模式，n随机</li>
-<li>集群</li>
-<li>多级缓存</li>
-</ul>
-<h1 id="缓存击穿">缓存击穿</h1>
-<blockquote>
-<p>热点key问题，一个被<strong>高并发访问</strong>并且<strong>缓存重建复杂</strong>的key突然失效，在瞬间给数据库带来巨大压力。</p>
-</blockquote>
-<h3 id="解决方法-2">解决方法</h3>
-<ul>
-<li>互斥锁</li>
-<li>逻辑过期</li>
-</ul>
-<p><img
-src="https://s3.bmp.ovh/imgs/2024/11/03/44eddbc61753000c.png" srcset="/img/loading.gif" lazyload /></p>
-<h4 id="互斥锁业务流程">互斥锁业务流程</h4>
-<p><img
-src="https://s3.bmp.ovh/imgs/2024/11/03/0aaa594f1bfc8ee7.png" srcset="/img/loading.gif" lazyload /></p>
-<h4 id="逻辑过期业务流程">逻辑过期业务流程</h4>
-<p><img
-src="https://s3.bmp.ovh/imgs/2024/11/03/11e420ea7f4b894e.png" srcset="/img/loading.gif" lazyload /></p>
-<p>逻辑过期需要<strong>缓存预热</strong>：</p>
-<p>注意到逻辑过期如果一开始缓存未命中，就会直接空。</p>
-<p>因为是防止打到数据库，所以也不会因为缓存未命中而去查数据库。</p>
-<p>所以需要<strong>缓存预热</strong>，一开始的缓存中需要存在所需的数据，否则就会一直缓存击穿未遂而返回空对象。</p>
-<h1 id="缓存预热">缓存预热</h1>
-<p>黑马的视频里没有，自己试着加了一个，与逻辑过期一起使用。</p>
-<p>由于缓存预热的数据具有特殊性，所以不写在<code>CacheClient</code>这样的通用工具类中，而是写在<code>ShopServiceImpl</code>类里。</p>
-<p>写好缓存预热方法如下，逻辑很简单，设置一个缓存标记，如果没有标记，证明缓存不存在，则预热：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 缓存预热</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">warmupCache</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">// 查询缓存内是否有内容</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> CACHE_SHOP_KEY;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">shopJson</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().get(RedisConstants.CACHE_SHOP_FLAG);<br>    <span class="hljs-comment">// 没有内容则预热缓存</span><br>    <span class="hljs-keyword">if</span>(StrUtil.isBlank(shopJson)) &#123;<br>        <span class="hljs-comment">// 先放flag</span><br>        stringRedisTemplate.opsForValue().set(RedisConstants.CACHE_SHOP_FLAG, RedisConstants.CACHE_SHOP_EXIST);<br>        List&lt;Shop&gt; shops = list();<br>        <span class="hljs-keyword">for</span>(Shop shop : shops) &#123;<br>            cacheClient.setWithLogicalExpire(CACHE_SHOP_KEY + shop.getId(), shop, <span class="hljs-number">30L</span>, TimeUnit.MINUTES);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>然后新建一个<code>CacheWarmupRunner</code>类，需要实现<code>ApplicationRunner</code>接口，加上<code>@Component</code>注解，然后注入<code>ShopService</code>，在类里面重写<code>run</code>方法，在<code>run</code>里调用<code>warmupCache</code>。</p>
-<blockquote>
-<p><code>ApplicationRunner</code>和<code>CommendLineRunner</code>：</p>
-<p>CommandLineRunner 和 ApplicationRunner 都是 Spring Boot
-应用程序启动后要执行的接口，它们都允许我们在应用启动后执行一些自定义的初始化逻辑，例如缓存预热。</p>
-<p><code>CommandLineRunner</code>和 <code>ApplicationRunner</code>
-区别如下：</p>
-<p>方法签名不同</p>
-<ul>
-<li><code>CommandLineRunner</code>接口有一个<code>run(String... args)</code>方法，它接收命令行参数作为可变长度字符串数组。</li>
-<li><code>ApplicationRunner</code>接口则提供了一个<code>run(ApplicationArguments args)</code>方法，它接收一个<code>ApplicationArguments</code>对象作为参数，这个对象提供了对传入的所有命令行参数（包括选项和非选项参数）的访问。</li>
-</ul>
-<p>参数解析方式不同</p>
-<ul>
-<li><code>CommandLineRunner</code>接口更简单直接，适合处理简单的命令行参数。</li>
-<li><code>ApplicationRunner</code>接口提供了一种更强大的参数解析能力，可以通过
-<code>ApplicationArguments</code>
-获取详细的参数信息，比如获取选项参数及其值、非选项参数列表以及查询是否存在特定参数等。</li>
-</ul>
-<p>使用场景不同</p>
-<ul>
-<li>当只需要处理一组简单的命令行参数时，可以使用<code>CommandLineRunner</code>。</li>
-<li>对于需要精细控制和解析命令行参数的复杂场景，推荐使用
-<code>ApplicationRunner</code>。</li>
-</ul>
-</blockquote>
+<p>到原文第9步后，根据自己设置的域名得到环境ID（<code>envId</code>）：<code>https://你设置的site name.netlify.app/.netlify/functions/twikoo</code></p>
+<h1 id="修改_config.fluid.yml文件">修改_config.fluid.yml文件</h1>
+<p>打开本地的_config.fluid.yml文件，Ctrl+F搜索twikoo，找到：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">comments:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment"># 指定的插件，需要同时设置对应插件的必要参数</span><br>  <span class="hljs-comment"># The specified plugin needs to set the necessary parameters at the same time</span><br>  <span class="hljs-comment"># Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">twikoo</span><br></code></pre></td></tr></table></figure>
+<p>在<code>type</code>处填写"twikoo"。</p>
+<p>再Ctrl+F搜索twikoo，找到：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Twikoo</span><br><span class="hljs-comment"># 支持腾讯云、Vercel、Railway 等多种平台部署</span><br><span class="hljs-comment"># Based on Tencent CloudBase</span><br><span class="hljs-comment"># See: https://twikoo.js.org</span><br><span class="hljs-attr">twikoo:</span><br>  <span class="hljs-attr">envId:</span> <br></code></pre></td></tr></table></figure>
+<p>在<code>envId</code>处填写上面的<code>https://你设置的site name.netlify.app/.netlify/functions/twikoo</code></p>
+<p>至此，部署成功，刷新博客后测试效果吧！</p>
+<p>版本更新方法及Twikoo邮件配置以后再写，可看官网文档。</p>
 
                 
               </div>
@@ -429,9 +396,7 @@ src="https://s3.bmp.ovh/imgs/2024/11/03/11e420ea7f4b894e.png" srcset="/img/loadi
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/redis/" class="print-no-link">#redis</a>
-      
-        <a href="/tags/%E7%82%B9%E8%AF%84/" class="print-no-link">#点评</a>
+        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
       
     </div>
   
@@ -443,8 +408,8 @@ src="https://s3.bmp.ovh/imgs/2024/11/03/11e420ea7f4b894e.png" srcset="/img/loadi
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>点评的缓存问题</div>
-      <div>https://novelyear.github.io/2024/10/10/点评学习记录/</div>
+      <div>在hexo fluid主题下以Netlify方式添加twikoo评论插件</div>
+      <div>https://novelyear.github.io/2024/11/05/在hexo-fluid主题下添加twikoo评论插件/</div>
     </div>
     <div class="license-meta">
       
@@ -457,7 +422,7 @@ src="https://s3.bmp.ovh/imgs/2024/11/03/11e420ea7f4b894e.png" srcset="/img/loadi
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月3日</div>
+          <div>2024年11月5日</div>
         </div>
       
       
@@ -488,18 +453,12 @@ src="https://s3.bmp.ovh/imgs/2024/11/03/11e420ea7f4b894e.png" srcset="/img/loadi
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/05/%E5%9C%A8hexo-fluid%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B7%BB%E5%8A%A0twikoo%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/" title="在hexo fluid主题下以Netlify方式添加twikoo评论插件">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">在hexo fluid主题下以Netlify方式添加twikoo评论插件</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/10/fw%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="fw的碎碎念">
-                        <span class="hidden-mobile">fw的碎碎念</span>
+                      <a href="/2024/10/10/%E7%82%B9%E8%AF%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="点评的缓存问题">
+                        <span class="hidden-mobile">点评的缓存问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
