@@ -19,15 +19,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Twikoo官网 本博客记录的步骤在Twikoo官网上都有记录，原文链接为云函数部署 | Twikoo 文档 步骤总体分为三步：  在MongoDB Atlas上创建数据库，获取数据库连接字符串 使用Netlify部署twikoojs&#x2F;twikoo-netlify: Deploy twikoo to Netlify 修改_config.fluid.yml文件  获取数据库连接">
+    <meta name="description" content="刚开始是用huggingface部署的，但是突然崩了，数据库的数据都在，但是评论失败+无法登录管理面板+历史评论全寄。打开huggingface一看，一直preparing space，评论发回的响应也是preparing space，而且huggingface部署方式还不能配置邮件提醒，所以干脆换Netlify了，正好记录一下。  Twikoo官网 本博客记录的步骤在Twikoo官">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在hexo fluid主题下以Netlify方式添加twikoo评论插件">
 <meta property="og:url" content="https://novelyear.github.io/2024/11/05/%E5%9C%A8hexo-fluid%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B7%BB%E5%8A%A0twikoo%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="Twikoo官网 本博客记录的步骤在Twikoo官网上都有记录，原文链接为云函数部署 | Twikoo 文档 步骤总体分为三步：  在MongoDB Atlas上创建数据库，获取数据库连接字符串 使用Netlify部署twikoojs&#x2F;twikoo-netlify: Deploy twikoo to Netlify 修改_config.fluid.yml文件  获取数据库连接">
+<meta property="og:description" content="刚开始是用huggingface部署的，但是突然崩了，数据库的数据都在，但是评论失败+无法登录管理面板+历史评论全寄。打开huggingface一看，一直preparing space，评论发回的响应也是preparing space，而且huggingface部署方式还不能配置邮件提醒，所以干脆换Netlify了，正好记录一下。  Twikoo官网 本博客记录的步骤在Twikoo官">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-05T09:43:19.000Z">
-<meta property="article:modified_time" content="2024-11-05T10:07:40.790Z">
+<meta property="article:modified_time" content="2024-11-06T14:11:03.367Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,7 +258,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          697 字
+          1k 字
         
       </span>
     
@@ -310,7 +310,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月5日 晚上
+                    本文最后更新于 2024年11月6日 晚上
                   
                 
               </p>
@@ -318,7 +318,12 @@
             
               <div class="markdown-body">
                 
-                <p><a target="_blank" rel="noopener" href="https://twikoo.js.org/">Twikoo官网</a></p>
+                <blockquote>
+<p>刚开始是用huggingface部署的，但是突然崩了，数据库的数据都在，但是评论失败+无法登录管理面板+历史评论全寄。打开huggingface一看，一直preparing
+space，评论发回的响应也是preparing
+space，而且huggingface部署方式还不能配置邮件提醒，所以干脆换Netlify了，正好记录一下。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://twikoo.js.org/">Twikoo官网</a></p>
 <p>本博客记录的步骤在Twikoo官网上都有记录，原文链接为<a
 target="_blank" rel="noopener" href="https://twikoo.js.org/backend.html#netlify-部署">云函数部署 |
 Twikoo 文档</a></p>
@@ -382,8 +387,20 @@ Twikoo 文档</a>。推荐阅读原文</p>
 <p>再Ctrl+F搜索twikoo，找到：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Twikoo</span><br><span class="hljs-comment"># 支持腾讯云、Vercel、Railway 等多种平台部署</span><br><span class="hljs-comment"># Based on Tencent CloudBase</span><br><span class="hljs-comment"># See: https://twikoo.js.org</span><br><span class="hljs-attr">twikoo:</span><br>  <span class="hljs-attr">envId:</span> <br></code></pre></td></tr></table></figure>
 <p>在<code>envId</code>处填写上面的<code>https://你设置的site name.netlify.app/.netlify/functions/twikoo</code></p>
+<p>最后，在需要添加评论的页面首部添加<code>comment: 'twikoo'</code>即可为页面添加底部评论区。</p>
+<p>也可以在<code>_config.fluid.yml</code>里面设置，方法为：在对应页下的comments下将enable设为true，type设为twikoo。</p>
+<p>比如，为关于页添加评论，就在<code>/source/about/index.md</code>的首部加一行<code>comments: 'twikoo'</code>，或者在<code>_config.fluid.yml</code>里设置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">about:</span><br>  <span class="hljs-attr">comments:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">twikoo</span><br></code></pre></td></tr></table></figure>
+<p>(不建议直接cv，如果不知道啥是yml就先搜搜，然后就懂了)</p>
 <p>至此，部署成功，刷新博客后测试效果吧！</p>
-<p>版本更新方法及Twikoo邮件配置以后再写，可看官网文档。</p>
+<h1 id="后续设置及版本更新">后续设置及版本更新</h1>
+<p>部署好之后，打开博客中任意一个带有评论的页面，会看见右下角有一个齿轮图标，如果没有就在昵称栏输入任意字符并回车就会出现。然后进入管理区，先设置密码，然后进去根据指示设置就可以了。</p>
+<blockquote>
+<p>twikoo的指示写得很好👍，应该都看得懂</p>
+</blockquote>
+<p>版本更新方法见：<a
+target="_blank" rel="noopener" href="https://twikoo.js.org/update.html#针对-netlify-部署的更新方式">版本更新
+| Twikoo 文档</a></p>
 
                 
               </div>
@@ -422,7 +439,7 @@ Twikoo 文档</a>。推荐阅读原文</p>
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月5日</div>
+          <div>2024年11月6日</div>
         </div>
       
       
