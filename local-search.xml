@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>bvn过程记录</title>
+    <link href="/2024/11/13/bvn%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/"/>
+    <url>/2024/11/13/bvn%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h3 id="知识点记录">知识点记录</h3><h5 id="sfvector2f"><code>sf::Vector2f</code></h5><p>是表示 2D坐标的标准方式，浮点数可以比整数提供更精确的位置信息，这对平滑的动画和逐帧更新很重要。尤其是角色的运动可能会发生缓慢变化或加速度变化（如跳跃、下落），这些变化用浮点数表示更准确。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">sf::Vector2f <span class="hljs-title">position</span><span class="hljs-params">(<span class="hljs-number">100.0f</span>, <span class="hljs-number">200.0f</span>)</span></span>; <span class="hljs-comment">// 初始位置</span><br><span class="hljs-function">sf::Vector2f <span class="hljs-title">velocity</span><span class="hljs-params">(<span class="hljs-number">0.5f</span>, <span class="hljs-number">-1.0f</span>)</span></span>;    <span class="hljs-comment">// 每帧移动的速度</span><br><br><span class="hljs-comment">// 更新位置</span><br>position += velocity;<br></code></pre></td></tr></table></figure><hr /><h5 id="sfsprite-类的常用功能"><code>sf::Sprite</code> 类的常用功能</h5><ol type="1"><li><strong>加载纹理</strong>：<code>sf::Sprite</code>本身并不存储纹理，它引用 <code>sf::Texture</code>对象来显示图像。因此，你首先需要创建一个 <code>sf::Texture</code>对象，并加载一张图片（纹理）。然后将这张纹理设置给<code>sf::Sprite</code> 对象。</li><li><strong>调整位置和缩放</strong>：你可以通过 <code>sf::Sprite</code>提供的函数来调整图片的位置、旋转、缩放等。这样就可以控制纹理的显示方式。</li></ol><h1 id="section">11.13</h1><p>配好了环境，SFML需要：</p><ul><li>下载</li><li>设置项目的附加lib和include，还有链接的文件，再把dll文件复制到x64下的debug。</li></ul><p>把图片准备好，地图后景和前景。</p><p>人物目前暂定就itachi、garra跟一护，特效和人物动作都齐全，鸣人的三段变身缺第三段变身的素材，第二段的缺技能特效。</p><blockquote><p>地图得做视差滚动，看是直接贴图还是以材质形式贴上去</p></blockquote><h6 id="小坑">小坑</h6><p>visual studio的相对路径是以sln所在的目录开始的，不是exe的。</p><h1 id="section-1">11.14</h1><ul><li>调好窗口大小</li><li>贴好图片</li><li>放个人物上去，先左右，再上下，根据人物的位置实现地图视差滚动</li><li>实现地图的高台站立</li></ul><p>只有一张地图？先弄好一个地图吧，记得面向对象，后面才好换地图和人物。</p><p>软件工程起作用了，不能直接开始写，不然就是堆在一个文件里了，得OOP，就要先设计好整体的架构，先整个类图出来。</p><p>暂定Game、Character分Player，Enemy、Map、Platfrom、SoundManager、GameClock、Effect这几个类，共同组成Game大类（感觉要重构，一开始就设计好太难了，软件工程上是怎么敏捷开发的呢？）</p><blockquote><ul><li>远景永远不动</li><li>在一定距离内，窗口不缩放</li><li>角色尝试分离并离开窗口，窗口放大以装下角色，同时窗口被拖动</li><li>窗口达到最大放大程度，不再放大，同时限制角色离开窗口</li><li>角色靠近，窗口缩小，窗口两侧与角色的间距不变(约1/10宽度，平滑)，直到进入一定距离，缩放达到最大程度，角色很靠近。</li></ul></blockquote><p>搜了一下，这可以叫盒子模型，SFML正好有机制能够实现这种类似于有一个镜头的逻辑，叫做“视图”。先学习一下。</p><p>引入视图，实现大地图固定绘制，移动视图来实现镜头感</p><p>视图有最小尺寸和最大尺寸，最大会反过来限制人物的位置，但是视图的坐标好像和实际2D空间的坐标不一致，写写停停没时间了，调试之前还需要初始化人物和视图的位置，但是已经初步完成了视图聚焦图像的一部分，只不过背景没固定，前景没铺开。</p><p><imgsrc="https://s3.bmp.ovh/imgs/2024/11/14/17afd9dcd1208c8d.png" /></p><p>明天继续</p><p>本周计划：</p><p><strong>素材统计整理、基础动态开发</strong></p><p>确定要做的人物，根据游戏原型收集整理好所需的所有素材。</p><p>确定要做的地图，处理图片，规划好地图的站立位和尺寸，再处理人物图片的尺寸大小，保证比例正确</p><p>设计连招，参考原型的键位，将技能特效图片按照招式分开保存</p><p>完成地图开发，实现各种人物的普通移动（左右走、跑、跳跃、二段跳、站到屋顶、冲刺），实现部分人物的动态效果（静止呼吸动态、跑动动态、跳跃姿态、冲刺姿态、招式动态）</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>SFML</tag>
+      
+      <tag>游戏开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>在hexo fluid主题下以Netlify方式添加twikoo评论插件</title>
     <link href="/2024/11/05/%E5%9C%A8hexo-fluid%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B7%BB%E5%8A%A0twikoo%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/"/>
     <url>/2024/11/05/%E5%9C%A8hexo-fluid%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B7%BB%E5%8A%A0twikoo%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/</url>

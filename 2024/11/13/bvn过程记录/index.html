@@ -19,22 +19,23 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="刚开始是用huggingface部署的，但是突然崩了，数据库的数据都在，但是评论失败+无法登录管理面板+历史评论全寄。打开huggingface一看，一直preparing space，评论发回的响应也是preparing space，而且huggingface部署方式还不能配置邮件提醒，所以干脆换Netlify了，正好记录一下。  Twikoo官网 本博客记录的步骤在Twikoo官">
+    <meta name="description" content="知识点记录 sf::Vector2f 是表示 2D 坐标的标准方式，浮点数可以比整数提供更精确的位置信息，这对平滑的动画和逐帧更新很重要。尤其是角色的运动可能会发生缓慢变化或加速度变化（如跳跃、下落），这些变化用浮点数表示更准确。 12345sf::Vector2f position(100.0f, 200.0f); &#x2F;&#x2F; 初始位置sf::Vector2f velocity(0.5f, -">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在hexo fluid主题下以Netlify方式添加twikoo评论插件">
-<meta property="og:url" content="https://novelyear.github.io/2024/11/05/%E5%9C%A8hexo-fluid%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B7%BB%E5%8A%A0twikoo%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:title" content="bvn过程记录">
+<meta property="og:url" content="https://novelyear.github.io/2024/11/13/bvn%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="刚开始是用huggingface部署的，但是突然崩了，数据库的数据都在，但是评论失败+无法登录管理面板+历史评论全寄。打开huggingface一看，一直preparing space，评论发回的响应也是preparing space，而且huggingface部署方式还不能配置邮件提醒，所以干脆换Netlify了，正好记录一下。  Twikoo官网 本博客记录的步骤在Twikoo官">
+<meta property="og:description" content="知识点记录 sf::Vector2f 是表示 2D 坐标的标准方式，浮点数可以比整数提供更精确的位置信息，这对平滑的动画和逐帧更新很重要。尤其是角色的运动可能会发生缓慢变化或加速度变化（如跳跃、下落），这些变化用浮点数表示更准确。 12345sf::Vector2f position(100.0f, 200.0f); &#x2F;&#x2F; 初始位置sf::Vector2f velocity(0.5f, -">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-05T09:43:19.000Z">
-<meta property="article:modified_time" content="2024-11-06T14:11:03.367Z">
+<meta property="article:published_time" content="2024-11-13T08:35:24.000Z">
+<meta property="article:modified_time" content="2024-11-14T14:14:09.748Z">
 <meta property="article:author" content="Leoo Yann">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="SFML">
+<meta property="article:tag" content="游戏开发">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>在hexo fluid主题下以Netlify方式添加twikoo评论插件 - novelyear&#39;s home</title>
+  <title>bvn过程记录 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="在hexo fluid主题下以Netlify方式添加twikoo评论插件"></span>
+            <span id="subtitle" data-typed-text="bvn过程记录"></span>
           
         </div>
 
@@ -245,8 +246,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-05 17:43" pubdate>
-          2024年11月5日 下午
+        <time datetime="2024-11-13 16:35" pubdate>
+          2024年11月13日 下午
         </time>
       </span>
     
@@ -305,12 +306,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">在hexo fluid主题下以Netlify方式添加twikoo评论插件</h1>
+            <h1 id="seo-header">bvn过程记录</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月6日 晚上
+                    本文最后更新于 2024年11月14日 晚上
                   
                 
               </p>
@@ -318,89 +319,66 @@
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>刚开始是用huggingface部署的，但是突然崩了，数据库的数据都在，但是评论失败+无法登录管理面板+历史评论全寄。打开huggingface一看，一直preparing
-space，评论发回的响应也是preparing
-space，而且huggingface部署方式还不能配置邮件提醒，所以干脆换Netlify了，正好记录一下。</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://twikoo.js.org/">Twikoo官网</a></p>
-<p>本博客记录的步骤在Twikoo官网上都有记录，原文链接为<a
-target="_blank" rel="noopener" href="https://twikoo.js.org/backend.html#netlify-部署">云函数部署 |
-Twikoo 文档</a></p>
-<p>步骤总体分为三步：</p>
-<ul>
-<li>在MongoDB
-Atlas上创建数据库，获取<strong>数据库连接字符串</strong></li>
-<li>使用Netlify部署<a
-target="_blank" rel="noopener" href="https://github.com/twikoojs/twikoo-netlify">twikoojs/twikoo-netlify:
-Deploy twikoo to Netlify</a></li>
-<li>修改_config.fluid.yml文件</li>
-</ul>
-<h1 id="获取数据库连接字符串">获取数据库连接字符串</h1>
-<blockquote>
-<p>推荐阅读原文：<a
-target="_blank" rel="noopener" href="https://twikoo.js.org/mongodb-atlas.html">MongoDB Atlas | Twikoo
-文档</a>，图文并茂</p>
-<p>第5步的密码就是MongoDB Atlas账号的密码，可通过邮箱重设</p>
-</blockquote>
+                <h3 id="知识点记录">知识点记录</h3>
+<h5 id="sfvector2f"><code>sf::Vector2f</code></h5>
+<p>是表示 2D
+坐标的标准方式，浮点数可以比整数提供更精确的位置信息，这对平滑的动画和逐帧更新很重要。尤其是角色的运动可能会发生缓慢变化或加速度变化（如跳跃、下落），这些变化用浮点数表示更准确。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">sf::Vector2f <span class="hljs-title">position</span><span class="hljs-params">(<span class="hljs-number">100.0f</span>, <span class="hljs-number">200.0f</span>)</span></span>; <span class="hljs-comment">// 初始位置</span><br><span class="hljs-function">sf::Vector2f <span class="hljs-title">velocity</span><span class="hljs-params">(<span class="hljs-number">0.5f</span>, <span class="hljs-number">-1.0f</span>)</span></span>;    <span class="hljs-comment">// 每帧移动的速度</span><br><br><span class="hljs-comment">// 更新位置</span><br>position += velocity;<br></code></pre></td></tr></table></figure>
+<hr />
+<h5 id="sfsprite-类的常用功能"><code>sf::Sprite</code> 类的常用功能</h5>
 <ol type="1">
-<li>申请 <a target="_blank" rel="noopener" href="https://www.mongodb.com/cloud/atlas/register">MongoDB
-AtLas</a> 账号</li>
-<li>创建免费 MongoDB 数据库，区域推荐选择离 Twikoo 后端（Vercel /
-Netlify / AWS Lambda /
-VPS）地理位置较近的数据中心以获得更低的数据库连接延迟。如果不清楚自己的后端在哪个区域，也可选择
-<code>AWS / Oregon (us-west-2)</code>，该数据中心基建成熟，故障率低，且使用
-Oregon 州的清洁能源，较为环保</li>
-<li>在 Database Access 页面点击 Add New Database User
-创建数据库用户，Authentication Method 选 Password，在 Password
-Authentication 下设置数据库用户名和密码，建议点击 Auto Generate
-自动生成一个不含特殊符号的强壮密码并妥善保存。点击 Database User
-Privileges 下方的 Add Built In Role，Select Role 选择 Atlas
-Admin，最后点击 Add User。</li>
-<li>在 Network Access 页面点击 Add IP Address 添加网络白名单。因为
-Vercel / Netlify / Lambda 的出口地址不固定，因此 Access List Entry 输入
-<code>0.0.0.0/0</code>（允许所有 IP 地址的连接）即可。如果 Twikoo
-部署在自己的服务器上，这里可以填入固定 IP 地址。点击 Confirm 保存</li>
-<li>在 Database 页面点击 Connect，连接方式选择
-Drivers，并记录数据库连接字符串，请将连接字符串中的
-<code>&lt;username&gt;:&lt;password&gt;</code> 修改为刚刚创建的数据库
-<code>用户名:密码</code>。</li>
-<li>默认的连接字符串没有指定数据库名称，Twikoo 会连接到默认的名为
-<code>test</code> 的数据库。如果需要在同一个 MongoDB
-里运行其他业务或供多个 Twikoo 实例使用，建立加入数据库名称并配置对应的
-ACL。</li>
+<li><strong>加载纹理</strong>：<code>sf::Sprite</code>
+本身并不存储纹理，它引用 <code>sf::Texture</code>
+对象来显示图像。因此，你首先需要创建一个 <code>sf::Texture</code>
+对象，并加载一张图片（纹理）。然后将这张纹理设置给
+<code>sf::Sprite</code> 对象。</li>
+<li><strong>调整位置和缩放</strong>：你可以通过 <code>sf::Sprite</code>
+提供的函数来调整图片的位置、旋转、缩放等。这样就可以控制纹理的显示方式。</li>
 </ol>
-<h1
-id="使用netlify部署twikoojstwikoo-netlify-deploy-twikoo-to-netlify">使用Netlify部署<a
-target="_blank" rel="noopener" href="https://github.com/twikoojs/twikoo-netlify">twikoojs/twikoo-netlify:
-Deploy twikoo to Netlify</a></h1>
+<h1 id="section">11.13</h1>
+<p>配好了环境，SFML需要：</p>
+<ul>
+<li>下载</li>
+<li>设置项目的附加lib和include，还有链接的文件，再把dll文件复制到x64下的debug。</li>
+</ul>
+<p>把图片准备好，地图后景和前景。</p>
+<p>人物目前暂定就itachi、garra跟一护，特效和人物动作都齐全，鸣人的三段变身缺第三段变身的素材，第二段的缺技能特效。</p>
 <blockquote>
-<p>原文链接：<a
-target="_blank" rel="noopener" href="https://twikoo.js.org/backend.html#netlify-部署">云函数部署 |
-Twikoo 文档</a>。推荐阅读原文</p>
+<p>地图得做视差滚动，看是直接贴图还是以材质形式贴上去</p>
 </blockquote>
-<p>到原文第9步后，根据自己设置的域名得到环境ID（<code>envId</code>）：<code>https://你设置的site name.netlify.app/.netlify/functions/twikoo</code></p>
-<h1 id="修改_config.fluid.yml文件">修改_config.fluid.yml文件</h1>
-<p>打开本地的_config.fluid.yml文件，Ctrl+F搜索twikoo，找到：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">comments:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment"># 指定的插件，需要同时设置对应插件的必要参数</span><br>  <span class="hljs-comment"># The specified plugin needs to set the necessary parameters at the same time</span><br>  <span class="hljs-comment"># Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">twikoo</span><br></code></pre></td></tr></table></figure>
-<p>在<code>type</code>处填写"twikoo"。</p>
-<p>再Ctrl+F搜索twikoo，找到：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Twikoo</span><br><span class="hljs-comment"># 支持腾讯云、Vercel、Railway 等多种平台部署</span><br><span class="hljs-comment"># Based on Tencent CloudBase</span><br><span class="hljs-comment"># See: https://twikoo.js.org</span><br><span class="hljs-attr">twikoo:</span><br>  <span class="hljs-attr">envId:</span> <br></code></pre></td></tr></table></figure>
-<p>在<code>envId</code>处填写上面的<code>https://你设置的site name.netlify.app/.netlify/functions/twikoo</code></p>
-<p>最后，在需要添加评论的页面首部添加<code>comment: 'twikoo'</code>即可为页面添加底部评论区。</p>
-<p>也可以在<code>_config.fluid.yml</code>里面设置，方法为：在对应页下的comments下将enable设为true，type设为twikoo。</p>
-<p>比如，为关于页添加评论，就在<code>/source/about/index.md</code>的首部加一行<code>comments: 'twikoo'</code>，或者在<code>_config.fluid.yml</code>里设置：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">about:</span><br>  <span class="hljs-attr">comments:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">twikoo</span><br></code></pre></td></tr></table></figure>
-<p>(不建议直接cv，如果不知道啥是yml就先搜搜，然后就懂了)</p>
-<p>至此，部署成功，刷新博客后测试效果吧！</p>
-<h1 id="后续设置及版本更新">后续设置及版本更新</h1>
-<p>部署好之后，打开博客中任意一个带有评论的页面，会看见右下角有一个齿轮图标，如果没有就在昵称栏输入任意字符并回车就会出现。然后进入管理区，先设置密码，然后进去根据指示设置就可以了。</p>
+<h6 id="小坑">小坑</h6>
+<p>visual studio的相对路径是以sln所在的目录开始的，不是exe的。</p>
+<h1 id="section-1">11.14</h1>
+<ul>
+<li>调好窗口大小</li>
+<li>贴好图片</li>
+<li>放个人物上去，先左右，再上下，根据人物的位置实现地图视差滚动</li>
+<li>实现地图的高台站立</li>
+</ul>
+<p>只有一张地图？先弄好一个地图吧，记得面向对象，后面才好换地图和人物。</p>
+<p>软件工程起作用了，不能直接开始写，不然就是堆在一个文件里了，得OOP，就要先设计好整体的架构，先整个类图出来。</p>
+<p>暂定Game、Character分Player，Enemy、Map、Platfrom、SoundManager、GameClock、Effect这几个类，共同组成Game大类（感觉要重构，一开始就设计好太难了，软件工程上是怎么敏捷开发的呢？）</p>
 <blockquote>
-<p>twikoo的指示写得很好👍，应该都看得懂</p>
+<ul>
+<li>远景永远不动</li>
+<li>在一定距离内，窗口不缩放</li>
+<li>角色尝试分离并离开窗口，窗口放大以装下角色，同时窗口被拖动</li>
+<li>窗口达到最大放大程度，不再放大，同时限制角色离开窗口</li>
+<li>角色靠近，窗口缩小，窗口两侧与角色的间距不变(约1/10宽度，平滑)，直到进入一定距离，缩放达到最大程度，角色很靠近。</li>
+</ul>
 </blockquote>
-<p>版本更新方法见：<a
-target="_blank" rel="noopener" href="https://twikoo.js.org/update.html#针对-netlify-部署的更新方式">版本更新
-| Twikoo 文档</a></p>
+<p>搜了一下，这可以叫盒子模型，SFML正好有机制能够实现这种类似于有一个镜头的逻辑，叫做“视图”。先学习一下。</p>
+<p>引入视图，实现大地图固定绘制，移动视图来实现镜头感</p>
+<p>视图有最小尺寸和最大尺寸，最大会反过来限制人物的位置，但是视图的坐标好像和实际2D空间的坐标不一致，写写停停没时间了，调试之前还需要初始化人物和视图的位置，但是已经初步完成了视图聚焦图像的一部分，只不过背景没固定，前景没铺开。</p>
+<p><img
+src="https://s3.bmp.ovh/imgs/2024/11/14/17afd9dcd1208c8d.png" srcset="/img/loading.gif" lazyload /></p>
+<p>明天继续</p>
+<p>本周计划：</p>
+<p><strong>素材统计整理、基础动态开发</strong></p>
+<p>确定要做的人物，根据游戏原型收集整理好所需的所有素材。</p>
+<p>确定要做的地图，处理图片，规划好地图的站立位和尺寸，再处理人物图片的尺寸大小，保证比例正确</p>
+<p>设计连招，参考原型的键位，将技能特效图片按照招式分开保存</p>
+<p>完成地图开发，实现各种人物的普通移动（左右走、跑、跳跃、二段跳、站到屋顶、冲刺），实现部分人物的动态效果（静止呼吸动态、跑动动态、跳跃姿态、冲刺姿态、招式动态）</p>
 
                 
               </div>
@@ -413,7 +391,9 @@ target="_blank" rel="noopener" href="https://twikoo.js.org/update.html#针对-ne
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
+        <a href="/tags/SFML/" class="print-no-link">#SFML</a>
+      
+        <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" class="print-no-link">#游戏开发</a>
       
     </div>
   
@@ -425,8 +405,8 @@ target="_blank" rel="noopener" href="https://twikoo.js.org/update.html#针对-ne
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>在hexo fluid主题下以Netlify方式添加twikoo评论插件</div>
-      <div>https://novelyear.github.io/2024/11/05/在hexo-fluid主题下添加twikoo评论插件/</div>
+      <div>bvn过程记录</div>
+      <div>https://novelyear.github.io/2024/11/13/bvn过程记录/</div>
     </div>
     <div class="license-meta">
       
@@ -439,7 +419,7 @@ target="_blank" rel="noopener" href="https://twikoo.js.org/update.html#针对-ne
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月6日</div>
+          <div>2024年11月14日</div>
         </div>
       
       
@@ -470,18 +450,12 @@ target="_blank" rel="noopener" href="https://twikoo.js.org/update.html#针对-ne
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/13/bvn%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="bvn过程记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">bvn过程记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/10/10/%E7%82%B9%E8%AF%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="点评的缓存问题">
-                        <span class="hidden-mobile">点评的缓存问题</span>
+                      <a href="/2024/11/05/%E5%9C%A8hexo-fluid%E4%B8%BB%E9%A2%98%E4%B8%8B%E6%B7%BB%E5%8A%A0twikoo%E8%AF%84%E8%AE%BA%E6%8F%92%E4%BB%B6/" title="在hexo fluid主题下以Netlify方式添加twikoo评论插件">
+                        <span class="hidden-mobile">在hexo fluid主题下以Netlify方式添加twikoo评论插件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
