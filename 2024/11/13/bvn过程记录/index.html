@@ -26,12 +26,14 @@
 <meta property="og:site_name" content="novelyear&#39;s home">
 <meta property="og:description" content="知识点记录 sf::Vector2f 是表示 2D 坐标的标准方式，浮点数可以比整数提供更精确的位置信息，这对平滑的动画和逐帧更新很重要。尤其是角色的运动可能会发生缓慢变化或加速度变化（如跳跃、下落），这些变化用浮点数表示更准确。 12345sf::Vector2f position(100.0f, 200.0f); &#x2F;&#x2F; 初始位置sf::Vector2f velocity(0.5f, -">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png">
 <meta property="article:published_time" content="2024-11-13T08:35:24.000Z">
-<meta property="article:modified_time" content="2024-11-16T14:26:01.049Z">
+<meta property="article:modified_time" content="2024-11-18T13:26:48.303Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="SFML">
 <meta property="article:tag" content="游戏开发">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png">
   
   
   
@@ -259,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.4k 字
+          3.7k 字
         
       </span>
     
@@ -311,7 +313,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月16日 晚上
+                    本文最后更新于 2024年11月18日 晚上
                   
                 
               </p>
@@ -453,12 +455,77 @@ src="https://s3.bmp.ovh/imgs/2024/11/15/bcdd7d3e0c3d5c2f.png" srcset="/img/loadi
 <li>重构完贴图失败，原因未知——Texture用了个局部变量，对SFML的机制不了解，set给sprite的并不是sprite保存的，如果texture被释放，sprite的纹理就没了。</li>
 <li>运动出问题，左右走可以，跳可以，跑跳就会直接飞天——状态机没设置好</li>
 </ul>
+<p>状态转移的时候还需要更谨慎和精细，最好能把状态转移都集中到一个地方，但是键盘事件处理和位置信息处理分别在process和update层，没法集中，也许可以改架构。</p>
+<p>明天再写。</p>
+<h1 id="section-4">11.17</h1>
+<p>贴图基本完成，接下来是：</p>
+<p>方向：</p>
+<p><del>引入敌人==完善双角色的视图逻辑和边界设置==设计人物作为敌人时的逻辑</del>==方向状态转移==方向变化时镜像素材==方向</p>
+<blockquote>
+<p>确实是改一个小功能就要大改整个项目🥲</p>
+</blockquote>
+<p>敌人如何行动呢？要想象是另一个玩家在与我对战，他会如何行动，我要为他设计操作接口。</p>
+<p>玩游戏的流程是：</p>
+<p>看画面（获取地图、敌方信息）==&gt;心中指定策略（根据信息，进入状态机转移状态）==&gt;按键控制，实施策略（敌方调用控制方法）——&gt;进入update，使行为真正实施到游戏系统中——&gt;绘制画面==&gt;重新循环</p>
+<p>所以，敌方的获取信息和行为的状态机都放在process层，敌方需要map信息和player信息，凡是在画面上能展示的，敌方都能够获取。</p>
+<p>此时敌方已经不仅仅是enemy了，而是另一个更类人的事物，于是新建类<code>AIController</code>表示与玩家对战的智能，该智能操纵Game中的enemy与我操纵的player对战。</p>
+<blockquote>
+<p>为了打字简单，命名为Controller好了</p>
+</blockquote>
+<p>经过：</p>
+<p>引入敌人、完善双角色的视图逻辑和边界设置、设计人物的方向状态转移、方向变化时镜像素材</p>
+<p>最终实现了人物自动面对面，以下是错误示范：</p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png" srcset="/img/loading.gif" lazyload
+alt="闹别扭但不愿打架的Gaaras" />
+<figcaption aria-hidden="true">闹别扭但不愿打架的Gaaras</figcaption>
+</figure>
+<p>然后需要：</p>
+<ul>
+<li>做完地图</li>
+<li>做更多的人物</li>
+</ul>
+<h1 id="section-5">11.18</h1>
+<p>碰撞检测：</p>
+<ul>
+<li>人物与人物——player和enemy都需要互相判断，或者先判断的传递结果给另一个</li>
+<li>人物与平板——player和enemy都需要与所有的platform判断是否在其上</li>
+<li>人物与视图边界——视图会获取player和enemy的坐标动态扩大，player和enemy也会根据视图限制运动</li>
+<li>人物与特效——特效类尚未开发，暂时忽略</li>
+</ul>
+<p>都需要在update层判断。都是人物的，都传给人物的update</p>
+<p>似乎原游戏存在重量，人物相推速度变化不一致，有的减半，有的更慢
+这里都设置为一样的重量，如果有人物挡道，则速度减半</p>
+<h5 id="人物碰撞">人物碰撞：</h5>
+<ul>
+<li>从垂直方向碰撞，依据相对位置互斥，直到无重叠，各自垂直速度不变</li>
+<li>从水平方向碰撞
+<ul>
+<li>如果碰撞方有速度，则减半，同时被撞方互斥，与碰撞方一起运动，直到不重叠</li>
+<li>如果碰撞方无速度，依据相对位置互斥，直到无重叠</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>角色互斥效果类似于引力和库仑力，与距离平方成反比，越近互斥速度越快</p>
+<p>因碰撞产生的运动不改变当前运动状态，比如正在站立或跳跃，被碰撞获得水平速度，不会转移为running状态，因此贴图组不变</p>
+</blockquote>
+<p>🤣🤣🤣，如果我闲的没事的话，一定会录个gif贴出来，照着引力公式写，结果写出楞次定律的效果了，来拒去留🤣。（没有在消除碰撞后消除掉加速度）</p>
+<p><del>为了测效果，一不小心打了一个多小时，原游戏的人机也没那么厉害，但是也足够厉害了</del></p>
+<p>平台的判定有问题，站上去就被锁住不能离开了，移速也变慢了，应该还是状态转移的错误：必须在站立或跑动状态下离开平台才转移为下落/跳跃状态。再将按键效果的实施提前到平台效果前，并且如果还有上升速度，就不检测平台。这样就能丝滑地飞檐走壁啦！</p>
+<p>继续搞定人物相斥的功能：在速度生效后取消掉速度就可以了：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs llvm">position.<span class="hljs-keyword">x</span> +<span class="hljs-operator">=</span> velocity.<span class="hljs-keyword">x</span><span class="hljs-comment">;</span><br>velocity.<span class="hljs-keyword">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">;// 取消掉速度</span><br></code></pre></td></tr></table></figure>
+<p>然后把系数调大一点，看似完成，实际有大bug，当把对方推到角落后，斥力竟失效了，待越过对方，竟直接将对方弹射出去?
+!😭</p>
+<p>原因未知，把update的顺序调整了一下就过了，似乎是智能指针的问题，前一轮循环赋的速度，到下一轮循环就没了，不得已只能在同一轮循环中处理掉碰撞产生的速度。</p>
+<p>之前用队列替代即时检测实现二段跳，但是现在需要检测多键了，事件队列没办法检测多键，而且改为即时检测多键似乎也有点问题，要测试一下<strong>即时检测多键的可行性</strong>和<strong>队列检测单键+状态转移实现多键操作的可行性</strong>。</p>
+<p>唉，时间好紧张啊，还在拖延浪费时间，要抓紧了，功能还没实现完呢。。</p>
+<hr />
 <p>本周计划：</p>
 <p><strong>素材统计整理、基础动态开发</strong></p>
-<p>确定要做的人物，根据游戏原型收集整理好所需的所有素材。</p>
+<p><del>确定要做的人物，根据游戏原型收集整理好所需的所有素材。</del></p>
 <p><del>确定要做的地图，处理图片，规划好地图的站立位和尺寸，再处理人物图片的尺寸大小，保证比例正确</del></p>
-<p>设计连招，参考原型的键位，将技能特效图片按照招式分开保存</p>
-<p>完成地图开发，实现各种人物的普通移动（左右走、跑、跳跃、二段跳、站到屋顶、冲刺），实现部分人物的动态效果（静止呼吸动态、跑动动态、跳跃姿态、冲刺姿态、招式动态）</p>
+<p><del>设计连招，参考原型的键位，将技能特效图片按照招式分开保存</del></p>
+<p>完成地图开发，实现各种人物的普通移动（<del>左右走、跑、跳跃、二段跳、站到屋顶</del>、冲刺），实现部分人物的动态效果（<del>静止呼吸动态、跑动动态、跳跃姿态</del>、冲刺姿态、招式动态）</p>
 
                 
               </div>
@@ -499,7 +566,7 @@ src="https://s3.bmp.ovh/imgs/2024/11/15/bcdd7d3e0c3d5c2f.png" srcset="/img/loadi
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月16日</div>
+          <div>2024年11月18日</div>
         </div>
       
       
