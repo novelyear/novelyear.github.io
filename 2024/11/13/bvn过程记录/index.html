@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png">
 <meta property="article:published_time" content="2024-11-13T08:35:24.000Z">
-<meta property="article:modified_time" content="2024-11-18T13:26:48.303Z">
+<meta property="article:modified_time" content="2024-11-19T13:10:13.449Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="SFML">
 <meta property="article:tag" content="游戏开发">
@@ -261,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.7k 字
+          4.4k 字
         
       </span>
     
@@ -313,7 +313,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月18日 晚上
+                    本文最后更新于 2024年11月19日 晚上
                   
                 
               </p>
@@ -518,7 +518,24 @@ alt="闹别扭但不愿打架的Gaaras" />
 !😭</p>
 <p>原因未知，把update的顺序调整了一下就过了，似乎是智能指针的问题，前一轮循环赋的速度，到下一轮循环就没了，不得已只能在同一轮循环中处理掉碰撞产生的速度。</p>
 <p>之前用队列替代即时检测实现二段跳，但是现在需要检测多键了，事件队列没办法检测多键，而且改为即时检测多键似乎也有点问题，要测试一下<strong>即时检测多键的可行性</strong>和<strong>队列检测单键+状态转移实现多键操作的可行性</strong>。</p>
-<p>唉，时间好紧张啊，还在拖延浪费时间，要抓紧了，功能还没实现完呢。。</p>
+<p>连续按键盘间隔一般为0.1秒，而当前的帧率，每0.1秒平均有90帧，也就是90次主循环，垂直速度减去90次GRAVITY，那么只需要在按下K时限制垂直速度必须小于
+<span class="math inline">\(v_{init}-90\times g\)</span>
+即可，若大于则不执行逻辑。</p>
+<p>判断完状态合法后，让纵坐标下移平板碰撞误差多一点的距离即可：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Character::down</span><span class="hljs-params">()</span> </span>&#123;<br>	<span class="hljs-keyword">if</span> (currentState == CharacterState::Stand || currentState == CharacterState::Running) &#123;<br>		currentState = CharacterState::Jumping;<br>		currentFrame = <span class="hljs-number">0</span>;<br>		position.y += TOLERANCE + <span class="hljs-number">0.01f</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>最终还是使用即时查询，添加了防连点机制，队列暂时舍弃。</p>
+<h1 id="section-6">11.19</h1>
+<p>注意到程序运行时电脑很烫，目前没有限制帧率，都是把核显跑满的，切换Nvidia的独显也是跑满，10秒钟就70度了，风扇呼呼转。但是限制帧率后，当前的数值就全乱了，全部开了慢速，限制100帧都还是慢。暂时不调整，后面加了操作可能帧率还会降，到时候快写完了再限制帧率调整数值。</p>
+<p>找到了原游戏的仓库，从里面找到了游戏的源码和资源，源码是用ActionScript写的，规模比较庞大，借鉴难度可能和自己写差不多，于是放弃借鉴。</p>
+<p>经过探索，发现游戏的人物资源等都是.swf文件，用于Flash的，于是下载了个swf的反编译工具JPEX，把人物素材提取出来，所幸素材比较齐全，人物、特效、音效、图像都在里面，不过普通的通用灰尘特效和冲刺特效没有。</p>
+<p>里面的图片相对分散，缺乏组织和顺序，所以从sprite里提取，似乎每个人物包都会有一个展示所有操作的sprite动画，包含一千多张png图片，导出后发现尺寸很怪异，明明实际大小只有100<em>100左右，但是图片却是2600
+</em>
+1300那么大，所以又让GPT写了个自动裁切图片的python脚本，总算把人物素材搞齐了。<del>提取了两个人物软件就崩了啊啊啊啊</del></p>
+<p>然后需要给素材分好组，确定是什么操作。</p>
+<p>分组时突然发现，游戏实现前后摇的方法竟然是插入连续相同帧，比如普攻3段后有后摇，在普攻3段后就会有连续多张相同姿势的帧。甚至频闪效果都是一帧有一帧无来实现的</p>
+<p>所以，也许可以以贴图播放时间来决定状态转移，而不是以状态转移来决定贴图变化。</p>
+<p>大招的束缚效果是否被防御、是否命中，效果都会不同，还是需要根据状态来决定贴图。</p>
+<p>那么至此这周的人物就算基本完成了，差个冲刺姿态和招式动作，加个<code>vector&lt;sf::Texture&gt;</code>和配套的贴图切换case、按键控制就行。</p>
 <hr />
 <p>本周计划：</p>
 <p><strong>素材统计整理、基础动态开发</strong></p>
@@ -566,7 +583,7 @@ alt="闹别扭但不愿打架的Gaaras" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月18日</div>
+          <div>2024年11月19日</div>
         </div>
       
       
