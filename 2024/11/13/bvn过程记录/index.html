@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png">
 <meta property="article:published_time" content="2024-11-13T08:35:24.000Z">
-<meta property="article:modified_time" content="2024-11-19T13:10:13.449Z">
+<meta property="article:modified_time" content="2024-11-20T15:44:10.511Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="SFML">
 <meta property="article:tag" content="游戏开发">
@@ -261,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4.4k 字
+          5.1k 字
         
       </span>
     
@@ -313,7 +313,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月19日 晚上
+                    本文最后更新于 2024年11月20日 晚上
                   
                 
               </p>
@@ -536,13 +536,34 @@ alt="闹别扭但不愿打架的Gaaras" />
 <p>所以，也许可以以贴图播放时间来决定状态转移，而不是以状态转移来决定贴图变化。</p>
 <p>大招的束缚效果是否被防御、是否命中，效果都会不同，还是需要根据状态来决定贴图。</p>
 <p>那么至此这周的人物就算基本完成了，差个冲刺姿态和招式动作，加个<code>vector&lt;sf::Texture&gt;</code>和配套的贴图切换case、按键控制就行。</p>
+<h1 id="section-7">11.20</h1>
+<p>整理好素材，分门别类，然后写好loadImage函数，注意文件前缀常数化和文件下图片数量，可以问问GPT有没有什么更好的load方式。</p>
+<blockquote>
+<p>保存了目前能运行的分支，但是git操作还是不熟练，又出问题了，两个平行的分支竟然冲突了，合并来合并去，结果推送不上去了QAQ。</p>
+</blockquote>
+<p>GPT写了更集成的load方式，但是load进去之后，之前想到的问题出现了，原本的素材图像很大，播放时人物始终在中间，位置没有动。如果自动裁剪之后，因为坐标始终设置为底部中间，所以人物就无法保证在中间了，要等比例裁剪才行，不然素材对不齐，白整了一天啊😭。</p>
+<p>重来：先把素材导出，然后确定裁剪方法，从所有等大小图片中确定一个相对原点，程序中都以这个点为参照点，素材都是朝右的，所以以左下角为参照点，右边有图像就保留，没有就截掉。对应地，程序中的镜像逻辑也需要修改，要保证镜像后参照点位置不变，不能转向后发生突变。</p>
+<p>裁剪恐怕需要针对每张图片做定制化方案了，只定制了stand、animation、run。感觉工作量有点大，要简化，不然整理素材都得两三天。还要好好设计一下裁剪的算法</p>
+<p>走路的时候突然有思路了：</p>
+<ul>
+<li>仍然采用自动裁剪空白区域的脚本，保留原图片全部的有效信息，但<strong>同时要记录中心点在裁剪后图片的相对位置</strong>（依照SFML的源点定义记录，比如sprite采用左上角作为原点，就记录中心点相对于图片左上角的坐标），依照图片的文件名序号，依次保存在文件中（txt、json、甚至excel等等）</li>
+<li>在Character类中仍然保留一堆Texture，加载方式改变，不分开调用函数了，因为所有的图片都不会再细分各种文件夹，而是在类中使用区间来指定图片，比如[1,
+9]是stand状态的图片，就加载给standTexture.</li>
+<li>最最核心的：<strong>每个Texture都要配一个Vector2f，即中心点的相对坐标</strong>，从第一步产生的文件里面读取出来，用于sprite纹理的原点重设，从而实现人物的原点不变，就解决了素材错位问题。</li>
+<li>每个子类仍然需要重写loadImage，可以不重写，但要单独指定每个子类各个操作对应的素材号区间。</li>
+</ul>
 <hr />
-<p>本周计划：</p>
-<p><strong>素材统计整理、基础动态开发</strong></p>
-<p><del>确定要做的人物，根据游戏原型收集整理好所需的所有素材。</del></p>
-<p><del>确定要做的地图，处理图片，规划好地图的站立位和尺寸，再处理人物图片的尺寸大小，保证比例正确</del></p>
-<p><del>设计连招，参考原型的键位，将技能特效图片按照招式分开保存</del></p>
-<p>完成地图开发，实现各种人物的普通移动（<del>左右走、跑、跳跃、二段跳、站到屋顶</del>、冲刺），实现部分人物的动态效果（<del>静止呼吸动态、跑动动态、跳跃姿态</del>、冲刺姿态、招式动态）</p>
+<p>11周计划：</p>
+<p>剩余冲刺操作</p>
+<p>12周计划（托大了，恐怕完不成）</p>
+<p><strong>招式开发</strong></p>
+<p>完成所有角色的基本动态效果</p>
+<p>为每个人物开发不同的招式，完成特效贴图和招式动态</p>
+<p>完成不同招式特效与人物的碰撞检测</p>
+<p>完成<strong>技能条</strong>的逻辑（造成伤害获取技能条、大招和变身消耗技能条）</p>
+<p>完成部分角色变身的开发，变身之后能够使用另一套技能</p>
+<p>完成招式的音效（释放语音、释放音效、打击音效）</p>
+<p>尝试完成技能命中打击感的的“卡肉”开发（震屏、顿帧等）</p>
 
                 
               </div>
@@ -583,7 +604,7 @@ alt="闹别扭但不愿打架的Gaaras" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月19日</div>
+          <div>2024年11月20日</div>
         </div>
       
       
