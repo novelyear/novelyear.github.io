@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png">
 <meta property="article:published_time" content="2024-11-13T08:35:24.000Z">
-<meta property="article:modified_time" content="2024-11-20T15:44:10.511Z">
+<meta property="article:modified_time" content="2024-11-21T14:54:01.376Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="SFML">
 <meta property="article:tag" content="游戏开发">
@@ -261,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.1k 字
+          5.5k 字
         
       </span>
     
@@ -313,7 +313,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月20日 晚上
+                    本文最后更新于 2024年11月21日 晚上
                   
                 
               </p>
@@ -552,6 +552,22 @@ alt="闹别扭但不愿打架的Gaaras" />
 <li>最最核心的：<strong>每个Texture都要配一个Vector2f，即中心点的相对坐标</strong>，从第一步产生的文件里面读取出来，用于sprite纹理的原点重设，从而实现人物的原点不变，就解决了素材错位问题。</li>
 <li>每个子类仍然需要重写loadImage，可以不重写，但要单独指定每个子类各个操作对应的素材号区间。</li>
 </ul>
+<h1 id="section-8">11.21</h1>
+<p>裁剪好了图片，得到了相对坐标表。然后要得到各动作的图号区间，改写load方法，通过表重设sprite的origin。又有问题，图和图号没建立关系，load进程序后就没有图号了，关联就没了。</p>
+<p>还得重构：需要建立“状态-图号区间”、“图号-图片”、“图号-原点坐标”的关系，把图片都拉通存在一个vector里，stand、jump都改<code>pair&lt;int, int&gt;</code>，origin不变。得到状态==&gt;索引图号==&gt;得到图片和原点==&gt;完成sprite更新</p>
+<p>好消息：完成了</p>
+<p>坏消息：原点坐标有误差，还是会抽搐，而且原点不是脚底，平面高度都错了</p>
+<p>😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭</p>
+<p>太难了！！素材整理都花了两天时间了😭😭😭</p>
+<p>GPT真神了！向其寻求减一，他说可能是同一帧内多次调用setOrigin方法可能导致异常，然后我把每帧默认调用的setOrigin放到了帧切换里面，就不抖动了！！太好啦！</p>
+<p>经过这一通重构，update已经完全与人物子类解耦，直接提升到Character类层级，现在人物子类实现了0个接口，不过还是需要实现的，毕竟技能数值效果不同，发生的位移也不同。</p>
+<p>不错，之后需要：</p>
+<ul>
+<li>完善状态枚举，完善状态转移，完善状态的引入</li>
+<li>新增人物</li>
+<li>新增查克拉条和气条</li>
+<li></li>
+</ul>
 <hr />
 <p>11周计划：</p>
 <p>剩余冲刺操作</p>
@@ -561,9 +577,9 @@ alt="闹别扭但不愿打架的Gaaras" />
 <p>为每个人物开发不同的招式，完成特效贴图和招式动态</p>
 <p>完成不同招式特效与人物的碰撞检测</p>
 <p>完成<strong>技能条</strong>的逻辑（造成伤害获取技能条、大招和变身消耗技能条）</p>
-<p>完成部分角色变身的开发，变身之后能够使用另一套技能</p>
-<p>完成招式的音效（释放语音、释放音效、打击音效）</p>
-<p>尝试完成技能命中打击感的的“卡肉”开发（震屏、顿帧等）</p>
+<p>完成部分角色变身的开发，变身之后能够使用另一套技能{这个略复杂，属于锦上添花，暂时不搞，后面有时间再加}</p>
+<p>完成招式的音效（释放语音、释放音效、打击音效）{下周吧，这周把视觉效果弄好就行了}</p>
+<p>尝试完成技能命中打击感的的“卡肉”开发（震屏、顿帧等）{毫无思路，下周吧}</p>
 
                 
               </div>
@@ -604,7 +620,7 @@ alt="闹别扭但不愿打架的Gaaras" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月20日</div>
+          <div>2024年11月21日</div>
         </div>
       
       
