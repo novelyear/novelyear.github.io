@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png">
 <meta property="article:published_time" content="2024-11-13T08:35:24.000Z">
-<meta property="article:modified_time" content="2024-11-21T14:54:01.376Z">
+<meta property="article:modified_time" content="2024-11-23T15:42:21.550Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="SFML">
 <meta property="article:tag" content="游戏开发">
@@ -261,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.5k 字
+          6.2k 字
         
       </span>
     
@@ -313,7 +313,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月21日 晚上
+                    本文最后更新于 2024年11月23日 晚上
                   
                 
               </p>
@@ -561,13 +561,37 @@ alt="闹别扭但不愿打架的Gaaras" />
 <p>太难了！！素材整理都花了两天时间了😭😭😭</p>
 <p>GPT真神了！向其寻求减一，他说可能是同一帧内多次调用setOrigin方法可能导致异常，然后我把每帧默认调用的setOrigin放到了帧切换里面，就不抖动了！！太好啦！</p>
 <p>经过这一通重构，update已经完全与人物子类解耦，直接提升到Character类层级，现在人物子类实现了0个接口，不过还是需要实现的，毕竟技能数值效果不同，发生的位移也不同。</p>
-<p>不错，之后需要：</p>
+<h1 id="section-9">11.22</h1>
+<p>完成其他任务，搁置一天。</p>
+<h1 id="section-10">11.23</h1>
+<p>晚上七点才开始，事情好多，不能像上周那样90%的空余时间都投在这上面了😰</p>
+<p>之后的开发顺序是：</p>
 <ul>
-<li>完善状态枚举，完善状态转移，完善状态的引入</li>
-<li>新增人物</li>
-<li>新增查克拉条和气条</li>
-<li></li>
+<li>完成冲刺L</li>
+<li>完成各种招式的动画</li>
+<li>完成招式与敌方的碰撞检测</li>
+<li>引入技能条</li>
 </ul>
+<p>动画播放==&gt;无法控制+前后摇+无敌时间==&gt;冲刺</p>
+<p>冲刺不能直接把x坐标加减，只是在几帧之内<strong>脱离键盘控制快速移动</strong>，中途以空白帧表示瞬移，实际仍然在移动。关键要实现状态的中断和转移，之后释放大招时也会有中途无法控制的时候。</p>
+<p>经过实测，I的优先级最高，可以打断冲刺，复合键位则看绝对先后顺序，SL是幽步，中途不会被任何操作打断。但是我不开发幽步，所以废置SL键位，为了简化开发，放弃I打断L的操作。</p>
+<p>无法控制状态为Default，脱离于常规状态，此状态下无法通过键盘操控角色。</p>
+<blockquote>
+<p>正在变复杂和混乱，我想到可以用实现状态机的一些C++库来开发游戏的状态机，这样在后面开发敌方状态机的时候可能会更容易更清晰一些。</p>
+<p>但是学习状态机的库需要时间，还是学一下吧，磨刀不误砍柴工，也许这会极大简化后续开发，也许这只是进一步复杂化问题，总之，先看一下，今晚的时间就用于学习C++的状态机相关API好了。</p>
+</blockquote>
+<p>整体上看，改变人物状态的地方有：</p>
+<ul>
+<li>键盘控制（ADJKUIS）</li>
+<li>2D世界的物理特性（下落和站立）</li>
+<li>敌方的行为（攻击命中）</li>
+</ul>
+<p>而角色的position、velocity等在状态不变时也会改变，与状态无关，状态用于控制贴图、限制键盘操作逻辑。贴图有单独的方法，输入状态，输出贴图；键盘也是，输入当前状态和键盘输入，输出velocity变化以及下一步状态。</p>
+<p>开始状态为Stand；</p>
+<p>AD键控制左右移动，如果当前在平台上，则切换为Running状态，动画改变，如果在空中处于跳跃Jump或下落Fall状态，则不改变状态，只造成位移效果。释放AD键则取消位移效果，同时离开Running状态。</p>
+<p>K键单独按下且跳跃次数有剩余且当前状态为Stand或Running则进入Jump状态，同时获得向上的速度</p>
+<p>SK同时按下且位于平台上且处于Stand或Running状态时，转为Fall状态，发生向下的极短位移以脱离平台向下坠落</p>
+<p>感觉状态机可行，结果导入库的时候寄了，明明说的是导入hpp文件就行，结果导进去一堆报错，心力交瘁啊，睡觉听歌，明天再来。</p>
 <hr />
 <p>11周计划：</p>
 <p>剩余冲刺操作</p>
@@ -620,7 +644,7 @@ alt="闹别扭但不愿打架的Gaaras" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年11月21日</div>
+          <div>2024年11月23日</div>
         </div>
       
       
