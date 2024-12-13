@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/11/17/dd1b87ffe84fa53d.png">
 <meta property="article:published_time" content="2024-11-13T08:35:24.000Z">
-<meta property="article:modified_time" content="2024-12-08T07:37:48.551Z">
+<meta property="article:modified_time" content="2024-12-12T13:35:34.358Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="SFML">
 <meta property="article:tag" content="游戏开发">
@@ -261,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          8.6k 字
+          9.1k 字
         
       </span>
     
@@ -313,7 +313,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年12月8日 下午
+                    本文最后更新于 2024年12月12日 晚上
                   
                 
               </p>
@@ -648,24 +648,66 @@ alt="闹别扭但不愿打架的Gaaras" />
 <p>由于只写两个角色，所以只得<u>放弃通用性</u>，为两个角色针对性地写对于另一个角色的碰撞判定了。</p>
 <h1 id="section-23">12.8</h1>
 <p>写完了全部的技能效果。测试一下，存在BUG，<strong>在NarutoS的U冲刺时如果起跳，可能会直接飞天</strong>。但是复现不是次次成功，暂时不修。</p>
-<p>开始写界面了。人物战斗先放一放。</p>
-<hr />
-<p>这周需要：</p>
+<p>至此，战斗部分基本完成。</p>
+<h1 id="section-24">12.9</h1>
+<p>开始写界面。</p>
+<p>加了个开始界面，大概能用，接下来写血条气条之类的。</p>
+<h1 id="section-25">12.10</h1>
+<p>对于UI，有固定元件和动态更新元件，固定的元件只需要在一开始设定好position，之后通过遍历绘制；动态更新的元件每次都需要根据人物状态来选择不同的sprite绘制。也许可以在动态更新的时候就保留更新的sprite，在绘制时直接绘制保存的sprite。</p>
+<h1 id="section-26">12.11</h1>
+<p>加了震屏，有视图机制，实现起来很容易，用了下事件队列，又学到了，好方法。还有打击感的暂停，暂停有：</p>
+<p>全局暂停：</p>
 <ul>
-<li><p>完成两个人物的所有操作，修复两个人物的Bug，包括招式碰撞、人物碰撞、招式特效展示、数值设置。</p></li>
-<li><p>完成游戏开始界面、选人界面、游戏结束界面</p></li>
-<li><p>完成chakra条、气条、血条展示</p></li>
-<li><p>尝试实现可控震屏和时停大招动画</p></li>
+<li>某方受击</li>
+<li>某方被击倒</li>
 </ul>
-<hr />
-<p>注意：</p>
-<p>硬编码了特效的触发帧，如果修改了section，也要同时修改特效的出发帧</p>
-<p>还需要：</p>
-<p>引入仙鸣</p>
-<p>kick落地的灰尘效果，击打特效，chakra条，血条</p>
-<p>敌方AI</p>
-<p>开始界面，选人界面</p>
-<p>音效</p>
+<p>排除性暂停：</p>
+<ul>
+<li>一方释放大招，另一方暂停，特效也暂停</li>
+</ul>
+<p>仍然采用相同的事件队列方式实现。</p>
+<p>大招时停的背景图没找到</p>
+<p>敌方AI规则：</p>
+<ul>
+<li>在同一高度
+<ul>
+<li>距离远：放U/冲刺过去/跑过去</li>
+<li>距离中：SU/U</li>
+<li>距离近：SJ/J/WJ</li>
+<li>如果是gaara，概率放WI、I，若有SI则立马释放SI</li>
+<li>如果是naruto，概率U和I，若有SI则绝对距离进了立马释放SI</li>
+</ul></li>
+<li>在不同高度
+<ul>
+<li>根据人物来：gaara
+<ul>
+<li>敌人低：WU/I/KU，或主动下落</li>
+<li>敌人高：WU/I/WJ，或主动跳跃</li>
+</ul></li>
+<li>naruto
+<ul>
+<li>敌人高：WU+WUU/SJ/WJ，或SI</li>
+<li>敌人低：KU/KI，或主动下落</li>
+</ul></li>
+</ul></li>
+<li>敌方在墙角：
+<ul>
+<li>KU连，每两套停顿一下</li>
+</ul></li>
+<li>敌我同时跳跃且位置合适：KU/KI</li>
+<li>检测到敌方攻击：概率灵敏S+SJ/SU反击</li>
+<li>敌方在空中：优先跳跃追击KU，概率使用追身技</li>
+</ul>
+<h1 id="section-27">12.12</h1>
+<p>敌方AI很难写啊，周末没写出来就改数值了。if-else凑不出来就没招了，状态机行为树也就听个乐，写不出来，代码能力太差了。</p>
+<p>用if-else凑出来的很呆，偶尔能够按我的想法打出不错的连招，但是绝大多数时候一动不动，或许可以设置一个固定的行为模式。一套打完再开另一套，有自动转向机制，不至于很呆。</p>
+<p>改成了双人的，效果很好。</p>
+<p>加了一些音效和bgm。</p>
+<p>也许，可以完工了！！！！</p>
+<p>后面修改一下飞天的bug，改一下双人的键位，把2p的键位弄好，有时间有闲心可以多写几个地图。</p>
+<p><img
+src="https://s3.bmp.ovh/imgs/2024/12/12/698013c36a3ce4d7.png" srcset="/img/loading.gif" lazyload /></p>
+<p>4503行，有效代码3839行，算是迄今为止自己写的最大的工程了。(<del>面向GPT搓的代码统计小工具，函数统计结果是错的</del>)</p>
 
                 
               </div>
@@ -706,7 +748,7 @@ alt="闹别扭但不愿打架的Gaaras" />
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年12月8日</div>
+          <div>2024年12月12日</div>
         </div>
       
       
