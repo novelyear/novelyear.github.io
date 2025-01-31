@@ -19,18 +19,18 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="JAVA学不进去，焦虑无比，于是做点其他的，搞了个华为云的免费服务器Flexus，好抠，只给一个月，想着把github page上的这个静态博客放到云上玩玩。开帖记录一下过程，也方便以后再次上云。需要：  服务器镜像：Ubuntu 20.04 已配置好的hexo博客  白嫖华为云 首先来到华为云学生服务器页面，每天9:30后能领个试用，注册华为账号，然后领取。   华为云真抠啊">
+    <meta name="description" content="2025.1.31 再次将博客放到腾讯云的服务器上，增加了一些踩坑经验  JAVA学不进去，焦虑无比，于是做点其他的，搞了个华为云的免费服务器Flexus，好抠，只给一个月，想着把github page上的这个静态博客放到云上玩玩。开帖记录一下过程，也方便以后再次上云。需要：  服务器镜像：Ubuntu 20.04 已配置好的hexo博客  白嫖华为云 首先来到华为云学生服务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo上云记录(华为云)">
 <meta property="og:url" content="http://43.143.57.238/2024/08/30/hexo%E4%B8%8A%E4%BA%91%E8%AE%B0%E5%BD%95-%E5%8D%8E%E4%B8%BA%E4%BA%91/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="JAVA学不进去，焦虑无比，于是做点其他的，搞了个华为云的免费服务器Flexus，好抠，只给一个月，想着把github page上的这个静态博客放到云上玩玩。开帖记录一下过程，也方便以后再次上云。需要：  服务器镜像：Ubuntu 20.04 已配置好的hexo博客  白嫖华为云 首先来到华为云学生服务器页面，每天9:30后能领个试用，注册华为账号，然后领取。   华为云真抠啊">
+<meta property="og:description" content="2025.1.31 再次将博客放到腾讯云的服务器上，增加了一些踩坑经验  JAVA学不进去，焦虑无比，于是做点其他的，搞了个华为云的免费服务器Flexus，好抠，只给一个月，想着把github page上的这个静态博客放到云上玩玩。开帖记录一下过程，也方便以后再次上云。需要：  服务器镜像：Ubuntu 20.04 已配置好的hexo博客  白嫖华为云 首先来到华为云学生服务">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/08/31/4c57cc38588ee8d8.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/08/31/6fe396dcfbb2f1e8.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/08/31/712404ad978ede8d.png">
 <meta property="article:published_time" content="2024-08-30T14:19:20.000Z">
-<meta property="article:modified_time" content="2024-08-31T02:30:36.086Z">
+<meta property="article:modified_time" content="2025-01-31T02:33:28.760Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +262,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.1k 字
+          1.3k 字
         
       </span>
     
@@ -314,7 +314,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月31日 上午
+                    本文最后更新于 2025年1月31日 上午
                   
                 
               </p>
@@ -322,7 +322,10 @@
             
               <div class="markdown-body">
                 
-                <p>JAVA学不进去，焦虑无比，于是做点其他的，搞了个华为云的免费服务器Flexus，<del>好抠，只给一个月</del>，想着把github
+                <blockquote>
+<p>2025.1.31 再次将博客放到腾讯云的服务器上，增加了一些踩坑经验</p>
+</blockquote>
+<p>JAVA学不进去，焦虑无比，于是做点其他的，搞了个华为云的免费服务器Flexus，<del>好抠，只给一个月</del>，想着把github
 page上的这个静态博客放到云上玩玩。开帖记录一下过程，也方便以后再次上云。需要：</p>
 <ul>
 <li>服务器镜像：Ubuntu 20.04</li>
@@ -368,24 +371,31 @@ alt="用户权限" />
 <p>创建<code>/var/www/hexo</code>目录，用于nginx托管，修改目录所有权和权限</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo mkdir -p /var/www/hexo<br><br>sudo chown -R $USER:$USER /var/www/hexo<br>sudo chmod -R 755 /var/www/hexo<br></code></pre></td></tr></table></figure>
 <h2 id="配置nginx服务默认路径">配置nginx服务默认路径</h2>
-<p>如果<code>/etc/nginx</code>下有<code>sites-enabled</code>文件夹，则编辑其下的<code>default</code>文件</p>
-<p>如果没有，则编辑<code>conf.d</code>文件夹下的<code>default.conf</code>，添加<code>root /var/www/hexo</code>，位置如下，再删掉location里的proxy的第一行<code>proxy_pass  http://127.0.0.1:9001</code>;，取消转发到9001端口。</p>
+<p><strong>如果</strong><code>/etc/nginx</code>下有<code>sites-enabled</code>文件夹，则编辑其下的<code>default</code>文件</p>
+<p><strong>如果没有</strong>，则编辑<code>conf.d</code>文件夹下的<code>default.conf</code>，添加<code>root /var/www/hexo</code>，位置如下，再删掉location里的proxy的第一行<code>proxy_pass  http://127.0.0.1:9001</code>;，取消转发到9001端口。</p>
 <blockquote>
 <p>因为华为云默认安装一个wordpress的应用镜像，用docker
 ps就能看见，如果放着不管，直接访问ip会看见wordpress而不是自己的博客。可以禁掉docker，也可以取消掉这里的转发。</p>
 </blockquote>
 <p><img
 src="https://s3.bmp.ovh/imgs/2024/08/31/6e31c0e536710814.png" srcset="/img/loading.gif" lazyload /></p>
-<p>如果有<code>sites-enabled</code>文件夹，在<code>default</code>中如下位置添加<code>root    /var/www/hexo</code></p>
+<p><strong>如果有</strong><code>sites-enabled</code>文件夹，在<code>default</code>中如下位置添加<code>root    /var/www/hexo</code></p>
 <p><img
 src="https://s3.bmp.ovh/imgs/2024/08/31/2827648b2496da59.png" srcset="/img/loading.gif" lazyload /></p>
 <blockquote>
 <p>注意：nginx.conf里面得包含你写的default，写了就得include进去，如下：</p>
 <p><img
 src="https://s3.bmp.ovh/imgs/2024/08/31/21367481ad0f2bc1.png" srcset="/img/loading.gif" lazyload /></p>
+<p>Vhost就是Virtual
+Host，可能在这个文件内是其他名字。include后面必须要包含之前修改的文件的路径</p>
 </blockquote>
 <p>然后重启nginx服务：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo systemctl reload nginx<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>重启后可以用
+<code>sudo systemctl status nginx</code>检查nginx状态，如果是active证明启动成功，如果是failed，阅读报错信息。</p>
+<p>我第二次是默认路径写多了，提示duplicated，删掉原有的<code>root /var/www/html</code>就行</p>
+</blockquote>
 <h2 id="创建git钩子">创建Git钩子</h2>
 <p>在之前的仓库的hooks文件夹下创建一个<code>post-receive</code>钩子：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /var/repo/hexo_static.git/hooks/post-receive<br></code></pre></td></tr></table></figure>
@@ -396,7 +406,11 @@ src="https://s3.bmp.ovh/imgs/2024/08/31/21367481ad0f2bc1.png" srcset="/img/loadi
 <h2 id="拷贝密钥">拷贝密钥</h2>
 <p>回到根路径创建<code>.ssh</code>目录，进入，创建<code>authorized_keys</code>文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd /<br>sudo mkdir .ssh<br>cd /.ssh<br><br>vim authorized_keys<br></code></pre></td></tr></table></figure>
-<p>找到本地的<code>id_rsa.pub</code>文件，复制到这里，如果没权限可以进root再操作</p>
+<p>找到<strong>本地的</strong><code>id_rsa.pub</code>文件，复制到这里，如果没权限可以进root再操作</p>
+<blockquote>
+<p>本地的id_rsa.pub文件通常在<code>C:\用户\你的账户\.ssh</code>这个路径里面</p>
+<p>如果给腾讯云添加了ssh密钥，可能会导致deploy失败，我刚开始失败了，猜测是这个原因，于是在云服务器控制台解绑了ssh密钥，再次deploy，成功。</p>
+</blockquote>
 <h2 id="部署hexo项目">部署hexo项目</h2>
 <p>编辑本地hexo的<code>_config.yml</code>文件，修改两处</p>
 <ul>
@@ -404,13 +418,16 @@ src="https://s3.bmp.ovh/imgs/2024/08/31/21367481ad0f2bc1.png" srcset="/img/loadi
 <li>deploy的repo改为{用户名}<span class="citation"
 data-cites="公网ip">@公网ip</span>:/var/repo/hexo_static.git，branch改成实际的名字，main或者master</li>
 </ul>
+<blockquote>
+<p>如果不知道main还是master，可以不在_config.yml里写branch字段，会自动选择HEAD指向的分支的，或者去<code>/var/repo/hexo_static.git/HEAD</code>里看下是啥</p>
+</blockquote>
 <p>然后<code>hexo g -d</code>上传，首次会要一个yes，然后输密码</p>
 <p>上传后进入<code>/var/www/hexo</code>下查看，可以看到静态文件已经全部上传，就是本地的public文件夹里的内容。</p>
-<p>r然后在浏览器输入ip就可以访问啦！</p>
+<p>然后在浏览器输入ip就可以访问啦！</p>
 <h1 id="后续问题">后续问题</h1>
 <p>第一次上传成功，第二次上传出现</p>
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-comment">remote: error: cannot update the ref &#x27;HEAD&#x27;: unable to append to &#x27;./logs/HEAD&#x27;: Permission denied</span><br></code></pre></td></tr></table></figure>
-<p>通常是由于远程仓库中的分支或引用被锁定、权限问题，或者由于在远程仓库中有一些与本地仓库冲突的提交。但是这是个人博客，所以不会出现分支冲突，那就是权限问题，无脑加一轮权限即可简单解决：</p>
+<p>通常是由于远程仓库中的分支或引用被锁定、权限问题，或者由于在远程仓库中有一些与本地仓库冲突的提交。但是这是个人博客，所以不会出现分支冲突，那就是权限问题，无脑加一轮权限即可简单解决：(无脑勿喷＞︿＜)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">id</span> -un  <span class="hljs-comment"># 获取当前用户名</span><br><span class="hljs-built_in">id</span> -gn  <span class="hljs-comment"># 获取当前用户组</span><br><br>sudo <span class="hljs-built_in">chown</span> -R YOUR_USER:YOUR_GROUP /var/repo/hexo_static.git <span class="hljs-comment">#增加权限</span><br><span class="hljs-built_in">rm</span> -f /var/repo/hexo_static.git/.git/refs/heads/main.lock <span class="hljs-comment">#删除仓库的锁</span><br><span class="hljs-comment"># 设置目录权限为755，允许所有者读写，组和其他用户只读</span><br>sudo <span class="hljs-built_in">chmod</span> -R 755 /var/www/hexo<br></code></pre></td></tr></table></figure>
 
                 
@@ -450,7 +467,7 @@ data-cites="公网ip">@公网ip</span>:/var/repo/hexo_static.git，branch改成�
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月31日</div>
+          <div>2025年1月31日</div>
         </div>
       
       
