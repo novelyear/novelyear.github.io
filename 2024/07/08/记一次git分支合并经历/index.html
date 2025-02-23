@@ -22,7 +22,7 @@
     <meta name="description" content="本文背景 期末考完想向学长的资料公开仓库贡献一些资料，顺便帮助建设一下混个contributor当当。但是只在自己的大小号上实践过PR(pull request)操作的我头一次向别人的repo (repository)提交PR，遂记录过程中遇到的问题和解决方法，倒逼自己搞清楚其中原因。同时也作为提交PR的教程作参考。 本文关于git操作的说法偏向浅显易懂，稍有啰嗦，如有原理性错误，烦请批评">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git提交PR">
-<meta property="og:url" content="https://novelyear.github.io/2024/07/08/%E8%AE%B0%E4%B8%80%E6%AC%A1git%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E7%BB%8F%E5%8E%86/index.html">
+<meta property="og:url" content="http://43.143.57.238/2024/07/08/%E8%AE%B0%E4%B8%80%E6%AC%A1git%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E7%BB%8F%E5%8E%86/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
 <meta property="og:description" content="本文背景 期末考完想向学长的资料公开仓库贡献一些资料，顺便帮助建设一下混个contributor当当。但是只在自己的大小号上实践过PR(pull request)操作的我头一次向别人的repo (repository)提交PR，遂记录过程中遇到的问题和解决方法，倒逼自己搞清楚其中原因。同时也作为提交PR的教程作参考。 本文关于git操作的说法偏向浅显易懂，稍有啰嗦，如有原理性错误，烦请批评">
 <meta property="og:locale" content="zh_CN">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"novelyear.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"43.143.57.238","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -323,7 +323,7 @@
 request)操作的我头一次向别人的repo
 (repository)提交PR，遂记录过程中遇到的问题和解决方法，倒逼自己搞清楚其中原因。同时也作为提交PR的教程作参考。</p>
 <p>本文关于git操作的说法偏向浅显易懂，稍有啰嗦，如有原理性错误，烦请批评指正，联系方式见<a
-href="https://novelyear.github.io/about/">关于页</a>。</p>
+target="_blank" rel="noopener" href="https://novelyear.github.io/about/">关于页</a>。</p>
 <h1 id="问题描述">问题描述</h1>
 <ol type="1">
 <li><p>我在GitHub上fork了别人的仓库，然后将fork的仓库pull到本地进行修改，修改后push到fork的仓库的master分支，然后又在github上直接在main分支上新增了内容，请问我该如何将远程仓库的main上的新内容和远程仓库上master分支的内容融合，两个内容并无重合，都是新内容。如何合并分支并提交PR？</p></li>
@@ -394,7 +394,7 @@ merge，会显示冲突的文件，在本地打开文件(推荐使用vscode等�
   <div class="license-box my-3">
     <div class="license-title">
       <div>git提交PR</div>
-      <div>https://novelyear.github.io/2024/07/08/记一次git分支合并经历/</div>
+      <div>http://43.143.57.238/2024/07/08/记一次git分支合并经历/</div>
     </div>
     <div class="license-meta">
       
