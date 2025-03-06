@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>ERM++: AnImproved Baseline for Domain Generalization 阅读笔记</title>
+    <link href="/2025/03/05/25-3-5%E8%AF%BB%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/"/>
+    <url>/2025/03/05/25-3-5%E8%AF%BB%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<h1id="erm-animproved-baseline-for-domain-generalization-阅读笔记">ERM++:AnImproved Baseline for Domain Generalization 阅读笔记</h1><p>作者为PiotrTeterwak，达特茅斯学院学士，波士顿大学博士，在谷歌、苹果都工作过，发表过6篇A会，作者的个人介绍页：<ahref="https://cs-people.bu.edu/piotrt/">Piotr Teterwak</a></p><p>文章发表于ICML 2023</p><h2 id="了解到文章的途径">了解到文章的途径</h2><p>在师兄的指导下做实验验证一个方法，实验过程中接触并使用了<strong>DomainBed</strong>这一域泛化实验框架，其中包含该算法，<strong>DomainBed</strong>中很多模型的类都以ERM作为父类，而ERM++是个例外，所以对其产生兴趣，并深入阅读论文。</p><p>打算在组会上讲解这篇论文。</p><h2 id="文章解决了什么问题">文章解决了什么问题</h2><p>ERM++是文章提出的一个新基线（baseline），如上所述，DomainBed这一广泛使用的框架使用ERM作为baseline。</p><blockquote><p>baseline：指一个经过<strong>充分调优</strong>的模型，一般是一个SOTA方法，不会显著劣于现有的所有方法，是新方法的对比对象。</p></blockquote><p>然而，文章发现这个baseline其实不够充分调优，<em>似乎还有一些重要的超参数没有调</em>，会导致过拟合和灾难性遗忘</p><blockquote><p>过拟合：指在训练集上过分拟合，类似死记硬背，泛化能力大大降低，反而没有学到真正的特征，导致在测试集上效果极差，实际效果差</p><p>灾难性遗忘：在大规模数据上训练过的预训练模型对目标数据的泛化能力可能比微调之前更强，因为<strong>预训练数据的分布可能比源域数据的分布更接近目标数据的分布</strong>，如果在训练数据上进行微调，可能导致预训练模型忘记（也就是过拟合）先天的返泛化能力，导致灾难性遗忘。</p></blockquote><p>所以文章从3个方面进一步调整了ERM的参数：</p><ul><li>训练数据使用：一改原本的28分区，采用两轮pipeline（不知道咋翻译，意会吧），第一轮用验证集来选训练长度（trainlength）、学习率（learningrate，LR），然后第二轮把验证集也拿去训练，用第一轮的超参数。具体方法见后。<strong>这样增加了训练数据。</strong></li><li>初始化模型权重：觉得ResNet-50的TorchVision权重太outdated了，于是试验了其他的权重。（这里没咋看懂，看实验部分吧）</li><li>正则化：用MPA平均模型参数，再冻结预训练权重几百步（称为warmstart）。对于ResNet，使用ubn（解冻批次规范，不懂）；对于ViT，由于是transformer，用注意力调优。（没看懂怎么调优的，看代码吧）。<strong>来防止过拟合</strong></li></ul><blockquote><p>28分区：80%训练集，20%验证集，验证集用于在中途的checkpoint做测试</p><p>学习率：梯度下降的权值，学习率高，梯度下降快，容易略过最优解；学习率低，梯度下降慢，收敛慢，容易陷入局部最优。一般采用先快后慢。</p><p>train length：这里指steps。理由：<strong>To determine the traininglength</strong>, we keep training a model until it does not improveperformance on a validation set (held out from source domains)<strong>within the previous N <u>steps.</u></strong></p><p>MPA：Model Parameteraveraging，也就是把训练过程中不同步数时的模型参数求个平均，平均值不会太极端，低可能位于一个局部最优解上，所以找到的解不尖锐，更平坦，受到扰动或者变化时的影响更小，从而鲁棒性更强，<strong>平坦的最小值对应更低的泛化误差</strong></p></blockquote><p>得到新的baseline方法，称之为ERM++。解决了ERM会过拟合以及灾难性遗忘的问题。</p><h2id="作者针对这个问题是如何构建解决思路的如何想到可以这样解决的">作者针对这个问题是如何构建解决思路的？如何想到可以这样解决的？</h2><p>我是从DomainBed了解到这篇的</p><p>作者这篇已经加入到了DomainBed里面，最新的contributor都是这位作者</p><p>这篇文章后面基于ERM的实验全是用DomainBed做的，借鉴了很多DomainBed的内容</p><p>所以，我推断ERM++应该高度依赖于DomainBed那篇论文。</p><p>那么思路也由DomainBed而来，DomainBed论文中提出比ERM获得实质性的域泛化改进是有挑战的。（揭榜意图？）</p><p>DomainBed在最后提到BatchNorm会干扰域泛化算法，这可能是Unfreezing的来源。</p><p>意图分析尚不明朗，继续看</p><h2 id="更多的材料并分析">更多的材料并分析</h2><p>代码有，还没看</p><h2 id="从创新层面上为什么能发表">从创新层面上，为什么能发表</h2><p>虽然我没有觉得眼前一亮（是我太菜），但是感觉实验部分的数据挺重要，提出新baseline也很有意义，第一感觉就是工作量很足，数据很充分。</p><h2 id="方法有什么缺点">方法有什么缺点</h2><p>这真不知道了。。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>文献阅读笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>bvn总结</title>
     <link href="/2024/12/20/bvn%E6%80%BB%E7%BB%93/"/>
     <url>/2024/12/20/bvn%E6%80%BB%E7%BB%93/</url>
