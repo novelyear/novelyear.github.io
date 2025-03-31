@@ -19,15 +19,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="ERM++: AnImproved Baseline for Domain Generalization 阅读笔记 作者为Piotr Teterwak，达特茅斯学院学士，波士顿大学博士，在谷歌、苹果都工作过，发表过6篇A会，作者的个人介绍页：Piotr Teterwak 文章发表于ICML 2023 了解到文章的途径 在师兄的指导下做实验验证一个方法，实验过程中接触并使用了Domain">
+    <meta name="description" content="没什么参考意义，就是tricks堆砌，不用看            ERM++: AnImproved Baseline for Domain Generalization 阅读笔记 作者为Piotr Teterwak，达特茅斯学院学士，波士顿大学博士，在谷歌、苹果都工作过，发表过6篇A会，作者的个人介绍页：Piotr Teterwak 文章发表于ICML 2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ERM++: AnImproved Baseline for Domain Generalization 阅读笔记">
 <meta property="og:url" content="http://43.143.57.238/2025/03/05/25-3-5%E8%AF%BB%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="ERM++: AnImproved Baseline for Domain Generalization 阅读笔记 作者为Piotr Teterwak，达特茅斯学院学士，波士顿大学博士，在谷歌、苹果都工作过，发表过6篇A会，作者的个人介绍页：Piotr Teterwak 文章发表于ICML 2023 了解到文章的途径 在师兄的指导下做实验验证一个方法，实验过程中接触并使用了Domain">
+<meta property="og:description" content="没什么参考意义，就是tricks堆砌，不用看            ERM++: AnImproved Baseline for Domain Generalization 阅读笔记 作者为Piotr Teterwak，达特茅斯学院学士，波士顿大学博士，在谷歌、苹果都工作过，发表过6篇A会，作者的个人介绍页：Piotr Teterwak 文章发表于ICML 2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-05T14:17:24.000Z">
-<meta property="article:modified_time" content="2025-03-06T11:16:43.118Z">
+<meta property="article:modified_time" content="2025-03-31T03:30:51.434Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="文献阅读笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -258,7 +258,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.1k 字
+          1.2k 字
         
       </span>
     
@@ -310,7 +310,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年3月6日 晚上
+                    本文最后更新于 2025年3月31日 中午
                   
                 
               </p>
@@ -318,7 +318,10 @@
             
               <div class="markdown-body">
                 
-                <h1
+                <div class="note note-danger">
+            <p>没什么参考意义，就是tricks堆砌，不用看</p>
+          </div>
+<h1
 id="erm-animproved-baseline-for-domain-generalization-阅读笔记">ERM++:
 AnImproved Baseline for Domain Generalization 阅读笔记</h1>
 <p>作者为Piotr
@@ -332,6 +335,10 @@ target="_blank" rel="noopener" href="https://cs-people.bu.edu/piotrt/">Piotr Tet
 <p>ERM++是文章提出的一个新基线（baseline），如上所述，DomainBed这一广泛使用的框架使用ERM作为baseline。</p>
 <blockquote>
 <p>baseline：指一个经过<strong>充分调优</strong>的模型，一般是一个SOTA方法，不会显著劣于现有的所有方法，是新方法的对比对象。</p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p>ERM：经验风险最小化，统计学习理论原则，由Vapnik提出，熟知的最小二乘法、极大似然法都是ERM的具体例子，在实际使用中，ERM就是“让loss最小”这个思想，也就是让损失函数最小化，这已经成为模型训练的底层逻辑了。</p>
 </blockquote>
 <p>然而，文章发现这个baseline其实不够充分调优，<em>似乎还有一些重要的超参数没有调</em>，会导致过拟合和灾难性遗忘</p>
 <blockquote>
@@ -411,7 +418,7 @@ id="作者针对这个问题是如何构建解决思路的如何想到可以这�
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年3月6日</div>
+          <div>2025年3月31日</div>
         </div>
       
       
