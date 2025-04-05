@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/ec0eb9f3d879f611.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/8520d365dbdd7064.png">
 <meta property="article:published_time" content="2025-04-04T02:54:39.000Z">
-<meta property="article:modified_time" content="2025-04-05T10:18:02.426Z">
+<meta property="article:modified_time" content="2025-04-05T14:06:32.567Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="DG">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +262,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.7k 字
+          7.4k 字
         
       </span>
     
@@ -610,7 +610,7 @@ id="训练完怎么利用得到的model.pkl">训练完怎么利用得到的model
 <h2 id="second-summary">second summary</h2>
 <p>这部分也比较简单，主要难点在看懂DomainBed的结构</p>
 <blockquote>
-<p>其实现在都没完全看懂，似乎里面有实验性的多卡训练代码和其他的用法，貌似多卡训练的代码白写了😭</p>
+<p>其实现在都没完全看懂 (lll￢ω￢)</p>
 </blockquote>
 <p>最后的结果是，<del>太理想了！t-SNE里的各域变得团簇了！</del>，结果很令人迷惑，感觉前后都差不多，纯CLIP的比较团簇，使用方法后反而混合错杂了一点😵‍💫</p>
 <blockquote>
@@ -686,7 +686,7 @@ target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/">计
 href="#third%20stage">伪代码</a>，这就是良好的草稿，稍作修改，将其中的<code>train</code>改为这一长串命令带参数就好了。简单<del>不知天高地厚地</del>贴个示例：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>DATASETS=(&quot;PACS&quot;) <br>ALGORITHMS=(&quot;ERMPlusPlus&quot; &quot;SagNet&quot; &quot;ERM&quot;)<br>SEEDS=(17 373 3403)<br>TEST_ENVS=(0)<br>OUTPUT_BASE=&quot;/root/autodl-tmp/results&quot;<br>HPARAMS=(&#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;, &quot;freeze_clip&quot;: true&#125;&#x27;)<br><br>for DATASET in &quot;$&#123;DATASETS[@]&#125;&quot;; do<br>    for TEST_ENV in &quot;$&#123;TEST_ENVS[@]&#125;&quot;; do<br>        for ALGORITHM in &quot;$&#123;ALGORITHMS[@]&#125;&quot;; do<br>            COUNT_NOFREEZE=1  # 计数器（不冻结 CLIP）<br>            COUNT_FREEZE=1     # 计数器（冻结 CLIP）<br><br>            for SEED in &quot;$&#123;SEEDS[@]&#125;&quot;; do<br>                for HPARAM in &quot;$&#123;HPARAMS[@]&#125;&quot;; do<br>                    # 判断是否 freeze CLIP<br>                    if [[ &quot;$HPARAM&quot; == *&quot;freeze_clip\&quot;: true&quot;* ]]; then<br>                        FREEZE_STATUS=&quot;freeze&quot;<br>                        OUTPUT_DIR=&quot;$&#123;OUTPUT_BASE&#125;/$&#123;TEST_ENV&#125;/$&#123;ALGORITHM&#125;_$&#123;FREEZE_STATUS&#125;_$&#123;COUNT_FREEZE&#125;&quot;<br>						# 检查文件夹是否已存在且包含训练好的 model.pkl<br>                        if [ -f &quot;$&#123;OUTPUT_DIR&#125;/model.pkl&quot; ]; then<br>                            echo &quot;已存在: $&#123;OUTPUT_DIR&#125;/model.pkl，跳过训练。&quot;<br>                            ((COUNT_FREEZE++))<br>                            continue<br>                        fi<br>                        ((COUNT_FREEZE++))<br>                    else<br>                        OUTPUT_DIR=&quot;$&#123;OUTPUT_BASE&#125;/$&#123;TEST_ENV&#125;/$&#123;ALGORITHM&#125;_$&#123;COUNT_NOFREEZE&#125;&quot;<br>                        # 检查文件夹是否已存在且包含训练好的 model.pkl<br>                        if [ -f &quot;$&#123;OUTPUT_DIR&#125;/model.pkl&quot; ]; then<br>                            echo &quot;已存在: $&#123;OUTPUT_DIR&#125;/model.pkl，跳过训练。&quot;<br>                            ((COUNT_NOFREEZE++))<br>                            continue<br>                        fi<br><br>                        ((COUNT_NOFREEZE++))<br>                    fi<br>                    mkdir -p &quot;$&#123;OUTPUT_DIR&#125;&quot;<br>                    python -m domainbed.scripts.train \<br>                        --dataset &quot;$&#123;DATASET&#125;&quot; \<br>                        --algorithm &quot;$&#123;ALGORITHM&#125;&quot; \<br>                        --data_dir &quot;/root/autodl-tmp/data/$&#123;DATASET&#125;&quot; \<br>                        --hparams &quot;$&#123;HPARAM&#125;&quot; \<br>                        --output_dir &quot;$&#123;OUTPUT_DIR&#125;&quot; \<br>                        --test_envs &quot;$&#123;TEST_ENV&#125;&quot; \<br>                        --seed &quot;$&#123;SEED&#125;&quot;<br>                done<br>            done<br>        done<br>    done<br>done<br><span class="hljs-meta prompt_"># </span><span class="language-bash">训练结束，自动关机省钱</span><br>/usr/bin/shutdown<br></code></pre></td></tr></table></figure>
 <h1 id="fourth-stage">fourth stage</h1>
-<p>扩大实验，包括：</p>
+<p>这一阶段的任务是扩大实验，包括：</p>
 <ul>
 <li>多实验几个数据集</li>
 <li>换用更新的方法（24年及以后）</li>
@@ -710,7 +710,84 @@ href="#third%20stage">伪代码</a>，这就是良好的草稿，稍作修改，
 </ul>
 <p>下面记录这一阶段的问题：</p>
 <h2 id="如何实现多卡训练">如何实现多卡训练</h2>
-<p>有点长，还有点忘了，多写一会</p>
+<p>动机是：无知地选了个超大的数据集DomainNet，60w图片，之前用的PACS、VLCS、OfficeHome最多的才1w图片。</p>
+<p>由于太大，以DomainBed的默认超参数，batch_size=16，在4090D上都会OOM，减小到4才成功运行，但extremely
+slow，一个小时计算刚开始的accuracy都没算出来，把checkpoint全ban掉，测出来一分半计算一个样本，好像一共有几十万个样本待测……，总之非常的慢，想到试试多卡，也许可行。</p>
+<blockquote>
+<p>不动脑子的后果，一张卡慢成这样，难道8张卡就能快了？照样费钱，拿不下来，就不该尝试这个数据集</p>
+</blockquote>
+<p>首先搜索了以前听说的DataParallel，全程问AI+搜博客写代码。</p>
+<h3 id="多卡训练的基础概念和常用库">多卡训练的基础概念和常用库</h3>
+<h4 id="基本概念">基本概念</h4>
+<p>多卡训练应该叫数据并行（Data
+Parallelism）。核心思想是将训练数据分成多个子集，分配到多个计算设备（如GPU）上并行处理，从而减少单次迭代的时间。</p>
+<p>一般的流程是：</p>
+<ul>
+<li>分割batch（解决batch size过大导致的OOM）为多个sub-batch</li>
+<li>每个GPU对自己的sub-batch前向计算反向传播来更新参数</li>
+<li>将所有GPU的梯度汇总（求和或者平均），在主进程上更新全局参数</li>
+<li>再将更新后的参数广播到所有GPU上</li>
+</ul>
+<p>好处是batch可以更大，坏处是要通信，可能成为瓶颈；实现复杂</p>
+<h4 id="pytorch的实现">Pytorch的实现</h4>
+<p>pytorch对于多卡训练有两个库能用，<code>DataParallel</code>和<code>DistributedDataParallel</code>，官方文档：<a
+target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html">DataParallel
+— PyTorch 2.6 documentation</a>、<a
+target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel">DistributedDataParallel
+— PyTorch 2.6 documentation</a>。</p>
+<blockquote>
+<p>官方强烈建议不使用<code>DataParallel</code>，而使用<code>DistributedDataParallel</code>。理由是：DDP给每个GPU建一个<strong>进程（multiprocessing）</strong>，而DP用的是<strong>多线程（multithreading）</strong>。</p>
+<p>多线程避免了Python解释器的全局解释器锁GIL带来的性能开销GIL在同一时刻只允许一个线程访问CPU，执行字节码，而多进程就可以同时执行多个Python解释器。</p>
+</blockquote>
+<h5 id="dataparallel">DataParallel</h5>
+<p>适用于单机多卡训练，使用简单，把代码里表示模型的变量用DP包装一下就好。</p>
+<p>原理：</p>
+<p>DP有一个<strong>主GPU</strong>，上面维护了一个主模型副本，复制到其他GPU上。每次迭代，主GPU将batch分割，分发到各个GPU，各GPU算完<strong>汇总梯度到主GPU</strong>，主GPU更新模型参数，再<strong>广播</strong>。</p>
+<blockquote>
+<p>相当于计网的<strong>星状拓扑</strong>吧</p>
+</blockquote>
+<h5 id="distribueddataparallel">DistribuedDataParallel</h5>
+<p>单机多卡和多机多卡都适用。</p>
+<p>原理：</p>
+<p>每个GPU都有一个<strong>进程</strong>，<strong>独立</strong>拥有完整的模型副本，通过<code>DistributedSampler</code>，每个进程从数据集中获取不同的子集，<strong>不需要主GPU分发</strong>。每个GPU各自算完，所有GPU直接交换梯度保持同步，并独立更新参数。<strong>没有主GPU</strong>，通信使用NCCL分布式集体通信</p>
+<blockquote>
+<p>这相当于<strong>环状拓扑</strong></p>
+</blockquote>
+<h4 id="我的实现过程">我的实现过程</h4>
+<h5 id="dataparallel尝试过程">DataParallel尝试过程</h5>
+<p>DataParallel比较简单，<code>algorithm=DataParallel(algorithm)</code>就够了，注意在调用原有<code>algorithm</code>的方法时，不能直接调，要用<code>algorithm.module</code>调用。</p>
+<p>当然，这没成功，改为DataParallel后，训练时使用<code>nvidia-smi</code>查看显卡状态，一共2张卡，只有在load_data完成后的极短时间内，两个GPU的使用率都达到了80%+，且状态都是P2。其他时候都是cuda0打满，另一个0%利用率。</p>
+<p>查了问题，虽然最后还是没成功，换用了DDP，但是大概率问题在于模型的实现上，如<a
+href="#怎么换backbone">上文</a>所说，<code>algorithms.py</code>中的抽象父类只有有<code>update</code>和<code>predict</code>两个方法，<strong>DomainBed没有显式定义<code>forward</code>方法</strong>（<code>Module</code>抽象基类不强制实现<code>forward</code>），而DataParallel在前向计算时只会自动调用模型的<code>forward</code>方法。</p>
+<p>这就出问题了，模型里面就network有forward，用<code>model()</code>没定义<code>__call__</code>，压根就调不到forward。那么我自己加一个forward不就好了？于是我加了一个，不知道要写什么，所以直接调CLIP的forward，报错没了，但是GPU使用情况还是单卡背负所有，只是第二张卡上出现了一个Python进程，调试打印信息也显示数据全给了cuda0。</p>
+<p>最后还是没解决，然后我气急败坏地改用DDP了</p>
+<h5
+id="distributeddataparallel实现过程">DistributedDataParallel实现过程</h5>
+<p>如前文，DDP是多进程，且有一个<code>DistributedSampler</code>，所以实现大致分为两部分：实现多进程，添加分布采样器。</p>
+<h6 id="多进程">多进程</h6>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">init_distributed</span>(): <span class="hljs-comment"># 初始化进程组</span><br>    dist.init_process_group(backend=<span class="hljs-string">&#x27;nccl&#x27;</span>)<br>    torch.cuda.set_device(<span class="hljs-built_in">int</span>(os.environ[<span class="hljs-string">&quot;LOCAL_RANK&quot;</span>]))  <span class="hljs-comment"># 设置当前 GPU</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cleanup</span>(): <span class="hljs-comment"># 释放进程组</span><br>    dist.destroy_process_group()<br></code></pre></td></tr></table></figure>
+<h6 id="distributedsampler">DistributedSampler</h6>
+<p>Sampler实际是<code>DataLoader</code>的一个参数，之前一直缺省，现在需要用到。</p>
+<p><code>DistributedSampler</code> 需要在每次 <code>epoch</code> 前调用
+<code>.set_epoch()</code> 来重置索引，否则容易出现
+<code>StopIteration</code> 错误。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 提前过滤出符合 args.test_envs 和 args.src_envs 条件的 in_splits 列表，并保留索引 i。</span><br>filtered_in_splits = [(i, env, env_weights) <span class="hljs-keyword">for</span> i, (env, env_weights) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(in_splits)<br>                          <span class="hljs-keyword">if</span> i <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> args.test_envs <span class="hljs-keyword">and</span> i <span class="hljs-keyword">in</span> args.src_envs]<br><span class="hljs-keyword">if</span> num_gpus &gt; <span class="hljs-number">1</span>: <span class="hljs-comment"># 多卡时使用 DistributedSampler</span><br>    train_samplers = [<br>        DistributedSampler(env, num_replicas=num_gpus, rank=<span class="hljs-built_in">int</span>(os.environ[<span class="hljs-string">&quot;LOCAL_RANK&quot;</span>]), shuffle=<span class="hljs-literal">True</span>)<br>        <span class="hljs-keyword">for</span> i, env, env_weights <span class="hljs-keyword">in</span> filtered_in_splits<br>    ]<br><span class="hljs-keyword">else</span>:<br>    train_samplers = [<span class="hljs-literal">None</span> <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> filtered_in_splits]  <span class="hljs-comment"># 单卡，不使用 DistributedSampler</span><br><br>train_loaders = [<br>    InfiniteDataLoader(<br>        dataset=env,<br>        weights=env_weights,<br>        batch_size=hparams[<span class="hljs-string">&#x27;batch_size&#x27;</span>],<br>        num_workers=dataset.N_WORKERS,<br>        sampler=train_samplers[j] <span class="hljs-comment"># loader中传入参数，指定sampler</span><br>    )<br>    <span class="hljs-keyword">for</span> j, (i, env, env_weights) <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(filtered_in_splits)<br>]<br></code></pre></td></tr></table></figure>
+<p>再记得每个epoch或step重置采样器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">if</span> num_gpus &gt; <span class="hljs-number">1</span>:<br>    <span class="hljs-keyword">for</span> sampler <span class="hljs-keyword">in</span> train_samplers:<br>        sampler.set_epoch(step)<br></code></pre></td></tr></table></figure>
+<p>最后，在<code>fast_data_loader.py</code>中加上适配DDP的一些<code>if-else</code>小逻辑即可，主要是指定sampler的部分。</p>
+<p>到这里就成功了，训练时多个GPU都是100%用到，DomainNet数据即使开16的batch
+size也不会OOM了。</p>
+<blockquote>
+<p>不过，还是非常慢，在程序各处都添加了print，打印各段的耗时，并与之前的小数据集对比，发现就是单纯地数据集太大，单轮迭代的耗时差不多，甚至DomainNet更短一点点，但DomainNet太大，已经是PACS、VLCS等小数据集的60倍以上，难以使用。主要是没那么多卡和钱给我烧，测小数据集就行了。</p>
+<p>在多卡上取消所有checkpoint训练DomainNet，每step也需要较长时间，最终放弃。</p>
+</blockquote>
+<h2
+id="针对多服务器如何提高evaluate和可视化代码的可移植性">针对多服务器，如何提高evaluate和可视化代码的可移植性</h2>
+<p>提出这个问题主要是因为实验使用AutoDL进行，每个实例的内存有限，所以我每个服务器只能装一两个数据集，因为每个数据集上需要训练出三十多个模型，都要保存，每个模型大概800M，两个数据集差不多打爆AutoDL的60G数据盘了。</p>
+<p>面对这种场景，一份能够尽可能少改动甚至不改动就能直接在<strong>各个服务器的数据集</strong>上直接评估数据集<strong>各个域</strong>下<strong>各个方法</strong>的<strong>各个模型</strong>的准确率和可视化域差异的代码显得很有必要。（4重循环变量）</p>
+<p><strong>可移植性</strong>指软件能够在不同的环境（如操作系统、硬件、文件系统）中运行，而无需或只需最小的修改。强调代码在不同环境下的适应能力，通常通过抽象环境依赖（如路径、配置）来实现。</p>
+<p>所以主要从路径上下手，也就是各种路径读取解析，然后拼接</p>
+<p>本质是复杂的字符串操作和文件结构命名规范。</p>
 
                 
               </div>
