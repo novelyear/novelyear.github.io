@@ -1,0 +1,1226 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/smile.png">
+  <link rel="icon" href="/img/smile.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Leoo Yann">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="git记录从2月25日开始，那天pull下来了 facebookresearch&#x2F;DomainBed框架，到现在做了一个多月的实验，清明假期犯懒不想做正事，特回顾并记录这一个多月的实验问题以及解决方法 小白向，显得浅显和stupid是正常的，因为我的理解就是比较浅显😞 记录顺序以执行的代码顺序以及时间顺序记录 first stage 这一阶段主要任务是：使用纯的CLIP预训练模型提取一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小小的科研总结">
+<meta property="og:url" content="http://43.143.57.238/2025/04/04/%E5%B0%8F%E5%B0%8F%E7%9A%84%E7%A7%91%E7%A0%94%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="novelyear&#39;s home">
+<meta property="og:description" content="git记录从2月25日开始，那天pull下来了 facebookresearch&#x2F;DomainBed框架，到现在做了一个多月的实验，清明假期犯懒不想做正事，特回顾并记录这一个多月的实验问题以及解决方法 小白向，显得浅显和stupid是正常的，因为我的理解就是比较浅显😞 记录顺序以执行的代码顺序以及时间顺序记录 first stage 这一阶段主要任务是：使用纯的CLIP预训练模型提取一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/7801450e88c302eb.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/ec0eb9f3d879f611.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/8520d365dbdd7064.png">
+<meta property="article:published_time" content="2025-04-04T02:54:39.000Z">
+<meta property="article:modified_time" content="2025-04-05T10:18:02.426Z">
+<meta property="article:author" content="Leoo Yann">
+<meta property="article:tag" content="DG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2025/04/05/7801450e88c302eb.png">
+  
+  
+  
+  <title>小小的科研总结 - novelyear&#39;s home</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"43.143.57.238","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Novelyear&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s3.bmp.ovh/imgs/2024/09/24/1e751f6eefa4ccd4.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="小小的科研总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Leoo Yann
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-04 10:54" pubdate>
+          2025年4月4日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.7k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">小小的科研总结</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年4月5日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>git记录从2月25日开始，那天pull下来了 <a
+target="_blank" rel="noopener" href="https://github.com/facebookresearch/DomainBed">facebookresearch/DomainBed</a>框架，到现在做了一个多月的实验，清明假期犯懒不想做正事，特回顾并记录这一个多月的实验问题以及解决方法</p>
+<p><strong>小白向，显得浅显和stupid是正常的，因为我的理解就是比较浅显😞</strong></p>
+<p>记录顺序以执行的<u>代码顺序</u>以及<u>时间顺序</u>记录</p>
+<h1 id="first-stage">first stage</h1>
+<p>这一阶段主要任务是：<strong>使用<u>纯的CLIP预训练模型</u>提取一个数据集的<u>特征</u>，画出关于域的<u>t-SNE图</u>。</strong></p>
+<p>师兄是在HuggingFace上翻的 <a
+target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/main/en/model_doc/clip#transformers.CLIPVisionModel">doc</a>
+给我看，指出用CLIP Vision Model、ViT等预训练图像模型来做。</p>
+<p>比较简单，一天内完成，暂时没用到DomainBed，毕竟不需要各种算法。在网上下载了PACS数据集，上传到AutoDL上。</p>
+<h2 id="什么是clip">什么是CLIP？</h2>
+<p>论文原文： <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.00020">Learning
+Transferable Visual Models From Natural Language
+Supervision</a>（我只看了摘要）</p>
+<p>以看完摘要的理解来说就是：利用了<strong>4亿图文对</strong>训练，对比学习，取消了以前依赖label的监督方式，转而利用图片的文本描述，这样监督更broader。图文结合。</p>
+<p>具有强大的泛化能力和零样本能力</p>
+<blockquote>
+<p><strong>啥是监督（supervise）？</strong></p>
+<p>这我也只是意会，大概就是<strong>用没用标签</strong>的意思。贴出Grok
+3的回答：</p>
+<blockquote>
+<p>在深度学习中，“监督”（supervise）是指在模型训练过程中是否使用了标注数据来指导学习。根据是否需要标注数据以及标注数据的多少，可以将学习方式分为
+以下几类：<strong>监督学习</strong>(明确标签)、<strong>自监督学习</strong>(一开始没标签，自己生成标签)、<strong>半监督学习</strong>(少部分有标签，大部分没标签)和<strong>无监督学习</strong>（完全没标签）。</p>
+</blockquote>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;">学习类型</th>
+<th style="text-align: center;">是否需要标注数据</th>
+<th style="text-align: center;">训练方式</th>
+<th style="text-align: center;">典型应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">supervised</td>
+<td style="text-align: center;">全部</td>
+<td style="text-align: center;">优化损失函数</td>
+<td style="text-align: center;">分类、回归</td>
+</tr>
+<tr>
+<td style="text-align: center;">self-supervised</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">数据生成伪标签，pretrain+tuning</td>
+<td style="text-align: center;">特征学习、预训练模型</td>
+</tr>
+<tr>
+<td style="text-align: center;">semi-supervised</td>
+<td style="text-align: center;">少量</td>
+<td style="text-align: center;">伪标签迭代</td>
+<td style="text-align: center;">数据稀缺场景分类</td>
+</tr>
+<tr>
+<td style="text-align: center;">unsupervised</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">发现数据结构，无明确输出目标</td>
+<td style="text-align: center;">聚类、降维、生成</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>然后看了看下面的方法总览图和描述，意思感觉差不多，传统是先训练vision
+model来extract feature，然后投进linear
+classifier里面分类。CLIP同时有图像和文本encoder。</p>
+<p><del>看到两个encoder组合，突然想到了之前自己想的的水大创，也是图像结合文本信息，虽然草陋得多（雾）</del></p>
+<h2 id="什么叫提取特征">什么叫提取特征</h2>
+<p>feature、representation，在论文中指特征“、“表示”</p>
+<p>我目前的理解是：深度神经网络可以输入图像，输出图像的“特征”，也就是经过各种层、各种卷积计算之类的，最后输出一个多少维
+<span class="math inline">\(\times\)</span>
+多少维的向量，这个向量就是图像的feature或者representation。比如CLIP是768维向量，ResNet是2048维向量。</p>
+<blockquote>
+<p>可以通过查看输出的shape来看是否正确使用了CLIP或者ResNet</p>
+<p>（shape就是输出的样子、格式之类的，调试时变量真正是什么样和应该是什么样）</p>
+</blockquote>
+<p>这两个词似乎可以混用，DG领域的综述用的是<code>representation</code>，但是代码中一般写<code>extract_feature</code></p>
+<p>这里的提取特征就是，准备好images，然后调整好输入方式，喂给CLIP预训练模型，得到一个特征/表示（768维向量）</p>
+<h2 id="什么是t-sne图">什么是t-SNE图</h2>
+<p>最开始接触到是在组会和各种论文里，有那种scatter
+plot(散点图)，各种颜色，基本都是一个颜色表示一个域，然后看各个域的重合情况，重合越多表示域不变特征(domain-invariant
+feature)越强，就是各个域都有的特征挺多的，如果学到这个特征，就能通吃各个域，泛化能力强。</p>
+<p>就不放示例图了，一直以来都只是知道怎么看，以及怎么调库生成，以及知道是可视化相邻情况的。下面较详细地记录下数学原理和调库原理：</p>
+<blockquote>
+<p>来自<a
+target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_20177327/article/details/80298645">t-SNE算法解析</a>和AI回答</p>
+</blockquote>
+<h3 id="t-sne">t-SNE</h3>
+<p>t-distributed Stochastic Neighbor
+Embedding，t分布随机邻域嵌入，一种非线性降维技术，用于高维数据可视化。（好像是Hinton提出的😮）</p>
+<p>核心就是降维，要可视化一般降到2或3维，降维之后，<strong>在高维里面相邻的，在低维也相邻</strong></p>
+<h4 id="t-sne数学原理简述">t-SNE数学原理简述</h4>
+<h5 id="高维空间的相似性建模">高维空间的相似性建模</h5>
+<p>SNE使用条件概率来描述两个数据之间的相似性，假设<span
+class="math inline">\(x_i,
+x_j\)</span>是高维空间中的两个点，那么以点<span
+class="math inline">\(x_i\)</span>为中心构建方差为<span
+class="math inline">\(\sigma_i^2\)</span>的高斯分布，使用<span
+class="math inline">\(p_{j|i}\)</span>表示<span
+class="math inline">\(x_j\)</span>是<span
+class="math inline">\(x_i\)</span>邻域的概率，如果<span
+class="math inline">\(x_j\)</span>离<span
+class="math inline">\(x_i\)</span>很近，那么<span
+class="math inline">\(p_{j|i}\)</span>很大，反之，<span
+class="math inline">\(p_{j|i}\)</span>很小，<span
+class="math inline">\(p_{j|i}\)</span>定义如下： <span
+class="math display">\[
+p_{j|i}=\frac{\exp(-||x_i-x_j||^2/(2\sigma_i^2))}{\sum_{k\ne
+i}{\exp(-||x_i-x_j||^2/(2\sigma_i^2))}}
+\]</span> 设定<span
+class="math inline">\(p_{i|i}=0\)</span>，因为只想要不同点的相似度。</p>
+<p>对称化：将条件概率对称化，定义联合概率： <span
+class="math display">\[
+p_{ij}=\frac{p_{j|i}+p_{i|j}}{2n}
+\]</span> <span class="math inline">\(n\)</span>是数据点总数。</p>
+<h5 id="低维空间的相似性建模">低维空间的相似性建模</h5>
+<p>假设<span class="math inline">\(x_i,
+x_j\)</span>映射到低维变成了<span
+class="math inline">\(y_i,y_j\)</span>，每个<span
+class="math inline">\(y\)</span>是<span
+class="math inline">\(d\)</span>维向量(<span
+class="math inline">\(d=2、3\)</span>)</p>
+<p><span class="math inline">\(y_j\)</span>是<span
+class="math inline">\(y_i\)</span>邻域的条件概率为： <span
+class="math display">\[
+q_{j|i}=\frac{(1+||y_i-y_j)||^2)^{-1}}{\sum_{k\ne l
+}{(1+||y_k-y_l)||^2)^{-1}}}
+\]</span></p>
+<h5 id="目标函数">目标函数</h5>
+<p>在高维空间中，如果考虑<span
+class="math inline">\(x_i\)</span>与其他所有点之间的条件概率，那么会构成一个条件概率分布<span
+class="math inline">\(P_i\)</span>
+，同样在地位空间也会有与之对应的条件概率分布 <span
+class="math inline">\(Q_i\)</span>，如果降维之后的数据分布与原始高维空间中的数据分布是一样的，那么理论上这两个条件概率分布式是一致的。那么如何衡量两个条件概率分布之间的差异呢？答案是使用
+K-L 散度（也叫做相对熵），于是，目标函数为： <span
+class="math display">\[
+C=\sum_{i}{KL(P_i||Q_i)}=\sum_{i\ne j}\log{\frac{p_{j|i}}{q_{j|i}}}
+\]</span> 通过梯度下降调整<span
+class="math inline">\(y_i\)</span>的位置，最小化C。</p>
+<h5 id="其他">其他</h5>
+<p>更底层的就不写了，可以去问AI，这里写个大概：</p>
+<p>得到梯度公式，初始的低维空间点随机生成，然后迭代更新<span
+class="math inline">\(y_i\)</span>。</p>
+<p>困惑度perplexity控制高斯分布的<span
+class="math inline">\(\sigma_i\)</span>，影响邻域大小；t分布的长尾特性缓解了高维数据在低维空间的过度压缩。</p>
+<p>在Python中一般使用<code>from sklearn.manifold import TSNE</code>导入库使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Python">tsne = TSNE(n_components=<span class="hljs-number">2</span>, perplexity=<span class="hljs-number">30</span>, n_iter=<span class="hljs-number">1000</span>, random_state=<span class="hljs-number">42</span>)<br>features_2d = tsne.fit_transform(features)<br></code></pre></td></tr></table></figure>
+<h2 id="first-summary">first summary</h2>
+<p>整体的代码流程是：</p>
+<ul>
+<li>load_data
+<ul>
+<li>使用<code>from torchvision.datasets import ImageFolder</code>，设定好backbone需要的transform（图像大小尺寸等），得到<code>ImageFolder</code>对象</li>
+<li>利用<code>from torch.utils.data import DataLoader</code>把<code>ImageFolder</code>对象变成<code>Dataloader</code>对象</li>
+</ul></li>
+<li>load model
+<ul>
+<li>利用<code>from transformers import CLIPProcessor, CLIPModel</code>+<code>from_pretrained</code>方法直接从huggingface下载预训练模型<code>openai/clip-vit-base-patch32</code></li>
+</ul></li>
+<li>extract_feature
+<ul>
+<li>在torch.no_grad()条件下（任务不需要梯度下降，所以关闭梯度下降，简化计算流程），遍历loader中的images，调各种库函数提取特征，拼接在一起，最后返回。
+按照HuggingFace的doc上来说，应该得到CLIP的<code>pooler_output</code>这个输出。</li>
+</ul></li>
+<li>plot_tsne
+<ul>
+<li>调库，特征降维，得到二维特征，用matplotlib画图</li>
+</ul></li>
+</ul>
+<h1 id="second-stage">second stage</h1>
+<p><strong>找<u>图像域泛化方法</u>，用CLIP当<u>backbone</u>，训练前后都用backbone把数据<u>encode</u>成feature，画出t-SNE。</strong></p>
+<blockquote>
+<p>用意有些忘了……</p>
+<p>看相关的图像域泛化方法的t-SNE是否有分开的现象。因为最初的研究动机是，一些文本的域泛化方法使用后反而使域不变特征减少了，也就是t-SNE变得团簇而不错杂</p>
+</blockquote>
+<p>这一步就开始用到DomainBed了，不过只需要简单使用，训练出一两个模型。</p>
+<h2 id="什么是backbone">什么是backbone？</h2>
+<p>以前用YOLO的时候看到过这个概念，记得YOLO是head、neck、backbone的结构，但不知道是做什么的。</p>
+<p>目前的理解是：<strong>backbone是用来提取特征的</strong>，我们常说的各种网络（CLIP、ResNet、VGG、AlexNet、LeNet……）一般都用来当做backbone。</p>
+<p>输入的是图片(以及其他raw数据)，输出的是特征，也就是用来提取特征的(<a
+href="#什么叫提取特征">什么叫提取特征</a>)。</p>
+<p>由于对各种权威专著毫无了解，所以贴AI的回答：</p>
+<blockquote>
+<p>在深度学习中，backbone
+通常指模型中<strong>用于提取输入特征的核心网络结构</strong>。
+比如在图像任务中，ResNet、VGG、MobileNet 等 CNN 架构常用作图像的
+backbone；</p>
+<p>而在自然语言处理任务中，Transformer、BERT、RoBERTa 等模型常作为文本的
+backbone。</p>
+<p>Backbone
+的主要职责是将原始输入转化为高维、抽象的特征表示，便于后续的分类器或其他模块进行处理。</p>
+<p>通常在领域泛化、迁移学习等任务中，也会关注 backbone
+的特征表达能力以及是否固定其参数。</p>
+</blockquote>
+<p>再简略写一句关于head、neck的解释：</p>
+<ul>
+<li><p>Backbone：主干网络，从原始输入中提取高级通用特征；</p></li>
+<li><p>Neck：连接Backbone和Head，再目标检测任务中很重要，用于融合不同尺度的特征
+或者 加强/重组backbone提取的特征，常见结构有FPN、BiFPN、PAN；</p></li>
+<li><p>Head：输出头，根据任务需求输出结果，比如分类、检测、分割</p></li>
+</ul>
+<h2 id="backbone还能训练什么意思">backbone还能训练？什么意思？</h2>
+<p>训练，也可以叫迭代优化，一般“训练模型”说人话就是一遍遍试错，然后调整各种可学习的“参数权重”，来让表现更好。</p>
+<p>backbone是可以训练的，也可以选择“<strong>冻结</strong>”，也就是不训练backbone或者训练backbone的一部分。</p>
+<p>那么backbone有什么“参数权重”需要训练来调整呢？</p>
+<p>很多，backbone平时视作黑盒，但内部复杂，以ResNet为例，可学习的有每一层卷积核的权重、每个BatchNorm的缩放系数、残差连接的参数……</p>
+<h2 id="方法和模型的关系">方法和模型的关系</h2>
+<p>这个问题比较长，不好放在标题，在下面写：</p>
+<blockquote>
+<p>假设，有一篇论文，提出了个方法，叫MetHod（吐槽：经典的，以奇怪的大小写方式、强行拼凑出的一个单词当方法名字），有效提高了关于图像的域泛化能力。</p>
+<p>现在我要训练一个以CLIP为backbone的、使用MetHod方法的模型，那CLIP和MetHod的关系是什么？</p>
+</blockquote>
+<table>
+
+<thead>
+<tr>
+<th style="text-align: center;">概念</th>
+<th style="text-align: center;">类型</th>
+<th style="text-align: center;">作用</th>
+<th style="text-align: center;">层级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">CLIP</td>
+<td style="text-align: center;">模型结构(Backbone)</td>
+<td style="text-align: center;">提取特征</td>
+<td style="text-align: center;">属于内部网络的<strong>模块</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">MetHod</td>
+<td style="text-align: center;">训练/优化算法</td>
+<td
+style="text-align: center;">最小化训练集上的平均损失，引导模型学习</td>
+<td style="text-align: center;">属于<strong>训练策略</strong></td>
+</tr>
+</tbody>
+</table>
+<p>流程是：</p>
+<ul>
+<li>输入图像：ImageFolder -&gt; DataLoader -&gt; 喂给 CLIP</li>
+<li>CLIP输出特征：[feature] 喂给分类器classifier</li>
+<li>输出分类概率：[dog：80%, chair：10%,
+……]，计算loss（例如交叉熵或者MetHod规定的loss计算方式）</li>
+<li>使用MetHod：<strong>最小化训练集上所有样本的平均loss</strong></li>
+<li>反向传播更新CLIP和分类器的参数</li>
+</ul>
+<p>所以，MetHod算作是损失函数+优化策略+训练目标的总称。</p>
+<p>关系是：</p>
+<p>MetHod和backbone相互影响，是<strong>两个不同的但相互影响的模块</strong>。</p>
+<p>训练结束后得到权重，利用这个权重new一个model出来，这就得到模型。</p>
+<h2 id="使用domainbed时遇到的问题">使用DomainBed时遇到的问题</h2>
+<h3
+id="开头一堆parseradd_argument是什么">开头一堆parser,add_argument是什么？</h3>
+<p>一种实现命令行选项的方式，例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">import</span> argparse // 导库<br>parser = argparse.ArgumentParser() // 对象<br>parser.add_argument(<span class="hljs-string">&#x27;--hparams&#x27;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">str</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;你的注释&#x27;</span>) // 加参数<br><br>args = parser.parse_args() // 等输入，并解析<br><span class="hljs-comment"># 命令行使用python -m train.py --hparams &#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;&#125;&#x27;</span><br><span class="hljs-comment"># args里面就会有hparams : &#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;&#125;&#x27;这个哈希表项</span><br></code></pre></td></tr></table></figure>
+<p>然后就更能理解DomainBed的README中的用法：</p>
+<p>python -m domainbed.scripts.train 跟一堆参数，就能一键开始训练。</p>
+<h3 id="怎么换backbone">怎么换backbone</h3>
+<p>domainbed包里主要的文件有：</p>
+<ul>
+<li><code>lib.fast_data_loader.py</code>：定义了<code>FastDataLoader</code>和<code>InfiniteDataLoader</code>，在<code>train.py</code>中用到</li>
+<li><code>lib.misc.py</code>：<strong>Misc</strong>ellaneous，杂项的意思，目前主要关注到<code>accuracy</code>方法，是checkpoint计算预测准确率(correct
+/ total)的（因为这个方法比较慢，数据集大了就是瓶颈之一）</li>
+<li><code>scripts.train.py</code>：主要的训练流程代码，解析参数、设置hp、分割数据集、加载数据、迭代、保存模型</li>
+<li><code>scripts.download.py</code>：下载数据集用的。在最后的<code>if __name__ == "__main__"</code>下保留要下载的数据集的方法，执行带上data_dir参数</li>
+<li><code>algorithms.py</code>：记录了DomainBed支持的所有算法的类(继承<code>torch.nn.Module</code>)，也就是各种算法的实现。有一个总的抽象父类供所有类实现，有<code>update</code>和<code>predict</code>两个方法</li>
+<li><code>datasets.py</code>：记录了DomainBed支持的各种数据集的域、设置了checkpoint的频率，以及子文件夹的拼接路径</li>
+<li><code>hparams_registry.py</code>：记录了对各种算法、数据集的默认超参数设置(batch
+size、lr等)</li>
+<li><code>networks.py</code>：实现了各种网络，ResNet、DinoV2、MNIST_CNN等</li>
+</ul>
+<p>显然，我需要在<code>networks.py</code>中实现CLIP，然后打包成跟ResNet差不多的样子，最后找到分配backbone的“工厂”部分，加上CLIP的选项。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 分配backbone的“工厂”:</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Featurizer</span>(<span class="hljs-params">input_shape, hparams</span>):<br>    <span class="hljs-keyword">if</span> hparams.get(<span class="hljs-string">&quot;backbone&quot;</span>, <span class="hljs-string">&quot;resnet50&quot;</span>) == <span class="hljs-string">&quot;clip&quot;</span>: <span class="hljs-comment"># 添加CLIP模型</span><br>        <span class="hljs-keyword">return</span> CLIPBackbone(input_shape, hparams)<br>    <span class="hljs-keyword">elif</span> hparams[<span class="hljs-string">&quot;vit&quot;</span>]:<br>        <span class="hljs-keyword">if</span> hparams[<span class="hljs-string">&quot;dinov2&quot;</span>]:<br>            <span class="hljs-keyword">return</span> DinoV2(input_shape, hparams)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">raise</span> NotImplementedError<br>    <span class="hljs-keyword">return</span> ResNet(input_shape, hparams)  <span class="hljs-comment"># 默认 ResNet</span><br></code></pre></td></tr></table></figure>
+<h3
+id="训练完怎么利用得到的model.pkl">训练完怎么利用得到的model.pkl？</h3>
+<p>首先看到train.py是怎么保存的： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 保存模型的方法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">save_checkpoint</span>(<span class="hljs-params">filename</span>):<br>    <span class="hljs-keyword">if</span> args.skip_model_save:<br>        <span class="hljs-keyword">return</span><br>    save_dict = &#123;<br>        <span class="hljs-string">&quot;args&quot;</span>: <span class="hljs-built_in">vars</span>(args),<br>        <span class="hljs-string">&quot;model_input_shape&quot;</span>: dataset.input_shape,<br>        <span class="hljs-string">&quot;model_num_classes&quot;</span>: dataset.num_classes,<br>        <span class="hljs-string">&quot;model_num_domains&quot;</span>: <span class="hljs-built_in">len</span>(dataset) - <span class="hljs-built_in">len</span>(args.test_envs),<br>        <span class="hljs-string">&quot;model_hparams&quot;</span>: hparams,<br>        <span class="hljs-string">&quot;model_dict&quot;</span>: algorithm.state_dict()<br>    &#125;<br>    torch.save(save_dict, os.path.join(args.output_dir, filename))<br></code></pre></td></tr></table></figure></p>
+<p>save_checkpoint在最后被调用，保存为了model.pkl，主要关注方法中的kv关系：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># model.pkl中的哈希关系</span><br><span class="hljs-string">&quot;args&quot;</span>: <span class="hljs-built_in">vars</span>(args),<br><span class="hljs-string">&quot;model_input_shape&quot;</span>: dataset.input_shape,<br><span class="hljs-string">&quot;model_num_classes&quot;</span>: dataset.num_classes,<br><span class="hljs-string">&quot;model_num_domains&quot;</span>: <span class="hljs-built_in">len</span>(dataset) - <span class="hljs-built_in">len</span>(args.test_envs),<br><span class="hljs-string">&quot;model_hparams&quot;</span>: hparams,<br><span class="hljs-string">&quot;model_dict&quot;</span>: algorithm.state_dict()<br></code></pre></td></tr></table></figure>
+<p>这说明model.pkl就是个哈希表，而不是exe那种：执行一下、喂数据、出结果
+的黑盒，需要用这些数据重新构建出model。</p>
+<p>所以看看<code>algorithms.py</code>是怎么定义各种方法的类的，这里以ERM举例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># ERM的部分实现代码</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ERM</span>(<span class="hljs-title class_ inherited__">Algorithm</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Empirical Risk Minimization (ERM)</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_shape, num_classes, num_domains, hparams</span>):<br>        <span class="hljs-built_in">super</span>(ERM, self).__init__(input_shape, num_classes, num_domains, hparams)<br>        self.featurizer = networks.Featurizer(input_shape, self.hparams)<br>        self.classifier = networks.Classifier(<br>            self.featurizer.n_outputs,<br>            num_classes,<br>            self.hparams[<span class="hljs-string">&#x27;nonlinear_classifier&#x27;</span>])<br><br>        self.network = nn.Sequential(self.featurizer, self.classifier)<br>        self.optimizer = torch.optim.Adam(<br>            self.network.parameters(),<br>            lr=self.hparams[<span class="hljs-string">&quot;lr&quot;</span>],<br>            weight_decay=self.hparams[<span class="hljs-string">&#x27;weight_decay&#x27;</span>]<br>        )<br><span class="hljs-comment"># ...others...</span><br></code></pre></td></tr></table></figure>
+<p>可以看到<code>__init__</code>方法需要<code>input_shape, num_classes, num_domains, hparams</code>四个参数，正好是<code>model.pkl</code>里面保存的，所以读取出来传进去就行了。</p>
+<p>注意调用栈里面会用到的自己写的CLIP类，也要保持与原有的ResNet、DinoV2相同的输入结构，才好复用。</p>
+<p>现在只需要把之前用纯CLIP画图的代码中的<code>load_model</code>方法里用from_pretrained改成使用<code>model.pkl</code>重新构建model即可。</p>
+<h2 id="second-summary">second summary</h2>
+<p>这部分也比较简单，主要难点在看懂DomainBed的结构</p>
+<blockquote>
+<p>其实现在都没完全看懂，似乎里面有实验性的多卡训练代码和其他的用法，貌似多卡训练的代码白写了😭</p>
+</blockquote>
+<p>最后的结果是，<del>太理想了！t-SNE里的各域变得团簇了！</del>，结果很令人迷惑，感觉前后都差不多，纯CLIP的比较团簇，使用方法后反而混合错杂了一点😵‍💫</p>
+<blockquote>
+<p>回顾下这一阶段的目的：</p>
+<p>看相关的图像域泛化方法的t-SNE是否有分开的现象。因为最初的研究动机是，一些文本的域泛化方法使用后反而使域不变特征减少了，也就是t-SNE变得团簇而不错杂</p>
+</blockquote>
+<div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="https://s3.bmp.ovh/imgs/2025/04/05/7801450e88c302eb.png" srcset="/img/loading.gif" lazyload
+alt="纯CLIP" /></div></div><div class="group-image-row"><div class="group-image-wrap"><img src="https://s3.bmp.ovh/imgs/2025/04/05/ec0eb9f3d879f611.png" srcset="/img/loading.gif" lazyload
+alt="ERM" /></div><div class="group-image-wrap"><img src="https://s3.bmp.ovh/imgs/2025/04/05/8520d365dbdd7064.png" srcset="/img/loading.gif" lazyload
+alt="SagNet" /></div></div></div>
+<h1 id="third-stage">third stage</h1>
+<p>这一阶段开始使用咱们（<del>全是师兄提出的，但不妨碍，我们两个真是太厉害了😋☝️</del>）提出的特征对齐方法了：</p>
+<p>利用的特征对齐方法：</p>
+<p><strong>计算源域和目标域的平均向量，求differ=源域平均向量-目标域平均向量，在分类前给样本特征加上differ，再投入分类器分类</strong></p>
+<p>实验目标：</p>
+<ul>
+<li><strong>不用该方法获得的准确率/F1分数</strong></li>
+<li><strong>使用该方法获得的准确率/F1分数</strong></li>
+<li><strong>CLIP参数固定与不固定</strong></li>
+<li><strong>每个方法跑3次求平均</strong></li>
+</ul>
+<p>用伪代码描述：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> [<span class="hljs-literal">None</span>, differ]: <span class="hljs-comment"># 是否用differ</span><br>	<span class="hljs-keyword">for</span> clip <span class="hljs-keyword">in</span> [freeze, unfreeze]: <span class="hljs-comment"># 是否固定CLIP</span><br>		<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>): <span class="hljs-comment"># 不同随机种子重复实验3次</span><br>			seed = random<br>			train(d, clip, seed)<br></code></pre></td></tr></table></figure>
+<p>首先要训练3n个模型，然后改一下测准确率的方法，向里面加入使用特征对齐的分类方式。在训练后算出differ并保存。</p>
+<h2 id="编码过程中的问题">编码过程中的问题</h2>
+<h3
+id="训练结束后如何调用方法计算平均向量并保存">训练结束后如何调用方法计算平均向量并保存？</h3>
+<p>首先要拼接（<code>torch.utils.data.ConcatDataset</code>）所有源域数据，才能计算源域的平均向量。</p>
+<p>这里没有使用ImageFolder-&gt;DataLoader的常规load方法，而是使用了DomainBed自己的<code>FastDataLoader</code>，用的时候几乎都是ChatGPT写代码，没怎么看<code>FastDataLoader</code>是如何工作和使用的，下面简要记录：</p>
+<p><code>FastDataLoader</code>类(在我修改后)支持DDP(DistributedDataParallel，分布式数并行)，传入dataset、batch_size、num_workers、device参数，</p>
+<p>成员<code>loader</code>是<code>DataLoader</code>对象，使用传入的参数定义，另有<code>__iter__</code>方法和<code>__len__</code>方法，分别提供迭代和长度。</p>
+<blockquote>
+<p>看起来似乎就是对DataLoader的简单封装，大概是为了统一实验设置，毕竟DomainBed为的是提供标准统一实验框架</p>
+</blockquote>
+<hr />
+<p>说完Loader。计算平均向量的代码是师兄提供的，输入backbone、loader、device即可。</p>
+<p>得到平均向量后简单相减，然后<code>torch.save</code>保存为pt文件。</p>
+<h3 id="如何利用differ">如何利用differ？</h3>
+<p>differ要在投入分类器前加到样本的特征上，所以流程应该是：</p>
+<blockquote>
+<p>加载测试数据和模型-&gt;遍历样本-&gt;模型backbone提取样本的特征-&gt;<strong>加上或不加上differ</strong>-&gt;喂给分类器-&gt;统计得到准确率和F1</p>
+</blockquote>
+<p>如<a
+href="#怎么换backbone">上文</a>所说，<code>lib.misc.py</code>中有一个测分类准确率的方法，似乎只需要略加修改即可。</p>
+<p>但是我当时并没有意识到，于是自己写了一个evaluate方法😞，包含load_data、extract_features等操作。</p>
+<p>总之，核心代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Python">features = model.featurizer(images) <span class="hljs-comment"># 提取样本特征</span><br><span class="hljs-comment"># 如果传入了differ，就加上</span><br><span class="hljs-keyword">if</span> differ <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">and</span> differ.shape == features.shape[<span class="hljs-number">1</span>:]: <br><span class="hljs-comment"># 喂给分类器</span><br>logits = model.classifier(features)<br><span class="hljs-comment"># 取最可能的一个预测值</span><br>predictions = torch.argmax(logits, dim=<span class="hljs-number">1</span>)<br><span class="hljs-comment"># ...correct/total...</span><br></code></pre></td></tr></table></figure>
+<h3
+id="如何在domainbed中提取特征stupid版问题">如何在DomainBed中提取特征（stupid版问题）</h3>
+<p>问出这个问题是因为，我自己写evaluate时，不知道怎么调出模型的backbone，不知道该怎么把image喂给backbone。</p>
+<p>如<a
+href="#怎么换backbone">上文</a>所说，DomainBed中的各种算法类都是实现了一个抽象父类，需要实现<code>update</code>和<code>predict</code>两个方法。</p>
+<p>而下面的各种方法，用来表示backbone和分类器的成员名称都不太一样，导致了不能直接<code>network(image)</code>表示backbone、<code>model(feature)</code>表示分类。</p>
+<p>例如，ERM的是featurizer、classifier，SagNet的是network_f、network_c，于是有了下面的<code>if-else</code>🤡：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">if</span> <span class="hljs-built_in">hasattr</span>(algorithm, <span class="hljs-string">&quot;featurizer&quot;</span>):<br>    feature_extractor = algorithm.featurizer<br><span class="hljs-keyword">elif</span> <span class="hljs-built_in">hasattr</span>(algorithm, <span class="hljs-string">&quot;network_f&quot;</span>):<br>    feature_extractor = algorithm.network_f<br><span class="hljs-keyword">elif</span> <span class="hljs-built_in">hasattr</span>(algorithm, <span class="hljs-string">&quot;network&quot;</span>):<br>    feature_extractor = algorithm.network<br><span class="hljs-keyword">elif</span> <span class="hljs-built_in">hasattr</span>(algorithm, <span class="hljs-string">&quot;predict&quot;</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">feature_extractor</span>(<span class="hljs-params">x</span>):<br>        <span class="hljs-keyword">return</span> algorithm.predict(x)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;args.algorithm&#125;</span> does not support feature extraction!&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="如何固定clip参数">如何固定CLIP参数</h3>
+<p>这里的“固定CLIP参数”就是冻结backbone的意思（见<a
+href="#backbone还能训练？什么意思？">上文</a>）</p>
+<p>在初始化CLIP时加上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">if</span> hparams.get(<span class="hljs-string">&quot;freeze_clip&quot;</span>, <span class="hljs-literal">False</span>):  <span class="hljs-comment"># 是否冻结 CLIP</span><br>    <span class="hljs-keyword">for</span> param <span class="hljs-keyword">in</span> self.network.parameters():<br>        param.requires_grad = <span class="hljs-literal">False</span><br></code></pre></td></tr></table></figure>
+<p>取消CLIP中所有参数的requires_grad就好。</p>
+<h3 id="如何一键训练多个模型">如何一键训练多个模型</h3>
+<p>这一阶段需要训练多个模型，如<a
+href="#开头一堆parser,add_argument是什么？">上文</a>所说，每次训练需要用<code>python -m domainbed.scripts.train --hparapms '...' --dataset "..." --algorithm "..." --output_dir "/..." --test_envs "..."</code>
+这一长串命令来启动，对于目前这种需要训练多个模型的场景很不友好：</p>
+<ul>
+<li>模型在服务器上训练，时间就是金钱，最好自动无缝衔接训练</li>
+<li>命令这么长，手滑敲错了很难发现，还浪费了时间</li>
+</ul>
+<p>这时候就要掏出<a
+target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/">计算机教育中缺失的一课</a>（虽然我只看了一点点）中的shell🤓。需要强调的是，这并不是AI出的主意，而是从我的辣鸡大脑中蹦出来的<del>（自豪）</del></p>
+<p>回想之前的<a
+href="#third%20stage">伪代码</a>，这就是良好的草稿，稍作修改，将其中的<code>train</code>改为这一长串命令带参数就好了。简单<del>不知天高地厚地</del>贴个示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>DATASETS=(&quot;PACS&quot;) <br>ALGORITHMS=(&quot;ERMPlusPlus&quot; &quot;SagNet&quot; &quot;ERM&quot;)<br>SEEDS=(17 373 3403)<br>TEST_ENVS=(0)<br>OUTPUT_BASE=&quot;/root/autodl-tmp/results&quot;<br>HPARAMS=(&#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;, &quot;freeze_clip&quot;: true&#125;&#x27;)<br><br>for DATASET in &quot;$&#123;DATASETS[@]&#125;&quot;; do<br>    for TEST_ENV in &quot;$&#123;TEST_ENVS[@]&#125;&quot;; do<br>        for ALGORITHM in &quot;$&#123;ALGORITHMS[@]&#125;&quot;; do<br>            COUNT_NOFREEZE=1  # 计数器（不冻结 CLIP）<br>            COUNT_FREEZE=1     # 计数器（冻结 CLIP）<br><br>            for SEED in &quot;$&#123;SEEDS[@]&#125;&quot;; do<br>                for HPARAM in &quot;$&#123;HPARAMS[@]&#125;&quot;; do<br>                    # 判断是否 freeze CLIP<br>                    if [[ &quot;$HPARAM&quot; == *&quot;freeze_clip\&quot;: true&quot;* ]]; then<br>                        FREEZE_STATUS=&quot;freeze&quot;<br>                        OUTPUT_DIR=&quot;$&#123;OUTPUT_BASE&#125;/$&#123;TEST_ENV&#125;/$&#123;ALGORITHM&#125;_$&#123;FREEZE_STATUS&#125;_$&#123;COUNT_FREEZE&#125;&quot;<br>						# 检查文件夹是否已存在且包含训练好的 model.pkl<br>                        if [ -f &quot;$&#123;OUTPUT_DIR&#125;/model.pkl&quot; ]; then<br>                            echo &quot;已存在: $&#123;OUTPUT_DIR&#125;/model.pkl，跳过训练。&quot;<br>                            ((COUNT_FREEZE++))<br>                            continue<br>                        fi<br>                        ((COUNT_FREEZE++))<br>                    else<br>                        OUTPUT_DIR=&quot;$&#123;OUTPUT_BASE&#125;/$&#123;TEST_ENV&#125;/$&#123;ALGORITHM&#125;_$&#123;COUNT_NOFREEZE&#125;&quot;<br>                        # 检查文件夹是否已存在且包含训练好的 model.pkl<br>                        if [ -f &quot;$&#123;OUTPUT_DIR&#125;/model.pkl&quot; ]; then<br>                            echo &quot;已存在: $&#123;OUTPUT_DIR&#125;/model.pkl，跳过训练。&quot;<br>                            ((COUNT_NOFREEZE++))<br>                            continue<br>                        fi<br><br>                        ((COUNT_NOFREEZE++))<br>                    fi<br>                    mkdir -p &quot;$&#123;OUTPUT_DIR&#125;&quot;<br>                    python -m domainbed.scripts.train \<br>                        --dataset &quot;$&#123;DATASET&#125;&quot; \<br>                        --algorithm &quot;$&#123;ALGORITHM&#125;&quot; \<br>                        --data_dir &quot;/root/autodl-tmp/data/$&#123;DATASET&#125;&quot; \<br>                        --hparams &quot;$&#123;HPARAM&#125;&quot; \<br>                        --output_dir &quot;$&#123;OUTPUT_DIR&#125;&quot; \<br>                        --test_envs &quot;$&#123;TEST_ENV&#125;&quot; \<br>                        --seed &quot;$&#123;SEED&#125;&quot;<br>                done<br>            done<br>        done<br>    done<br>done<br><span class="hljs-meta prompt_"># </span><span class="language-bash">训练结束，自动关机省钱</span><br>/usr/bin/shutdown<br></code></pre></td></tr></table></figure>
+<h1 id="fourth-stage">fourth stage</h1>
+<p>扩大实验，包括：</p>
+<ul>
+<li>多实验几个数据集</li>
+<li>换用更新的方法（24年及以后）</li>
+<li>用resnet当backbone实验</li>
+<li>用t-SNE可视化特征对齐之后的域差异
+<ul>
+<li>Backbone不做训练，encode得到的分布</li>
+<li>Backbone在某个/些域上训练，w/ w/o differ，encode得到的分布</li>
+</ul></li>
+<li>用MMD衡量特征对齐后的域差异</li>
+<li>设计实验展示该方法的低成本且无参特性</li>
+</ul>
+<p>目前就卡在这一阶段，自我批评一番：</p>
+<ul>
+<li><p>代码能力较弱（没总结整体思路，写简单的可视化代码与实现多卡训练花了半个月）</p></li>
+<li><p>实验策略不合理（选用了过大的数据集DomainNet，白干一周）</p></li>
+<li><p>代码有bug（导致训练缓慢，浪费钱和时间不说，结果还是错的）</p></li>
+<li><p>shell使用不熟练（本想用脚本无缝衔接，结果写错了没检查，得不偿失）</p></li>
+<li><p>实验结果组织不合理（刚开始自动生成latex表格代码，结果布局不好，又花时间手动复制到excel，excel的布局又不合理，又手动修改……花了很多时间）</p></li>
+<li><p>懒（遇到困难常常退缩拖延，总结也拖，整体思路混乱，没有自己的思考和记录）</p></li>
+</ul>
+<p>下面记录这一阶段的问题：</p>
+<h2 id="如何实现多卡训练">如何实现多卡训练</h2>
+<p>有点长，还有点忘了，多写一会</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/DG/" class="print-no-link">#DG</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>小小的科研总结</div>
+      <div>http://43.143.57.238/2025/04/04/小小的科研总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Leoo Yann</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年4月5日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/05/25-3-5%E8%AF%BB%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/" title="ERM++: AnImproved Baseline for Domain Generalization 阅读笔记">
+                        <span class="hidden-mobile">ERM++: AnImproved Baseline for Domain Generalization 阅读笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://newyann.netlify.app/.netlify/functions/twikoo","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      蜀ICP备2025122268号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=https://beian.miit.gov.cn/#/Integrated/recordQuery"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+          <span>川公网安备51012202002011号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+<footer class="mt-4">
+<font size="2" face="Times New Roman">
+<div class="text-center py-3">
+
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("05/22/2024 00:00:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      document.getElementById("timeDate").innerHTML = "小站已经运行&nbsp"+dnum+"&nbsp<i>days<i>";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsp<i>hours<i>&nbsp" + mnum + "&nbsp<i>min<i>&nbsp" + snum + "&nbsp<i>sec<i>";
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
