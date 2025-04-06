@@ -19,18 +19,18 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="git记录从2月25日开始，那天pull下来了 facebookresearch&#x2F;DomainBed框架，到现在做了一个多月的实验，清明假期犯懒不想做正事，特回顾并记录这一个多月的实验问题以及解决方法 小白向，显得浅显和stupid是正常的，因为我的理解就是比较浅显😞 记录顺序以执行的代码顺序以及时间顺序记录 first stage 这一阶段主要任务是：使用纯的CLIP预训练模型提取一个">
+    <meta name="description" content="Warning：个人实践理解 + AI解释 + 二手博客信息汇总，如有错误，请于底部评论区批评指正，全文仅供参考                         在此感谢师兄对我的指导和老师提供的实验经费！！            git记录从2月25日开始，那天pull下来了 facebookresearch&#x2F;DomainBed框架，到现在做了一个多月的实验，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小小的科研总结">
 <meta property="og:url" content="http://43.143.57.238/2025/04/04/%E5%B0%8F%E5%B0%8F%E7%9A%84%E7%A7%91%E7%A0%94%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="git记录从2月25日开始，那天pull下来了 facebookresearch&#x2F;DomainBed框架，到现在做了一个多月的实验，清明假期犯懒不想做正事，特回顾并记录这一个多月的实验问题以及解决方法 小白向，显得浅显和stupid是正常的，因为我的理解就是比较浅显😞 记录顺序以执行的代码顺序以及时间顺序记录 first stage 这一阶段主要任务是：使用纯的CLIP预训练模型提取一个">
+<meta property="og:description" content="Warning：个人实践理解 + AI解释 + 二手博客信息汇总，如有错误，请于底部评论区批评指正，全文仅供参考                         在此感谢师兄对我的指导和老师提供的实验经费！！            git记录从2月25日开始，那天pull下来了 facebookresearch&#x2F;DomainBed框架，到现在做了一个多月的实验，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/7801450e88c302eb.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/ec0eb9f3d879f611.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/8520d365dbdd7064.png">
 <meta property="article:published_time" content="2025-04-04T02:54:39.000Z">
-<meta property="article:modified_time" content="2025-04-05T14:06:32.567Z">
+<meta property="article:modified_time" content="2025-04-05T14:48:08.825Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="DG">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +262,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          7.4k 字
+          7.5k 字
         
       </span>
     
@@ -322,26 +322,33 @@
             
               <div class="markdown-body">
                 
-                <p>git记录从2月25日开始，那天pull下来了 <a
-target="_blank" rel="noopener" href="https://github.com/facebookresearch/DomainBed">facebookresearch/DomainBed</a>框架，到现在做了一个多月的实验，清明假期犯懒不想做正事，特回顾并记录这一个多月的实验问题以及解决方法</p>
-<p><strong>小白向，显得浅显和stupid是正常的，因为我的理解就是比较浅显😞</strong></p>
+                <div class="note note-warning">
+            <p>Warning：个人实践理解 + AI解释 + 二手博客信息汇总，如有错误，请于底部评论区批评指正，全文仅供参考</p>
+          </div>
+<div class="note note-success">
+            <p>在此感谢师兄对我的指导和老师提供的实验经费！！</p>
+          </div>
+<p>git记录从2月25日开始，那天pull下来了 <a
+target="_blank" rel="noopener" href="https://github.com/facebookresearch/DomainBed">facebookresearch/DomainBed</a>框架，到现在做了一个多月的实验，清明假期犯懒不想做正事，特回顾总结并记录这一个多月的实验问题以及解决方法</p>
 <p>记录顺序以执行的<u>代码顺序</u>以及<u>时间顺序</u>记录</p>
-<h1 id="first-stage">first stage</h1>
-<p>这一阶段主要任务是：<strong>使用<u>纯的CLIP预训练模型</u>提取一个数据集的<u>特征</u>，画出关于域的<u>t-SNE图</u>。</strong></p>
+<h1 id="first-stage">First Stage</h1>
+<p>这一阶段主要任务是：<strong>使用<u>未经训练的CLIP预训练模型</u>提取一个数据集的<u>特征</u>，画出关于域的<u>t-SNE图</u>。</strong></p>
 <p>师兄是在HuggingFace上翻的 <a
 target="_blank" rel="noopener" href="https://huggingface.co/docs/transformers/main/en/model_doc/clip#transformers.CLIPVisionModel">doc</a>
-给我看，指出用CLIP Vision Model、ViT等预训练图像模型来做。</p>
-<p>比较简单，一天内完成，暂时没用到DomainBed，毕竟不需要各种算法。在网上下载了PACS数据集，上传到AutoDL上。</p>
+给我看，指出用CLIP Vision Model / ViT等预训练视觉模型来做。</p>
+<p>比较简单，半天完成，暂时没用到DomainBed，毕竟不需要各种算法。在网上下载了<a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/1710.03077">PACS</a>数据集，上传到<a
+target="_blank" rel="noopener" href="https://www.autodl.com/">AutoDL</a>上。</p>
 <h2 id="什么是clip">什么是CLIP？</h2>
 <p>论文原文： <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.00020">Learning
 Transferable Visual Models From Natural Language
-Supervision</a>（我只看了摘要）</p>
+Supervision</a>（只看了摘要）</p>
 <p>以看完摘要的理解来说就是：利用了<strong>4亿图文对</strong>训练，对比学习，取消了以前依赖label的监督方式，转而利用图片的文本描述，这样监督更broader。图文结合。</p>
 <p>具有强大的泛化能力和零样本能力</p>
 <blockquote>
 <p><strong>啥是监督（supervise）？</strong></p>
-<p>这我也只是意会，大概就是<strong>用没用标签</strong>的意思。贴出Grok
-3的回答：</p>
+<p>我也似懂非懂，大概就是<strong>用没用标签</strong>的意思。贴出Grok
+3的回答，括号内是我的浅显理解：</p>
 <blockquote>
 <p>在深度学习中，“监督”（supervise）是指在模型训练过程中是否使用了标注数据来指导学习。根据是否需要标注数据以及标注数据的多少，可以将学习方式分为
 以下几类：<strong>监督学习</strong>(明确标签)、<strong>自监督学习</strong>(一开始没标签，自己生成标签)、<strong>半监督学习</strong>(少部分有标签，大部分没标签)和<strong>无监督学习</strong>（完全没标签）。</p>
@@ -389,7 +396,7 @@ model来extract feature，然后投进linear
 classifier里面分类。CLIP同时有图像和文本encoder。</p>
 <p><del>看到两个encoder组合，突然想到了之前自己想的的水大创，也是图像结合文本信息，虽然草陋得多（雾）</del></p>
 <h2 id="什么叫提取特征">什么叫提取特征</h2>
-<p>feature、representation，在论文中指特征“、“表示”</p>
+<p><strong>feature、representation</strong>，在论文中指<strong>“特征“、“表示”</strong></p>
 <p>我目前的理解是：深度神经网络可以输入图像，输出图像的“特征”，也就是经过各种层、各种卷积计算之类的，最后输出一个多少维
 <span class="math inline">\(\times\)</span>
 多少维的向量，这个向量就是图像的feature或者representation。比如CLIP是768维向量，ResNet是2048维向量。</p>
@@ -397,13 +404,18 @@ classifier里面分类。CLIP同时有图像和文本encoder。</p>
 <p>可以通过查看输出的shape来看是否正确使用了CLIP或者ResNet</p>
 <p>（shape就是输出的样子、格式之类的，调试时变量真正是什么样和应该是什么样）</p>
 </blockquote>
-<p>这两个词似乎可以混用，DG领域的综述用的是<code>representation</code>，但是代码中一般写<code>extract_feature</code></p>
-<p>这里的提取特征就是，准备好images，然后调整好输入方式，喂给CLIP预训练模型，得到一个特征/表示（768维向量）</p>
+<p>这两个词<strong>似乎</strong>混用了，DG领域的综述<a
+target="_blank" rel="noopener" href="https://arxiv.org/pdf/2103.03097">《Generalizing to Unseen
+Domains: A Survey on Domain
+Generalization》</a>用的是<code>representation</code></p>
+<p>这里的提取特征就是，准备好images，然后调整好输入方式，喂给CLIP预训练模型，得到一个特征或表示（768维向量）</p>
 <h2 id="什么是t-sne图">什么是t-SNE图</h2>
 <p>最开始接触到是在组会和各种论文里，有那种scatter
-plot(散点图)，各种颜色，基本都是一个颜色表示一个域，然后看各个域的重合情况，重合越多表示域不变特征(domain-invariant
-feature)越强，就是各个域都有的特征挺多的，如果学到这个特征，就能通吃各个域，泛化能力强。</p>
-<p>就不放示例图了，一直以来都只是知道怎么看，以及怎么调库生成，以及知道是可视化相邻情况的。下面较详细地记录下数学原理和调库原理：</p>
+plot(散点图)，各种颜色。</p>
+<p>基本都是一个颜色表示一个域，然后看各个域的重合情况，重合越多表示域不变特征(domain-invariant
+feature)越强，各个域共有的特征多，如果学到这个特征，就能通吃各个域，泛化能力强。</p>
+<p><a
+href="#second-summary">下文</a>有3张t-SNE图，一直以来都只是知道怎么看，以及怎么调库生成，以及知道是可视化相邻情况的。下面较详细地记录下数学原理和调库原理：</p>
 <blockquote>
 <p>来自<a
 target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_20177327/article/details/80298645">t-SNE算法解析</a>和AI回答</p>
@@ -454,12 +466,13 @@ q_{j|i}=\frac{(1+||y_i-y_j)||^2)^{-1}}{\sum_{k\ne l
 class="math inline">\(x_i\)</span>与其他所有点之间的条件概率，那么会构成一个条件概率分布<span
 class="math inline">\(P_i\)</span>
 ，同样在地位空间也会有与之对应的条件概率分布 <span
-class="math inline">\(Q_i\)</span>，如果降维之后的数据分布与原始高维空间中的数据分布是一样的，那么理论上这两个条件概率分布式是一致的。那么如何衡量两个条件概率分布之间的差异呢？答案是使用
+class="math inline">\(Q_i\)</span>，如果降维之后的数据分布与原始高维空间中的数据分布是一样的，那么理论上这两个条件概率分布式是一致的。那么如何衡量两个条件概率分布之间的差异呢？经典问题，使用
 K-L 散度（也叫做相对熵），于是，目标函数为： <span
 class="math display">\[
 C=\sum_{i}{KL(P_i||Q_i)}=\sum_{i\ne j}\log{\frac{p_{j|i}}{q_{j|i}}}
 \]</span> 通过梯度下降调整<span
-class="math inline">\(y_i\)</span>的位置，最小化C。</p>
+class="math inline">\(y_i\)</span>的位置，最小化<span
+class="math inline">\(C\)</span>。</p>
 <h5 id="其他">其他</h5>
 <p>更底层的就不写了，可以去问AI，这里写个大概：</p>
 <p>得到梯度公式，初始的低维空间点随机生成，然后迭代更新<span
@@ -476,7 +489,7 @@ class="math inline">\(\sigma_i\)</span>，影响邻域大小；t分布的长尾�
 <li>使用<code>from torchvision.datasets import ImageFolder</code>，设定好backbone需要的transform（图像大小尺寸等），得到<code>ImageFolder</code>对象</li>
 <li>利用<code>from torch.utils.data import DataLoader</code>把<code>ImageFolder</code>对象变成<code>Dataloader</code>对象</li>
 </ul></li>
-<li>load model
+<li>load_model
 <ul>
 <li>利用<code>from transformers import CLIPProcessor, CLIPModel</code>+<code>from_pretrained</code>方法直接从huggingface下载预训练模型<code>openai/clip-vit-base-patch32</code></li>
 </ul></li>
@@ -491,17 +504,17 @@ class="math inline">\(\sigma_i\)</span>，影响邻域大小；t分布的长尾�
 </ul></li>
 </ul>
 <h1 id="second-stage">second stage</h1>
-<p><strong>找<u>图像域泛化方法</u>，用CLIP当<u>backbone</u>，训练前后都用backbone把数据<u>encode</u>成feature，画出t-SNE。</strong></p>
+<p><strong>找个<u>图像域泛化方法</u>，用CLIP当<u>backbone</u>，训练前后都用backbone把数据<u>encode</u>成feature，画出t-SNE。</strong></p>
 <blockquote>
-<p>用意有些忘了……</p>
-<p>看相关的图像域泛化方法的t-SNE是否有分开的现象。因为最初的研究动机是，一些文本的域泛化方法使用后反而使域不变特征减少了，也就是t-SNE变得团簇而不错杂</p>
+<p>用意是：</p>
+<p>看相关的图像域泛化方法的t-SNE是否有分开的现象。因为最初的研究动机是，一些文本的域泛化方法使用后反而使域不变特征减少了，也就是t-SNE的各个颜色点变得各自分离团簇而不互相交杂</p>
 </blockquote>
 <p>这一步就开始用到DomainBed了，不过只需要简单使用，训练出一两个模型。</p>
 <h2 id="什么是backbone">什么是backbone？</h2>
 <p>以前用YOLO的时候看到过这个概念，记得YOLO是head、neck、backbone的结构，但不知道是做什么的。</p>
 <p>目前的理解是：<strong>backbone是用来提取特征的</strong>，我们常说的各种网络（CLIP、ResNet、VGG、AlexNet、LeNet……）一般都用来当做backbone。</p>
 <p>输入的是图片(以及其他raw数据)，输出的是特征，也就是用来提取特征的(<a
-href="#什么叫提取特征">什么叫提取特征</a>)。</p>
+href="#什么叫提取特征">见上文：什么叫提取特征</a>)。</p>
 <p>由于对各种权威专著毫无了解，所以贴AI的回答：</p>
 <blockquote>
 <p>在深度学习中，backbone
@@ -576,7 +589,7 @@ style="text-align: center;">最小化训练集上的平均损失，引导模型�
 <h3
 id="开头一堆parseradd_argument是什么">开头一堆parser,add_argument是什么？</h3>
 <p>一种实现命令行选项的方式，例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">import</span> argparse // 导库<br>parser = argparse.ArgumentParser() // 对象<br>parser.add_argument(<span class="hljs-string">&#x27;--hparams&#x27;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">str</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;你的注释&#x27;</span>) // 加参数<br><br>args = parser.parse_args() // 等输入，并解析<br><span class="hljs-comment"># 命令行使用python -m train.py --hparams &#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;&#125;&#x27;</span><br><span class="hljs-comment"># args里面就会有hparams : &#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;&#125;&#x27;这个哈希表项</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">import</span> argparse <span class="hljs-comment"># 导库</span><br>parser = argparse.ArgumentParser() <span class="hljs-comment"># 对象</span><br>parser.add_argument(<span class="hljs-string">&#x27;--hparams&#x27;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-built_in">str</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&#x27;你的注释&#x27;</span>) <span class="hljs-comment"># 加参数</span><br><span class="hljs-comment"># ...一大堆其他的参数设置</span><br><br>args = parser.parse_args() <span class="hljs-comment"># 等输入，并解析</span><br><span class="hljs-comment"># 命令行使用python -m train.py --hparams &#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;&#125;&#x27;</span><br><span class="hljs-comment"># args里面就会有hparams : &#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;&#125;&#x27;这个哈希表项</span><br></code></pre></td></tr></table></figure>
 <p>然后就更能理解DomainBed的README中的用法：</p>
 <p>python -m domainbed.scripts.train 跟一堆参数，就能一键开始训练。</p>
 <h3 id="怎么换backbone">怎么换backbone</h3>
@@ -585,13 +598,13 @@ id="开头一堆parseradd_argument是什么">开头一堆parser,add_argument是�
 <li><code>lib.fast_data_loader.py</code>：定义了<code>FastDataLoader</code>和<code>InfiniteDataLoader</code>，在<code>train.py</code>中用到</li>
 <li><code>lib.misc.py</code>：<strong>Misc</strong>ellaneous，杂项的意思，目前主要关注到<code>accuracy</code>方法，是checkpoint计算预测准确率(correct
 / total)的（因为这个方法比较慢，数据集大了就是瓶颈之一）</li>
-<li><code>scripts.train.py</code>：主要的训练流程代码，解析参数、设置hp、分割数据集、加载数据、迭代、保存模型</li>
-<li><code>scripts.download.py</code>：下载数据集用的。在最后的<code>if __name__ == "__main__"</code>下保留要下载的数据集的方法，执行带上data_dir参数</li>
-<li><code>algorithms.py</code>：记录了DomainBed支持的所有算法的类(继承<code>torch.nn.Module</code>)，也就是各种算法的实现。有一个总的抽象父类供所有类实现，有<code>update</code>和<code>predict</code>两个方法</li>
-<li><code>datasets.py</code>：记录了DomainBed支持的各种数据集的域、设置了checkpoint的频率，以及子文件夹的拼接路径</li>
-<li><code>hparams_registry.py</code>：记录了对各种算法、数据集的默认超参数设置(batch
+<li><code>scripts.train.py</code>：<strong>主要的训练流程代码</strong>，解析参数、设置hp、分割数据集、加载数据、迭代、保存模型</li>
+<li><code>scripts.download.py</code>：<strong>下载数据集用的</strong>。在最后的<code>if __name__ == "__main__"</code>下保留要下载的数据集的方法，执行带上data_dir参数</li>
+<li><code>algorithms.py</code>：记录了DomainBed支持的所有算法的类(继承<code>torch.nn.Module</code>)，也就是<strong>各种算法的实现</strong>。有一个总的抽象父类供所有类实现，有<code>update</code>和<code>predict</code>两个方法</li>
+<li><code>datasets.py</code>：记录了DomainBed支持的<strong>各种数据集</strong>的域、设置了checkpoint的频率，以及子文件夹的拼接路径</li>
+<li><code>hparams_registry.py</code>：记录了对各种算法、数据集的默认<strong>超参数</strong>设置(batch
 size、lr等)</li>
-<li><code>networks.py</code>：实现了各种网络，ResNet、DinoV2、MNIST_CNN等</li>
+<li><code>networks.py</code>：<strong>实现了各种网络</strong>，ResNet、DinoV2、MNIST_CNN等</li>
 </ul>
 <p>显然，我需要在<code>networks.py</code>中实现CLIP，然后打包成跟ResNet差不多的样子，最后找到分配backbone的“工厂”部分，加上CLIP的选项。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 分配backbone的“工厂”:</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Featurizer</span>(<span class="hljs-params">input_shape, hparams</span>):<br>    <span class="hljs-keyword">if</span> hparams.get(<span class="hljs-string">&quot;backbone&quot;</span>, <span class="hljs-string">&quot;resnet50&quot;</span>) == <span class="hljs-string">&quot;clip&quot;</span>: <span class="hljs-comment"># 添加CLIP模型</span><br>        <span class="hljs-keyword">return</span> CLIPBackbone(input_shape, hparams)<br>    <span class="hljs-keyword">elif</span> hparams[<span class="hljs-string">&quot;vit&quot;</span>]:<br>        <span class="hljs-keyword">if</span> hparams[<span class="hljs-string">&quot;dinov2&quot;</span>]:<br>            <span class="hljs-keyword">return</span> DinoV2(input_shape, hparams)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">raise</span> NotImplementedError<br>    <span class="hljs-keyword">return</span> ResNet(input_shape, hparams)  <span class="hljs-comment"># 默认 ResNet</span><br></code></pre></td></tr></table></figure>
@@ -600,13 +613,14 @@ id="训练完怎么利用得到的model.pkl">训练完怎么利用得到的model
 <p>首先看到train.py是怎么保存的： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># 保存模型的方法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">save_checkpoint</span>(<span class="hljs-params">filename</span>):<br>    <span class="hljs-keyword">if</span> args.skip_model_save:<br>        <span class="hljs-keyword">return</span><br>    save_dict = &#123;<br>        <span class="hljs-string">&quot;args&quot;</span>: <span class="hljs-built_in">vars</span>(args),<br>        <span class="hljs-string">&quot;model_input_shape&quot;</span>: dataset.input_shape,<br>        <span class="hljs-string">&quot;model_num_classes&quot;</span>: dataset.num_classes,<br>        <span class="hljs-string">&quot;model_num_domains&quot;</span>: <span class="hljs-built_in">len</span>(dataset) - <span class="hljs-built_in">len</span>(args.test_envs),<br>        <span class="hljs-string">&quot;model_hparams&quot;</span>: hparams,<br>        <span class="hljs-string">&quot;model_dict&quot;</span>: algorithm.state_dict()<br>    &#125;<br>    torch.save(save_dict, os.path.join(args.output_dir, filename))<br></code></pre></td></tr></table></figure></p>
 <p>save_checkpoint在最后被调用，保存为了model.pkl，主要关注方法中的kv关系：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># model.pkl中的哈希关系</span><br><span class="hljs-string">&quot;args&quot;</span>: <span class="hljs-built_in">vars</span>(args),<br><span class="hljs-string">&quot;model_input_shape&quot;</span>: dataset.input_shape,<br><span class="hljs-string">&quot;model_num_classes&quot;</span>: dataset.num_classes,<br><span class="hljs-string">&quot;model_num_domains&quot;</span>: <span class="hljs-built_in">len</span>(dataset) - <span class="hljs-built_in">len</span>(args.test_envs),<br><span class="hljs-string">&quot;model_hparams&quot;</span>: hparams,<br><span class="hljs-string">&quot;model_dict&quot;</span>: algorithm.state_dict()<br></code></pre></td></tr></table></figure>
-<p>这说明model.pkl就是个哈希表，而不是exe那种：执行一下、喂数据、出结果
+<p>这说明model.pkl就是个哈希表，而不是exe那种执行一下、喂数据、出结果
 的黑盒，需要用这些数据重新构建出model。</p>
-<p>所以看看<code>algorithms.py</code>是怎么定义各种方法的类的，这里以ERM举例：</p>
+<p>所以看看<code>algorithms.py</code>是怎么定义各种模型的类的，以便复原出模型，这里以ERM举例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment"># ERM的部分实现代码</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ERM</span>(<span class="hljs-title class_ inherited__">Algorithm</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Empirical Risk Minimization (ERM)</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, input_shape, num_classes, num_domains, hparams</span>):<br>        <span class="hljs-built_in">super</span>(ERM, self).__init__(input_shape, num_classes, num_domains, hparams)<br>        self.featurizer = networks.Featurizer(input_shape, self.hparams)<br>        self.classifier = networks.Classifier(<br>            self.featurizer.n_outputs,<br>            num_classes,<br>            self.hparams[<span class="hljs-string">&#x27;nonlinear_classifier&#x27;</span>])<br><br>        self.network = nn.Sequential(self.featurizer, self.classifier)<br>        self.optimizer = torch.optim.Adam(<br>            self.network.parameters(),<br>            lr=self.hparams[<span class="hljs-string">&quot;lr&quot;</span>],<br>            weight_decay=self.hparams[<span class="hljs-string">&#x27;weight_decay&#x27;</span>]<br>        )<br><span class="hljs-comment"># ...others...</span><br></code></pre></td></tr></table></figure>
 <p>可以看到<code>__init__</code>方法需要<code>input_shape, num_classes, num_domains, hparams</code>四个参数，正好是<code>model.pkl</code>里面保存的，所以读取出来传进去就行了。</p>
 <p>注意调用栈里面会用到的自己写的CLIP类，也要保持与原有的ResNet、DinoV2相同的输入结构，才好复用。</p>
-<p>现在只需要把之前用纯CLIP画图的代码中的<code>load_model</code>方法里用from_pretrained改成使用<code>model.pkl</code>重新构建model即可。</p>
+<p>现在只需要把之前用纯CLIP画图的代码中的<code>load_model</code>方法里用from_pretrained下载的模型改成使用<code>model.pkl</code>重新构建的
+model 即可。</p>
 <h2 id="second-summary">second summary</h2>
 <p>这部分也比较简单，主要难点在看懂DomainBed的结构</p>
 <blockquote>
@@ -635,12 +649,13 @@ alt="SagNet" /></div></div></div>
 <p>用伪代码描述：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> [<span class="hljs-literal">None</span>, differ]: <span class="hljs-comment"># 是否用differ</span><br>	<span class="hljs-keyword">for</span> clip <span class="hljs-keyword">in</span> [freeze, unfreeze]: <span class="hljs-comment"># 是否固定CLIP</span><br>		<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>): <span class="hljs-comment"># 不同随机种子重复实验3次</span><br>			seed = random<br>			train(d, clip, seed)<br></code></pre></td></tr></table></figure>
 <p>首先要训练3n个模型，然后改一下测准确率的方法，向里面加入使用特征对齐的分类方式。在训练后算出differ并保存。</p>
-<h2 id="编码过程中的问题">编码过程中的问题</h2>
+<h2 id="写代码过程中的问题">写代码过程中的问题</h2>
 <h3
 id="训练结束后如何调用方法计算平均向量并保存">训练结束后如何调用方法计算平均向量并保存？</h3>
 <p>首先要拼接（<code>torch.utils.data.ConcatDataset</code>）所有源域数据，才能计算源域的平均向量。</p>
 <p>这里没有使用ImageFolder-&gt;DataLoader的常规load方法，而是使用了DomainBed自己的<code>FastDataLoader</code>，用的时候几乎都是ChatGPT写代码，没怎么看<code>FastDataLoader</code>是如何工作和使用的，下面简要记录：</p>
-<p><code>FastDataLoader</code>类(在我修改后)支持DDP(DistributedDataParallel，分布式数并行)，传入dataset、batch_size、num_workers、device参数，</p>
+<p><code>FastDataLoader</code>类(在我修改后)支持DDP(DistributedDataParallel，分布式数据并行，见<a
+href="#多卡训练的基础概念和常用库">下文</a>)，传入dataset、batch_size、num_workers、device参数，</p>
 <p>成员<code>loader</code>是<code>DataLoader</code>对象，使用传入的参数定义，另有<code>__iter__</code>方法和<code>__len__</code>方法，分别提供迭代和长度。</p>
 <blockquote>
 <p>看起来似乎就是对DataLoader的简单封装，大概是为了统一实验设置，毕竟DomainBed为的是提供标准统一实验框架</p>
@@ -675,16 +690,18 @@ href="#backbone还能训练？什么意思？">上文</a>）</p>
 <h3 id="如何一键训练多个模型">如何一键训练多个模型</h3>
 <p>这一阶段需要训练多个模型，如<a
 href="#开头一堆parser,add_argument是什么？">上文</a>所说，每次训练需要用<code>python -m domainbed.scripts.train --hparapms '...' --dataset "..." --algorithm "..." --output_dir "/..." --test_envs "..."</code>
-这一长串命令来启动，对于目前这种需要训练多个模型的场景很不友好：</p>
+这一长串命令来启动，对于目前这种需要训练多个模型的场景：</p>
 <ul>
 <li>模型在服务器上训练，时间就是金钱，最好自动无缝衔接训练</li>
 <li>命令这么长，手滑敲错了很难发现，还浪费了时间</li>
 </ul>
+<p>很不友好</p>
 <p>这时候就要掏出<a
 target="_blank" rel="noopener" href="https://missing-semester-cn.github.io/">计算机教育中缺失的一课</a>（虽然我只看了一点点）中的shell🤓。需要强调的是，这并不是AI出的主意，而是从我的辣鸡大脑中蹦出来的<del>（自豪）</del></p>
 <p>回想之前的<a
 href="#third%20stage">伪代码</a>，这就是良好的草稿，稍作修改，将其中的<code>train</code>改为这一长串命令带参数就好了。简单<del>不知天高地厚地</del>贴个示例：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/bin/bash</span><br>DATASETS=(&quot;PACS&quot;) <br>ALGORITHMS=(&quot;ERMPlusPlus&quot; &quot;SagNet&quot; &quot;ERM&quot;)<br>SEEDS=(17 373 3403)<br>TEST_ENVS=(0)<br>OUTPUT_BASE=&quot;/root/autodl-tmp/results&quot;<br>HPARAMS=(&#x27;&#123;&quot;backbone&quot;: &quot;clip&quot;, &quot;freeze_clip&quot;: true&#125;&#x27;)<br><br>for DATASET in &quot;$&#123;DATASETS[@]&#125;&quot;; do<br>    for TEST_ENV in &quot;$&#123;TEST_ENVS[@]&#125;&quot;; do<br>        for ALGORITHM in &quot;$&#123;ALGORITHMS[@]&#125;&quot;; do<br>            COUNT_NOFREEZE=1  # 计数器（不冻结 CLIP）<br>            COUNT_FREEZE=1     # 计数器（冻结 CLIP）<br><br>            for SEED in &quot;$&#123;SEEDS[@]&#125;&quot;; do<br>                for HPARAM in &quot;$&#123;HPARAMS[@]&#125;&quot;; do<br>                    # 判断是否 freeze CLIP<br>                    if [[ &quot;$HPARAM&quot; == *&quot;freeze_clip\&quot;: true&quot;* ]]; then<br>                        FREEZE_STATUS=&quot;freeze&quot;<br>                        OUTPUT_DIR=&quot;$&#123;OUTPUT_BASE&#125;/$&#123;TEST_ENV&#125;/$&#123;ALGORITHM&#125;_$&#123;FREEZE_STATUS&#125;_$&#123;COUNT_FREEZE&#125;&quot;<br>						# 检查文件夹是否已存在且包含训练好的 model.pkl<br>                        if [ -f &quot;$&#123;OUTPUT_DIR&#125;/model.pkl&quot; ]; then<br>                            echo &quot;已存在: $&#123;OUTPUT_DIR&#125;/model.pkl，跳过训练。&quot;<br>                            ((COUNT_FREEZE++))<br>                            continue<br>                        fi<br>                        ((COUNT_FREEZE++))<br>                    else<br>                        OUTPUT_DIR=&quot;$&#123;OUTPUT_BASE&#125;/$&#123;TEST_ENV&#125;/$&#123;ALGORITHM&#125;_$&#123;COUNT_NOFREEZE&#125;&quot;<br>                        # 检查文件夹是否已存在且包含训练好的 model.pkl<br>                        if [ -f &quot;$&#123;OUTPUT_DIR&#125;/model.pkl&quot; ]; then<br>                            echo &quot;已存在: $&#123;OUTPUT_DIR&#125;/model.pkl，跳过训练。&quot;<br>                            ((COUNT_NOFREEZE++))<br>                            continue<br>                        fi<br><br>                        ((COUNT_NOFREEZE++))<br>                    fi<br>                    mkdir -p &quot;$&#123;OUTPUT_DIR&#125;&quot;<br>                    python -m domainbed.scripts.train \<br>                        --dataset &quot;$&#123;DATASET&#125;&quot; \<br>                        --algorithm &quot;$&#123;ALGORITHM&#125;&quot; \<br>                        --data_dir &quot;/root/autodl-tmp/data/$&#123;DATASET&#125;&quot; \<br>                        --hparams &quot;$&#123;HPARAM&#125;&quot; \<br>                        --output_dir &quot;$&#123;OUTPUT_DIR&#125;&quot; \<br>                        --test_envs &quot;$&#123;TEST_ENV&#125;&quot; \<br>                        --seed &quot;$&#123;SEED&#125;&quot;<br>                done<br>            done<br>        done<br>    done<br>done<br><span class="hljs-meta prompt_"># </span><span class="language-bash">训练结束，自动关机省钱</span><br>/usr/bin/shutdown<br></code></pre></td></tr></table></figure>
+<p>只需修改数据集名称，打开screen守护进程，<code>./run.sh</code>一键运行，然后关闭ssh连接放手不管😋☝️</p>
 <h1 id="fourth-stage">fourth stage</h1>
 <p>这一阶段的任务是扩大实验，包括：</p>
 <ul>
