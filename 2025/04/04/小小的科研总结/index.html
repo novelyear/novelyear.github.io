@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/ec0eb9f3d879f611.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/8520d365dbdd7064.png">
 <meta property="article:published_time" content="2025-04-04T02:54:39.000Z">
-<meta property="article:modified_time" content="2025-04-05T14:48:08.825Z">
+<meta property="article:modified_time" content="2025-04-08T09:38:05.757Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="DG">
 <meta name="twitter:card" content="summary_large_image">
@@ -262,7 +262,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          7.5k 字
+          7.6k 字
         
       </span>
     
@@ -327,7 +327,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年4月5日 晚上
+                    本文最后更新于 2025年4月8日 下午
                   
                 
               </p>
@@ -811,6 +811,7 @@ size也不会OOM了。</p>
 <p>不过，还是非常慢，在程序各处都添加了print，打印各段的耗时，并与之前的小数据集对比，发现就是单纯地数据集太大，单轮迭代的耗时差不多，甚至DomainNet更短一点点，但DomainNet太大，已经是PACS、VLCS等小数据集的60倍以上，难以使用。主要是没那么多卡和钱给我烧，测小数据集就行了。</p>
 <p>在多卡上取消所有checkpoint训练DomainNet，每step也需要较长时间，最终放弃。</p>
 </blockquote>
+<p>小插曲，斗胆向DomainBed提出了一个PR，视作无成本的尝试，虽然目前对multi-GPU的支持显得十分cheap</p>
 <h2
 id="针对多服务器如何提高evaluate和可视化代码的可移植性">针对多服务器，如何提高evaluate和可视化代码的可移植性</h2>
 <p>提出这个问题主要是因为实验使用AutoDL进行，每个实例的内存有限，所以我每个服务器只能装一两个数据集，因为每个数据集上需要训练出三十多个模型，都要保存，每个模型大概800M，两个数据集差不多打爆AutoDL的60G数据盘了。</p>
@@ -861,7 +862,7 @@ id="针对多服务器如何提高evaluate和可视化代码的可移植性">针
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年4月5日</div>
+          <div>2025年4月8日</div>
         </div>
       
       
