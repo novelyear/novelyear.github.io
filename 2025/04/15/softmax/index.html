@@ -27,7 +27,7 @@
 <meta property="og:description" content="问题来源 经常在保研经验帖中看到问softmax以及让手写softmax。我只知道有个softmax函数，以及是用在多分类任务里的，知之甚少，所以系统学习一番。 写完后发现有点简单，所以加个cross-entropy凑凑篇幅。 数学原理 Softmax函数定义：(来源于Grok3的回答，暂未在《机器学习》中找到相关描述) Softmax函数将一个 \(K\) 维实数向量 \(\bold">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-15T10:27:52.000Z">
-<meta property="article:modified_time" content="2025-04-15T14:25:38.035Z">
+<meta property="article:modified_time" content="2025-04-15T14:30:56.287Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -340,9 +340,12 @@
 <span class="math inline">\(\boldsymbol{z}=[z_1,z_2,...,z_K]\)</span>
 转化为概率分布： <span class="math display">\[
 \sigma(z)_i=\frac{\exp(z_i)}{\sum_{j=1}^K\exp(z_j)},\ i=1,2,...,K
-\]</span> &gt; 比如，<span class="math inline">\([1.0, 2.0,
+\]</span></p>
+<blockquote>
+<p>比如，<span class="math inline">\([1.0, 2.0,
 3.0]\)</span>会转换为<span class="math inline">\([0.09, 0.24,
 0.67]\)</span>，看起来，就是把一个类似权重的向量归一化成一串概率</p>
+</blockquote>
 <p>性质：</p>
 <ul>
 <li>输出值在(0, 1)区间</li>
