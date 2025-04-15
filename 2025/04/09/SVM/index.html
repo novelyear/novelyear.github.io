@@ -22,12 +22,12 @@
     <meta name="description" content="第一部分：阅读专著学习基本概念 间隔与支持向量 分类学习的基本想法就是，基于训练集D，在样本空间中找到一个划分超平面，将不同的样本分开。 例如，在平面坐标系中找到一条线，使两种不同的类别的样本完美地被区分开，并能够以这条线继续正确划分更多的新样本。 这条线得尽量居中，“容忍度”更高。 在超平面两侧，距离平面最近的点到平面的距离和称为支持向量。要使支持向量最大，才能让超平面的“容忍度”更高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SVM简单学习记录">
-<meta property="og:url" content="https://novelyear.github.io/2025/04/09/SVM/index.html">
+<meta property="og:url" content="http://43.143.57.238/2025/04/09/SVM/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
 <meta property="og:description" content="第一部分：阅读专著学习基本概念 间隔与支持向量 分类学习的基本想法就是，基于训练集D，在样本空间中找到一个划分超平面，将不同的样本分开。 例如，在平面坐标系中找到一条线，使两种不同的类别的样本完美地被区分开，并能够以这条线继续正确划分更多的新样本。 这条线得尽量居中，“容忍度”更高。 在超平面两侧，距离平面最近的点到平面的距离和称为支持向量。要使支持向量最大，才能让超平面的“容忍度”更高">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-09T03:11:50.000Z">
-<meta property="article:modified_time" content="2025-04-09T13:27:42.416Z">
+<meta property="article:modified_time" content="2025-04-09T13:38:26.316Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"novelyear.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"43.143.57.238","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -353,11 +353,13 @@ class="math inline">\(\boldsymbol{\alpha}\)</span>就是全部拉格朗日乘子
 class="math inline">\(\alpha_i\)</span>以外的其他所有参数，然后求<span
 class="math inline">\(\alpha_i\)</span>上的极值。具体步骤：</p>
 <ul>
-<li>选取一对需更新的变量$_i <span class="math inline">\(和\)</span> _j$
-；</li>
-<li>固定$_i <span class="math inline">\(和\)</span> _j<span
-class="math inline">\(以外的参数，求解对偶问题式获得更新后的\)</span>_i
-<span class="math inline">\(和\)</span> _j$</li>
+<li>选取一对需更新的变量 <span class="math inline">\(\alpha_i\)</span>
+和 <span class="math inline">\(\alpha_j\)</span></li>
+<li>固定 <span class="math inline">\(\alpha_i\)</span> 和 <span
+class="math inline">\(\alpha_j\)</span>
+以外的参数，求解对偶问题式获得更新后的 <span
+class="math inline">\(\alpha_i\)</span> 和 <span
+class="math inline">\(\alpha_j\)</span></li>
 </ul>
 <p>启发式规则：使选取的两变量所对应的样本之间的间隔最大。</p>
 <h2 id="核函数">核函数</h2>
@@ -390,17 +392,19 @@ class="math inline">\(\alpha_j\)</span>的上下界约束范围</li>
 <li>计算<span
 class="math inline">\(\eta\)</span>，二次优化问题的二阶导数，用于计算<span
 class="math inline">\(\alpha_j\)</span>的更新步长，如果非负，优化无意义，跳过</li>
-<li>根据误差调整<span class="math inline">\(\alpha_i\)</span>和<span
+<li>根据误差调整 <span class="math inline">\(\alpha_i\)</span> 和 <span
 class="math inline">\(\alpha_j\)</span></li>
-<li>用新的<span class="math inline">\(\alpha_i\)</span>和<span
-class="math inline">\(\alpha_j\)</span>更新偏置b</li>
+<li>用新的 <span class="math inline">\(\alpha_i\)</span> 和 <span
+class="math inline">\(\alpha_j\)</span> 更新偏置b</li>
 </ol>
-<p>文中选取j的方式是随机，并未使用启发式规则。代码中更新<span
+<p>文中选取 <span class="math inline">\(j\)</span>
+的方式是随机，并未使用启发式规则。代码中更新<span
 class="math inline">\(\alpha\)</span>的算式为： <span
 class="math display">\[
 \alpha_j^{new}=\alpha_j^{old}+\frac{y_j(E_i-E_j)}{\eta}
-\]</span> 所以启发式规则的实际表现就是选取<span
-class="math inline">\(|E_i-E_j|\)</span>最大的j</p>
+\]</span> 所以启发式规则的实际表现就是：选取<span
+class="math inline">\(|E_i-E_j|\)</span>最大的 <span
+class="math inline">\(j\)</span></p>
 <h2 id="非线性svm简单示例">非线性SVM简单示例</h2>
 <p>代码来源：<a
 target="_blank" rel="noopener" href="https://cuijiahua.com/blog/2017/11/ml_9_svm_2.html">机器学习实战教程（九）：支持向量机实战篇之再撕非线性SVM</a></p>
@@ -440,7 +444,7 @@ class="math inline">\(\boldsymbol{x}_i^T\boldsymbol{x}\)</span>的地方都要�
   <div class="license-box my-3">
     <div class="license-title">
       <div>SVM简单学习记录</div>
-      <div>https://novelyear.github.io/2025/04/09/SVM/</div>
+      <div>http://43.143.57.238/2025/04/09/SVM/</div>
     </div>
     <div class="license-meta">
       
@@ -488,6 +492,12 @@ class="math inline">\(\boldsymbol{x}_i^T\boldsymbol{x}\)</span>的地方都要�
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/04/15/softmax/" title="Softmax &amp; Entorpy">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Softmax &amp; Entorpy</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

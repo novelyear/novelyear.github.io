@@ -22,7 +22,7 @@
     <meta name="description" content="目前处于烂尾状态。。。我很抱歉。。  缓存更新   等redis内存满了自己淘汰 超时 主动更新  主动更新  更新数据库时更新缓存 缓存与数据库整合 调用者只操作缓存，由其他线程异步将缓存持久化到数据库中，保证最终一致  先删缓存还是先操作数据库？ 先操作数据库，再更新缓存。  缓存操作比数据库操作快；数据库读比写快：所以先删缓存，在数据库update完成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="点评的缓存问题">
-<meta property="og:url" content="https://novelyear.github.io/2024/10/10/%E7%82%B9%E8%AF%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:url" content="http://43.143.57.238/2024/10/10/%E7%82%B9%E8%AF%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
 <meta property="og:description" content="目前处于烂尾状态。。。我很抱歉。。  缓存更新   等redis内存满了自己淘汰 超时 主动更新  主动更新  更新数据库时更新缓存 缓存与数据库整合 调用者只操作缓存，由其他线程异步将缓存持久化到数据库中，保证最终一致  先删缓存还是先操作数据库？ 先操作数据库，再更新缓存。  缓存操作比数据库操作快；数据库读比写快：所以先删缓存，在数据库update完成">
 <meta property="og:locale" content="zh_CN">
@@ -73,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"novelyear.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"43.143.57.238","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home","post","tag","catsgory","links","page",404]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":2},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"iaM9AukPPkCU5JOcIcIz9Kyf-gzGzoHsz","app_key":"ycU7FFHDUsybzdiZ86ioYNSR","server_url":"https://iam9aukp.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":true}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -460,7 +460,7 @@ src="https://s3.bmp.ovh/imgs/2024/11/03/11e420ea7f4b894e.png" srcset="/img/loadi
   <div class="license-box my-3">
     <div class="license-title">
       <div>点评的缓存问题</div>
-      <div>https://novelyear.github.io/2024/10/10/点评学习记录/</div>
+      <div>http://43.143.57.238/2024/10/10/点评学习记录/</div>
     </div>
     <div class="license-meta">
       
