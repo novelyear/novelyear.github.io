@@ -19,22 +19,25 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="问题来源 经常在保研经验帖中看到问softmax以及让手写softmax。我只知道有个softmax函数，以及是用在多分类任务里的，知之甚少，所以系统学习一番。 写完后发现有点简单，所以加个cross-entropy凑凑篇幅。 数学原理 Softmax函数定义：(来源于Grok3的回答，暂未在《机器学习》中找到相关描述) Softmax函数将一个 \(K\) 维实数向量 \(\bold">
+    <meta name="description" content="Motivation 大二那年做了一个大创，题目是基于深度学习的GUI图像识别自动化测试，那时对深度学习的各种概念都一知半解，虽然认真读文献、认真做过，但学到的东西很有限，又过了这么久，更是忘得差不多了。 为了能写在简历上，经得住拷打，专门复习复习YOLO以及自动化测试相关的八股，同时复习复习这个历时一年的(真正在做的时间大概半年)的首段&quot;科研&quot;学习经历。 复习采用： 1234567&#x2F;&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Softmax &amp; Entorpy">
-<meta property="og:url" content="http://43.143.57.238/2025/04/15/softmax/index.html">
+<meta property="og:title" content="YOLO">
+<meta property="og:url" content="http://43.143.57.238/2025/04/17/YOLO/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="问题来源 经常在保研经验帖中看到问softmax以及让手写softmax。我只知道有个softmax函数，以及是用在多分类任务里的，知之甚少，所以系统学习一番。 写完后发现有点简单，所以加个cross-entropy凑凑篇幅。 数学原理 Softmax函数定义：(来源于Grok3的回答，暂未在《机器学习》中找到相关描述) Softmax函数将一个 \(K\) 维实数向量 \(\bold">
+<meta property="og:description" content="Motivation 大二那年做了一个大创，题目是基于深度学习的GUI图像识别自动化测试，那时对深度学习的各种概念都一知半解，虽然认真读文献、认真做过，但学到的东西很有限，又过了这么久，更是忘得差不多了。 为了能写在简历上，经得住拷打，专门复习复习YOLO以及自动化测试相关的八股，同时复习复习这个历时一年的(真正在做的时间大概半年)的首段&quot;科研&quot;学习经历。 复习采用： 1234567&#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-15T10:27:52.000Z">
-<meta property="article:modified_time" content="2025-04-15T14:30:56.287Z">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/17/dcd4405c00cf2b51.png">
+<meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/17/65374c958b2e27e5.png">
+<meta property="article:published_time" content="2025-04-17T05:50:54.000Z">
+<meta property="article:modified_time" content="2025-04-17T12:51:03.769Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s3.bmp.ovh/imgs/2025/04/17/dcd4405c00cf2b51.png">
   
   
   
-  <title>Softmax &amp; Entorpy - novelyear&#39;s home</title>
+  <title>YOLO - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +232,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Softmax &amp; Entorpy"></span>
+            <span id="subtitle" data-typed-text="YOLO"></span>
           
         </div>
 
@@ -245,8 +248,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-15 18:27" pubdate>
-          2025年4月15日 晚上
+        <time datetime="2025-04-17 13:50" pubdate>
+          2025年4月17日 下午
         </time>
       </span>
     
@@ -258,7 +261,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.3k 字
+          2.1k 字
         
       </span>
     
@@ -318,12 +321,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Softmax &amp; Entorpy</h1>
+            <h1 id="seo-header">YOLO</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年4月15日 晚上
+                    本文最后更新于 2025年4月17日 晚上
                   
                 
               </p>
@@ -331,119 +334,210 @@
             
               <div class="markdown-body">
                 
-                <h1 id="问题来源">问题来源</h1>
-<p>经常在保研经验帖中看到问softmax以及让手写softmax。我只知道有个softmax函数，以及是用在多分类任务里的，知之甚少，所以系统学习一番。</p>
-<p>写完后发现有点简单，所以加个cross-entropy凑凑篇幅。</p>
-<h1 id="数学原理">数学原理</h1>
-<p>Softmax函数定义：(来源于Grok3的回答，暂未在《机器学习》中找到相关描述)</p>
-<p>Softmax函数将一个 <span class="math inline">\(K\)</span> 维实数向量
-<span class="math inline">\(\boldsymbol{z}=[z_1,z_2,...,z_K]\)</span>
-转化为概率分布： <span class="math display">\[
-\sigma(z)_i=\frac{\exp(z_i)}{\sum_{j=1}^K\exp(z_j)},\ i=1,2,...,K
-\]</span></p>
+                <h1 id="motivation">Motivation</h1>
+<p>大二那年做了一个大创，题目是基于深度学习的GUI图像识别自动化测试，那时对深度学习的各种概念都一知半解，虽然认真读文献、认真做过，但学到的东西很有限，又过了这么久，更是忘得差不多了。</p>
+<p>为了能写在简历上，经得住拷打，专门复习复习YOLO以及自动化测试相关的八股，同时复习复习这个历时一年的(真正在做的时间大概半年)的首段"科研"学习经历。</p>
+<p>复习采用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 猜测可能的问题</span><br>solve(problem)&#123;<br>	stack.add(problem)<br>	<span class="hljs-comment">// 解答可能的问题，在解答过程中遇到新的问题则入栈,递归解决</span><br>	<span class="hljs-keyword">while</span>(!stack.isEmpty()) solve(stack.poll())<br>&#125;<br><span class="hljs-comment">// 每遇到一个问题需要记录在这里，防止脑子内存不足而StackOverflow</span><br></code></pre></td></tr></table></figure>
+<h1 id="yolo部分">YOLO部分</h1>
+<h2 id="为什么选择yolo">为什么选择YOLO？</h2>
+<p>其他的目标检测算法有：Fast R-CNN、SSD等。</p>
+<p>拉表来说明：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">特性</th>
+<th style="text-align: center;">YOLO</th>
+<th style="text-align: center;">Faster R-CNN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">类型</td>
+<td style="text-align: center;">单阶段</td>
+<td style="text-align: center;">两阶段</td>
+</tr>
+<tr>
+<td style="text-align: center;">速度</td>
+<td style="text-align: center;">非常快，实时</td>
+<td style="text-align: center;">较慢</td>
+</tr>
+<tr>
+<td style="text-align: center;">精度</td>
+<td style="text-align: center;">比Faster R-CNN高</td>
+<td style="text-align: center;">相比更低</td>
+</tr>
+<tr>
+<td style="text-align: center;">适合场景</td>
+<td style="text-align: center;">实时，轻量，部署灵活</td>
+<td style="text-align: center;">离线分析、复杂场景</td>
+</tr>
+<tr>
+<td style="text-align: center;">缺点</td>
+<td style="text-align: center;">对密集目标效果差</td>
+<td style="text-align: center;">慢，部署复杂</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">特性</th>
+<th style="text-align: center;">YOLO</th>
+<th style="text-align: center;">SSD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">网络结构</td>
+<td style="text-align: center;">更现代</td>
+<td style="text-align: center;">较旧</td>
+</tr>
+<tr>
+<td style="text-align: center;">精度</td>
+<td style="text-align: center;">高，特别是小目标</td>
+<td style="text-align: center;">相对更低</td>
+</tr>
+<tr>
+<td style="text-align: center;">速度</td>
+<td style="text-align: center;">快</td>
+<td style="text-align: center;">慢</td>
+</tr>
+<tr>
+<td style="text-align: center;">工具支持</td>
+<td style="text-align: center;">Ultralytics持续支持</td>
+<td style="text-align: center;">维护较少</td>
+</tr>
+</tbody>
+</table>
+<p>拉表可得，YOLO在识别GUI元素这种：</p>
+<ul>
+<li>几乎不可能有密集目标(谁家GUI把一堆控件重叠堆在一起的)</li>
+<li>目标较小(按钮、滑动条、输入框之类)</li>
+<li>轻量化，方便集成进测试工具链</li>
+</ul>
+<p>的情境下，缺点被避免，而优点被放大，是最优的选择</p>
+<h3 id="关于faster-r-cnn和ssd的简单了解">关于Faster
+R-CNN和SSD的简单了解</h3>
+<h4 id="faster-r-cnn">Faster R-CNN</h4>
+<p>是R-CNN系列的第三代，实现了目标检测流程的端到端训练</p>
 <blockquote>
-<p>比如，<span class="math inline">\([1.0, 2.0,
-3.0]\)</span>会转换为<span class="math inline">\([0.09, 0.24,
-0.67]\)</span>，看起来，就是把一个类似权重的向量归一化成一串概率</p>
+<p><strong>端到端</strong>：核心思想是将目标检测任务视为一个整体的优化问题，而不是将其分解为多个子任务（如特征提取、候选区域生成、分类和回归等）。</p>
 </blockquote>
-<p>性质：</p>
+<p>其将目标检测任务分解为两个主要部分：</p>
+<ol type="1">
+<li><strong>区域提议网络（Region Proposal Network,
+RPN）</strong>：生成候选目标区域。</li>
+<li><strong>Fast R-CNN</strong>：对候选区域进行分类和边界框回归。</li>
+</ol>
+<p>尽管 Faster R-CNN
+仍然包含两个主要阶段，但它通过共享卷积特征来实现端到端训练，使得整个过程可以联合优化。</p>
+<h4 id="ssd">SSD</h4>
+<p>SSD (Single Shot MultiBox Detector)，另一种端到端目标检测模型，结合了
+YOLO 的<strong>单次检测思想</strong>和 Faster R-CNN
+的<strong>多尺度检测能力</strong>。</p>
+<ol type="1">
+<li><p>SSD 在多个尺度的特征图上同时预测目标的边界框和类别概率</p>
 <ul>
-<li>输出值在(0, 1)区间</li>
-<li>所有输出值的和为1</li>
-<li>指数函数放大输入差异，使较大值更接近1，较小值接近0</li>
-</ul>
-<p>Softmax的输出可解释为类别 <span class="math inline">\(i\)</span>
-的条件概率： <span class="math display">\[
-P(y=i|x)=\frac{\exp(w_i^Tx+b_i)}{\sum_{j=1}^K\exp(w_j^Tx+b_j)}
-\]</span> 其中 <span class="math inline">\(w_i\)</span> 和 <span
-class="math inline">\(b_i\)</span> 是类别 <span
-class="math inline">\(i\)</span> 的权重和偏置</p>
-<p>Softmax通常与交叉熵损失(cross-entropy)结合使用，用于优化模型参数。假设真实标签为
-<span class="math inline">\(y\)</span> ，预测概率为 <span
-class="math inline">\(\hat{y}=\sigma(z)\)</span>，交叉熵损失为： <span
-class="math display">\[
-L=-\sum_{i=1}^{K} y_i\log(\hat{y_i})
-\]</span> 对于单样本，若正确类别为 <span
-class="math inline">\(k\)</span> 则 <span
-class="math inline">\(y_k=1\)</span> ，其他 <span
-class="math inline">\(y_i=0\)</span> ，损失简化为： <span
-class="math display">\[
-L=-\log(\hat{y_k})=-\log(\frac{\exp(z_k)}{\sum_{j=1}^K \exp(z_j)})
-\]</span></p>
-<h1 id="计算softmax和数值稳定性">计算Softmax和数值稳定性</h1>
-<p>在Python中计算给定向量上的softmax函数的简单实现是： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">softmax</span>(<span class="hljs-params">x</span>):<br>    exps = np.exp(x)<br>    <span class="hljs-keyword">return</span> exps / np.<span class="hljs-built_in">sum</span>(exps)<br></code></pre></td></tr></table></figure></p>
-<p>对于之前的示例 <code>[1,2,3]</code> ，输出
-<code>[ 0.09003057,  0.24472847,  0.66524096]</code>，但是如果数字更大，就会输出<code>nan</code>（not
-a
-number），因为Numpy使用的浮点数数值范围有限，所以可以将输入转换一下，避免大指数计算，由数学推导(见<a
-href="#参考">参考</a>中的第一条)可得，在exp内部加减常数对结果没有影响，一般采用以下形式：
-<span class="math display">\[
-\sigma(z)_i=\frac{\exp(z_i-\max(z))}{\sum_{j=1}^K \exp(z_j-\max(z))}
-\]</span> 实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">stablesoftmax</span>(<span class="hljs-params">x</span>):<br>    shiftx = x - np.<span class="hljs-built_in">max</span>(x, axis=-<span class="hljs-number">1</span>, keepdims=<span class="hljs-literal">True</span>)<br>    exps = np.exp(shiftx)<br>    <span class="hljs-keyword">return</span> exps / np.<span class="hljs-built_in">sum</span>(exps, axis=-<span class="hljs-number">1</span>, keepdims=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<li>SSD 在不同尺度的 feature maps（如 conv4_3、conv7
+等）上同时做检测。</li>
+<li>每个尺度负责检测不同大小的目标（低层检测小目标，高层检测大目标）。</li>
+</ul></li>
+<li><p>默认框（Default Boxes）机制</p>
 <ul>
-<li><code>axis=-1</code>：确保对每个样本的 logits
-向量（最后一维）计算最大值，而不是对整个数组。这对于多维输入（例如批量数据）至关重要。没有的话，对于多维数据，就会取全局最大，比如<code>[[1000, 2000, 3000], [4000, 5000, 6000]]</code>会输出<code>[[0., 0., 0.], [0., 0., 1.]]</code></li>
-<li><code>keepdims=True</code>：保持输出维度，不加的话，对于多维向量，可能把各行最大值的列向量给变成行向量，后面减法会出错。</li>
-</ul>
-<p>但现在：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">x</span> = np.array([<span class="hljs-number">1000</span>, <span class="hljs-number">2000</span>, <span class="hljs-number">3000</span>])<span class="hljs-meta"></span><br><span class="hljs-meta">[ 0.,  0.,  1.]</span><br></code></pre></td></tr></table></figure>
-<p>虽然softmax不会输出0，但是差异太大，所以过于接近0.</p>
-<h1 id="some-entropy">some Entropy</h1>
-<h2 id="信息熵香农熵">信息熵（香农熵）</h2>
-<p>信息量的大小跟随机事件的概率有关，越小概率的事情发生了，产生的信息量越大</p>
+<li><p>SSD 预定义了多个比例和长宽比的 default boxes（类似于 anchor
+boxes），在每个 feature map 的每个位置做分类和回归。</p></li>
+<li><p>模型会学习每个 default box
+的类别概率以及相对真实框的位置偏移</p></li>
+</ul></li>
+</ol>
+<h2 id="yolo的原理和机制-简介">YOLO的原理和机制 简介</h2>
+<p>YOLO可以目标检测和图像分割</p>
+<p>最初的YOLO借鉴了GoogLeNet模型，24个卷积层，2个全连接层。</p>
+<p>YOLO将目标检测视为回归问题，将CNN应用于整个图像，将图像划分为区域并预测每个区域的边界框和概率。</p>
+<p>图像会被分割成不同大小的网格(SxS)，有多种尺度，用以检测不同大小的目标。</p>
+<p>每个网格预测固定数量的边界框和类别概率，边界框是个五元组(中心坐标x，中心坐标y，宽，高，概率)</p>
+<p>图像预处理输入模型，输出为一个shape为 <span class="math inline">\(S
+\times S \times(B \times 5+C)\)</span>
+的向量，S是网格大小，B是每个网格预测的边界框数量，C是类别数量，5即为五元组。</p>
+<p>最后的特征向量4096维。</p>
 <blockquote>
-<p>比如高中学过的 <span class="math inline">\(3\sigma\)</span>
-原则，当正态分布在 <span class="math inline">\(3\sigma\)</span>
-外的事件发生，就可以认为出现异常</p>
+<p>写的时候想到的问题，有点stupid：</p>
+<p>为什么把图像预处理成446 * 446后喂给模型就能吐出7 * 7
+*30维的输出向量了？</p>
+<p>因为深度学习或者说机器学习训练时就是为了拟合一个分布，拟合一个函数或者映射，尽管这看起来很奇怪，直觉上不觉得有映射关系，但是训练时的优化损失函数会调整网络中的各个参数，让网络能够映射。</p>
+<p>一开始肯定是喂图像吐不出设计好的向量格式，但是训练后，拟合了，就可以吐出来了。</p>
 </blockquote>
-<p>而确定性时间没有信息量，所以概率越小，信息越大，给概率取个倒什么的就可以变成一种权重，于是有了
-<span class="math inline">\(\frac{1}{P(x)}\)</span>
-，但是香农的定义还套了一层 <span class="math inline">\(\log_2\)</span>
-，套个对数的好处在于，如果多个独立事件都发生，可以化乘为加，更多具体原因见<a
-target="_blank" rel="noopener" href="https://www.cnblogs.com/anai/p/12160754.html">信息熵为什么要定义成-Σp*log(p)</a>。所以，信息熵的定义是：
-<span class="math display">\[
-\begin{aligned}
-\text{Entropy} &amp; =\sum_iP(i)\log_2\frac{1}{P(i)} \\
-&amp; =-\sum_iP(i)\log_2P(i)
-\end{aligned}
-\]</span> 在连续变量上： <span class="math display">\[
-\text{Entropy}=-\int P(x)\log_2P(x)\,\mathrm{d}x
-\]</span></p>
-<h2 id="相对熵kl散度">相对熵（KL散度）</h2>
-<p>用来衡量两个概率分布的差异性： <span class="math display">\[
-D_{KL}(p||q)=\sum_{i=1}^Np(x_i)\log(\frac{p(x_i)}{q(x_i)})
-\]</span> 由上式可见，相对熵没有对称性，也就是说 <span
-class="math inline">\(D_{KL}(p||q) \ne D_{KL}(q||p)\)</span></p>
-<h2 id="交叉熵">交叉熵</h2>
-<p>单个样本，预测分布p，真实分布q的交叉熵： <span
-class="math display">\[
-H(p,q)=\sum_{i=1}^np(x_i)\log\frac{1}{q(x_i)}=-\sum_{i=1}^np(x_i)\log
-q(x_i)=D_{KL}(p||q) + H(p)
-\]</span> <span class="math inline">\(H(p,q)\)</span>
-指分布p和分布q的交叉熵，<span class="math inline">\(H(p)\)</span>
-指分布p的信息熵。</p>
-<p>同样，交叉熵也没有对称性。</p>
-<p>求平均交叉熵损失的简单实现： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">cross_entropy</span>(<span class="hljs-params">predictions, targets, epsilon=<span class="hljs-number">1e-12</span></span>):<br>    <span class="hljs-comment"># 取(epsilon, 1-epsilon)内的，防对数数值问题</span><br>    predictions = np.clip(predictions, epsilon, <span class="hljs-number">1.</span>-epsilon)<br>    <span class="hljs-comment"># 样本数量</span><br>	N = predictions.shape[<span class="hljs-number">0</span>]<br>    <span class="hljs-comment"># target就是p，predict就是q，见上面定义式</span><br>    ce = - np.<span class="hljs-built_in">sum</span>(targets*np.log(predictions)) / N<br>    <span class="hljs-keyword">return</span> ce<br></code></pre></td></tr></table></figure></p>
-<h2 id="区别联系和理解方法">区别联系和理解方法</h2>
+<h3 id="yolov8的anchorfree">YOLOv8的AnchorFree</h3>
+<p>Anchor不是YOLO里的预测框（box），而是一个预定义的锚框，帮助模型预测，比如YOLOv5中有3种anchor，对应3种不同尺度，用来检测不同大小的对象。</p>
+<h2 id="非极大值抑制">非极大值抑制</h2>
+<p>Non-Maximum Suppression，用于去除冗余的重复检测框，基本步骤：</p>
 <ul>
-<li><p>熵在以2为对数底时表示对事件中的随机变量编码所需的最小字节数</p></li>
-<li><p>KL散度指使用B的编码来编A，所需要的额外所需的编码长度</p></li>
-<li><p>交叉熵指使用B作为密码来表示A时所需要的 “平均的编码长度”</p></li>
+<li>将所有预测框中 objectness score 小于阈值的框去掉</li>
+<li><strong>对每个类别</strong>，分别进行
+<ul>
+<li>将该类下所有框按置信度从高到低排序</li>
+<li>取出置信度最高的</li>
+<li>计算其他框与最高的之间的<strong>IoU</strong></li>
+<li>如果IoU大于阈值，则认为重复，去掉</li>
+<li>重复直到没有框剩下</li>
+</ul></li>
 </ul>
-<p>由 <span class="math inline">\(H(p,q)=D_{KL}(p||q) + H(p)\)</span>
-可知，当p是个常数时，优化KL跟优化交叉熵是一样的。</p>
-<p>当不是常数时，就有区别了，但这要根据具体使用场景看，我经验少，举不出例子，只知道一般都用交叉熵，KL在VAG、GAN中用到</p>
+<h2 id="map">mAP</h2>
+<p><strong>mean Average Precision</strong></p>
+<p>目标检测中常用的评估指标，衡量检没检测到、框得准不准得综合性指标</p>
+<h3 id="iou">IoU</h3>
+<p><span class="math display">\[
+\text{IoU}=\frac{\text{预测框与真实框的交集}}{预测框与真实框的并集}
+\]</span></p>
+<p>判断是否为TP（）</p>
+<h3 id="precision-recall">Precision &amp; Recall</h3>
+<p><strong>Pr</strong>，准确率和召回率，分别表示预测为正的框有多少是真正的目标；真实目标中有多少被检测出来</p>
+<p>检测错检测和漏检测</p>
+<h3 id="ap">AP</h3>
+<p>Average
+Precision，每个类别都有AP，表示在不同Recall水平下的Precision的平均值，通过PR曲线积分得到，面积越大越好</p>
+<h3 id="map-1">mAP</h3>
+<p>所有类别AP的平均值，衡量整体性能</p>
+<h1 id="自动化测试部分">自动化测试部分</h1>
+<p>自动化测试类型：</p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2025/04/17/dcd4405c00cf2b51.png" srcset="/img/loading.gif" lazyload
+alt="当初中期答辩的PPT第一页" />
+<figcaption aria-hidden="true">当初中期答辩的PPT第一页</figcaption>
+</figure>
+<h1 id="ocr部分">OCR部分</h1>
+<p>由于根本没实现，只在专利里提了一嘴，所以回顾一下专利里怎么”画饼“的(lll￢ω￢)</p>
+<p>用OCR识别图像中的文字，要得到文字内容和文字框的位置。</p>
+<p>将文字框和YOLO预测框计算IoU来判断重合，关联上文字框和YOLO框，关联不上的就单独作为一个预测框。</p>
+<p>识别出的文字用来跟待测目标的说明文字对比</p>
+<blockquote>
+<p>待测目标指的是：在这个场景下，要先截图上传要测的控件的图片，示例如下：</p>
+<figure>
+<img src="https://s3.bmp.ovh/imgs/2025/04/17/65374c958b2e27e5.png" srcset="/img/loading.gif" lazyload
+alt="在脚本中包含待操作控件的截图" />
+<figcaption aria-hidden="true">在脚本中包含待操作控件的截图</figcaption>
+</figure>
+<p>代码中的两个图就是上传的待测目标，在我这里会额外要求一个文字description或者label</p>
+</blockquote>
+<p>至于怎么融合图像匹配和文字匹配的结果，专利里略过去的，毕竟没实现，硬要说心中的设想，就是类似于：
+<span class="math display">\[
+\lambda \text{Image}+(1-\lambda)\text{Text}
+\]</span> 这种加权平均了。</p>
+<p>专利不需要写代码实现，甚至也不需要这么详细的实现思路，只需要说”辅助“就好了。所以才能够略过(lll￢ω￢)</p>
+<h1 id="项目部分">项目部分</h1>
+<h4
+id="为什么选择基于深度学习的gui自动化测试和传统相比">为什么选择基于深度学习的GUI自动化测试？和传统相比</h4>
+<p>项目的立项根本问题之一，简单。</p>
+<p>项目要解决的问题，据一个实际的例子就是：一个测试员，在自己的电脑上，针对PC端的网页写了一个自动化测试脚本。结果到另一台显示器分辨率，也就是尺寸，不一样的电脑上，脚本就用不了了，比如显示屏太宽了、是竖屏等等。进一步的，在手机端、平板端、车机端，都没法用，得为每个屏幕都单独写一个脚本。</p>
+<p>传统方法有不基于视觉的，通过HTML的标签，也就是DOM(文件对象模型)树来触发行为，但是页面是会迭代的，DOM结构的小改变就可能引起对象获取失败，脚本又没法用了。</p>
+<p>基于传统视觉(模板匹配、特征点匹配)的就说各自的缺点就好了，至少深度学习的image
+recognition可以说强于传统。</p>
+<hr />
+<p>总结来说就是，DOM脆弱，维护难，传统不鲁棒。就得用机器学习的图像识别。</p>
 <h1 id="参考">参考</h1>
-<p><a
-target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/">The
-Softmax function and its derivative - Eli Bendersky's website</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/573385147">一篇文章讲清楚交叉熵和KL散度
-- 康斯坦丁的文章 - 知乎</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://hsinjhao.github.io/2019/05/22/KL-DivergenceIntroduction/">KL散度(Kullback-Leibler
-Divergence)介绍及详细公式推导 | HsinJhao's Blogs</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/13491328897">YOLO 详解：从 v1
+到 v11 - 知乎</a></p>
 
                 
               </div>
@@ -468,8 +562,8 @@ Divergence)介绍及详细公式推导 | HsinJhao's Blogs</a></p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Softmax &amp; Entorpy</div>
-      <div>http://43.143.57.238/2025/04/15/softmax/</div>
+      <div>YOLO</div>
+      <div>http://43.143.57.238/2025/04/17/YOLO/</div>
     </div>
     <div class="license-meta">
       
@@ -481,13 +575,13 @@ Divergence)介绍及详细公式推导 | HsinJhao's Blogs</a></p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年4月15日</div>
+          <div>2025年4月17日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年4月15日</div>
+          <div>2025年4月17日</div>
         </div>
       
       
@@ -518,18 +612,12 @@ Divergence)介绍及详细公式推导 | HsinJhao's Blogs</a></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/17/YOLO/" title="YOLO">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">YOLO</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/09/SVM/" title="SVM简单学习记录">
-                        <span class="hidden-mobile">SVM简单学习记录</span>
+                      <a href="/2025/04/15/softmax/" title="Softmax &amp; Entorpy">
+                        <span class="hidden-mobile">Softmax &amp; Entorpy</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
