@@ -19,16 +19,16 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="今日任务：  39. 组合总和 medium 40. 组合总和Ⅱ medium 131. 分割回文串 medium  39. 组合总和 题目： 给你一个无重复元素的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。">
+    <meta name="description" content="该博客记录了作者解决LeetCode三道回溯算法题目的过程。39题通过递归实现无重复元素的组合总和，40题在去重处理上遇到困难后采用排序+跳过重复元素的方法解决，131题最初尝试失败后，通过构建解空间树和使用动态规划预处理回文串信息最终完成。每道题都提供了详细思路和两种代码实现（常规解法与优化解法），展现了作者在算法学习中的思考与调试过程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day26">
 <meta property="og:url" content="http://43.143.57.238/2024/06/17/leetcode-day26/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="今日任务：  39. 组合总和 medium 40. 组合总和Ⅱ medium 131. 分割回文串 medium  39. 组合总和 题目： 给你一个无重复元素的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。">
+<meta property="og:description" content="该博客记录了作者解决LeetCode三道回溯算法题目的过程。39题通过递归实现无重复元素的组合总和，40题在去重处理上遇到困难后采用排序+跳过重复元素的方法解决，131题最初尝试失败后，通过构建解空间树和使用动态规划预处理回文串信息最终完成。每道题都提供了详细思路和两种代码实现（常规解法与优化解法），展现了作者在算法学习中的思考与调试过程。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/06/17/788a44e4b04795dd.png">
 <meta property="article:published_time" content="2024-06-17T12:39:36.000Z">
-<meta property="article:modified_time" content="2024-08-18T09:17:01.715Z">
+<meta property="article:modified_time" content="2025-04-18T12:59:51.821Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
@@ -325,7 +325,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年8月18日 下午
+                    本文最后更新于 2025年4月18日 晚上
                   
                 
               </p>
@@ -467,7 +467,7 @@ s[i] == s[j]\ \and\ dp[i+1][j-1],&amp; \text{$else$}
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年8月18日</div>
+          <div>2025年4月18日</div>
         </div>
       
       

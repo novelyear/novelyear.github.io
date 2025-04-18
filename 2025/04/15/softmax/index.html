@@ -19,15 +19,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="问题来源 经常在保研经验帖中看到问softmax以及让手写softmax。我只知道有个softmax函数，以及是用在多分类任务里的，知之甚少，所以系统学习一番。 写完后发现有点简单，所以加个cross-entropy凑凑篇幅。 数学原理 Softmax函数定义：(来源于Grok3的回答，暂未在《机器学习》中找到相关描述) Softmax函数将一个 \(K\) 维实数向量 \(\bold">
+    <meta name="description" content="该博客系统讲解了softmax函数及其在多分类任务中的应用，包括数学定义、性质以及与交叉熵损失函数的结合使用。文章还探讨了softmax计算的数值稳定性问题，并提供了改进实现。此外，博客详细介绍了信息熵、相对熵（KL散度）和交叉熵的概念及其区别联系，帮助读者深入理解这些重要概念在机器学习中的应用。最后提供了相关参考资料供进一步学习。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Softmax &amp; Entorpy">
 <meta property="og:url" content="http://43.143.57.238/2025/04/15/softmax/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="问题来源 经常在保研经验帖中看到问softmax以及让手写softmax。我只知道有个softmax函数，以及是用在多分类任务里的，知之甚少，所以系统学习一番。 写完后发现有点简单，所以加个cross-entropy凑凑篇幅。 数学原理 Softmax函数定义：(来源于Grok3的回答，暂未在《机器学习》中找到相关描述) Softmax函数将一个 \(K\) 维实数向量 \(\bold">
+<meta property="og:description" content="该博客系统讲解了softmax函数及其在多分类任务中的应用，包括数学定义、性质以及与交叉熵损失函数的结合使用。文章还探讨了softmax计算的数值稳定性问题，并提供了改进实现。此外，博客详细介绍了信息熵、相对熵（KL散度）和交叉熵的概念及其区别联系，帮助读者深入理解这些重要概念在机器学习中的应用。最后提供了相关参考资料供进一步学习。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-15T10:27:52.000Z">
-<meta property="article:modified_time" content="2025-04-15T14:30:56.287Z">
+<meta property="article:modified_time" content="2025-04-18T13:07:57.895Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary_large_image">
@@ -323,7 +323,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年4月15日 晚上
+                    本文最后更新于 2025年4月18日 晚上
                   
                 
               </p>
@@ -487,7 +487,7 @@ Divergence)介绍及详细公式推导 | HsinJhao's Blogs</a></p>
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年4月15日</div>
+          <div>2025年4月18日</div>
         </div>
       
       

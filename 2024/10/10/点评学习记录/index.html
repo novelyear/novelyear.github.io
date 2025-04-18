@@ -19,15 +19,15 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="目前处于烂尾状态。。。我很抱歉。。  缓存更新   等redis内存满了自己淘汰 超时 主动更新  主动更新  更新数据库时更新缓存 缓存与数据库整合 调用者只操作缓存，由其他线程异步将缓存持久化到数据库中，保证最终一致  先删缓存还是先操作数据库？ 先操作数据库，再更新缓存。  缓存操作比数据库操作快；数据库读比写快：所以先删缓存，在数据库update完成">
+    <meta name="description" content="这篇博客介绍了缓存更新策略（被动淘汰、超时、主动更新）以及三种常见缓存问题：缓存穿透（布隆过滤器&#x2F;空对象）、缓存雪崩（随机TTL&#x2F;集群）和缓存击穿（互斥锁&#x2F;逻辑过期）。作者还补充了缓存预热方法，通过实现ApplicationRunner接口在应用启动时加载热点数据。文章附带多张流程图说明解决方案，但作者自述目前处于&quot;烂尾状态&quot;。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="点评的缓存问题">
 <meta property="og:url" content="http://43.143.57.238/2024/10/10/%E7%82%B9%E8%AF%84%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="目前处于烂尾状态。。。我很抱歉。。  缓存更新   等redis内存满了自己淘汰 超时 主动更新  主动更新  更新数据库时更新缓存 缓存与数据库整合 调用者只操作缓存，由其他线程异步将缓存持久化到数据库中，保证最终一致  先删缓存还是先操作数据库？ 先操作数据库，再更新缓存。  缓存操作比数据库操作快；数据库读比写快：所以先删缓存，在数据库update完成">
+<meta property="og:description" content="这篇博客介绍了缓存更新策略（被动淘汰、超时、主动更新）以及三种常见缓存问题：缓存穿透（布隆过滤器&#x2F;空对象）、缓存雪崩（随机TTL&#x2F;集群）和缓存击穿（互斥锁&#x2F;逻辑过期）。作者还补充了缓存预热方法，通过实现ApplicationRunner接口在应用启动时加载热点数据。文章附带多张流程图说明解决方案，但作者自述目前处于&quot;烂尾状态&quot;。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-10T13:10:09.000Z">
-<meta property="article:modified_time" content="2025-03-04T09:30:07.194Z">
+<meta property="article:modified_time" content="2025-04-18T13:10:09.199Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="redis">
 <meta property="article:tag" content="点评">
@@ -324,7 +324,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年3月4日 下午
+                    本文最后更新于 2025年4月18日 晚上
                   
                 
               </p>
@@ -478,7 +478,7 @@ src="https://s3.bmp.ovh/imgs/2024/11/03/11e420ea7f4b894e.png" srcset="/img/loadi
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年3月4日</div>
+          <div>2025年4月18日</div>
         </div>
       
       
