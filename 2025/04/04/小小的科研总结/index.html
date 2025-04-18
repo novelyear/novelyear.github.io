@@ -19,18 +19,18 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="该博客作者记录了一个多月的实验过程，主要围绕使用CLIP预训练模型进行图像域泛化研究。文章分为四个阶段：首先利用CLIP提取特征并绘制t-SNE图；接着在DomainBed框架中替换backbone为CLIP进行训练；然后实现特征对齐方法并比较效果；最后尝试多卡训练和大规模实验。作者详细记录了技术细节、遇到的问题及解决方案，包括CLIP原理、backbone概念、多卡训练实现等，同时反思了实验策略">
+    <meta name="description" content="该博客作者记录了自己一个多月的实验历程，主要围绕使用CLIP预训练模型进行图像域泛化研究。文章分为四个阶段：首先使用CLIP提取特征并绘制t-SNE图；接着在DomainBed框架中替换backbone为CLIP；然后实现特征对齐方法并比较效果；最后扩展实验规模时遇到多卡训练等技术挑战。作者详细记录了实验过程中的问题解决思路，包括模型参数冻结、多卡并行训练实现等，并反思了实验设计中的不足之处。全文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小小的科研总结">
 <meta property="og:url" content="http://43.143.57.238/2025/04/04/%E5%B0%8F%E5%B0%8F%E7%9A%84%E7%A7%91%E7%A0%94%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="该博客作者记录了一个多月的实验过程，主要围绕使用CLIP预训练模型进行图像域泛化研究。文章分为四个阶段：首先利用CLIP提取特征并绘制t-SNE图；接着在DomainBed框架中替换backbone为CLIP进行训练；然后实现特征对齐方法并比较效果；最后尝试多卡训练和大规模实验。作者详细记录了技术细节、遇到的问题及解决方案，包括CLIP原理、backbone概念、多卡训练实现等，同时反思了实验策略">
+<meta property="og:description" content="该博客作者记录了自己一个多月的实验历程，主要围绕使用CLIP预训练模型进行图像域泛化研究。文章分为四个阶段：首先使用CLIP提取特征并绘制t-SNE图；接着在DomainBed框架中替换backbone为CLIP；然后实现特征对齐方法并比较效果；最后扩展实验规模时遇到多卡训练等技术挑战。作者详细记录了实验过程中的问题解决思路，包括模型参数冻结、多卡并行训练实现等，并反思了实验设计中的不足之处。全文">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/7801450e88c302eb.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/ec0eb9f3d879f611.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2025/04/05/8520d365dbdd7064.png">
 <meta property="article:published_time" content="2025-04-04T02:54:39.000Z">
-<meta property="article:modified_time" content="2025-04-18T13:09:31.569Z">
+<meta property="article:modified_time" content="2025-04-18T14:07:44.477Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="DG">
 <meta name="twitter:card" content="summary_large_image">

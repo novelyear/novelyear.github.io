@@ -19,17 +19,17 @@
   <meta name="author" content="Leoo Yann">
   <meta name="keywords" content="">
   
-    <meta name="description" content="文章讲解了如何解决两种冗余连接问题。对于无向图的冗余连接，直接使用并查集检测环并删除最后出现的边即可。对于有向图的冗余连接II，需要处理入度为2和环两种情况：先检查是否存在入度为2的节点，若有则尝试删除其中一条边；若无则寻找构成环的边。作者还指出自己初始思路的错误，并通过示例说明了正确解法。">
+    <meta name="description" content="该博客讨论了两道关于冗余连接的图论问题。第一篇讲解无向图中如何找到冗余边使其成为树，使用并查集解决。第二篇处理有向图中的冗余边问题，指出个人错误思路并提供了正确解法，强调需要同时处理环和入度问题。两篇文章都提供了详细的代码实现和思路分析。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode_day58">
 <meta property="og:url" content="http://43.143.57.238/2024/07/19/leetcode-day58/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
-<meta property="og:description" content="文章讲解了如何解决两种冗余连接问题。对于无向图的冗余连接，直接使用并查集检测环并删除最后出现的边即可。对于有向图的冗余连接II，需要处理入度为2和环两种情况：先检查是否存在入度为2的节点，若有则尝试删除其中一条边；若无则寻找构成环的边。作者还指出自己初始思路的错误，并通过示例说明了正确解法。">
+<meta property="og:description" content="该博客讨论了两道关于冗余连接的图论问题。第一篇讲解无向图中如何找到冗余边使其成为树，使用并查集解决。第二篇处理有向图中的冗余边问题，指出个人错误思路并提供了正确解法，强调需要同时处理环和入度问题。两篇文章都提供了详细的代码实现和思路分析。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/07/19/721fb7b01d80c426.png">
 <meta property="og:image" content="https://s3.bmp.ovh/imgs/2024/07/19/73a20d7842640d56.png">
 <meta property="article:published_time" content="2024-07-19T02:45:01.000Z">
-<meta property="article:modified_time" content="2025-04-18T13:05:51.395Z">
+<meta property="article:modified_time" content="2025-04-18T14:04:11.722Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary_large_image">
