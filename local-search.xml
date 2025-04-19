@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>AI评论与摘要</title>
+    <link href="/2025/04/19/AI%E8%AF%84%E8%AE%BA%E4%B8%8E%E6%91%98%E8%A6%81/"/>
+    <url>/2025/04/19/AI%E8%AF%84%E8%AE%BA%E4%B8%8E%E6%91%98%E8%A6%81/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>开头有一段踩坑记录，直接看<ahref="#使用方法">使用方法</a>，忽略前面的踩坑记录。</p></blockquote><h1 id="motivation">Motivation</h1><p>根据经典的拖延心理：当想要逃避某件事时，就会想要去做除了这件事的其他任何事。</p><blockquote><p>比如不想学习的时候，会莫名其妙地打扫房间和整理桌面</p></blockquote><p>因为抗拒科研和逃避科研，我对博客建设的兴趣陡然上升，最近github上的trendingrepo中有一个<ahref="https://github.com/Anduin2017/HowToCook">Anduin2017/HowToCook:程序员在家做饭方法指南</a>，觉得很有意思，然后去看了作者的博客，发现作者的文章评论区都会有一个DeepSeek或者ChatGPT生成的总结性评论，于是想要给自己也加一个。</p><p>正好，目前的摘要仅仅是简单截取开头，很不美观，生成的总结还可以拿来当摘要。</p><h1 id="实现过程">实现过程</h1><p>根据软件工程的“沟通、策划、建模、构建、部署”，产生idea的时候应该就完成了沟通，所以要策划整体实现的流程。</p><p>我只是一个项目经验仅限于苍穹外卖和黑马点评的rookie，所以让DeepSeek、ChatGPT、Grok3合作给我策划流程，最终定下的整体流程为：</p><pre><code class="mermaid" >graph TD    A[本地Hexo写作] --> B{hexo g -d}    B --> C[服务器Git仓库]    C --> D[触发post-receive钩子]    D --> E[运行generate-comments.js]    E --> F[调用DeepSeek API生成总结]    F --> G[通过Netlify Functions更新Twikoo评论]    F --> H[更新文章excerpt]    C --> I[定时同步到GitHub Pages]</code></pre><p>不过写到<code>generate-comments.js</code>时，发现部署到服务端有点多余，跑一次就够了，不用设置定时任务。</p><p>干脆放在博客目录下，每次hexo命令都会执行一次，不过我最终选择单独运行，反正都是遍历<code>_post</code>做修改。</p><p>所以实际的开发流程是：</p><ul><li>编写云函数post-comment</li><li>编写generate-comment.js</li><li>本地运行generate-comment.js</li></ul><p>花了3个晚上+一个白天才正确地搞定。。在前期设计和具体实现上都有很多问题。</p><h2 id="编写云函数">编写云函数</h2><blockquote><p>其实此举纯属多余，twikoo需要云函数是因为前端不能直接向数据库发送数据，得用云函数当后端。</p><p>但是我这里是本地运行，已经脱离前端了，完全可以直接通过MongoDBClient向数据库插入数据</p><p>但还是写一下，毕竟已经做了(lll￢ω￢)</p></blockquote><p>模仿twikoo打包json的方式，写一个更弱的post即可，twikoo提交评论的代码在<code>/src/server/function/twikoo/index.js/commentSubmit</code>。</p><p>为了避免MONGODB_URL泄露，在Netlify的环境变量中添加连接字符串，而不直接写在js中。</p><p>在本地写好代码之后，按照twikoo部署的方法，将函数上传到github仓库，在Netlify中Deploywith GitHub完成部署。</p><p>我的云函数是发送post请求，请求体就是评论内容和其他的信息，函数负责将内容插入数据库。</p><h1 id="编写generate-comment.js">编写generate-comment.js</h1><blockquote><p>其实就是个几百行小代码，类似于hexo插件了。</p><p>代码见github，有充分的注释和运行日志输出（Copilot写的）</p></blockquote><p>大体流程就是：</p><ol type="1"><li>遍历<code>_post</code>文件夹下的md文件，读取文件名、matter里的日期、文章内容</li><li>URL编码，拼接成URL，连接数据库，搜索该URL下是否存在AI评论，有就跳过</li><li>调DeepSeek的API，发个post，带上prompt跟文章内容，请求头里带上API_KEY，获取AI评论</li><li>重新拼出URL，构造json，发给云函数(去掉云函数后就是插入数据库)</li><li>将AI评论插入.md的matter里面，作为excerpt，就可作为摘要显示</li></ol><blockquote><p>代码中拼了两次URL，是为了日志打印方便</p><p>代码中多次建立、断开数据库连接，开销较大，可以优化优化(lll￢ω￢)</p></blockquote><h1 id="使用方法">使用方法</h1><p>将<code>generate-comment.js</code>放在博客目录的<code>/script</code>下，然后：</p><ol type="1"><li>创建 <ahref="vscode-file://vscode-app/c:/Users/yann/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html">.env</a>文件：包含<code>MONGODB_URI=你的MongoDB连接串DEEPSEEK_API_KEY=你的API密钥</code></li><li>修改配置<code>config.js</code></li><li>运行程序：<code>node generate-comments.js</code></li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>博客建设</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>YOLO</title>
     <link href="/2025/04/17/YOLO/"/>
     <url>/2025/04/17/YOLO/</url>
