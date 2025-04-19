@@ -21,20 +21,20 @@
   
     <meta name="description" content="博主分享了自己为博客添加AI生成总结功能的实现过程。通过编写脚本遍历文章、调用DeepSeek API生成总结，并自动更新评论和摘要，最终将代码放在博客目录下单独运行。文章详细介绍了云函数编写、脚本开发的具体步骤和使用方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AI评论与摘要">
+<meta property="og:title" content="DeepSeek评论与摘要插件">
 <meta property="og:url" content="http://43.143.57.238/2025/04/19/AI%E8%AF%84%E8%AE%BA%E4%B8%8E%E6%91%98%E8%A6%81/index.html">
 <meta property="og:site_name" content="novelyear&#39;s home">
 <meta property="og:description" content="博主分享了自己为博客添加AI生成总结功能的实现过程。通过编写脚本遍历文章、调用DeepSeek API生成总结，并自动更新评论和摘要，最终将代码放在博客目录下单独运行。文章详细介绍了云函数编写、脚本开发的具体步骤和使用方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-19T03:36:27.000Z">
-<meta property="article:modified_time" content="2025-04-19T09:26:00.897Z">
+<meta property="article:modified_time" content="2025-04-19T11:21:28.340Z">
 <meta property="article:author" content="Leoo Yann">
 <meta property="article:tag" content="博客建设">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>AI评论与摘要 - novelyear&#39;s home</title>
+  <title>DeepSeek评论与摘要插件 - novelyear&#39;s home</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AI评论与摘要"></span>
+            <span id="subtitle" data-typed-text="DeepSeek评论与摘要插件"></span>
           
         </div>
 
@@ -256,7 +256,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1k 字
+          1.4k 字
         
       </span>
     
@@ -316,12 +316,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">AI评论与摘要</h1>
+            <h1 id="seo-header">DeepSeek评论与摘要插件</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年4月19日 下午
+                    本文最后更新于 2025年4月19日 晚上
                   
                 
               </p>
@@ -367,8 +367,8 @@ graph TD
 <p>所以实际的开发流程是：</p>
 <ul>
 <li>编写云函数post-comment</li>
-<li>编写generate-comment.js</li>
-<li>本地运行generate-comment.js</li>
+<li>编写generate-comments.js</li>
+<li>本地运行generate-comments.js</li>
 </ul>
 <p>花了3个晚上+一个白天才正确地搞定。。在前期设计和具体实现上都有很多问题。</p>
 <h2 id="编写云函数">编写云函数</h2>
@@ -382,7 +382,7 @@ graph TD
 <p>在本地写好代码之后，按照twikoo部署的方法，将函数上传到github仓库，在Netlify中Deploy
 with GitHub完成部署。</p>
 <p>我的云函数是发送post请求，请求体就是评论内容和其他的信息，函数负责将内容插入数据库。</p>
-<h1 id="编写generate-comment.js">编写generate-comment.js</h1>
+<h1 id="编写generate-comments.js">编写generate-comments.js</h1>
 <blockquote>
 <p>其实就是个几百行小代码，类似于hexo插件了。</p>
 <p>代码见github，有充分的注释和运行日志输出（Copilot写的）</p>
@@ -400,14 +400,44 @@ with GitHub完成部署。</p>
 <p>代码中多次建立、断开数据库连接，开销较大，可以优化优化(lll￢ω￢)</p>
 </blockquote>
 <h1 id="使用方法">使用方法</h1>
-<p>将<code>generate-comment.js</code>放在博客目录的<code>/script</code>下，然后：</p>
 <ol type="1">
-<li>创建 <a
+<li><p>获取<a href="">generate-comments.js</a></p></li>
+<li><p>将<code>generate-comments.js</code>放在博客目录的<code>/script</code>下</p></li>
+<li><p>在博客根目录下创建 <a
 href="vscode-file://vscode-app/c:/Users/yann/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html">.env</a>
-文件：包含<code>MONGODB_URI=你的MongoDB连接串DEEPSEEK_API_KEY=你的API密钥</code></li>
-<li>修改配置<code>config.js</code></li>
-<li>运行程序：<code>node generate-comments.js</code></li>
+文件：包含<code>MONGODB_URI=你的MongoDB连接串</code> +
+<code>DEEPSEEK_API_KEY=你的API密钥</code></p></li>
+<li><p>在博客根目录的<code>package.json</code>的<code>dependencies</code>下增加：
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;axios&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^1.6.0&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;dotenv&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^16.5.0&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;gray-matter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^4.0.3&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-attr">&quot;mongodb&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;^6.0.0&quot;</span><br></code></pre></td></tr></table></figure></p></li>
+<li><p>在博客根目录下打开终端(git
+bash之类的)，运行<code>npm install</code>下载依赖</p></li>
+<li><p>确保安装了dotenv包：<code>npm install dotenv</code></p></li>
+<li><p><code>hexo g</code>即可运行插件</p></li>
 </ol>
+<blockquote>
+<p>获取MongoDB连接串的方式见：<a
+target="_blank" rel="noopener" href="https://twikoo.js.org/mongodb-atlas.html">MongoDB Atlas | Twikoo
+文档</a></p>
+<p>获取DEEPSEEK_API_KEY的方式见：<a
+target="_blank" rel="noopener" href="https://platform.deepseek.com/api_keys">DeepSeek
+开放平台</a>（当然是要钱的，不过挺便宜，我一轮下来只花了4毛钱）</p>
+</blockquote>
+<hr />
+<p>在代码开头有配置项： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 配置项</span><br><span class="hljs-keyword">const</span> config = &#123;<br>  <span class="hljs-attr">deepseek</span>: &#123;<br>    <span class="hljs-attr">botName</span>: <span class="hljs-string">&#x27;DeepSeek&#x27;</span>,<br>    <span class="hljs-attr">botUid</span>: <span class="hljs-string">&#x27;deepseek-bot&#x27;</span>,<br>    <span class="hljs-attr">botLink</span>: <span class="hljs-string">&#x27;https://www.deepseek.com/&#x27;</span>,<br>    <span class="hljs-attr">botUa</span>: <span class="hljs-string">&#x27;DeepSeek Bot/1.0&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">mongodb</span>: &#123;<br>    <span class="hljs-attr">uri</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">MONGODB_URI</span>,<br>    <span class="hljs-attr">dbName</span>: <span class="hljs-string">&#x27;test&#x27;</span>,<br>    <span class="hljs-attr">collection</span>: <span class="hljs-string">&#x27;comment&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">hexo</span>: &#123;<br>    <span class="hljs-attr">postsDir</span>: <span class="hljs-string">&#x27;./source/_posts&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">logging</span>: &#123;<br>    <span class="hljs-attr">enabled</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">consoleOutput</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">fileOutput</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">logFile</span>: <span class="hljs-string">&#x27;./logs/app.log&#x27;</span><br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure></p>
+<p>根据自己的实际情况修改配置：</p>
+<ul>
+<li><code>deepseek</code>下面的配置是设置评论区的AI评论的相关信息，并非使用V1还是R1，要修改模型调用就Ctrl+F搜索v1，改成R1对应的URL即可，换用其他大模型同理</li>
+<li><code>mongodb</code>下的配置是连接数据库相关的信息，<code>dbname</code>是数据库名称，<code>collection</code>是数据库内存评论的库</li>
+<li><code>hexo</code>下的配置是存放博文的相对路径</li>
+<li><code>logging</code>下的配置是是否在运行时启用日志功能，<code>enabled</code>表示启用，<code>consoleOutput</code>表示在命令行中打印日志输出，<code>fileOutput</code>表示输出日志到文件中，<code>logFile</code>表示日志存储文件的路径</li>
+</ul>
+<h1 id="limitation">limitation</h1>
+<ul>
+<li><p>仅适用于使用MongoDB，最好是twikoo的hexo博客</p></li>
+<li><p>目前只支持DeepSeek，其他的需要修改API_KEY和相应配置</p></li>
+<li><p>DeepSeek API要花钱</p></li>
+<li><p>使用教程可能有问题，因为没条件测试(lll￢ω￢)</p></li>
+</ul>
 
                 
               </div>
@@ -432,7 +462,7 @@ href="vscode-file://vscode-app/c:/Users/yann/AppData/Local/Programs/Microsoft%20
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AI评论与摘要</div>
+      <div>DeepSeek评论与摘要插件</div>
       <div>http://43.143.57.238/2025/04/19/AI评论与摘要/</div>
     </div>
     <div class="license-meta">
